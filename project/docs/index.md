@@ -3,8 +3,9 @@
 所属：愛媛大学工学部工学科　応用情報工学コース　4年
 
 ## 関心のある分野
-* 自然言語処理
-* 表現学習
+* Natural Language Processing
+* Representation Learning
+* Automatic prompt optimization
 
 ## 国際学会
 * Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, Kanade Nonomura, Yuki Fujiwara, Tomoyuki Kajiwara <br>
