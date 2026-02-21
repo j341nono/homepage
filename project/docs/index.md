@@ -5,7 +5,7 @@
 ## 関心のある分野
 * Natural Language Processing
 * Representation Learning
-* Automatic prompt optimization
+* Automatic Prompt Optimization
 
 ## 国際学会
 * Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, Kanade Nonomura, Yuki Fujiwara, Tomoyuki Kajiwara <br>
