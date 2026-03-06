@@ -5,6 +5,12 @@
 ## 関心のある分野
 * Natural Language Processing
 * Representation Learning
+* Automatic Prompt Optimization
+
+## 国際学会
+* Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, Kanade Nonomura, Yuki Fujiwara, Tomoyuki Kajiwara <br>
+    HOTATE: A Japanese Dialogue Corpus Annotated with Responses of Private Thoughts and Public Statements <br>
+    In Proceedings of the 15th International Conference on Language Resources and Evaluation (LREC 2026), pp.xxx-xxx, Mallorca, Spain, May 2026 (to appear)
 
 ## 国内学会
 * 野々村 奏, 福島 啓太, 近藤 里咲, 梶原 智之 <br>
