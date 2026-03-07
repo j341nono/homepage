@@ -1,18 +1,27 @@
 # 野々村 奏 (Nonomura Kanade)
 
-所属：愛媛大学工学部工学科　応用情報工学コース　4年
+所属：愛媛大学工学部工学科 応用情報工学コース 4年
 
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github&style=for-the-badge)](https://github.com/j341nono)
+<div style="margin:0 0;">
 
-## 関心のある分野
-* Natural Language Processing
-* Representation Learning
+<img src="figures/profile/v1.jpg" width="200" style="margin-bottom:6px;">
+
+<br>
+
+<a href="https://github.com/j341nono">
+<img src="https://img.shields.io/badge/GitHub-Repository-blue?logo=github&style=for-the-badge">
+</a>
+
+</div>
+
+## 研究分野
+* 自然言語処理
+* 表現学習
 
 ## 国際学会
 * Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, <u>Kanade Nonomura</u>, Yuki Fujiwara, Tomoyuki Kajiwara <br>
     HOTATE: A Japanese Dialogue Corpus Annotated with Responses of Private Thoughts and Public Statements <br>
     In Proceedings of the 15th International Conference on Language Resources and Evaluation (LREC 2026), pp.xxx-xxx, Mallorca, Spain, May 2026 (to appear)
-
 
 ## 国内学会
 * <u>野々村奏</u>, 福島 啓太, 近藤 里咲, 梶原 智之 <br>
@@ -39,10 +48,11 @@
     多言語文埋め込みの意味要素と言語要素の分離に関する調査 <br>
     NLP若手の会第20回シンポジウム (YANS2025), September 2025
 
-## インターン
-* 株式会社レトリバ, February 9, 2026 ~
-
-## その他
+## 受賞
+* 情報処理学会第88回全国大会 学生奨励賞
 * 応用情報技術者試験 合格
 * 愛媛大学工学部工学科応用情報工学コース優秀学生（3 年次） 受賞
+
+## インターン
+* 株式会社レトリバ, February 9, 2026 ~
 
