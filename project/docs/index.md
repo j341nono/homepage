@@ -8,14 +8,17 @@
 <img src="figures/profile/v1.jpg" width="200" style="margin-bottom:6px;">
 
 <br>
-<a href="https://github.com/j341nono">
+<div style="display:flex; gap:10px;">
+
+<a href="https://github.com/j341nono" style="text-decoration:none;">
 <img src="https://img.shields.io/badge/GitHub-Repository-blue?logo=github&style=for-the-badge">
 </a>
 
-<a href="https://qiita.com/j341nono">
+<a href="https://qiita.com/USERNAME" style="text-decoration:none;">
 <img src="https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&style=for-the-badge">
 </a>
 
+</div>
 </div>
 
 ## 研究分野
