@@ -8,7 +8,13 @@
 * Natural Language Processing
 * Representation Learning
 
-## 国内学会（査読なし）
+## 国際学会
+* Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, <u>Kanade Nonomura</u>, Yuki Fujiwara, Tomoyuki Kajiwara <br>
+    HOTATE: A Japanese Dialogue Corpus Annotated with Responses of Private Thoughts and Public Statements <br>
+    In Proceedings of the 15th International Conference on Language Resources and Evaluation (LREC 2026), pp.xxx-xxx, Mallorca, Spain, May 2026 (to appear)
+
+
+## 国内学会
 * <u>野々村奏</u>, 福島 啓太, 近藤 里咲, 梶原 智之 <br>
   多様な多言語文埋め込みに対する意味要素と言語要素の分離 <br>
   人工知能学会第40回年次大会, pp.xxx-xxx, July 2026 (to appear)
