@@ -63,6 +63,7 @@
 * 株式会社レトリバ, February 9, 2026 ~
 
 ## その他
+* 第20回言語処理若手シンポジウム(2025) ハッカソン 参加　[[link](https://yans.anlp.jp/entry/yans2025hackathon)]
 * 技育 CAMP ハッカソン VOL.8　参加　[[link](https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/)]
 * Ruby 合宿 2024 夏　参加　[[link](https://www.rubycamp.jp/reports/2024-08-31-2024-summer/)]
 
