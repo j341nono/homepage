@@ -2,6 +2,8 @@
 
 所属：愛媛大学工学部工学科　応用情報工学コース　4年
 
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github&style=for-the-badge)](https://github.com/j341nono)
+
 ## 関心のある分野
 * Natural Language Processing
 * Representation Learning
@@ -13,7 +15,7 @@
 
 * 野々村奏, 梶原智之 <br>
     日本語文埋め込み獲得のための大規模言語モデルのプロンプト設計 <br>
-    情報処理学会第88回全国大会, pp.xxx-xxx, March 2026 (to appear)
+    情報処理学会第88回全国大会, pp.281-282, March 2026 (to appear)
 
 * 戸田 裕子, 前川 大輔, 眞鍋 光汰, 米山 瑛人, 野々村 奏, 藤原 有希, 梶原 智之 <br>
     HOTATE：本音と建前の応答対からなる対話コーパスの構築 <br>
@@ -22,6 +24,10 @@
 * 野々村 奏, 福島 啓太, 近藤 里咲, 梶原 智之 <br>
     多言語文埋め込みの意味と言語の分離のための損失関数の分析 <br>
     言語処理学会第32回年次大会, pp.xxx-xxx, March 2026 (to appear)
+
+* 野々村奏, 梶原智之 <br>
+    日本語文埋め込み獲得のための大規模言語モデルのプロンプト設計 <br>
+    情報処理学会第88回全国大会, pp.281-282, March 2026 (to appear)
 
 * 野々村 奏, 近藤 里咲, 梶原 智之 <br>
     多言語文埋め込みの意味要素と言語要素の分離に関する調査 <br>
