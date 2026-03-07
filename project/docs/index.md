@@ -1,6 +1,7 @@
 # 野々村 奏 (Nonomura Kanade)
 
-所属：愛媛大学工学部工学科 応用情報工学コース 4年
+* 所属：愛媛大学工学部工学科 応用情報工学コース 4年
+* Email：nonomura@ai.cs.ehime-u.ac.jp 
 
 <div style="margin:0 0;">
 
