@@ -9,7 +9,6 @@
 
 <br>
 <div style="display:flex; gap:10px;">
-
 <a href="https://github.com/j341nono" style="text-decoration:none;">
 <img src="https://img.shields.io/badge/GitHub-Repository-blue?logo=github&style=for-the-badge">
 </a>
@@ -37,15 +36,15 @@
 
 * 戸田 裕子, 前川 大輔, 眞鍋 光汰, 米山 瑛人, <u>野々村 奏</u>, 藤原 有希, 梶原 智之 <br>
     HOTATE：本音と建前の応答対からなる対話コーパスの構築 <br>
-    言語処理学会第32回年次大会, pp.xxx-xxx, March 2026 (to apper)
+    言語処理学会第32回年次大会, pp.1748-1752, March 2026
 
 * <u>野々村 奏</u>, 福島 啓太, 近藤 里咲, 梶原 智之 <br>
     多言語文埋め込みの意味と言語の分離のための損失関数の分析 <br>
-    言語処理学会第32回年次大会, pp.xxx-xxx, March 2026 (to appear)
+    言語処理学会第32回年次大会, pp.3842-3846, March 2026
 
 * <u>野々村奏</u>, 梶原智之 <br>
     日本語文埋め込み獲得のための大規模言語モデルのプロンプト設計 <br>
-    情報処理学会第88回全国大会, pp.281-282, March 2026 (to appear)
+    情報処理学会第88回全国大会, pp.281-282, March 2026
 
 * <u>野々村 奏</u>, 近藤 里咲, 梶原 智之 <br>
     多言語文埋め込みの意味要素と言語要素の分離に関する調査 <br>
@@ -60,7 +59,7 @@
 * 愛媛大学工学部工学科応用情報工学コース優秀学生（3 年次） 受賞
 
 ## インターン
-* 株式会社レトリバ, February 9, 2026 ~
+* 株式会社レトリバ, February 9, 2026 to March 31, 2026
 
 ## その他
 * 第20回言語処理若手シンポジウム(2025) ハッカソン 参加 [[link](https://yans.anlp.jp/entry/yans2025hackathon)]
