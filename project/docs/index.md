@@ -23,6 +23,7 @@
 ## 研究分野
 * 自然言語処理
 * 表現学習
+* 自動プロンプト最適化
 
 ## 国際学会
 * Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, <u>Kanade Nonomura</u>, Yuki Fujiwara, Tomoyuki Kajiwara <br>
@@ -59,7 +60,7 @@
 * 愛媛大学工学部工学科応用情報工学コース優秀学生（3 年次） 受賞
 
 ## インターン
-* 株式会社レトリバ, February 9, 2026 to March 31, 2026
+* 株式会社レトリバ, February 9, 2026 to March 31, 2026 [[link](https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9)]
 
 ## その他
 * 第20回言語処理若手シンポジウム(2025) ハッカソン 参加 [[link](https://yans.anlp.jp/entry/yans2025hackathon)]
