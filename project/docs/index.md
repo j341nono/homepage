@@ -1,6 +1,6 @@
 # 野々村 奏 (Nonomura Kanade)
 
-* 所属：愛媛大学工学部工学科 応用情報工学コース 自然言語処理研究室 4年
+* 所属：愛媛大学 大学院理工学研究科 自然言語処理研究室 修士1年
 * Email：nonomura@ai.cs.ehime-u.ac.jp 
 
 <div style="margin:0 0;">
