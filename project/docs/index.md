@@ -67,6 +67,7 @@
 * 株式会社レトリバ, February 9, 2026 to March 31, 2026 [[link](https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9)]
 
 ## その他
+* 【技育CAMP2026】ハッカソン Vol.2 参加中 [[link](https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/)]
 * 第20回言語処理若手シンポジウム(2025) ハッカソン 参加 [[link](https://yans.anlp.jp/entry/yans2025hackathon)]
 * 【技育CAMP2025】ハッカソン Vol.8 参加 [[link](https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/)]
 * Ruby 合宿 2024 夏 参加 [[link](https://www.rubycamp.jp/reports/2024-08-31-2024-summer/)]
