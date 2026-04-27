@@ -28,7 +28,7 @@
 ## 国際学会
 * <u>Kanade Nonomura</u>, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara <br>
     Disentangling Meaning and Language Components in Diverse Multilingual Sentence Embeddings <br>
-    In Proceedings of the ACL 2026 Student Research Workshop, pp.xxx-xxx, July 2026 (to appear)
+    In Proceedings of the ACL 2026 Student Research Workshop (ACL SRW 2026), pp.xxx-xxx, July 2026 (to appear)
 
 * Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, <u>Kanade Nonomura</u>, Yuki Fujiwara, Tomoyuki Kajiwara <br>
     HOTATE: A Japanese Dialogue Corpus Annotated with Responses of Private Thoughts and Public Statements <br>
