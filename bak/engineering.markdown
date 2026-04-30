@@ -7,4 +7,3 @@ nav_exclude: true
 ---
 
 # 野々村 奏 (Nonomura Kanade)
-やあ
