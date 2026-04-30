@@ -4,6 +4,8 @@ title: Home
 nav_exclude: true
 ---
 
+# 野々村　奏 (Kanade Nonomura)
+
 <div style="display: flex; flex-wrap: wrap-reverse; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 30px;">
 
   <div style="flex: 1 1 300px;">
