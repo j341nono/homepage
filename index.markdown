@@ -79,7 +79,7 @@ nav_exclude: true
 * 第20回言語処理若手シンポジウム (YANS2025) ハッカソン [[link](https://yans.anlp.jp/entry/yans2025hackathon)] <br>
   選好チューニングを用いた訓練により、数学問題の正答率を競う課題
 * 【技育CAMP2025】ハッカソン Vol.8 [[link](https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/)]  [[成果物](https://github.com/BakeryForHackathon/Annotopia)] <br>
-  アノテーションツールの開発
+  複数人で楽にアノテーションを実施できるWebアプリの開発
 * Ruby 合宿 2024 夏 [[link](https://www.rubycamp.jp/reports/2024-08-31-2024-summer/)] [[成果物](https://github.com/j341nono/rc2024su_team1)] <br>
   Gosuライブラリを用いたカードゲームの開発
 
