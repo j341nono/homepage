@@ -41,6 +41,9 @@ nav_exclude: true
 * テキスト平易化
 
 ## 国際学会
+* Mitigating Language Bias in Multilingual Sentence Embeddings for Cross-Lingual Similarity Estimation <br>
+  <u>Kanade Nonomura</u>, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara, In Proceedings of the 15th Joint Conference on Lexical and Computational Semantics (*SEM 2026), pp.xxx-xxx, July 2026 (to appear)
+
 * Disentangling Meaning and Language Components in Diverse Multilingual Sentence Embeddings <br>
   <u>Kanade Nonomura</u>, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara, In Proceedings of the ACL 2026 Student Research Workshop (ACL SRW 2026), pp.xxx-xxx, July 2026 (to appear)
 
