@@ -4,18 +4,18 @@ title: home
 nav_exclude: true
 ---
 
-# 野々村　奏 (Kanade Nonomura)
+# 野々村 奏 (Kanade Nonomura)
 
 <div style="display: flex; flex-wrap: wrap-reverse; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 30px;">
 
   <div style="flex: 1 1 300px;">
     <div style="margin-top: 0; margin-bottom: 15px; padding-left: 0;">
-      <strong>所属</strong>：愛媛大学 大学院理工学研究科 自然言語処理研究室 修士1年<br>
+      <strong>所属</strong>：愛媛大学 大学院理工学研究科理工学専攻 数理情報プログラム 自然言語処理研究室 修士1年<br>
       <strong>Email</strong>：<span class="no-select">nonomura[at]ai.cs.ehime-u.ac.jp</span>
     </div>
 
     <p style="margin-bottom: 20px; line-height: 1.6; padding-left: 0">
-      現在、自然言語処理を専攻しています。特に、埋め込み表現を中心に注力しており、こうした技術の社会実装にも強い関心があります。また、情報科学の他にも、天文学や幾何学にも広く関心を寄せています。
+      現在、自然言語処理を専攻しています。特に、埋め込み表現の分野に注力しており、こうした技術の社会実装にも強い関心があります。また、情報科学の他にも、天文学や幾何学にも広く関心を寄せています。
     </p>
     
     <div style="display:flex; gap:10px;">
