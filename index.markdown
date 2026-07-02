@@ -45,7 +45,7 @@ nav_exclude: true
   <u>Kanade Nonomura</u>, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara, In Proceedings of the 15th Joint Conference on Lexical and Computational Semantics (*SEM 2026), pp.385–394, San Diego, California, United States, July 2026
 
 * Disentangling Meaning and Language Components in Diverse Multilingual Sentence Embeddings <br>
-  <u>Kanade Nonomura</u>, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara, In Proceedings of the ACL 2026 Student Research Workshop (ACL SRW 2026), pp.xxx-xxx, San Diego, California, United States, July 2026 (to appear)
+  <u>Kanade Nonomura</u>, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara, In Proceedings of the ACL 2026 Student Research Workshop (ACL SRW 2026), pp.1169–1176, San Diego, California, United States, July 2026
 
 * HOTATE: A Japanese Dialogue Corpus Annotated with Responses of Private Thoughts and Public Statements <br>
   Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, <u>Kanade Nonomura</u>, Yuki Fujiwara, Tomoyuki Kajiwara, In Proceedings of the 15th International Conference on Language Resources and Evaluation (LREC 2026), pp.xxx-xxx, Mallorca, Spain, May 2026 (to appear)
