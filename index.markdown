@@ -317,7 +317,7 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">ruby 合宿 2024 夏</span>
+    <span class="portfolio-item-title">Ruby 合宿 2024 夏</span>
     [<a href="https://www.rubycamp.jp/reports/2024-08-31-2024-summer/">link</a>]
     [<a href="https://github.com/j341nono/rc2024su_team1">code</a>]<br>
     gosuライブラリを用いたカードゲームの開発
