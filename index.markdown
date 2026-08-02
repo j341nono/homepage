@@ -145,7 +145,7 @@ nav_exclude: true
     </div>
 
     <p style="margin-bottom: 20px; line-height: 1.6; padding-left: 0;">
-      現在、自然言語処理を専攻しています。特に、埋め込み表現の分野に注力しており、こうした技術の社会実装にも強い関心があります。また、情報科学の他にも、天文学や幾何学にも広く関心を寄せています。
+      現在、自然言語処理を専攻しています。特に、埋め込み表現の分野に注力しており、こうした技術の社会実装にも強い関心があります。
     </p>
 
     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
@@ -210,8 +210,7 @@ nav_exclude: true
     [<a href="https://aclanthology.org/2026.acl-srw.102/">pdf</a>]
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">採択：130 / 402（単純計算 32.3%）</span>
-      <span class="portfolio-stat-note">公式文書記載の最終採択率：34.7%</span>
+      <span class="portfolio-stat">採択：130 / 402（公式文書記載の最終採択率 34.7%）</span>
     </div>
   </li>
 
@@ -258,7 +257,7 @@ nav_exclude: true
     <span class="award">学生奨励賞</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">受賞：2 / 7（28.6%）</span>
+      <span class="portfolio-stat">受賞枠：2 / 7（28.6%）</span>
     </div>
   </li>
 </ul>
@@ -286,7 +285,7 @@ nav_exclude: true
     <span class="award">最優秀賞</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">最優秀賞：1 / 14（7.1%）</span>
+      <span class="portfolio-stat">受賞枠：1 / 14（7.1%）</span>
       <span class="portfolio-stat">賞金：30,000円</span>
     </div>
   </li>
@@ -299,8 +298,7 @@ nav_exclude: true
     <span class="award">サポーターズ賞</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">受賞枠：5 / 14（35.7%）</span>
-      <span class="portfolio-stat-note">内訳：最優秀賞1件、優秀賞1件、サポーターズ賞3件</span>
+      <span class="portfolio-stat">5 / 12（41.7%）</span>
     </div>
   </li>
 
@@ -345,7 +343,7 @@ nav_exclude: true
     <span class="portfolio-item-title">【技育camp2026】ハッカソン vol.4 最優秀賞</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">最優秀賞：1 / 14（7.1%）</span>
+      <span class="portfolio-stat">受賞枠：1 / 14（7.1%）</span>
       <span class="portfolio-stat">賞金：30,000円</span>
     </div>
   </li>
@@ -354,8 +352,7 @@ nav_exclude: true
     <span class="portfolio-item-title">【技育camp2026】ハッカソン vol.2 サポーターズ賞</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">受賞枠：5 / 14（35.7%）</span>
-      <span class="portfolio-stat-note">内訳：最優秀賞1件、優秀賞1件、サポーターズ賞3件</span>
+      <span class="portfolio-stat">5 / 12（41.7%）</span>
     </div>
   </li>
 
@@ -363,7 +360,7 @@ nav_exclude: true
     <span class="portfolio-item-title">情報処理学会第88回全国大会 学生奨励賞（march 2026）</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">受賞：2 / 7（28.6%）</span>
+      <span class="portfolio-stat">受賞枠：2 / 7（28.6%）</span>
     </div>
   </li>
 
@@ -383,6 +380,5 @@ nav_exclude: true
     </div>
   </li>
 </ul>
-
 
 
