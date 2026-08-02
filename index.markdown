@@ -298,7 +298,7 @@ nav_exclude: true
     <span class="award">サポーターズ賞</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">5 / 12（41.7%）</span>
+      <span class="portfolio-stat">サポーターズ賞：5 / 12（41.7%）</span>
     </div>
   </li>
 
@@ -352,7 +352,7 @@ nav_exclude: true
     <span class="portfolio-item-title">【技育camp2026】ハッカソン vol.2 サポーターズ賞</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">5 / 12（41.7%）</span>
+      <span class="portfolio-stat">サポーターズ賞：5 / 12（41.7%）</span>
     </div>
   </li>
 
