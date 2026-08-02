@@ -81,7 +81,7 @@ nav_exclude: true
 
 ## インターン
 * 株式会社レトリバ, February 9, 2026 to March 31, 2026 [[link](https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9)] <br>
-  テキスト埋め込みモデルに対する自動プロンプト最適化
+  テキスト埋め込みモデルに対する自動プロンプト最適化の研究
 
 ## 受賞・資格
 * 【技育CAMP2026】ハッカソン Vol.4 最優秀賞
