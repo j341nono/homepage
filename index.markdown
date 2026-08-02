@@ -67,17 +67,12 @@ nav_exclude: true
 * 多言語文埋め込みの意味要素と言語要素の分離に関する調査 <br>
   <u>野々村 奏</u>, 近藤 里咲, 梶原 智之, NLP若手の会第20回シンポジウム (YANS2025), September 2025
 
-## 受賞・資格
-* 【技育CAMP2026】ハッカソン Vol.2 サポーターズ賞
-* 情報処理学会第88回全国大会 学生奨励賞（March 2026）<br>
-  対象論文：日本語文埋め込み獲得のための大規模言語モデルのプロンプト設計
-* 愛媛大学工学部工学科応用情報工学コース優秀学生（3年次）
-* 応用情報技術者試験 合格
-
 ## インターン
 * 株式会社レトリバ, February 9, 2026 to March 31, 2026 [[link](https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9)]
 
 ## ハッカソン・コンテスト
+* 【技育CAMP2026】ハッカソン Vol.4 [link](https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/)] [成果物(https://github.com/kren-team/MICHIZURE)] <br>
+  約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発，<span style="color:red; font-weight:bold;">最優秀賞</span>
 * 【技育CAMP2026】ハッカソン Vol.2 [[link](https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/)] [[成果物](https://github.com/Jupiter-team13/Zurenavi)] <br>
   ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発, <span style="color:red; font-weight:bold;">サポーターズ賞</span>
 * 第20回言語処理若手シンポジウム (YANS2025) ハッカソン [[link](https://yans.anlp.jp/entry/yans2025hackathon)] <br>
@@ -86,4 +81,12 @@ nav_exclude: true
   複数人で楽にアノテーションを実施できるWebアプリの開発
 * Ruby 合宿 2024 夏 [[link](https://www.rubycamp.jp/reports/2024-08-31-2024-summer/)] [[成果物](https://github.com/j341nono/rc2024su_team1)] <br>
   Gosuライブラリを用いたカードゲームの開発
+
+## 受賞・資格
+* 【技育CAMP2026】ハッカソン Vol.4 最優秀賞
+* 【技育CAMP2026】ハッカソン Vol.2 サポーターズ賞
+* 情報処理学会第88回全国大会 学生奨励賞（March 2026）<br>
+  対象論文：日本語文埋め込み獲得のための大規模言語モデルのプロンプト設計
+* 愛媛大学工学部工学科応用情報工学コース優秀学生（3年次）
+* 応用情報技術者試験 合格
 
