@@ -327,7 +327,7 @@ nav_exclude: true
 <ul class="portfolio-list">
   <li>
     <span class="portfolio-item-title">株式会社レトリバ</span>,
-    february 9, 2026 to march 31, 2026
+    February 9, 2026 to March 31, 2026
     [<a href="https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9">link</a>]<br>
     テキスト埋め込みモデルに対する自動プロンプト最適化の研究
   </li>
@@ -356,7 +356,7 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">情報処理学会第88回全国大会 学生奨励賞（march 2026）</span>
+    <span class="portfolio-item-title">情報処理学会第88回全国大会 学生奨励賞（March 2026）</span>
 
     <div class="portfolio-stats">
       <span class="portfolio-stat">セッション内の受賞枠：2 / 7（28.6%）</span>
