@@ -191,7 +191,7 @@ nav_exclude: true
 
 <ul class="portfolio-list">
   <li>
-    <span class="portfolio-item-title">mitigating language bias in multilingual sentence embeddings for cross-lingual similarity estimation</span><br>
+    <span class="portfolio-item-title">Mitigating Language Bias in Multilingual Sentence Embeddings for Cross-lingual Similarity Estimation</span><br>
     <u>kanade nonomura</u>, keita fukushima, risa kondo, tomoyuki kajiwara,
     in proceedings of the 15th joint conference on lexical and computational semantics
     (*sem 2026), pp.385–394, san diego, california, united states, july 2026.
@@ -203,7 +203,7 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">disentangling meaning and language components in diverse multilingual sentence embeddings</span><br>
+    <span class="portfolio-item-title">Disentangling Meaning and Language Components in Diverse Multilingual Sentence Embeddings</span><br>
     <u>kanade nonomura</u>, keita fukushima, risa kondo, tomoyuki kajiwara,
     in proceedings of the acl 2026 student research workshop (acl srw 2026),
     pp.1169–1176, san diego, california, united states, july 2026.
@@ -215,7 +215,7 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">hotate: a japanese dialogue corpus annotated with responses of private thoughts and public statements</span><br>
+    <span class="portfolio-item-title">HOTATE: A Japanese Dialogue Corpus Annotated with Responses of Private Thoughts and Public Statements</span><br>
     yuko toda, daisuke maekawa, kota manabe, eito yoneyama,
     <u>kanade nonomura</u>, yuki fujiwara, tomoyuki kajiwara,
     in proceedings of the 15th international conference on language resources and evaluation
@@ -238,7 +238,7 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">hotate：本音と建前の応答対からなる対話コーパスの構築</span><br>
+    <span class="portfolio-item-title">HOTATE：本音と建前の応答対からなる対話コーパスの構築</span><br>
     戸田 裕子, 前川 大輔, 眞鍋 光汰, 米山 瑛人,
     <u>野々村 奏</u>, 藤原 有希, 梶原 智之,
     言語処理学会第32回年次大会, pp.1748-1752, march 2026
