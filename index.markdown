@@ -68,7 +68,7 @@ nav_exclude: true
   <u>野々村 奏</u>, 近藤 里咲, 梶原 智之, NLP若手の会第20回シンポジウム (YANS2025), September 2025
 
 ## ハッカソン・コンテスト
-* 【技育CAMP2026】ハッカソン Vol.4 [link](https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/)] [成果物(https://github.com/kren-team/MICHIZURE)] <br>
+* 【技育CAMP2026】ハッカソン Vol.4 [link](https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/)] [[成果物](https://github.com/kren-team/MICHIZURE)] <br>
   約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発，<span style="color:red; font-weight:bold;">最優秀賞</span>
 * 【技育CAMP2026】ハッカソン Vol.2 [[link](https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/)] [[成果物](https://github.com/Jupiter-team13/Zurenavi)] <br>
   ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発, <span style="color:red; font-weight:bold;">サポーターズ賞</span>
