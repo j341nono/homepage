@@ -256,9 +256,6 @@ nav_exclude: true
     情報処理学会第88回全国大会, pp.281-282, march 2026,
     <span class="award">学生奨励賞</span>
 
-    <div class="portfolio-stats">
-      <span class="portfolio-stat">受賞枠：2 / 7（28.6%）</span>
-    </div>
   </li>
 </ul>
 
@@ -362,7 +359,7 @@ nav_exclude: true
     <span class="portfolio-item-title">情報処理学会第88回全国大会 学生奨励賞（march 2026）</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">受賞枠：2 / 7（28.6%）</span>
+      <span class="portfolio-stat">セッション内の受賞枠：2 / 7（28.6%）</span>
     </div>
   </li>
 
