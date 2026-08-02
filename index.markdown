@@ -353,6 +353,7 @@ nav_exclude: true
 
     <div class="portfolio-stats">
       <span class="portfolio-stat">受賞枠：5 / 12（41.7%）</span>
+      <span class="portfolio-stat">賞金：5,000円</span>
     </div>
   </li>
 
