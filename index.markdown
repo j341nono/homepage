@@ -210,7 +210,7 @@ nav_exclude: true
     [<a href="https://aclanthology.org/2026.acl-srw.102/">pdf</a>]
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">採択：130 / 402（公式文書記載の最終採択率 34.7%）</span>
+      <span class="portfolio-stat">採択：130 / 402（公式の最終採択率 34.7%）</span>
     </div>
   </li>
 
