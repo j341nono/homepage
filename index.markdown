@@ -278,7 +278,7 @@ nav_exclude: true
 
 <ul class="portfolio-list">
   <li>
-    <span class="portfolio-item-title">【技育camp2026】ハッカソン vol.4</span>
+    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン vol.4</span>
     [<a href="https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/">link</a>]
     [<a href="https://github.com/kren-team/michizure">code</a>]<br>
     約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発，
@@ -291,7 +291,7 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">【技育camp2026】ハッカソン vol.2</span>
+    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン vol.2</span>
     [<a href="https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/">link</a>]
     [<a href="https://github.com/jupiter-team13/zurenavi">code</a>]<br>
     ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発，
@@ -310,7 +310,7 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">【技育camp2025】ハッカソン vol.8</span>
+    <span class="portfolio-item-title">【技育CAMP2025】ハッカソン vol.8</span>
     [<a href="https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/">link</a>]
     [<a href="https://github.com/bakeryforhackathon/annotopia">code</a>]<br>
     複数人で楽にアノテーションを実施できるwebアプリの開発
@@ -341,7 +341,7 @@ nav_exclude: true
 
 <ul class="portfolio-list">
   <li>
-    <span class="portfolio-item-title">【技育camp2026】ハッカソン vol.4 最優秀賞</span>
+    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン vol.4 最優秀賞</span>
 
     <div class="portfolio-stats">
       <span class="portfolio-stat">受賞枠：1 / 14（7.1%）</span>
@@ -350,7 +350,7 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">【技育camp2026】ハッカソン vol.2 サポーターズ賞</span>
+    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン vol.2 サポーターズ賞</span>
 
     <div class="portfolio-stats">
       <span class="portfolio-stat">受賞枠：5 / 12（41.7%）</span>
