@@ -269,7 +269,7 @@ nav_exclude: true
   <li>
     <span class="portfolio-item-title">多言語文埋め込みの意味要素と言語要素の分離に関する調査</span><br>
     <u>野々村 奏</u>, 近藤 里咲, 梶原 智之,
-    nlp若手の会第20回シンポジウム (yans2025), september 2025
+    NLP若手の会第20回シンポジウム (YANS2025), September 2025
   </li>
 </ul>
 
@@ -278,7 +278,7 @@ nav_exclude: true
 
 <ul class="portfolio-list">
   <li>
-    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン vol.4</span>
+    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.4</span>
     [<a href="https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/">link</a>]
     [<a href="https://github.com/kren-team/michizure">code</a>]<br>
     約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発，
@@ -291,7 +291,7 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン vol.2</span>
+    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.2</span>
     [<a href="https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/">link</a>]
     [<a href="https://github.com/jupiter-team13/zurenavi">code</a>]<br>
     ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発，
@@ -304,23 +304,23 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">第20回言語処理若手シンポジウム (yans2025) ハッカソン</span>
+    <span class="portfolio-item-title">第20回言語処理若手シンポジウム (YANS2025) ハッカソン</span>
     [<a href="https://yans.anlp.jp/entry/yans2025hackathon">link</a>]<br>
     選好チューニングを用いた訓練により、数学問題の正答率を競う課題
   </li>
 
   <li>
-    <span class="portfolio-item-title">【技育CAMP2025】ハッカソン vol.8</span>
+    <span class="portfolio-item-title">【技育CAMP2025】ハッカソン Vol.8</span>
     [<a href="https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/">link</a>]
     [<a href="https://github.com/bakeryforhackathon/annotopia">code</a>]<br>
-    複数人で楽にアノテーションを実施できるwebアプリの開発
+    複数人で楽にアノテーションを実施できるWebアプリの開発
   </li>
 
   <li>
     <span class="portfolio-item-title">Ruby 合宿 2024 夏</span>
     [<a href="https://www.rubycamp.jp/reports/2024-08-31-2024-summer/">link</a>]
     [<a href="https://github.com/j341nono/rc2024su_team1">code</a>]<br>
-    gosuライブラリを用いたカードゲームの開発
+    GOSUライブラリを用いたカードゲームの開発
   </li>
 </ul>
 
@@ -341,7 +341,7 @@ nav_exclude: true
 
 <ul class="portfolio-list">
   <li>
-    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン vol.4 最優秀賞</span>
+    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.4 最優秀賞</span>
 
     <div class="portfolio-stats">
       <span class="portfolio-stat">受賞枠：1 / 14（7.1%）</span>
@@ -350,7 +350,7 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン vol.2 サポーターズ賞</span>
+    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.2 サポーターズ賞</span>
 
     <div class="portfolio-stats">
       <span class="portfolio-stat">受賞枠：5 / 12（41.7%）</span>
