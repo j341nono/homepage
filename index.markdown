@@ -1,4 +1,3 @@
-```markdown
 ---
 layout: default
 title: home
@@ -237,6 +236,5 @@ nav_exclude: true
     <span class="portfolio-item-title">応用情報技術者試験 合格</span>
   </li>
 </ul>
-```
 
 
