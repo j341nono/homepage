@@ -280,7 +280,7 @@ nav_exclude: true
   <li>
     <span class="portfolio-item-title">【技育camp2026】ハッカソン vol.4</span>
     [<a href="https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/">link</a>]
-    [<a href="https://github.com/kren-team/michizure">成果物</a>]<br>
+    [<a href="https://github.com/kren-team/michizure">code</a>]<br>
     約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発，
     <span class="award">最優秀賞</span>
 
@@ -293,7 +293,7 @@ nav_exclude: true
   <li>
     <span class="portfolio-item-title">【技育camp2026】ハッカソン vol.2</span>
     [<a href="https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/">link</a>]
-    [<a href="https://github.com/jupiter-team13/zurenavi">成果物</a>]<br>
+    [<a href="https://github.com/jupiter-team13/zurenavi">code</a>]<br>
     ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発，
     <span class="award">サポーターズ賞</span>
 
@@ -311,14 +311,14 @@ nav_exclude: true
   <li>
     <span class="portfolio-item-title">【技育camp2025】ハッカソン vol.8</span>
     [<a href="https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/">link</a>]
-    [<a href="https://github.com/bakeryforhackathon/annotopia">成果物</a>]<br>
+    [<a href="https://github.com/bakeryforhackathon/annotopia">code</a>]<br>
     複数人で楽にアノテーションを実施できるwebアプリの開発
   </li>
 
   <li>
     <span class="portfolio-item-title">ruby 合宿 2024 夏</span>
     [<a href="https://www.rubycamp.jp/reports/2024-08-31-2024-summer/">link</a>]
-    [<a href="https://github.com/j341nono/rc2024su_team1">成果物</a>]<br>
+    [<a href="https://github.com/j341nono/rc2024su_team1">code</a>]<br>
     gosuライブラリを用いたカードゲームの開発
   </li>
 </ul>
