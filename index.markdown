@@ -67,9 +67,6 @@ nav_exclude: true
 * 多言語文埋め込みの意味要素と言語要素の分離に関する調査 <br>
   <u>野々村 奏</u>, 近藤 里咲, 梶原 智之, NLP若手の会第20回シンポジウム (YANS2025), September 2025
 
-## インターン
-* 株式会社レトリバ, February 9, 2026 to March 31, 2026 [[link](https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9)]
-
 ## ハッカソン・コンテスト
 * 【技育CAMP2026】ハッカソン Vol.4 [link](https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/)] [成果物(https://github.com/kren-team/MICHIZURE)] <br>
   約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発，<span style="color:red; font-weight:bold;">最優秀賞</span>
@@ -81,6 +78,10 @@ nav_exclude: true
   複数人で楽にアノテーションを実施できるWebアプリの開発
 * Ruby 合宿 2024 夏 [[link](https://www.rubycamp.jp/reports/2024-08-31-2024-summer/)] [[成果物](https://github.com/j341nono/rc2024su_team1)] <br>
   Gosuライブラリを用いたカードゲームの開発
+
+## インターン
+* 株式会社レトリバ, February 9, 2026 to March 31, 2026 [[link](https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9)] <br>
+  テキスト埋め込みモデルに対する自動プロンプト最適化
 
 ## 受賞・資格
 * 【技育CAMP2026】ハッカソン Vol.4 最優秀賞
