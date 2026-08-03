@@ -194,7 +194,7 @@ nav_exclude: true
     <span class="portfolio-item-title">Mitigating Language Bias in Multilingual Sentence Embeddings for Cross-lingual Similarity Estimation</span><br>
     <u>kanade nonomura</u>, keita fukushima, risa kondo, tomoyuki kajiwara,
     in proceedings of the 15th joint conference on lexical and computational semantics
-    (*sem 2026), pp.385–394, san diego, california, united states, july 2026.
+    (*SEM 2026), pp.385–394, San Diego, California, United States, July 2026.
     [<a href="https://aclanthology.org/2026.starsem-conference.26/">pdf</a>]
 
     <div class="portfolio-stats">
@@ -205,8 +205,8 @@ nav_exclude: true
   <li>
     <span class="portfolio-item-title">Disentangling Meaning and Language Components in Diverse Multilingual Sentence Embeddings</span><br>
     <u>kanade nonomura</u>, keita fukushima, risa kondo, tomoyuki kajiwara,
-    in proceedings of the acl 2026 student research workshop (acl srw 2026),
-    pp.1169–1176, san diego, california, united states, july 2026.
+    in proceedings of the acl 2026 student research workshop (ACL SRW 2026),
+    pp.1169–1176, San diego, California, United States, July 2026.
     [<a href="https://aclanthology.org/2026.acl-srw.102/">pdf</a>]
 
     <div class="portfolio-stats">
@@ -219,7 +219,7 @@ nav_exclude: true
     yuko toda, daisuke maekawa, kota manabe, eito yoneyama,
     <u>kanade nonomura</u>, yuki fujiwara, tomoyuki kajiwara,
     in proceedings of the 15th international conference on language resources and evaluation
-    (lrec 2026), pp.xxx-xxx, mallorca, spain, may 2026 (to appear)
+    (LREC 2026), pp.xxx-xxx, Mallorca, Spain, May 2026 (to appear)
 
     <div class="portfolio-stats">
       <span class="portfolio-stat portfolio-stat-unknown">採択率：不明</span>
@@ -234,26 +234,26 @@ nav_exclude: true
   <li>
     <span class="portfolio-item-title">多様な多言語文埋め込みに対する意味要素と言語要素の分離</span><br>
     <u>野々村 奏</u>, 福島 啓太, 近藤 里咲, 梶原 智之,
-    人工知能学会第40回年次大会, 4yin-b-54, june 2026
+    人工知能学会第40回年次大会, 4yin-b-54, June 2026
   </li>
 
   <li>
     <span class="portfolio-item-title">HOTATE：本音と建前の応答対からなる対話コーパスの構築</span><br>
     戸田 裕子, 前川 大輔, 眞鍋 光汰, 米山 瑛人,
     <u>野々村 奏</u>, 藤原 有希, 梶原 智之,
-    言語処理学会第32回年次大会, pp.1748-1752, march 2026
+    言語処理学会第32回年次大会, pp.1748-1752, March 2026
   </li>
 
   <li>
     <span class="portfolio-item-title">多言語文埋め込みの意味と言語の分離のための損失関数の分析</span><br>
     <u>野々村 奏</u>, 福島 啓太, 近藤 里咲, 梶原 智之,
-    言語処理学会第32回年次大会, pp.3842-3846, march 2026
+    言語処理学会第32回年次大会, pp.3842-3846, March 2026
   </li>
 
   <li>
     <span class="portfolio-item-title">日本語文埋め込み獲得のための大規模言語モデルのプロンプト設計</span><br>
     <u>野々村 奏</u>, 梶原 智之,
-    情報処理学会第88回全国大会, pp.281-282, march 2026,
+    情報処理学会第88回全国大会, pp.281-282, March 2026,
     <span class="award">学生奨励賞</span>
 
   </li>
