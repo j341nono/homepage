@@ -323,7 +323,12 @@ nav_exclude: true
 
 ## インターン
 {: .portfolio-section-title }
-
+<ul class="portfolio-list">
+  <li>
+    <span class="portfolio-item-title">LINEヤフー株式会社</span>,
+    August 3, 2026 ~ Present
+  </li>
+</ul>
 <ul class="portfolio-list">
   <li>
     <span class="portfolio-item-title">株式会社レトリバ</span>,
