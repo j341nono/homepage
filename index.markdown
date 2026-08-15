@@ -223,7 +223,7 @@ nav_exclude: true
     [<a href="https://aclanthology.org/2026.lrec-1.233/">PDF</a>]
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat portfolio-stat-unknown">採択率：不明</span>
+      <span class="portfolio-stat portfolio-stat-unknown">採択：944 / 1,786（52.85%）</span>
     </div>
   </li>
 </ul>
