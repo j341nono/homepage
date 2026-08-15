@@ -272,7 +272,7 @@ nav_exclude: true
   <li>
     <span class="portfolio-item-title">多言語文埋め込みの意味要素と言語要素の分離に関する調査</span><br>
     <u>野々村 奏</u>, 近藤 里咲, 梶原 智之,
-    NLP若手の会第20回シンポジウム (YANS2025), September 2025
+    第20回言語処理若手シンポジウム(YANS2025), September 2025
   </li>
 </ul>
 
