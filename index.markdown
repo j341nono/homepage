@@ -219,7 +219,8 @@ nav_exclude: true
     Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama,
     <u>Kanade Nonomura</u>, Yuki Fujiwara, Tomoyuki Kajiwara,
     In Proceedings of the 15th International Conference on Language Resources and Evaluation
-    (LREC 2026), pp.xxx-xxx, Mallorca, Spain, May 2026 (To Appear)
+    (LREC 2026), pp.2987–2995, Mallorca, Spain, May 2026.
+    [<a href="https://aclanthology.org/2026.lrec-1.233/">PDF</a>]
 
     <div class="portfolio-stats">
       <span class="portfolio-stat portfolio-stat-unknown">採択率：不明</span>
