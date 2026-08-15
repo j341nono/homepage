@@ -197,9 +197,11 @@ nav_exclude: true
     (*SEM 2026), pp.385–394, San Diego, California, United States, July 2026.
     [<a href="https://aclanthology.org/2026.starsem-conference.26/">PDF</a>]
 
+    <!--
     <div class="portfolio-stats">
       <span class="portfolio-stat">採択：36 / 64（56.3%）</span>
     </div>
+    -->
   </li>
 
   <li>
@@ -209,9 +211,11 @@ nav_exclude: true
     pp.1169–1176, San Diego, California, United States, July 2026.
     [<a href="https://aclanthology.org/2026.acl-srw.102/">PDF</a>]
 
+    <!--
     <div class="portfolio-stats">
       <span class="portfolio-stat">採択：130 / 402（公式の最終採択率 34.7%）</span>
     </div>
+    -->
   </li>
 
   <li>
@@ -222,9 +226,11 @@ nav_exclude: true
     (LREC 2026), pp.2987–2995, Mallorca, Spain, May 2026.
     [<a href="https://aclanthology.org/2026.lrec-1.233/">PDF</a>]
 
+    <!--
     <div class="portfolio-stats">
       <span class="portfolio-stat portfolio-stat-unknown">採択：944 / 1,786（52.85%）</span>
     </div>
+    -->
   </li>
 </ul>
 
