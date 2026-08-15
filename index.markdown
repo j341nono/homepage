@@ -1,6 +1,6 @@
 ---
 layout: default
-title: home
+title: Home
 nav_exclude: true
 ---
 
@@ -134,14 +134,14 @@ nav_exclude: true
 }
 </style>
 
-# 野々村 奏 (kanade nonomura)
+# 野々村 奏 (Kanade Nonomura)
 
 <div style="display: flex; flex-wrap: wrap-reverse; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 30px;">
 
   <div style="flex: 1 1 300px;">
     <div style="margin-top: 0; margin-bottom: 15px; padding-left: 0;">
       <strong>所属</strong>：愛媛大学 大学院理工学研究科理工学専攻 数理情報プログラム 自然言語処理研究室 修士1年<br>
-      <strong>email</strong>：<span class="no-select">nonomura[at]ai.cs.ehime-u.ac.jp</span>
+      <strong>Email</strong>：<span class="no-select">nonomura[at]ai.cs.ehime-u.ac.jp</span>
     </div>
 
     <p style="margin-bottom: 20px; line-height: 1.6; padding-left: 0;">
@@ -192,10 +192,10 @@ nav_exclude: true
 <ul class="portfolio-list">
   <li>
     <span class="portfolio-item-title">Mitigating Language Bias in Multilingual Sentence Embeddings for Cross-lingual Similarity Estimation</span><br>
-    <u>kanade nonomura</u>, keita fukushima, risa kondo, tomoyuki kajiwara,
-    in proceedings of the 15th joint conference on lexical and computational semantics
+    <u>Kanade Nonomura</u>, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara,
+    In Proceedings of the 15th Joint Conference on Lexical and Computational Semantics
     (*SEM 2026), pp.385–394, San Diego, California, United States, July 2026.
-    [<a href="https://aclanthology.org/2026.starsem-conference.26/">pdf</a>]
+    [<a href="https://aclanthology.org/2026.starsem-conference.26/">PDF</a>]
 
     <div class="portfolio-stats">
       <span class="portfolio-stat">採択：36 / 64（56.3%）</span>
@@ -204,10 +204,10 @@ nav_exclude: true
 
   <li>
     <span class="portfolio-item-title">Disentangling Meaning and Language Components in Diverse Multilingual Sentence Embeddings</span><br>
-    <u>kanade nonomura</u>, keita fukushima, risa kondo, tomoyuki kajiwara,
-    in proceedings of the acl 2026 student research workshop (ACL SRW 2026),
-    pp.1169–1176, San diego, California, United States, July 2026.
-    [<a href="https://aclanthology.org/2026.acl-srw.102/">pdf</a>]
+    <u>Kanade Nonomura</u>, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara,
+    In Proceedings of the ACL 2026 Student Research Workshop (ACL SRW 2026),
+    pp.1169–1176, San Diego, California, United States, July 2026.
+    [<a href="https://aclanthology.org/2026.acl-srw.102/">PDF</a>]
 
     <div class="portfolio-stats">
       <span class="portfolio-stat">採択：130 / 402（公式の最終採択率 34.7%）</span>
@@ -216,10 +216,10 @@ nav_exclude: true
 
   <li>
     <span class="portfolio-item-title">HOTATE: A Japanese Dialogue Corpus Annotated with Responses of Private Thoughts and Public Statements</span><br>
-    yuko toda, daisuke maekawa, kota manabe, eito yoneyama,
-    <u>kanade nonomura</u>, yuki fujiwara, tomoyuki kajiwara,
-    in proceedings of the 15th international conference on language resources and evaluation
-    (LREC 2026), pp.xxx-xxx, Mallorca, Spain, May 2026 (to appear)
+    Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama,
+    <u>Kanade Nonomura</u>, Yuki Fujiwara, Tomoyuki Kajiwara,
+    In Proceedings of the 15th International Conference on Language Resources and Evaluation
+    (LREC 2026), pp.xxx-xxx, Mallorca, Spain, May 2026 (To Appear)
 
     <div class="portfolio-stats">
       <span class="portfolio-stat portfolio-stat-unknown">採択率：不明</span>
@@ -276,8 +276,8 @@ nav_exclude: true
 <ul class="portfolio-list">
   <li>
     <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.4</span>
-    [<a href="https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/">link</a>]
-    [<a href="https://github.com/kren-team/michizure">code</a>]<br>
+    [<a href="https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/">Link</a>]
+    [<a href="https://github.com/kren-team/michizure">Code</a>]<br>
     約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発，
     <span class="award">最優秀賞</span>
 
@@ -289,8 +289,8 @@ nav_exclude: true
 
   <li>
     <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.2</span>
-    [<a href="https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/">link</a>]
-    [<a href="https://github.com/jupiter-team13/zurenavi">code</a>]<br>
+    [<a href="https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/">Link</a>]
+    [<a href="https://github.com/jupiter-team13/zurenavi">Code</a>]<br>
     ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発，
     <span class="award">サポーターズ賞</span>
 
@@ -302,21 +302,21 @@ nav_exclude: true
 
   <li>
     <span class="portfolio-item-title">第20回言語処理若手シンポジウム (YANS2025) ハッカソン</span>
-    [<a href="https://yans.anlp.jp/entry/yans2025hackathon">link</a>]<br>
+    [<a href="https://yans.anlp.jp/entry/yans2025hackathon">Link</a>]<br>
     選好チューニングを用いた訓練により、数学問題の正答率を競う課題
   </li>
 
   <li>
     <span class="portfolio-item-title">【技育CAMP2025】ハッカソン Vol.8</span>
-    [<a href="https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/">link</a>]
-    [<a href="https://github.com/bakeryforhackathon/annotopia">code</a>]<br>
+    [<a href="https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/">Link</a>]
+    [<a href="https://github.com/bakeryforhackathon/annotopia">Code</a>]<br>
     複数人で楽にアノテーションを実施できるWebアプリの開発
   </li>
 
   <li>
     <span class="portfolio-item-title">Ruby 合宿 2024 夏</span>
-    [<a href="https://www.rubycamp.jp/reports/2024-08-31-2024-summer/">link</a>]
-    [<a href="https://github.com/j341nono/rc2024su_team1">code</a>]<br>
+    [<a href="https://www.rubycamp.jp/reports/2024-08-31-2024-summer/">Link</a>]
+    [<a href="https://github.com/j341nono/rc2024su_team1">Code</a>]<br>
     GOSUライブラリを用いたカードゲームの開発
   </li>
 </ul>
@@ -333,7 +333,7 @@ nav_exclude: true
   <li>
     <span class="portfolio-item-title">株式会社レトリバ</span>,
     February 9, 2026 to March 31, 2026
-    [<a href="https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9">link</a>]<br>
+    [<a href="https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9">Link</a>]<br>
     テキスト埋め込みモデルに対する自動プロンプト最適化の研究
   </li>
 </ul>
