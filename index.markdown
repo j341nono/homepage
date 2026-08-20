@@ -286,6 +286,13 @@ nav_exclude: true
 {: .portfolio-section-title }
 
 <ul class="portfolio-list">
+
+  <li>
+    <span class="portfolio-item-title">第21回言語処理若手シンポジウム (YANS2026) ハッカソン</span>
+    [<a href="https://yans.anlp.jp/entry/yans2026hackathon">Link</a>]<br>
+    論文中の引用が引用先の内容と整合しているかを判定し、引用ハルシネーションを検出するタスク
+  </li>
+
   <li>
     <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.4</span>
     [<a href="https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/">Link</a>]
