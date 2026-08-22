@@ -366,7 +366,7 @@ nav_exclude: true
     <u>愛媛県中予地方局の若手職員・県内大学生とともに、外国人材の地域定着に向けた交流イベントの企画・運営に参加, 
     May 2026 ~ Present
   </li>
-</ui>
+</ul>
 
 ## 受賞・資格
 {: .portfolio-section-title }
