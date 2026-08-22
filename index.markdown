@@ -288,17 +288,19 @@ nav_exclude: true
 <ul class="portfolio-list">
 
   <li>
-    <span class="portfolio-item-title">第21回言語処理若手シンポジウム (YANS2026) ハッカソン</span>
-    [<a href="https://yans.anlp.jp/entry/yans2026hackathon">Link</a>]<br>
+    <span class="portfolio-item-title">第21回言語処理若手シンポジウム (YANS2026) ハッカソン</span><br>
+    2026年8月，
     論文中の引用が引用先の内容と整合しているかを判定し、引用ハルシネーションを検出するタスク
+    [<a href="https://yans.anlp.jp/entry/yans2026hackathon">Link</a>]
   </li>
 
   <li>
-    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.4</span>
-    [<a href="https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/">Link</a>]
-    [<a href="https://github.com/kren-team/michizure">Code</a>]<br>
+    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.4</span><br>
+    2026年7月〜8月，
     約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発，
     <span class="award">最優秀賞</span>
+    [<a href="https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/">Link</a>]
+    [<a href="https://github.com/kren-team/michizure">Code</a>]
 
     <div class="portfolio-stats">
       <span class="portfolio-stat">受賞枠：1 / 14（7.1%）</span>
@@ -307,11 +309,12 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.2</span>
-    [<a href="https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/">Link</a>]
-    [<a href="https://github.com/jupiter-team13/zurenavi">Code</a>]<br>
+    <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.2</span><br>
+    2026年4月，
     ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発，
     <span class="award">サポーターズ賞</span>
+    [<a href="https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/">Link</a>]
+    [<a href="https://github.com/jupiter-team13/zurenavi">Code</a>]
 
     <div class="portfolio-stats">
       <span class="portfolio-stat">受賞枠：5 / 12（41.7%）</span>
@@ -320,40 +323,43 @@ nav_exclude: true
   </li>
 
   <li>
-    <span class="portfolio-item-title">第20回言語処理若手シンポジウム (YANS2025) ハッカソン</span>
-    [<a href="https://yans.anlp.jp/entry/yans2025hackathon">Link</a>]<br>
+    <span class="portfolio-item-title">第20回言語処理若手シンポジウム (YANS2025) ハッカソン</span><br>
+    2025年9月，
     選好チューニングを用いた訓練により、数学問題の正答率を競う課題
+    [<a href="https://yans.anlp.jp/entry/yans2025hackathon">Link</a>]
   </li>
 
   <li>
-    <span class="portfolio-item-title">【技育CAMP2025】ハッカソン Vol.8</span>
-    [<a href="https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/">Link</a>]
-    [<a href="https://github.com/bakeryforhackathon/annotopia">Code</a>]<br>
+    <span class="portfolio-item-title">【技育CAMP2025】ハッカソン Vol.8</span><br>
+    2025年7月，
     複数人で楽にアノテーションを実施できるWebアプリの開発
+    [<a href="https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/">Link</a>]
+    [<a href="https://github.com/bakeryforhackathon/annotopia">Code</a>]
   </li>
 
   <li>
-    <span class="portfolio-item-title">Ruby 合宿 2024 夏</span>
-    [<a href="https://www.rubycamp.jp/reports/2024-08-31-2024-summer/">Link</a>]
-    [<a href="https://github.com/j341nono/rc2024su_team1">Code</a>]<br>
+    <span class="portfolio-item-title">Ruby 合宿 2024 夏</span><br>
+    2024年8月，
     GOSUライブラリを用いたカードゲームの開発
+    [<a href="https://www.rubycamp.jp/reports/2024-08-31-2024-summer/">Link</a>]
+    [<a href="https://github.com/j341nono/rc2024su_team1">Code</a>]
   </li>
 </ul>
 
 ## インターン
 {: .portfolio-section-title }
+
 <ul class="portfolio-list">
   <li>
-    <span class="portfolio-item-title">LINEヤフー株式会社</span>,
-    August 3, 2026 ~ Present
+    <span class="portfolio-item-title">LINEヤフー株式会社</span><br>
+    2026年8月〜現在
   </li>
-</ul>
-<ul class="portfolio-list">
+
   <li>
-    <span class="portfolio-item-title">株式会社レトリバ</span>,
-    February 9, 2026 to March 31, 2026
-    [<a href="https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9">Link</a>]<br>
+    <span class="portfolio-item-title">株式会社レトリバ</span><br>
+    2026年2月〜3月，
     テキスト埋め込みモデルに対する自動プロンプト最適化の研究
+    [<a href="https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9">Link</a>]
   </li>
 </ul>
 
@@ -362,9 +368,10 @@ nav_exclude: true
 
 <ul class="portfolio-list">
   <li>
-    <span class="portfolio-item-title">令和8年度 外国人材地域体験・交流モデル事業 大学生企画運営チーム</span>
-    [<a href="https://www.pref.ehime.jp/site/chuyo/147431.html?utm_source=chatgpt.com">事業内容</a>]<br>
-    愛媛県中予地方局の若手職員・県内大学生とともに、外国人材の地域定着に向けた交流イベントの企画・運営に参加, May 2026 ~ Present
+    <span class="portfolio-item-title">令和8年度 外国人材地域体験・交流モデル事業 大学生企画運営チーム</span><br>
+    2026年5月〜現在，
+    愛媛県中予地方局の若手職員・県内大学生とともに、外国人材の地域定着に向けた交流イベントの企画・運営に参加
+    [<a href="https://www.pref.ehime.jp/site/chuyo/147431.html?utm_source=chatgpt.com">事業内容</a>]
   </li>
 </ul>
 
