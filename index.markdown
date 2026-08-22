@@ -357,6 +357,17 @@ nav_exclude: true
   </li>
 </ul>
 
+## 活動
+{: .portfolio-section-title }
+
+<ul class="portfolio-list">
+  <li>
+    <span class="portfolio-item-title">令和8年度 外国人材地域体験・交流モデル事業 大学生企画運営チーム</span>
+    <u>愛媛県中予地方局の若手職員・県内大学生とともに、外国人材の地域定着に向けた交流イベントの企画・運営に参加, 
+    May 2026 ~ Present
+  </li>
+</ui>
+
 ## 受賞・資格
 {: .portfolio-section-title }
 
