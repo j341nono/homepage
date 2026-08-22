@@ -386,7 +386,7 @@ samp {
   <li>
     <span class="portfolio-item-title">Ruby 合宿 2024 夏</span><br>
     2024年8月，
-    GOSUライブラリを用いたカードゲームの開発
+    Gosuライブラリを用いたカードゲームの開発
     [<a href="https://www.rubycamp.jp/reports/2024-08-31-2024-summer/">Link</a>]
     [<a href="https://github.com/j341nono/rc2024su_team1">Code</a>]
   </li>
