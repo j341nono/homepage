@@ -56,7 +56,7 @@ samp {
    ================================================== */
 .portfolio-section-title {
   font-size: 1.75rem !important;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   line-height: 1.4;
   margin-top: 2.5rem !important;
   margin-bottom: 1.2rem !important;
