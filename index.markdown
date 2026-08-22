@@ -225,12 +225,7 @@ samp {
 ## 研究分野
 {: .portfolio-section-title }
 
-<div class="research-fields">
-  <span class="research-field">自然言語処理</span>
-  <span class="research-field">埋め込み表現</span>
-  <span class="research-field">自動プロンプト最適化</span>
-  <span class="research-field">テキスト平易化</span>
-</div>
+キーワード：自然言語処理, 埋め込み表現, 自動プロンプト最適化, テキスト平易化
 
 ## 国際学会
 {: .portfolio-section-title }
