@@ -5,6 +5,52 @@ nav_exclude: true
 ---
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap');
+
+/* ==================================================
+   フォント
+   ================================================== */
+:root {
+  --portfolio-font:
+    "LINE Seed JP",
+    "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    "YuGothic",
+    sans-serif;
+}
+
+html,
+body {
+  font-family: var(--portfolio-font) !important;
+}
+
+/*
+  使用しているテーマ側で個別にfont-familyが指定されている場合にも
+  LINE Seed JPを適用する
+*/
+.site-title,
+.site-header,
+.site-nav,
+.main-content,
+.main-content-wrap,
+button,
+input,
+textarea,
+select {
+  font-family: var(--portfolio-font) !important;
+}
+
+/*
+  コード部分については等幅フォントを維持する
+*/
+code,
+pre,
+kbd,
+samp {
+  font-family: monospace;
+}
+
 /* ==================================================
    セクション見出し
    ================================================== */
@@ -262,7 +308,6 @@ nav_exclude: true
     <u>野々村 奏</u>, 梶原 智之,
     情報処理学会第88回全国大会, pp.281-282, March 2026,
     <span class="award">学生奨励賞</span>
-
   </li>
 </ul>
 
@@ -275,6 +320,7 @@ nav_exclude: true
     <u>野々村 奏</u>, 梶原 智之, 荒瀬 由紀,
     第21回言語処理若手シンポジウム (YANS2026), August 2026
   </li>
+
   <li>
     <span class="portfolio-item-title">多言語文埋め込みの意味要素と言語要素の分離に関する調査</span><br>
     <u>野々村 奏</u>, 近藤 里咲, 梶原 智之,
@@ -371,7 +417,7 @@ nav_exclude: true
     <span class="portfolio-item-title">令和8年度 外国人材地域体験・交流モデル事業 大学生企画運営チーム</span><br>
     2026年5月〜現在，
     愛媛県中予地方局の若手職員・県内大学生とともに、外国人材の地域定着に向けた交流イベントの企画・運営に参加
-    [<a href="https://www.pref.ehime.jp/site/chuyo/147431.html?utm_source=chatgpt.com">事業内容</a>]
+    [<a href="https://www.pref.ehime.jp/site/chuyo/147431.html">事業内容</a>]
   </li>
 </ul>
 
@@ -421,5 +467,6 @@ nav_exclude: true
     </div>
   </li>
 </ul>
+
 
 
