@@ -404,7 +404,7 @@ samp {
   </li>
 </ul>
 
-## 活動
+## 企画・運営
 {: .portfolio-section-title }
 
 <ul class="portfolio-list">
