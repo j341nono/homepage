@@ -5,4 +5,5 @@ _site
 vendor
 bak/
 tmp/
-
+__pycache__/
+*.py[cod]

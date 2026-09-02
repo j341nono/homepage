@@ -146,6 +146,39 @@ samp {
 }
 
 /* ==================================================
+   TF-IDF ワードクラウド
+   ================================================== */
+.wordcloud-card {
+  position: relative;
+  overflow: hidden;
+  margin: 0.5rem 0 2.5rem;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  border: 1px solid rgba(76, 81, 191, 0.18);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(66, 153, 225, 0.14), transparent 34%),
+    radial-gradient(circle at 88% 80%, rgba(159, 122, 234, 0.14), transparent 38%),
+    #fbfdff;
+  box-shadow: 0 12px 30px rgba(45, 55, 72, 0.08);
+}
+
+.wordcloud-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 7;
+  object-fit: contain;
+}
+
+.wordcloud-card figcaption {
+  margin-top: 0.35rem;
+  color: #4a5568;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ==================================================
    受賞表示
    ================================================== */
 .award {
@@ -221,6 +254,19 @@ samp {
   </div>
 
 </div>
+
+<figure class="wordcloud-card" aria-labelledby="wordcloud-caption">
+  <img
+    src="{{ '/assets/images/wordcloud/tfidf-wordcloud.png' | relative_url }}"
+    alt="ホームページの内容から生成したTF-IDF重み付きワードクラウド"
+    width="1600"
+    height="700"
+  >
+  <figcaption id="wordcloud-caption">
+    このページの各セクションを文書として、TF-IDFで重み付けしたキーワード<br>
+    Font: <a href="https://seed.line.me/index_jp.html">LINE Seed JP</a>
+  </figcaption>
+</figure>
 
 ## 研究分野
 {: .portfolio-section-title }
@@ -462,6 +508,3 @@ samp {
     </div>
   </li>
 </ul>
-
-
-
