@@ -483,16 +483,10 @@ samp {
   <li>
     <span class="portfolio-item-title">愛媛大学工学部工学科応用情報工学コース優秀学生（3年次）</span>
 
-    <div class="portfolio-stats">
-      <span class="portfolio-stat portfolio-stat-unknown">選考率：不明</span>
-    </div>
-  </li>
+ </li>
 
   <li>
     <span class="portfolio-item-title">応用情報技術者試験 合格</span>
 
-    <div class="portfolio-stats">
-      <span class="portfolio-stat portfolio-stat-unknown">合格率：不明</span>
-    </div>
-  </li>
+ </li>
 </ul>
