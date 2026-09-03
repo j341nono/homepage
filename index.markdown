@@ -270,7 +270,7 @@ samp {
     <u>Kanade Nonomura</u>, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara,
     In Proceedings of the 15th Joint Conference on Lexical and Computational Semantics
     (*SEM 2026), pp.385–394, San Diego, California, United States, July 2026.
-    [<a href="https://aclanthology.org/2026.starsem-conference.26/">PDF</a>]
+    [<a href="https://aclanthology.org/2026.starsem-conference.26/">Link</a>]
 
     <!--
     <div class="portfolio-stats">
@@ -284,7 +284,7 @@ samp {
     <u>Kanade Nonomura</u>, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara,
     In Proceedings of the ACL 2026 Student Research Workshop (ACL SRW 2026),
     pp.1169–1176, San Diego, California, United States, July 2026.
-    [<a href="https://aclanthology.org/2026.acl-srw.102/">PDF</a>]
+    [<a href="https://aclanthology.org/2026.acl-srw.102/">Link</a>]
 
     <!--
     <div class="portfolio-stats">
@@ -299,7 +299,7 @@ samp {
     <u>Kanade Nonomura</u>, Yuki Fujiwara, Tomoyuki Kajiwara,
     In Proceedings of the 15th International Conference on Language Resources and Evaluation
     (LREC 2026), pp.2987–2995, Mallorca, Spain, May 2026.
-    [<a href="https://aclanthology.org/2026.lrec-1.233/">PDF</a>]
+    [<a href="https://aclanthology.org/2026.lrec-1.233/">Link</a>]
 
     <!--
     <div class="portfolio-stats">
