@@ -317,6 +317,7 @@ samp {
     <span class="portfolio-item-title">多様な多言語文埋め込みに対する意味要素と言語要素の分離</span><br>
     <u>野々村 奏</u>, 福島 啓太, 近藤 里咲, 梶原 智之,
     人工知能学会第40回年次大会, 4yin-b-54, June 2026
+    [<a href="https://www.jstage.jst.go.jp/article/pjsai/JSAI2026/0/JSAI2026_4YinB54/_article/-char/ja">Link</a>]
   </li>
 
   <li>
@@ -324,12 +325,14 @@ samp {
     戸田 裕子, 前川 大輔, 眞鍋 光汰, 米山 瑛人,
     <u>野々村 奏</u>, 藤原 有希, 梶原 智之,
     言語処理学会第32回年次大会, pp.1748-1752, March 2026
+    [<a href="https://www.anlp.jp/proceedings/annual_meeting/2026/pdf_dir/P4-3.pdf">PDF</a>]
   </li>
 
   <li>
     <span class="portfolio-item-title">多言語文埋め込みの意味と言語の分離のための損失関数の分析</span><br>
     <u>野々村 奏</u>, 福島 啓太, 近藤 里咲, 梶原 智之,
     言語処理学会第32回年次大会, pp.3842-3846, March 2026
+    [<a href="https://www.anlp.jp/proceedings/annual_meeting/2026/pdf_dir/P8-20.pdf">PDF</a>]
   </li>
 
   <li>
@@ -337,6 +340,7 @@ samp {
     <u>野々村 奏</u>, 梶原 智之,
     情報処理学会第88回全国大会, pp.281-282, March 2026,
     <span class="award">学生奨励賞</span>
+    [<a href="https://moguranosenshi.sakura.ne.jp/publications/ipsj88-nonomura.pdf">PDF</a>]
   </li>
 </ul>
 
