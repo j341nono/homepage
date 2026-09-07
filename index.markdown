@@ -425,18 +425,6 @@ samp {
   </li>
 </ul>
 
-## 技術コミュニティ・プログラム
-{: .portfolio-section-title }
-
-<ul class="portfolio-list">
-  <li>
-    <span class="portfolio-item-title">Kaigi on Rails 2026 学生招待プログラム</span><br>
-    2026年10月，
-    株式会社ソニックガーデンによる学生向け参加支援プログラムに採択
-    [<a href="https://kaigionrails.org/2026/">Link</a>]
-  </li>
-</ul>
-
 ## インターン
 {: .portfolio-section-title }
 
@@ -463,6 +451,18 @@ samp {
     2026年5月〜現在，
     愛媛県中予地方局の若手職員・県内大学生とともに、外国人材の地域定着に向けた交流イベントの企画・運営に参加
     [<a href="https://www.pref.ehime.jp/site/chuyo/147431.html">事業内容</a>]
+  </li>
+</ul>
+
+## その他
+{: .portfolio-section-title }
+
+<ul class="portfolio-list">
+  <li>
+    <span class="portfolio-item-title">Kaigi on Rails 2026 スカラシップ</span><br>
+    2026年10月，
+    株式会社ソニックガーデンによる学生向けスカラシップに採択
+    [<a href="https://kaigionrails.org/2026/">Link</a>]
   </li>
 </ul>
 
