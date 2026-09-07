@@ -425,6 +425,18 @@ samp {
   </li>
 </ul>
 
+## 技術コミュニティ・プログラム
+{: .portfolio-section-title }
+
+<ul class="portfolio-list">
+  <li>
+    <span class="portfolio-item-title">Kaigi on Rails 2026 学生招待プログラム</span><br>
+    2026年10月，
+    株式会社ソニックガーデンによる学生向け参加支援プログラムに採択
+    [<a href="https://kaigionrails.org/2026/">Link</a>]
+  </li>
+</ul>
+
 ## インターン
 {: .portfolio-section-title }
 
@@ -486,11 +498,11 @@ samp {
 
   <li>
     <span class="portfolio-item-title">愛媛大学工学部工学科応用情報工学コース優秀学生（3年次）</span>
-
- </li>
+  </li>
 
   <li>
     <span class="portfolio-item-title">応用情報技術者試験 合格</span>
-
- </li>
+  </li>
 </ul>
+
+
