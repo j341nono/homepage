@@ -450,7 +450,7 @@ samp {
     <span class="portfolio-item-title">令和8年度 外国人材地域体験・交流モデル事業 大学生企画運営チーム</span><br>
     2026年5月〜現在，
     愛媛県中予地方局の若手職員・県内大学生とともに、外国人材の地域定着に向けた交流イベントの企画・運営に参加
-    [<a href="https://www.pref.ehime.jp/site/chuyo/147431.html">事業内容</a>]
+    [<a href="https://www.sonicgarden.jp/blog_articles/8105">事業内容</a>]
   </li>
 </ul>
 
