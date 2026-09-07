@@ -361,7 +361,7 @@ samp {
   </li>
 </ul>
 
-## ハッカソン・コンテスト
+## ハッカソン
 {: .portfolio-section-title }
 
 <ul class="portfolio-list">
@@ -416,6 +416,34 @@ samp {
     [<a href="https://github.com/bakeryforhackathon/annotopia">Code</a>]
   </li>
 
+</ul>
+
+## Tech Events / Conferences
+{: .portfolio-section-title }
+
+<ul class="portfolio-list">
+
+  <li>
+    <span class="portfolio-item-title">Kaigi on Rails 2026 スカラシップ</span><br>
+    2026年10月，
+    株式会社ソニックガーデンによる学生向けスカラシップに採択
+    [<a href="https://www.sonicgarden.jp/blog_articles/8105">Link</a>]
+  </li>
+
+  <li>
+    <span class="portfolio-item-title">技育祭2026【九州】</span><br>
+    2026年6月，
+    福岡で開催された学生エンジニア向けテックカンファレンスに参加
+    [<a href="https://geek.supporterz.jp/geeksai/2026extra#kyushu">Link</a>]
+  </li>
+
+  <li>
+    <span class="portfolio-item-title">技育祭2026【東海】</span><br>
+    2026年4月，
+    名古屋で開催された学生エンジニア向けテックカンファレンスに参加
+    [<a href="https://geek.supporterz.jp/geeksai/2026extra#tokai">Link</a>]
+  </li>
+
   <li>
     <span class="portfolio-item-title">Ruby 合宿 2024 夏</span><br>
     2024年8月，
@@ -423,6 +451,7 @@ samp {
     [<a href="https://www.rubycamp.jp/reports/2024-08-31-2024-summer/">Link</a>]
     [<a href="https://github.com/j341nono/rc2024su_team1">Code</a>]
   </li>
+
 </ul>
 
 ## インターン
@@ -450,19 +479,7 @@ samp {
     <span class="portfolio-item-title">令和8年度 外国人材地域体験・交流モデル事業 大学生企画運営チーム</span><br>
     2026年5月〜現在，
     愛媛県中予地方局の若手職員・県内大学生とともに、外国人材の地域定着に向けた交流イベントの企画・運営に参加
-    [<a href="https://www.sonicgarden.jp/blog_articles/8105">事業内容</a>]
-  </li>
-</ul>
-
-## その他
-{: .portfolio-section-title }
-
-<ul class="portfolio-list">
-  <li>
-    <span class="portfolio-item-title">Kaigi on Rails 2026 スカラシップ</span><br>
-    2026年10月，
-    株式会社ソニックガーデンによる学生向けスカラシップに採択
-    [<a href="https://kaigionrails.org/2026/">Link</a>]
+    [<a href="https://www.pref.ehime.jp/site/chuyo/147431.html">事業内容</a>]
   </li>
 </ul>
 
