@@ -425,7 +425,7 @@ samp {
 
   <li>
     <span class="portfolio-item-title">Kaigi on Rails 2026 スカラシップ</span><br>
-    2026年10月，
+    2026年9月，
     株式会社ソニックガーデンによる学生向けスカラシップに採択
     [<a href="https://www.sonicgarden.jp/blog_articles/8105">Link</a>]
   </li>
