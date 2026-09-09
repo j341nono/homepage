@@ -430,6 +430,7 @@ samp {
     [<a href="https://www.sonicgarden.jp/blog_articles/8105">Link</a>]
   </li>
 
+<!--
   <li>
     <span class="portfolio-item-title">技育祭2026【九州】</span><br>
     2026年6月，
@@ -443,6 +444,7 @@ samp {
     名古屋で開催された学生エンジニア向けテックカンファレンスに参加
     [<a href="https://geek.supporterz.jp/geeksai/2026extra#tokai">Link</a>]
   </li>
+-->
 
   <li>
     <span class="portfolio-item-title">Ruby 合宿 2024 夏</span><br>
