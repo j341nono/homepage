@@ -467,7 +467,7 @@ samp {
 
   <li>
     <span class="portfolio-item-title">株式会社レトリバ</span><br>
-    2026年2月〜3月，
+    2026年2月〜3月(7週間)，
     テキスト埋め込みモデルに対する自動プロンプト最適化の研究
     [<a href="https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9">Link</a>]
   </li>
