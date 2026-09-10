@@ -381,10 +381,12 @@ samp {
     [<a href="https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/">Link</a>]
     [<a href="https://github.com/kren-team/michizure">Code</a>]
 
+<!--
     <div class="portfolio-stats">
       <span class="portfolio-stat">受賞枠：1 / 14（7.1%）</span>
       <span class="portfolio-stat">賞金：30,000円</span>
     </div>
+-->
   </li>
 
   <li>
@@ -395,10 +397,12 @@ samp {
     [<a href="https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/">Link</a>]
     [<a href="https://github.com/jupiter-team13/zurenavi">Code</a>]
 
+<!--
     <div class="portfolio-stats">
       <span class="portfolio-stat">受賞枠：5 / 12（41.7%）</span>
       <span class="portfolio-stat">賞金：5,000円</span>
     </div>
+-->
   </li>
 
   <li>
