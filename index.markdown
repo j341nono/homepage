@@ -422,7 +422,7 @@ samp {
 
 </ul>
 
-## Tech Events / Conferences
+## Tech Events
 {: .portfolio-section-title }
 
 <ul class="portfolio-list">
