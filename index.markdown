@@ -65,6 +65,17 @@ samp {
 }
 
 /* ==================================================
+   Publications 内の小見出し
+   ================================================== */
+.portfolio-subsection-title {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4;
+  margin-top: 1.8rem !important;
+  margin-bottom: 0.9rem !important;
+}
+
+/* ==================================================
    論文名・発表名・イベント名
    ================================================== */
 .portfolio-item-title {
@@ -186,6 +197,10 @@ samp {
     font-size: 1.5rem !important;
   }
 
+  .portfolio-subsection-title {
+    font-size: 1.15rem !important;
+  }
+
   .portfolio-item-title {
     font-size: 1.05rem;
   }
@@ -261,8 +276,11 @@ samp {
 
 キーワード：自然言語処理, 埋め込み表現, 自動プロンプト最適化, テキスト平易化
 
-## 国際学会
+## Publications
 {: .portfolio-section-title }
+
+### International Conferences
+{: .portfolio-subsection-title }
 
 <ul class="portfolio-list">
   <li>
@@ -309,8 +327,8 @@ samp {
   </li>
 </ul>
 
-## 国内学会
-{: .portfolio-section-title }
+### Domestic Conferences
+{: .portfolio-subsection-title }
 
 <ul class="portfolio-list">
   <li>
@@ -344,8 +362,8 @@ samp {
   </li>
 </ul>
 
-## シンポジウム
-{: .portfolio-section-title }
+### Symposia
+{: .portfolio-subsection-title }
 
 <ul class="portfolio-list">
   <li>
