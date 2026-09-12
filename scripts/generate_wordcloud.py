@@ -81,9 +81,9 @@ def split_documents(source: str) -> list[str]:
     if preamble:
         docs.append(preamble)
 
-    academic_sections = {"国際学会", "国内学会", "シンポジウム"}
+    publication_sections = {"publications", "国際学会", "国内学会", "シンポジウム"}
     for heading, body in zip(parts[1::2], parts[2::2]):
-        if heading.strip() in academic_sections:
+        if heading.strip().casefold() in publication_sections:
             # In publication sections, only the marked-up work titles describe the
             # portfolio owner. Author and venue lines are metadata and may contain
             # third-party names, so they never enter the tokenizer.
@@ -92,7 +92,7 @@ def split_documents(source: str) -> list[str]:
                 body,
                 flags=re.DOTALL | re.IGNORECASE,
             )
-            document = visible_markdown(heading + "\n" + "\n".join(titles)).strip()
+            document = visible_markdown("\n".join(titles)).strip()
         else:
             document = visible_markdown(heading + "\n" + body).strip()
         if document:
