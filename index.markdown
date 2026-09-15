@@ -446,6 +446,13 @@ samp {
 <ul class="portfolio-list">
 
   <li>
+    <span class="portfolio-item-title">技育祭2026〖秋〗 学生アンバサダー</span><br>
+    2026年9月〜現在，
+    株式会社サポーターズ主催の学生向けテックカンファレンス「技育祭2026〖秋〗」の学生アンバサダーとして活動
+    [<a href="https://geek.supporterz.jp/geeksai/2026autumn/">Link</a>]
+  </li>
+
+  <li>
     <span class="portfolio-item-title">開発の工夫を語るLT会 in 神戸！設計、実装、検証 etc.【DevFest Meetup #2】</span><br>
     2026年9月，
     「Ghostty + Neovimで作る透明でカッコ良い開発環境」という題目でLT登壇
