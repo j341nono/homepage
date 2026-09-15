@@ -440,15 +440,15 @@ samp {
 
 </ul>
 
-## Tech Events
+## Tech Events・LT
 {: .portfolio-section-title }
 
 <ul class="portfolio-list">
 
   <li>
-    <span class="portfolio-item-title">技育祭2026〖秋〗 学生アンバサダー</span><br>
+    <span class="portfolio-item-title">技育祭2026【秋】学生アンバサダー</span><br>
     2026年9月〜現在，
-    株式会社サポーターズ主催の学生向けテックカンファレンス「技育祭2026〖秋〗」の学生アンバサダーとして活動
+    株式会社サポーターズ主催の学生向けテックカンファレンス「技育祭2026【秋】」の学生アンバサダーとして活動
     [<a href="https://geek.supporterz.jp/geeksai/2026autumn/">Link</a>]
   </li>
 
