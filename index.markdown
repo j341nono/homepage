@@ -379,10 +379,18 @@ samp {
   </li>
 </ul>
 
-## ハッカソン
+## ハッカソン・コンテスト
 {: .portfolio-section-title }
 
 <ul class="portfolio-list">
+
+  <li>
+    <span class="portfolio-item-title">U-22 プログラミング・コンテスト2026</span><br>
+    2026年8月，
+    あいまいな検索に対応したごみ分別アプリ「ごみサポ」の開発
+    [<a href="https://u22procon.com/">Link</a>]
+    [<a href="https://github.com/nlp-pbl-2026/garbage-app">Code</a>]
+  </li>
 
   <li>
     <span class="portfolio-item-title">第21回言語処理若手シンポジウム (YANS2026) ハッカソン</span><br>
