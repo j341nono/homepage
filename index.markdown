@@ -448,7 +448,7 @@ samp {
   <li>
     <span class="portfolio-item-title">開発の工夫を語るLT会 in 神戸！設計、実装、検証 etc.【DevFest Meetup #2】</span><br>
     2026年9月，
-    「<strong>Ghostty + Neovimで作る透明でカッコ良い開発環境</strong>」という題目でLT登壇
+    「Ghostty + Neovimで作る透明でカッコ良い開発環境」という題目でLT登壇
     [<a href="https://gdgkwansai.connpass.com/event/405133/">Link</a>]
   </li>
 
