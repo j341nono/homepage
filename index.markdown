@@ -383,6 +383,13 @@ samp {
 {: .portfolio-section-title }
 
 <ul class="portfolio-list">
+  <li>
+    <span class="portfolio-item-title">AI HACK 2026</span><br>
+    2026年9月，
+    学生が何度でも気兼ねなく相談でき、必要に応じて学校情報の検索や相談内容の整理まで行う3D AI相談サポーターの開発
+    [<a href="https://qiita.com/Takumi-9505/items/97191f0b5e201f6483d4">解説記事</a>]
+    [<a href="https://github.com/TakuHackathons/AIHackathon202609">Code</a>]
+  </li>
 
   <li>
     <span class="portfolio-item-title">U-22 プログラミング・コンテスト2026</span><br>
