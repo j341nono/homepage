@@ -514,7 +514,8 @@ samp {
 <ul class="portfolio-list">
   <li>
     <span class="portfolio-item-title">LINEヤフー株式会社</span><br>
-    ML Engineer ｜ 2026年8月〜9月（6週間）
+    ML Engineer ｜ 2026年8月〜9月（6週間）<br>
+    Yahoo!検索におけるAI回答の改善
   </li>
 
   <li>
