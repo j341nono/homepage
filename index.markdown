@@ -384,6 +384,15 @@ samp {
 
 <ul class="portfolio-list">
   <li>
+    <span class="portfolio-item-title">HACK SONIC 2026 秋</span><br>
+    2026年9月，
+    ブックマークを宇宙空間に浮かぶ星に変え、銀河を眺めたり星座を作ったりしながら目的のページを探せるChrome拡張機能「ブクスペ」の開発，
+    <span class="award">11チーム中2位</span>
+    [<a href="https://www.dhw.co.jp/press-release/20260819_hacksonic5/">Link</a>]
+    [<a href="https://github.com/j341nono/bukusupe">Code</a>]
+  </li>
+
+  <li>
     <span class="portfolio-item-title">AI HACK 2026</span><br>
     2026年9月，
     学生が何度でも気兼ねなく相談でき、必要に応じて学校情報の検索や相談内容の整理まで行う3D AI相談サポーターの開発
@@ -402,7 +411,7 @@ samp {
   <li>
     <span class="portfolio-item-title">第21回言語処理若手シンポジウム (YANS2026) ハッカソン</span><br>
     2026年8月，
-    論文中の引用が引用先の内容と整合しているかを判定し、引用ハルシネーションを検出するタスク
+    論文中の引用が引用先の内容と整合しているかを判定し、ハルシネーションを検出するタスク
     [<a href="https://yans.anlp.jp/entry/yans2026hackathon">Link</a>]
   </li>
 
@@ -542,6 +551,14 @@ samp {
 {: .portfolio-section-title }
 
 <ul class="portfolio-list">
+  <li>
+    <span class="portfolio-item-title">HACK SONIC 2026 秋 2位</span>
+
+    <div class="portfolio-stats">
+      <span class="portfolio-stat">順位：2 / 11</span>
+    </div>
+  </li>
+
   <li>
     <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.4 最優秀賞</span>
 
