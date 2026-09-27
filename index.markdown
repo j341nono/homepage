@@ -425,7 +425,7 @@ samp {
 
 <!--
     <div class="portfolio-stats">
-      <span class="portfolio-stat">受賞枠：1 / 14（7.1%）</span>
+      <span class="portfolio-stat">順位：1 / 14</span>
       <span class="portfolio-stat">賞金：30,000円</span>
     </div>
 -->
@@ -441,7 +441,7 @@ samp {
 
 <!--
     <div class="portfolio-stats">
-      <span class="portfolio-stat">受賞枠：5 / 12（41.7%）</span>
+      <span class="portfolio-stat">順位：5 / 12</span>
       <span class="portfolio-stat">賞金：5,000円</span>
     </div>
 -->
@@ -563,7 +563,7 @@ samp {
     <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.4 最優秀賞</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">受賞枠：1 / 14（7.1%）</span>
+      <span class="portfolio-stat">順位：1 / 14</span>
       <span class="portfolio-stat">賞金：30,000円</span>
     </div>
   </li>
@@ -572,7 +572,7 @@ samp {
     <span class="portfolio-item-title">【技育CAMP2026】ハッカソン Vol.2 サポーターズ賞</span>
 
     <div class="portfolio-stats">
-      <span class="portfolio-stat">受賞枠：5 / 12（41.7%）</span>
+      <span class="portfolio-stat">順位：5 / 12</span>
       <span class="portfolio-stat">賞金：5,000円</span>
     </div>
   </li>
