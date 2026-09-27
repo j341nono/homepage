@@ -390,6 +390,7 @@ samp {
     <span class="award">11チーム中2位</span>
     [<a href="https://www.dhw.co.jp/press-release/20260819_hacksonic5/">Link</a>]
     [<a href="https://github.com/j341nono/bukusupe">Code</a>]
+    [<a href="https://speakerdeck.com/j341nono/bukku-maku-o-uchuu-kuukan-no-hoshi-toshite-tansaku-suru-chrome-kakuchou-kinou-hack-sonic-2026">Slide</a>]
   </li>
 
   <li>
