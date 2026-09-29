@@ -1,0 +1,87 @@
+# ==================================================
+# 研究業績
+# ==================================================
+# groups の順に小見出し（国際会議・国内会議…）が並び、items は上から順に表示される。
+#
+# 各業績の項目
+#   title:   論文タイトル
+#   authors: 著者のリスト。profile.yml の author_names に一致する名前には下線が付く
+#   venue:   会議名・ページ・年月など（書いたとおりに著者の後ろへ続く）
+#   award:   受賞（赤字で表示。省略可）
+#   links:   [{ label: PDF, url: ... }]（省略可）
+#   stats:   採択率などのバッジ（省略可）
+#
+# ※ ": "（コロン＋スペース）や " #" を含む文は "..." で囲む
+
+title: 研究業績
+
+groups:
+  - title: 国際会議
+    items:
+      - title: Mitigating Language Bias in Multilingual Sentence Embeddings for Cross-lingual Similarity Estimation
+        authors: [Kanade Nonomura, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara]
+        venue: In Proceedings of the 15th Joint Conference on Lexical and Computational Semantics (*SEM 2026), pp.385–394, San Diego, California, United States, July 2026.
+        links:
+          - label: Link
+            url: https://aclanthology.org/2026.starsem-conference.26/
+        # stats:
+        #   - 採択：36 / 64（56.3%）
+
+      - title: Disentangling Meaning and Language Components in Diverse Multilingual Sentence Embeddings
+        authors: [Kanade Nonomura, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara]
+        venue: In Proceedings of the ACL 2026 Student Research Workshop (ACL SRW 2026), pp.1169–1176, San Diego, California, United States, July 2026.
+        links:
+          - label: Link
+            url: https://aclanthology.org/2026.acl-srw.102/
+        # stats:
+        #   - 採択：130 / 402（公式の最終採択率 34.7%）
+
+      - title: "HOTATE: A Japanese Dialogue Corpus Annotated with Responses of Private Thoughts and Public Statements"
+        authors: [Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, Kanade Nonomura, Yuki Fujiwara, Tomoyuki Kajiwara]
+        venue: In Proceedings of the 15th International Conference on Language Resources and Evaluation (LREC 2026), pp.2987–2995, Mallorca, Spain, May 2026.
+        links:
+          - label: Link
+            url: https://aclanthology.org/2026.lrec-1.233/
+        # stats:
+        #   - 採択：944 / 1,786（52.85%）
+
+  - title: 国内会議
+    items:
+      - title: 多様な多言語文埋め込みに対する意味要素と言語要素の分離
+        authors: [野々村 奏, 福島 啓太, 近藤 里咲, 梶原 智之]
+        venue: 人工知能学会第40回年次大会, 4yin-b-54, June 2026
+        links:
+          - label: Link
+            url: https://www.jstage.jst.go.jp/article/pjsai/JSAI2026/0/JSAI2026_4YinB54/_article/-char/ja
+
+      - title: HOTATE：本音と建前の応答対からなる対話コーパスの構築
+        authors: [戸田 裕子, 前川 大輔, 眞鍋 光汰, 米山 瑛人, 野々村 奏, 藤原 有希, 梶原 智之]
+        venue: 言語処理学会第32回年次大会, pp.1748-1752, March 2026
+        links:
+          - label: PDF
+            url: https://www.anlp.jp/proceedings/annual_meeting/2026/pdf_dir/P4-3.pdf
+
+      - title: 多言語文埋め込みの意味と言語の分離のための損失関数の分析
+        authors: [野々村 奏, 福島 啓太, 近藤 里咲, 梶原 智之]
+        venue: 言語処理学会第32回年次大会, pp.3842-3846, March 2026
+        links:
+          - label: PDF
+            url: https://www.anlp.jp/proceedings/annual_meeting/2026/pdf_dir/P8-20.pdf
+
+      - title: 日本語文埋め込み獲得のための大規模言語モデルのプロンプト設計
+        authors: [野々村 奏, 梶原 智之]
+        venue: 情報処理学会第88回全国大会, pp.281-282, March 2026
+        award: 学生奨励賞
+        links:
+          - label: PDF
+            url: https://moguranosenshi.sakura.ne.jp/publications/ipsj88-nonomura.pdf
+
+  - title: シンポジウム
+    items:
+      - title: 大規模言語モデルの埋め込みノルムに基づく連続的な文難易度制御に向けて
+        authors: [野々村 奏, 梶原 智之, 荒瀬 由紀]
+        venue: 第21回言語処理若手シンポジウム (YANS2026), August 2026
+
+      - title: 多言語文埋め込みの意味要素と言語要素の分離に関する調査
+        authors: [野々村 奏, 近藤 里咲, 梶原 智之]
+        venue: 第20回言語処理若手シンポジウム(YANS2025), September 2025

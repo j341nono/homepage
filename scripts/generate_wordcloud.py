@@ -5,19 +5,21 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import html
 import math
 import os
 import re
 from collections import Counter
 from pathlib import Path
+from typing import Any
 
+import yaml
 from janome.tokenizer import Tokenizer
 from wordcloud import WordCloud
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = ROOT / "index.markdown"
+DEFAULT_SOURCE = ROOT / "_data" / "home"
+SOURCE_FILES = ("profile.yml", "publications.yml", "activities.yml")
 DEFAULT_OUTPUT = ROOT / "assets" / "images" / "wordcloud" / "tfidf-wordcloud.png"
 
 # Portfolio boilerplate, dates, venues, author names, and publication metadata are
@@ -29,7 +31,7 @@ STOP_WORDS = {
     "受賞", "資格", "企画", "運営", "所属", "大学", "大学院", "工学", "専攻",
     "プログラム", "コース", "チーム", "学生", "年度", "株式会社", "情報", "内容",
     "地域", "タスク", "アプリ", "アプリケーション", "ライブラリ", "技術", "賞金", "不明",
-    "合格", "国際", "国内", "最優秀", "サポーターズ", "受賞枠", "ページ", "セクション", "文書", "重み付け",
+    "合格", "国際", "国内", "会議", "業績", "イベント", "最優秀", "サポーターズ", "受賞枠", "ページ", "セクション", "文書", "重み付け",
     "proceedings", "conference", "workshop", "united", "states", "california",
     "san", "diego", "july", "june", "march", "may", "august", "september", "vol", "pp",
     "pdf", "link", "code", "github", "qiita", "email", "line", "camp", "yans", "acl", "srw",
@@ -41,64 +43,55 @@ STOP_WORDS = {
 ASCII_WORD_RE = re.compile(r"[A-Za-z][A-Za-z0-9+.-]{1,}")
 
 
-def visible_markdown(source: str) -> str:
-    """Remove markup and content that is not visible on the homepage."""
-    source = re.sub(r"\A---\s*\n.*?\n---\s*\n", "", source, flags=re.DOTALL)
-    source = re.sub(r"<!--.*?-->", " ", source, flags=re.DOTALL)
-    source = re.sub(r"<style\b.*?</style>", " ", source, flags=re.DOTALL | re.IGNORECASE)
-    source = re.sub(r"<script\b.*?</script>", " ", source, flags=re.DOTALL | re.IGNORECASE)
-    source = re.sub(
-        r"<span\b[^>]*class=[\"'][^\"']*no-select[^\"']*[\"'][^>]*>.*?</span>",
-        " ",
-        source,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    source = re.sub(
-        r"<div\b[^>]*class=[\"'][^\"']*portfolio-stats[^\"']*[\"'][^>]*>.*?</div>",
-        " ",
-        source,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    source = re.sub(
-        r"<figure\b[^>]*class=[\"'][^\"']*wordcloud-card[^\"']*[\"'][^>]*>.*?</figure>",
-        " ",
-        source,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    source = re.sub(r"https?://\S+", " ", source)
-    source = re.sub(r"(?m)^\s*#(?!#)\s+.*$", " ", source)
-    source = re.sub(r"<[^>]+>", " ", source)
-    source = re.sub(r"\{:\s*[^}]+}", " ", source)
-    source = re.sub(r"[#*_`|>[\](){}]", " ", source)
-    return html.unescape(source)
+def load_home_data(source_dir: Path) -> tuple[dict[str, Any], str]:
+    """Read the Home page's YAML files; also return their raw text for seeding."""
+    data: dict[str, Any] = {}
+    raw: list[str] = []
+    for name in SOURCE_FILES:
+        text = (source_dir / name).read_text(encoding="utf-8")
+        raw.append(text)
+        data[Path(name).stem] = yaml.safe_load(text) or {}
+    return data, "\n".join(raw)
 
 
-def split_documents(source: str) -> list[str]:
-    """Treat each H2 section as a document, excluding structured author metadata."""
-    parts = re.split(r"(?m)^##\s+(.+?)\s*$", source)
+def item_text(item: dict[str, Any], fields: tuple[str, ...]) -> str:
+    return "\n".join(str(item[field]) for field in fields if item.get(field))
+
+
+def split_documents(data: dict[str, Any]) -> list[str]:
+    """Treat each Home section as a document, excluding structured author metadata."""
+    profile = data.get("profile") or {}
+    publications = data.get("publications") or {}
     docs: list[str] = []
-    preamble = visible_markdown(parts[0]).strip()
-    if preamble:
-        docs.append(preamble)
 
-    publication_sections = {"publications", "国際学会", "国内学会", "シンポジウム"}
-    for heading, body in zip(parts[1::2], parts[2::2]):
-        if heading.strip().casefold() in publication_sections:
-            # In publication sections, only the marked-up work titles describe the
-            # portfolio owner. Author and venue lines are metadata and may contain
-            # third-party names, so they never enter the tokenizer.
-            titles = re.findall(
-                r"<span\b[^>]*class=[\"'][^\"']*portfolio-item-title[^\"']*[\"'][^>]*>(.*?)</span>",
-                body,
-                flags=re.DOTALL | re.IGNORECASE,
-            )
-            document = visible_markdown("\n".join(titles)).strip()
-        else:
-            document = visible_markdown(heading + "\n" + body).strip()
-        if document:
-            docs.append(document)
+    # Private facts (e.g. the e-mail address) never enter the tokenizer.
+    facts = [
+        f"{fact.get('label', '')} {fact.get('value', '')}"
+        for fact in profile.get("facts") or []
+        if not fact.get("private")
+    ]
+    docs.append("\n".join([*facts, str(profile.get("bio") or "")]))
+    docs.append("研究分野\nキーワード：" + ", ".join(profile.get("research_keywords") or []))
 
-    return docs or [visible_markdown(source)]
+    # In publications, only the work titles describe the portfolio owner. Author
+    # and venue fields are metadata and contain third-party names, so they are
+    # never read here.
+    docs.append("\n".join(
+        str(item["title"])
+        for group in publications.get("groups") or []
+        for item in group.get("items") or []
+        if item.get("title")
+    ))
+
+    for section in data.get("activities") or []:
+        lines = [str(section.get("title") or "")]
+        lines += [
+            item_text(item, ("title", "role", "period", "description", "award"))
+            for item in section.get("items") or []
+        ]
+        docs.append("\n".join(lines))
+
+    return [doc.strip() for doc in docs if doc.strip()]
 
 
 def useful(term: str) -> bool:
@@ -206,8 +199,8 @@ def color_for_word(word: str, **_: object) -> str:
 
 
 def generate(source_path: Path, output_path: Path, font_path: str | None) -> None:
-    source = source_path.read_text(encoding="utf-8")
-    weights = tfidf_weights(split_documents(source))
+    data, source = load_home_data(source_path)
+    weights = tfidf_weights(split_documents(data))
     if not weights:
         raise ValueError(f"No suitable words were extracted from {source_path}")
 
@@ -236,7 +229,7 @@ def generate(source_path: Path, output_path: Path, font_path: str | None) -> Non
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
+    parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE, help="Directory containing the Home YAML files")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--font", help="Path to a font containing Japanese glyphs")
     args = parser.parse_args()

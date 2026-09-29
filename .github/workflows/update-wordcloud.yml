@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "index.markdown"
+      - "_data/home/**"
       - "scripts/generate_wordcloud.py"
       - "requirements-wordcloud.txt"
       - ".github/workflows/update-wordcloud.yml"

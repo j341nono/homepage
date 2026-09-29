@@ -1,0 +1,194 @@
+# ==================================================
+# 研究業績より下のセクション（ハッカソン・インターンなど）
+# ==================================================
+# ここに書いた順にセクションが並び、items は上から順に表示される。
+# セクションを増やすときは `- title:` と `items:` を足すだけでよい。
+#
+# 各項目（title 以外は省略可。省略した項目は表示されない）
+#   title:       名前（イベント名・会社名・賞の名前など）
+#   role:        職種・立場（例: ML Engineer）。period の前に「｜」区切りで表示
+#   period:      時期（例: 2026年9月、2026年8月〜9月（6週間））
+#   description: 内容
+#   award:       受賞（赤字で表示）
+#   links:       [{ label: Link, url: ... }, { label: Code, url: ... }]
+#   stats:       順位・賞金などのバッジ（例: - 順位：1 / 14）
+#
+# ※ ": "（コロン＋スペース）や " #" を含む文は "..." で囲む
+# ※ 一時的に隠したい項目は、行頭に # を付けてコメントアウトする
+
+- title: ハッカソン・コンテスト
+  items:
+    - title: HACK SONIC 2026 秋
+      period: 2026年9月
+      description: ブックマークを宇宙空間に浮かぶ星に変え、銀河を眺めたり星座を作ったりしながら目的のページを探せるChrome拡張機能「ブクスペ」の開発
+      award: 11チーム中2位
+      links:
+        - label: Link
+          url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
+        - label: Code
+          url: https://github.com/j341nono/bukusupe
+        - label: Slide
+          url: https://speakerdeck.com/j341nono/bukku-maku-o-uchuu-kuukan-no-hoshi-toshite-tansaku-suru-chrome-kakuchou-kinou-hack-sonic-2026
+
+    - title: AI HACK 2026
+      period: 2026年9月
+      description: 学生が何度でも気兼ねなく相談でき、必要に応じて学校情報の検索や相談内容の整理まで行う3D AI相談サポーターの開発
+      links:
+        - label: 解説記事
+          url: https://qiita.com/Takumi-9505/items/97191f0b5e201f6483d4
+        - label: Code
+          url: https://github.com/TakuHackathons/AIHackathon202609
+
+    - title: U-22 プログラミング・コンテスト2026
+      period: 2026年8月
+      description: あいまいな検索に対応したごみ分別アプリ「ごみサポ」の開発
+      links:
+        - label: Link
+          url: https://u22procon.com/
+        - label: Code
+          url: https://github.com/nlp-pbl-2026/garbage-app
+
+    - title: 第21回言語処理若手シンポジウム (YANS2026) ハッカソン
+      period: 2026年8月
+      description: 論文中の引用が引用先の内容と整合しているかを判定し、ハルシネーションを検出するタスク
+      links:
+        - label: Link
+          url: https://yans.anlp.jp/entry/yans2026hackathon
+
+    - title: 【技育CAMP2026】ハッカソン Vol.4
+      period: 2026年7月〜8月
+      description: 約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発
+      award: 最優秀賞
+      links:
+        - label: Link
+          url: https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/
+        - label: Code
+          url: https://github.com/kren-team/michizure
+      # stats:
+      #   - 順位：1 / 14
+      #   - 賞金：30,000円
+
+    - title: 【技育CAMP2026】ハッカソン Vol.2
+      period: 2026年4月
+      description: ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発
+      award: サポーターズ賞
+      links:
+        - label: Link
+          url: https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/
+        - label: Code
+          url: https://github.com/jupiter-team13/zurenavi
+      # stats:
+      #   - 順位：5 / 12
+      #   - 賞金：5,000円
+
+    - title: 第20回言語処理若手シンポジウム (YANS2025) ハッカソン
+      period: 2025年9月
+      description: 選好チューニングを用いた訓練により、数学問題の正答率を競う課題
+      links:
+        - label: Link
+          url: https://yans.anlp.jp/entry/yans2025hackathon
+
+    - title: 【技育CAMP2025】ハッカソン Vol.8
+      period: 2025年7月
+      description: 複数人で楽にアノテーションを実施できるWebアプリの開発
+      links:
+        - label: Link
+          url: https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/
+        - label: Code
+          url: https://github.com/bakeryforhackathon/annotopia
+
+- title: 技術イベント・LT
+  items:
+    - title: 技育祭2026【秋】学生アンバサダー
+      period: 2026年9月〜現在
+      description: 株式会社サポーターズ主催の学生向けテックカンファレンス「技育祭2026【秋】」の学生アンバサダーとして活動
+      links:
+        - label: Link
+          url: https://geek.supporterz.jp/geeksai/2026autumn/
+
+    - title: "開発の工夫を語るLT会 in 神戸！設計、実装、検証 etc.【DevFest Meetup #2】"
+      period: 2026年9月
+      description: 「Ghostty + Neovimで作る透明でカッコ良い開発環境」という題目でLT登壇
+      links:
+        - label: Link
+          url: https://gdgkwansai.connpass.com/event/405133/
+        - label: Slide
+          url: https://speakerdeck.com/j341nono/ghostty-neovim-de-tsukuru-toumeide-kakko-yoi-kaihatsu-kankyou
+
+    - title: Kaigi on Rails 2026 スカラシップ
+      period: 2026年9月
+      description: 株式会社ソニックガーデンによる学生向けスカラシップに採択
+      links:
+        - label: Link
+          url: https://www.sonicgarden.jp/blog_articles/8105
+
+    # - title: 技育祭2026【九州】
+    #   period: 2026年6月
+    #   description: 福岡で開催された学生エンジニア向けテックカンファレンスに参加
+    #   links:
+    #     - label: Link
+    #       url: https://geek.supporterz.jp/geeksai/2026extra#kyushu
+
+    # - title: 技育祭2026【東海】
+    #   period: 2026年4月
+    #   description: 名古屋で開催された学生エンジニア向けテックカンファレンスに参加
+    #   links:
+    #     - label: Link
+    #       url: https://geek.supporterz.jp/geeksai/2026extra#tokai
+
+    - title: Ruby 合宿 2024 夏
+      period: 2024年8月
+      description: 島根県が主催する4日間のソフトウェア開発合宿に参加。RubyのGosuライブラリを用いたカードゲームの開発
+      links:
+        - label: Link
+          url: https://www.rubycamp.jp/reports/2024-08-31-2024-summer/
+        - label: Code
+          url: https://github.com/j341nono/rc2024su_team1
+
+- title: インターン
+  items:
+    - title: LINEヤフー株式会社
+      role: ML Engineer
+      period: 2026年8月〜9月（6週間）
+      description: Yahoo!検索におけるAI回答の改善
+
+    - title: 株式会社レトリバ
+      role: Researcher
+      period: 2026年2月〜3月（7週間）
+      description: テキスト埋め込みモデルに対する自動プロンプト最適化の研究
+      links:
+        - label: Link
+          url: https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9
+
+- title: 企画・運営
+  items:
+    - title: 令和8年度 外国人材地域体験・交流モデル事業 大学生企画運営チーム
+      period: 2026年5月〜現在
+      description: 愛媛県中予地方局の若手職員・県内大学生とともに、外国人材の地域定着に向けた交流イベントの企画・運営に参加
+      links:
+        - label: 事業内容
+          url: https://www.pref.ehime.jp/site/chuyo/147431.html
+
+- title: 受賞・資格
+  items:
+    - title: HACK SONIC 2026 秋 2位
+      stats:
+        - 順位：2 / 11
+
+    - title: 【技育CAMP2026】ハッカソン Vol.4 最優秀賞
+      stats:
+        - 順位：1 / 14
+        - 賞金：30,000円
+
+    - title: 【技育CAMP2026】ハッカソン Vol.2 サポーターズ賞
+      stats:
+        - 順位：5 / 12
+        - 賞金：5,000円
+
+    - title: 情報処理学会第88回全国大会 学生奨励賞（March 2026）
+      stats:
+        - セッション内の受賞枠：2 / 7（28.6%）
+
+    - title: 愛媛大学工学部工学科応用情報工学コース優秀学生（3年次）
+
+    - title: 応用情報技術者試験 合格

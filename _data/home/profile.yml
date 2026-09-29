@@ -1,0 +1,41 @@
+# ==================================================
+# Home 冒頭のプロフィール
+# ==================================================
+name: 野々村 奏
+name_en: Kanade Nonomura
+
+# 業績の著者リストで下線を引く名前（表記ゆれを全部書く）
+author_names:
+  - 野々村 奏
+  - Kanade Nonomura
+
+# 「所属」「Email」のような 見出し：内容 の行
+#   private: true にすると選択・コピーされにくくなり、ワードクラウドにも使われない
+facts:
+  - label: 所属
+    value: 愛媛大学 大学院理工学研究科理工学専攻 数理情報プログラム 自然言語処理研究室 修士1年
+  - label: Email
+    value: nonomura[at]ai.cs.ehime-u.ac.jp
+    private: true
+
+bio: 現在、自然言語処理を専攻しています。特に、埋め込み表現の分野に注力しており、こうした技術の社会実装にも強い関心があります。
+
+# 名前の下に並ぶバッジ（画像は shields.io などの URL）
+badges:
+  - label: GitHub
+    url: https://github.com/j341nono
+    image: https://img.shields.io/badge/github-repository-blue?logo=github&style=for-the-badge
+  - label: Qiita
+    url: https://qiita.com/j341nono
+    image: https://img.shields.io/badge/qiita-profile-55c500?logo=qiita&style=for-the-badge
+
+photo:
+  src: /assets/images/profile/v1.jpg
+  width: 200
+
+# 「研究分野」セクションのキーワード
+research_keywords:
+  - 自然言語処理
+  - 埋め込み表現
+  - 自動プロンプト最適化
+  - テキスト平易化

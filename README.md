@@ -3,14 +3,15 @@
 ## TF-IDF word cloud
 
 The image at `assets/images/wordcloud/tfidf-wordcloud.png` is generated from the
-content in `index.markdown`. Each H2 section is treated as a document, Japanese
-nouns are extracted with Janome, and the terms are weighted with TF-IDF before
-rendering. The maximum section-level TF-IDF is used as each word's final weight,
-so summing sections does not undo IDF's suppression of broadly repeated terms.
-In publication sections, only `.portfolio-item-title` text is used; author and
-venue metadata never enters the tokenizer.
+Home page's data in `_data/home/` (`profile.yml`, `publications.yml`,
+`activities.yml`). Each section is treated as a document, Japanese nouns are
+extracted with Janome, and the terms are weighted with TF-IDF before rendering.
+The maximum section-level TF-IDF is used as each word's final weight, so summing
+sections does not undo IDF's suppression of broadly repeated terms. From
+publications, only titles are used; author and venue metadata never enters the
+tokenizer. Profile facts marked `private: true` are excluded as well.
 
-GitHub Actions regenerates and commits the image whenever the homepage source
+GitHub Actions regenerates and commits the image whenever the Home data
 or generator changes. To regenerate it locally:
 
 ```sh

@@ -1,0 +1,7 @@
+{%- if include.stats -%}
+<div class="portfolio-stats">
+  {%- for stat in include.stats %}
+  <span class="portfolio-stat">{{ stat | escape }}</span>
+  {%- endfor %}
+</div>
+{%- endif -%}

@@ -1,0 +1,86 @@
+---
+layout: default
+title: Home
+---
+{%- comment -%}
+  中身は _data/home/ 以下の YAML に書く。
+    profile.yml       … プロフィール・研究分野のキーワード
+    publications.yml  … 研究業績
+    activities.yml    … ハッカソン・インターンなど、研究業績より下のセクション
+{%- endcomment -%}
+{%- assign profile = site.data.home.profile -%}
+{%- assign publications = site.data.home.publications -%}
+
+<div class="profile">
+  <div class="profile-body">
+    <h1 class="page-title">{{ profile.name | escape }} <span class="page-title-sub">{{ profile.name_en | escape }}</span></h1>
+
+    <dl class="profile-facts">
+      {%- for fact in profile.facts %}
+      <dt>{{ fact.label | escape }}</dt>
+      <dd>{% if fact.private %}<span class="no-select">{{ fact.value | escape }}</span>{% else %}{{ fact.value | escape }}{% endif %}</dd>
+      {%- endfor %}
+    </dl>
+
+    <p class="page-lead">{{ profile.bio | escape }}</p>
+
+    <div class="profile-links">
+      {%- for badge in profile.badges %}
+      <a href="{{ badge.url | escape }}"><img src="{{ badge.image | escape }}" alt="{{ badge.label | escape }}"></a>
+      {%- endfor %}
+    </div>
+  </div>
+
+  <img class="profile-photo" src="{{ profile.photo.src | relative_url }}" width="{{ profile.photo.width }}" alt="{{ profile.name | escape }}">
+</div>
+
+<figure class="wordcloud-card">
+  <img
+    src="{{ '/assets/images/wordcloud/tfidf-wordcloud.png' | relative_url }}"
+    alt="ホームページの内容から生成したTF-IDF重み付きワードクラウド"
+    width="1600"
+    height="700"
+  >
+</figure>
+
+<h2 class="portfolio-section-title">研究分野</h2>
+<p>キーワード：{{ profile.research_keywords | join: ", " | escape }}</p>
+
+<h2 class="portfolio-section-title">{{ publications.title | escape }}</h2>
+{%- for group in publications.groups %}
+<h3 class="portfolio-subsection-title">{{ group.title | escape }}</h3>
+<ul class="portfolio-list">
+  {%- for item in group.items %}
+  <li>
+    <span class="portfolio-item-title">{{ item.title | escape }}</span><br>
+    {% for author in item.authors -%}
+      {%- if profile.author_names contains author -%}<u>{{ author | escape }}</u>{%- else -%}{{ author | escape }}{%- endif -%},
+    {% endfor -%}
+    {{ item.venue | escape }}
+    {%- if item.award %}, <span class="award">{{ item.award | escape }}</span>{% endif %}
+    {% include portfolio-links.html links=item.links %}
+    {% include portfolio-stats.html stats=item.stats %}
+  </li>
+  {%- endfor %}
+</ul>
+{%- endfor %}
+
+{%- for section in site.data.home.activities %}
+<h2 class="portfolio-section-title">{{ section.title | escape }}</h2>
+<ul class="portfolio-list">
+  {%- for item in section.items %}
+  <li>
+    <span class="portfolio-item-title">{{ item.title | escape }}</span>
+    {%- if item.role or item.period %}<br>
+    <span class="portfolio-item-meta">{% if item.role %}{{ item.role | escape }} ｜ {% endif %}{{ item.period | escape }}</span>
+    {%- endif %}
+    {%- if item.description or item.award or item.links %}<br>
+    {{ item.description | escape }}
+    {%- if item.award %}{% if item.description %}，{% endif %}<span class="award">{{ item.award | escape }}</span>{% endif %}
+    {% include portfolio-links.html links=item.links %}
+    {%- endif %}
+    {% include portfolio-stats.html stats=item.stats %}
+  </li>
+  {%- endfor %}
+</ul>
+{%- endfor %}

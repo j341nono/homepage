@@ -1,0 +1,5 @@
+{%- comment -%} リンクを [Link] [Code] のように半角スペース区切りで並べる {%- endcomment -%}
+{%- for link in include.links -%}
+{%- unless forloop.first %}{{ " " }}{% endunless -%}
+[<a href="{{ link.url | escape }}">{{ link.label | escape }}</a>]
+{%- endfor -%}
