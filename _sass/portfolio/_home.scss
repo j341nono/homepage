@@ -1,0 +1,170 @@
+// ==================================================
+// プロフィール
+// ==================================================
+.profile {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.profile-body {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+.profile-facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 12px;
+  margin: 0 0 16px;
+  line-height: 1.6;
+
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.profile .page-lead {
+  margin-bottom: 20px;
+}
+
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  a {
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+  }
+}
+
+.profile-photo {
+  flex: 0 0 auto;
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+// ==================================================
+// TF-IDF ワードクラウド
+// ==================================================
+.wordcloud-card {
+  position: relative;
+  overflow: hidden;
+  margin: 0.5rem 0 2.5rem;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  border: 1px solid var(--wordcloud-border);
+  border-radius: 18px;
+  background: var(--wordcloud-bg);
+  box-shadow: var(--wordcloud-shadow);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 7;
+    object-fit: contain;
+  }
+}
+
+// ==================================================
+// セクション見出し
+// ==================================================
+.portfolio-section-title {
+  margin: 2.5rem 0 1.2rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid currentColor;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.portfolio-subsection-title {
+  margin: 1.8rem 0 0.9rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+// ==================================================
+// 発表・実績のリスト
+// ==================================================
+.portfolio-list {
+  padding-left: 1.8rem;
+
+  li {
+    margin-bottom: 1.4rem;
+    line-height: 1.55;
+  }
+}
+
+.portfolio-item-title {
+  // inline-block にすると、複数行になった際に箇条書きの点が2行目へ移動するため inline にする
+  display: inline;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+// ==================================================
+// 採択率・受賞率など
+// ==================================================
+.portfolio-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.55rem;
+  margin-top: 0.45rem;
+}
+
+.portfolio-stat {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--tag-bg);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.portfolio-stat-note {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.portfolio-stat-unknown {
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+@media screen and (max-width: 600px) {
+  .portfolio-section-title {
+    font-size: 1.5rem;
+  }
+
+  .portfolio-subsection-title {
+    font-size: 1.15rem;
+  }
+
+  .portfolio-item-title {
+    font-size: 1.05rem;
+  }
+
+  .portfolio-stat {
+    font-size: 0.85rem;
+  }
+}

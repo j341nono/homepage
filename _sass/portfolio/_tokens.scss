@@ -1,0 +1,44 @@
+// テーマごとに変えるのは色だけにする（レイアウトはテーマに依存させない）
+:root {
+  color-scheme: light;
+  --page-bg: #fdfdfd;
+  --surface: #ffffff;
+  --text: #111111;
+  --muted: #5f5f66;
+  --border: #e5e5e5;
+  --tag-bg: #f4f4f5;
+  --tag-text: #52525b;
+  --link: #2563eb;
+  --link-hover: #1d4ed8;
+  --award: #d11a1a;
+  --overlay: rgba(17, 17, 17, 0.65);
+  --overlay-strong: rgba(17, 17, 17, 0.85);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --wordcloud-border: rgba(76, 81, 191, 0.18);
+  --wordcloud-bg:
+    radial-gradient(circle at 15% 20%, rgba(66, 153, 225, 0.14), transparent 34%),
+    radial-gradient(circle at 88% 80%, rgba(159, 122, 234, 0.14), transparent 38%),
+    #fbfdff;
+  --wordcloud-shadow: 0 12px 30px rgba(45, 55, 72, 0.08);
+  --font-sans: "LINE Seed JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  // 真っ黒ではなく、少し青みのあるネイビー系
+  --page-bg: #0b1120;
+  --surface: #121a2c;
+  --text: #e8edf5;
+  --muted: #98a3b8;
+  --border: #243049;
+  --tag-bg: #1b2539;
+  --tag-text: #b3bfd4;
+  --link: #6aa8ff;
+  --link-hover: #9cc5ff;
+  --award: #ff8080;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --wordcloud-border: #2a3754;
+  --wordcloud-bg: #111a2e;
+  --wordcloud-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
