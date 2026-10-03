@@ -180,3 +180,34 @@
     alt: ズレナビのタイトル画像。
     width: 1376
     height: 774
+
+- title: Annotopia
+  period: 2026年4月
+  role: チーム開発
+  description: 複数人で楽にアノテーションを実施できるWebアプリの開発。アノテーションとは、機械学習分野のデータセット構築の際に、人手でラベルづけする作業です。
+  event:
+    name: 【技育CAMP2025】ハッカソン Vol.8
+    url: https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/
+  categories:
+    - Web
+    - Hackathon
+  tags:
+    - React
+    - Vite
+    - TypeScript
+    - Python
+    - Flask
+    - PostgreSQL
+    - Docker
+    - Render
+  links:
+    - label: GitHub
+      url: https://github.com/bakeryforhackathon/annotopia
+  image:
+    src: /assets/images/products/annotopia/1.png
+    alt: annotopiaのシステム構成図。
+    width: 1376
+    height: 774
+
+
+
