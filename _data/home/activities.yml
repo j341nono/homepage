@@ -11,7 +11,9 @@
 #   period:      時期（例: 2026年9月、2026年8月〜9月（6週間））
 #   description: 内容
 #   award:       受賞（赤字で表示）
-#   links:       [{ label: Link, url: ... }, { label: Code, url: ... }]
+#   links:       [{ label: Event, url: ... }, { label: Code, url: ... }]
+#                label はリンク先の種類で書く（例: Event＝イベント・大会のページ、Press＝報道発表、
+#                Report＝開催レポート、Blog / Tech Blog＝記事、Code＝GitHub、Slide＝スライド）
 #   stats:       順位・賞金などのバッジ（例: - 順位：1 / 14）
 #
 # ※ ": "（コロン＋スペース）や " #" を含む文は "..." で囲む
@@ -25,7 +27,7 @@
       period: 2026年8月
       description: 論文中の引用が引用先の内容と整合しているかを判定し、ハルシネーションを検出するタスク
       links:
-        - label: Link
+        - label: Event
           url: https://yans.anlp.jp/entry/yans2026hackathon
 
     - title: 第20回言語処理若手シンポジウム (YANS2025) ハッカソン
@@ -33,7 +35,7 @@
       period: 2025年9月
       description: 選好チューニングを用いた訓練により、数学問題の正答率を競う課題
       links:
-        - label: Link
+        - label: Event
           url: https://yans.anlp.jp/entry/yans2025hackathon
 
     - title: HACK SONIC 2026 秋
@@ -42,7 +44,7 @@
       description: ブックマークを宇宙空間に浮かぶ星に変え、銀河を眺めたり星座を作ったりしながら目的のページを探せるChrome拡張機能「ブクスペ」の開発
       award: 11チーム中2位
       links:
-        - label: Link
+        - label: Press
           url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
         - label: Code
           url: https://github.com/j341nono/bukusupe
@@ -64,7 +66,7 @@
       period: 2026年8月
       description: あいまいな検索に対応したごみ分別アプリ「ごみサポ」の開発
       links:
-        - label: Link
+        - label: Event
           url: https://u22procon.com/
         - label: Code
           url: https://github.com/nlp-pbl-2026/garbage-app
@@ -75,7 +77,7 @@
       description: 約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発
       award: 最優秀賞
       links:
-        - label: Link
+        - label: Event
           url: https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/
         - label: Code
           url: https://github.com/kren-team/michizure
@@ -89,7 +91,7 @@
       description: ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発
       award: サポーターズ賞
       links:
-        - label: Link
+        - label: Event
           url: https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/
         - label: Code
           url: https://github.com/jupiter-team13/zurenavi
@@ -102,7 +104,7 @@
       period: 2025年7月
       description: 複数人で楽にアノテーションを実施できるWebアプリの開発
       links:
-        - label: Link
+        - label: Event
           url: https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/
         - label: Code
           url: https://github.com/bakeryforhackathon/annotopia
@@ -113,7 +115,7 @@
       description: 総務省主催のサイバーセキュリティ競技。暗号、Web、ネットワーク、フォレンジックなどの課題を解析し、隠されたFlagの獲得を競う
       award: 全国オフライン 10位 / 松山会場 2位
       links:
-        - label: Link
+        - label: Press
           url: https://www.soumu.go.jp/menu_news/s-news/01cyber01_02000001_00302.html
 
 - title: 技術イベント・LT
@@ -122,14 +124,14 @@
       period: 2026年9月〜現在
       description: 株式会社サポーターズ主催の学生向けテックカンファレンス「技育祭2026【秋】」の学生アンバサダーとして活動
       links:
-        - label: Link
+        - label: Event
           url: https://geek.supporterz.jp/geeksai/2026autumn/
 
     - title: "開発の工夫を語るLT会 in 神戸！設計、実装、検証 etc.【DevFest Meetup #2】"
       period: 2026年9月
       description: 「Ghostty + Neovimで作る透明でカッコ良い開発環境」という題目でLT登壇
       links:
-        - label: Link
+        - label: Event
           url: https://gdgkwansai.connpass.com/event/405133/
         - label: Slide
           url: https://speakerdeck.com/j341nono/ghostty-neovim-de-tsukuru-toumeide-kakko-yoi-kaihatsu-kankyou
@@ -138,28 +140,28 @@
       period: 2026年9月
       description: 株式会社ソニックガーデンによる学生向けスカラシップに採択
       links:
-        - label: Link
+        - label: Blog
           url: https://www.sonicgarden.jp/blog_articles/8105
 
     # - title: 技育祭2026【九州】
     #   period: 2026年6月
     #   description: 福岡で開催された学生エンジニア向けテックカンファレンスに参加
     #   links:
-    #     - label: Link
+    #     - label: Event
     #       url: https://geek.supporterz.jp/geeksai/2026extra#kyushu
 
     # - title: 技育祭2026【東海】
     #   period: 2026年4月
     #   description: 名古屋で開催された学生エンジニア向けテックカンファレンスに参加
     #   links:
-    #     - label: Link
+    #     - label: Event
     #       url: https://geek.supporterz.jp/geeksai/2026extra#tokai
 
     - title: Ruby 合宿 2024 夏
       period: 2024年8月
       description: 島根県が主催する4日間のソフトウェア開発合宿に参加。RubyのGosuライブラリを用いたカードゲームの開発
       links:
-        - label: Link
+        - label: Report
           url: https://www.rubycamp.jp/reports/2024-08-31-2024-summer/
         - label: Code
           url: https://github.com/j341nono/rc2024su_team1
@@ -176,7 +178,7 @@
       period: 2026年2月〜3月（7週間）
       description: テキスト埋め込みモデルに対する自動プロンプト最適化の研究
       links:
-        - label: Link
+        - label: Tech Blog
           url: https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9
 
 - title: 企画・運営

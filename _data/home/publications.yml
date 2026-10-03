@@ -22,8 +22,8 @@ groups:
         authors: [Kanade Nonomura, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara]
         venue: In Proceedings of the 15th Joint Conference on Lexical and Computational Semantics (*SEM 2026), pp.385–394, San Diego, California, United States, July 2026.
         links:
-          - label: Link
-            url: https://aclanthology.org/2026.starsem-conference.26/
+          - label: PDF
+            url: https://aclanthology.org/2026.starsem-conference.26.pdf
         # stats:
         #   - 採択：36 / 64（56.3%）
 
@@ -31,8 +31,8 @@ groups:
         authors: [Kanade Nonomura, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara]
         venue: In Proceedings of the ACL 2026 Student Research Workshop (ACL SRW 2026), pp.1169–1176, San Diego, California, United States, July 2026.
         links:
-          - label: Link
-            url: https://aclanthology.org/2026.acl-srw.102/
+          - label: PDF
+            url: https://aclanthology.org/2026.acl-srw.102.pdf
         # stats:
         #   - 採択：130 / 402（公式の最終採択率 34.7%）
 
@@ -40,8 +40,8 @@ groups:
         authors: [Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, Kanade Nonomura, Yuki Fujiwara, Tomoyuki Kajiwara]
         venue: In Proceedings of the 15th International Conference on Language Resources and Evaluation (LREC 2026), pp.2987–2995, Mallorca, Spain, May 2026.
         links:
-          - label: Link
-            url: https://aclanthology.org/2026.lrec-1.233/
+          - label: PDF
+            url: https://aclanthology.org/2026.lrec-1.233.pdf
         # stats:
         #   - 採択：944 / 1,786（52.85%）
 
@@ -51,8 +51,8 @@ groups:
         authors: [野々村 奏, 福島 啓太, 近藤 里咲, 梶原 智之]
         venue: 人工知能学会第40回年次大会, 4yin-b-54, June 2026
         links:
-          - label: Link
-            url: https://www.jstage.jst.go.jp/article/pjsai/JSAI2026/0/JSAI2026_4YinB54/_article/-char/ja
+          - label: PDF
+            url: https://www.jstage.jst.go.jp/article/pjsai/JSAI2026/0/JSAI2026_4YinB54/_pdf/-char/ja
 
       - title: HOTATE：本音と建前の応答対からなる対話コーパスの構築
         authors: [戸田 裕子, 前川 大輔, 眞鍋 光汰, 米山 瑛人, 野々村 奏, 藤原 有希, 梶原 智之]
