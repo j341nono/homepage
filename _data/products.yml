@@ -26,11 +26,14 @@
 #                   links:
 #                     - label: GitHub
 #                       url: https://github.com/...
-#   image:        カード上部のサムネイル（1枚）。16:9 に切り抜いて表示される
+#   image:        カード上部のサムネイル（1枚）。16:9 の枠に表示される
 #                   image:
 #                     src:    画像のパス
 #                     alt:    代替テキスト（何が写っているか）
-#                     width / height: 画像の実寸（レイアウトずれ防止用）
+#                     width / height: 画像の実寸（レイアウトずれ防止と、表示方法の自動判定に使う）
+#                     fit:    省略可。16:9 に近い画像は枠いっぱいに切り抜き（cover）、
+#                             縦長・横長すぎる画像は切らずに全体を収める（contain）。
+#                             自動判定を変えたいときだけ cover / contain を書く
 
 - title: ブクスペ
   period: 2026年9月
@@ -92,8 +95,8 @@
   image:
     src: /assets/images/products/yorisoi/1.png
     alt: 3D キャラクターの AI 相談アシスタントが音声・動き・テキストで応答する相談画面
-    width: 865
-    height: 539
+    width: 863
+    height: 538
 
 - title: ごみサポ
   period: 2026年5月〜8月
@@ -120,8 +123,8 @@
   image:
     src: /assets/images/products/gomisapo/1.png
     alt: ごみサポの作品概要。あいまいなクエリを言い換え、地域ごみ分別 DB への RAG で分類候補を生成し、確定できない場合は追加質問する処理の流れ
-    width: 1376
-    height: 774
+    width: 1846
+    height: 1059
 
 - title: みちずれ
   period: 2026年7月〜8月
@@ -206,8 +209,30 @@
   image:
     src: /assets/images/products/annotopia/1.png
     alt: annotopiaのシステム構成図。
-    width: 1376
-    height: 774
+    width: 960
+    height: 540
+
+- title: カードゲーム（ラブレター）
+  period: 2024年8月
+  role: チーム開発
+  description: 「ラブレター」というカードゲームをモチーフにした1人(2人)対戦カードゲームです。カードを引いて効果を発動させ、相手を先に脱落させた方が勝利です。
+  event:
+    name: Ruby 合宿 2024 夏
+    url: https://www.rubycamp.jp/reports/2024-08-31-2024-summer/
+  categories:
+    - Web
+  tags:
+    - Ruby
+    - Gosu
+    - Singleton
+  links:
+    - label: GitHub
+      url: https://github.com/j341nono/rc2024su_team1
+  image:
+    src: /assets/images/products/rubycamp/1.png
+    alt: ゲーム画面
+    width: 912
+    height: 740
 
 
 

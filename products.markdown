@@ -51,7 +51,17 @@ wide: true
     {% for product in products %}
     <article class="products-card" aria-labelledby="product-{{ forloop.index }}" data-categories="{{ product.categories | join: '|' | escape }}">
       {% if product.image %}
-      <div class="products-card-thumb">
+      {%- comment -%} 16:9（約 1.78）から大きく外れる画像（約 1.51 未満・2.04 超）は、切り抜かずに全体を収める {%- endcomment -%}
+      {%- assign image_fit = product.image.fit -%}
+      {%- unless image_fit -%}
+        {%- assign image_width = product.image.width | times: 100 -%}
+        {%- assign image_min_width = product.image.height | times: 151 -%}
+        {%- assign image_max_width = product.image.height | times: 204 -%}
+        {%- if image_width < image_min_width or image_width > image_max_width -%}
+          {%- assign image_fit = "contain" -%}
+        {%- endif -%}
+      {%- endunless %}
+      <div class="products-card-thumb{% if image_fit == "contain" %} is-contain{% endif %}">
         <img src="{{ product.image.src | relative_url }}" alt="{{ product.image.alt | escape }}" width="{{ product.image.width }}" height="{{ product.image.height }}"{% if forloop.index > 2 %} loading="lazy"{% endif %} decoding="async">
       </div>
       {% endif %}

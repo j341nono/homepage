@@ -182,6 +182,11 @@
     height: 100%;
     object-fit: cover;
   }
+
+  // 縦長などで切り抜くと内容が欠ける画像は、余白に背景色を見せて全体を収める
+  &.is-contain img {
+    object-fit: contain;
+  }
 }
 
 // リンクをカード下端にそろえるため、本文を縦方向の flex にする
