@@ -37,7 +37,7 @@ theme: minima
 minima:
   nav_pages:
     - index.html
-    - engineering.markdown
+    - products.markdown
 # theme: jekyll-theme-tactile
 plugins:
   - jekyll-feed

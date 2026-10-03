@@ -67,7 +67,7 @@ a:hover {
 }
 
 // ==================================================
-// ページ見出し（Home / Engineering 共通）
+// ページ見出し（Home / Products 共通）
 // ==================================================
 .page-intro {
   margin-bottom: 48px;
@@ -101,6 +101,12 @@ a:hover {
 // ==================================================
 // ヘッダー
 // ==================================================
+// ヘッダー・フッターは、本文の広い Products ページに合わせて全ページ共通で広げる
+.site-header .wrapper,
+.site-footer .wrapper {
+  max-width: calc(1200px - (30px * 2));
+}
+
 .site-header {
   border-top: 0;
   border-bottom-color: var(--border);

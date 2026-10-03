@@ -11,9 +11,9 @@
   --link: #2563eb;
   --link-hover: #1d4ed8;
   --award: #d11a1a;
-  --overlay: rgba(17, 17, 17, 0.65);
-  --overlay-strong: rgba(17, 17, 17, 0.85);
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 1px 2px rgba(17, 17, 17, 0.04);
+  --card-shadow-hover: 0 8px 24px rgba(17, 17, 17, 0.08);
   --wordcloud-border: rgba(76, 81, 191, 0.18);
   --wordcloud-bg:
     radial-gradient(circle at 15% 20%, rgba(66, 153, 225, 0.14), transparent 34%),
@@ -38,6 +38,8 @@
   --link-hover: #9cc5ff;
   --award: #ff8080;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --card-shadow-hover: 0 10px 28px rgba(0, 0, 0, 0.4);
   --wordcloud-border: #2a3754;
   --wordcloud-bg: #111a2e;
   --wordcloud-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);

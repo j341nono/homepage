@@ -1,0 +1,19 @@
+---
+layout: null
+permalink: /engineering/
+---
+{%- comment -%} 旧 URL（/engineering/）へのリンクを /products/ に転送する {%- endcomment -%}
+{%- assign products_url = '/products/' | relative_url -%}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Products | {{ site.title | escape }}</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="{{ '/products/' | absolute_url }}">
+  <meta http-equiv="refresh" content="0; url={{ products_url }}">
+</head>
+<body>
+  <p>このページは <a href="{{ products_url }}">Products</a> に移動しました。</p>
+</body>
+</html>

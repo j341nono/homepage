@@ -45,62 +45,30 @@
   setTheme(root.dataset.theme === "dark" ? "dark" : "light", false);
 
   // ==================================================
-  // スクリーンショットのカルーセル
+  // Products のカテゴリ絞り込み
   // ==================================================
-  function setupCarousel(carousel) {
-    var slides = Array.from(carousel.querySelectorAll(".engineering-carousel-slide"));
-    var dots = Array.from(carousel.querySelectorAll("[data-slide-index]"));
-    var current = 0;
-    var touchStart = null;
+  var filter = document.querySelector("[data-products-filter]");
 
-    function show(index) {
-      current = (index + slides.length) % slides.length;
-      slides.forEach(function (slide, slideIndex) {
-        slide.hidden = slideIndex !== current;
+  if (filter) {
+    var filterButtons = Array.from(filter.querySelectorAll("[data-filter]"));
+    var productCards = Array.from(document.querySelectorAll(".products-card[data-categories]"));
+
+    function applyFilter(category) {
+      filterButtons.forEach(function (button) {
+        button.setAttribute("aria-pressed", button.dataset.filter === category ? "true" : "false");
       });
-      dots.forEach(function (dot, dotIndex) {
-        if (dotIndex === current) {
-          dot.setAttribute("aria-current", "true");
-        } else {
-          dot.removeAttribute("aria-current");
-        }
+      productCards.forEach(function (card) {
+        card.hidden = category !== "all" && card.dataset.categories.split("|").indexOf(category) === -1;
       });
     }
 
-    carousel.querySelector("[data-carousel-prev]").addEventListener("click", function () {
-      show(current - 1);
-    });
-    carousel.querySelector("[data-carousel-next]").addEventListener("click", function () {
-      show(current + 1);
-    });
-    dots.forEach(function (dot) {
-      dot.addEventListener("click", function () {
-        show(Number(dot.dataset.slideIndex));
+    filterButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        applyFilter(button.dataset.filter);
       });
     });
 
-    carousel.addEventListener("keydown", function (event) {
-      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-        event.preventDefault();
-        show(current + (event.key === "ArrowRight" ? 1 : -1));
-      }
-    });
-    carousel.addEventListener("touchstart", function (event) {
-      touchStart = { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };
-    }, { passive: true });
-    carousel.addEventListener("touchend", function (event) {
-      if (!touchStart) return;
-      var differenceX = event.changedTouches[0].clientX - touchStart.x;
-      var differenceY = event.changedTouches[0].clientY - touchStart.y;
-      if (Math.abs(differenceX) > 40 && Math.abs(differenceX) > Math.abs(differenceY)) {
-        show(current + (differenceX < 0 ? 1 : -1));
-      }
-      touchStart = null;
-    }, { passive: true });
-
-    show(0);
-    carousel.classList.add("is-ready");
+    // JS が動かない環境では絞り込みを出さず、全件をそのまま見せる
+    filter.hidden = false;
   }
-
-  document.querySelectorAll("[data-carousel]").forEach(setupCarousel);
 })();

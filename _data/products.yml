@@ -1,0 +1,154 @@
+# ==================================================
+# Products ページに載せるプロダクト
+# ==================================================
+# 上から順にカードとして並ぶ（新しいものを上に書く）。
+#
+# 項目（title・period・image 以外は省略可。省略した項目は表示されない）
+#   title:        作品名
+#   period:       制作時期（例: 2026年9月、2026年4月〜現在）
+#                 先頭4桁を西暦として、ページ上部の「2025 — 2026」のような期間表示に使う
+#   role:         体制（例: 個人開発、チーム開発）
+#   description:  概要（1〜2文）
+#   event:        何で作ったか（ハッカソン名・インターン先など）
+#                   event:
+#                     name: HACK SONIC 2026 秋
+#                     url: https://...          # 省略可
+#                 リンク不要なら `event: 個人開発` のように1行でも書ける
+#   achievements: 受賞など。文字列だけでも、リンク付きでもよい
+#                   achievements:
+#                     - 11チーム中2位
+#                     - label: 企業賞
+#                       url: https://...
+#   categories:   絞り込み用のカテゴリ（複数可）。書いたカテゴリがそのままフィルタのボタンになる
+#                 表記ゆれに注意（例: AI, Web, Browser Extension, Mobile, Desktop, Hackathon）
+#   tags:         使用技術。書いた表記のまま表示される（Next.js, gRPC など）
+#   links:        関連リンク。label は自由（GitHub / デモ / スライド / 解説記事 など）
+#                   links:
+#                     - label: GitHub
+#                       url: https://github.com/...
+#   image:        カード上部のサムネイル（1枚）。16:9 に切り抜いて表示される
+#                   image:
+#                     src:    画像のパス
+#                     alt:    代替テキスト（何が写っているか）
+#                     width / height: 画像の実寸（レイアウトずれ防止用）
+
+- title: ブクスペ
+  period: 2026年9月
+  role: 個人開発
+  description: ブックマークを宇宙空間に浮かぶ星に変え、銀河を眺めたり星座を作ったりしながら目的のページを探せるブラウザ拡張機能。現在、ストアでの公開に向けて審査中です。
+  event:
+    name: HACK SONIC 2026 秋
+    url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
+  achievements:
+    - 2位（11チーム中）
+  categories:
+    - AI
+    - Browser Extension
+    - Hackathon
+  tags:
+    - TypeScript
+    - Three.js
+    - Transformers.js
+    - WebAssembly
+    - IndexedDB
+  links:
+    - label: GitHub
+      url: https://github.com/j341nono/bukusupe
+    - label: スライド
+      url: https://speakerdeck.com/j341nono/bukku-maku-o-uchuu-kuukan-no-hoshi-toshite-tansaku-suru-chrome-kakuchou-kinou-hack-sonic-2026
+    - label: デモ
+      url: https://j341nono.github.io/bukusupe/
+  image:
+    src: /assets/images/products/bukusupe/1.png
+    alt: ブクスペのタイトル画像。星空を背景にロゴと画面例が並ぶ
+    width: 1376
+    height: 774
+
+- title: よりそいAI相談室
+  period: 2026年9月
+  role: チーム開発
+  description: 学生が何度でも気兼ねなく相談でき、必要に応じて学校情報の検索や相談内容の整理まで行う3D AI相談サポーター。チームメンバーの教員の方が実際に抱えていた悩みから、このプロダクトを開発しました。
+  event:
+    name: AI HACK 2026
+    url: https://aihackathon.jp/
+  categories:
+    - AI
+    - Web
+    - Hackathon
+  tags:
+    - TypeScript
+    - React
+    - Hono
+    - Cloudflare
+    - Three.js
+    - TanStack Start
+    - VOICEVOX
+    - OrcaRouter
+  links:
+    - label: GitHub
+      url: https://github.com/TakuHackathons/AIHackathon202609
+    - label: Qiita
+      url: https://qiita.com/Takumi-9505/items/97191f0b5e201f6483d4
+  image:
+    src: /assets/images/products/yorisoi/1.png
+    alt: 3D キャラクターの AI 相談アシスタントが音声・動き・テキストで応答する相談画面
+    width: 865
+    height: 539
+
+- title: みちずれ
+  period: 2026年7月〜8月
+  role: チーム開発
+  description: 約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発
+  event:
+    name: 【技育CAMP2026】ハッカソン Vol.4
+    url: https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/
+  achievements:
+    - 最優秀賞（14チーム中）
+  categories:
+    - Mobile
+    - Hackathon
+  tags:
+    - Flutter
+    - Dart
+    - Kotlin
+    - Firebase
+    - MediaPipe
+    - CameraX
+    - FastAPI
+  links:
+    - label: 解説記事
+      url: https://example.com/blog/forge-ci
+  image:
+    src: /assets/images/products/michizure/1.png
+    alt: みちづれのタイトル画像。「スクワットで仲間を助けよう」のコピーと、仲間を引っ張り上げるイラスト
+    width: 960
+    height: 540
+
+- title: ズレナビ
+  period: 2026年4月
+  role: チーム開発
+  description: ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発
+  event:
+    name: 【技育CAMP2026】ハッカソン Vol.2
+    url: https://github.com/jupiter-team13/zurenavi
+  achievements:
+    - サポーターズ賞（12チーム中）
+  categories:
+    - AI
+    - Desktop
+    - Hackathon
+  tags:
+    - Electron
+    - React
+    - TypeScript
+    - FastAPI
+    - llama.cpp
+    - SQLite
+  links:
+    - label: GitHub
+      url: https://github.com/jupiter-team13/zurenavi
+  image:
+    src: /assets/images/products/zurenavi/1.png
+    alt: ズレナビのタイトル画像。
+    width: 1376
+    height: 774
