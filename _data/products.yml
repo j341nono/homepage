@@ -184,19 +184,19 @@
     width: 1376
     height: 774
 
-- title: MATCHAT
+- title: matchat
   period: 2025年10~12月
   role: チーム開発
-  description: テキスト平易化Webアプリ。入力文の主要な意味を保持しながら、より分かりやすい文章へ言い換えます。モデルは研究室サーバー上にオンプレミス環境でデプロイしています
+  description: テキスト平易化webアプリ。入力文の主要な意味を保持しながら、より分かりやすい文章へ言い換えます。モデルは研究室サーバー上にオンプレミス環境でデプロイしています
   categories:
-    - AI
-    - Web
+    - ai
+    - web
   tags:
-    - TypeScript
-    - React
-    - Vite
-    - Python
-    - FastAPI
+    - typescript
+    - react
+    - vite
+    - python
+    - fastapi
     - PyTorch
     - Docker
     - Nginx
@@ -258,6 +258,31 @@
     alt: ゲーム画面
     width: 912
     height: 740
+
+- title: 2Dshooting
+  period: 2024年4~7月
+  role: チーム開発
+  description: フルスクラッチな2DシューティングゲームのWebアプリ。HOMEからGボタンで最強ボスに挑めますが、製作者の自分でも10回中1回しか勝てないくらい難しいです
+  event:
+    name: PBL Exercise
+  categories:
+    - AI
+    - Web
+    - Class
+  tags:
+    - JavaScript
+    - Zepto.js
+    - PHP
+  links:
+    - label: GitHub
+      url: https://github.com/j341nono/2Dshooting
+    - label: デモ
+      url: https://j341nono.github.io/2Dshooting/game.html
+  image:
+    src: /assets/images/products/2Dshooting/1.png
+    alt: 2Dshootingのゲーム画面
+    width: 1376
+    height: 774
 
 
 
