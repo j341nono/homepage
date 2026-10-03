@@ -110,6 +110,7 @@
     - title: 全国型CTFコンテスト 2026
       category: セキュリティ
       period: 2026年10月
+      description: 専門知識や技術を駆使して隠された答え（Flag）を見つけ出す、サイバーセキュリティ分野におけるクイズ形式の競技
       award: 全国オフライン 10位 / 松山会場 2位
       links:
         - label: Link
