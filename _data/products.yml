@@ -184,6 +184,31 @@
     width: 1376
     height: 774
 
+- title: MATCHAT
+  period: 2025年10~12月
+  role: チーム開発
+  description: テキスト平易化Webアプリ。入力文の主要な意味を保持しながら、より分かりやすい文章へ言い換えます。モデルは研究室サーバー上にオンプレミス環境でデプロイしています
+  categories:
+    - AI
+    - Web
+  tags:
+    - TypeScript
+    - React
+    - Vite
+    - Python
+    - FastAPI
+    - PyTorch
+    - Docker
+    - Nginx
+  links:
+    - label: デモ
+      url: https://aiweb.cs.ehime-u.ac.jp/matchat/
+  image:
+    src: /assets/images/products/matchat/1.png
+    alt: Matchatの画像。
+    width: 1376
+    height: 774
+
 - title: Annotopia
   period: 2026年4月
   role: チーム開発
