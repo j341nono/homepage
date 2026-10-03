@@ -95,6 +95,34 @@
     width: 865
     height: 539
 
+- title: ごみサポ
+  period: 2026年5月〜8月
+  role: チーム開発
+  description: あいまいなワードでもAgenticにゴミの分類判定ができるプロダクトです。クエリ言い換え、ゴミDBへのRAG、確信度を元に追加質問する機能を備えています。
+  event:
+    name: U-22 プログラミング・コンテスト2026
+    url: https://u22procon.com/
+  categories:
+    - AI
+    - Web
+  tags:
+    - Dart
+    - Flutter
+    - Python
+    - FastAPI
+    - AWS
+    - Amazon Bedrock
+    - Amazon DynamoDB
+    - Terraform
+  links:
+    - label: GitHub
+      url: https://github.com/nlp-pbl-2026/garbage-app
+  image:
+    src: /assets/images/products/gomisapo/1.png
+    alt: ごみサポの作品概要。あいまいなクエリを言い換え、地域ごみ分別 DB への RAG で分類候補を生成し、確定できない場合は追加質問する処理の流れ
+    width: 1376
+    height: 774
+
 - title: みちずれ
   period: 2026年7月〜8月
   role: チーム開発
@@ -116,8 +144,8 @@
     - CameraX
     - FastAPI
   links:
-    - label: 解説記事
-      url: https://example.com/blog/forge-ci
+    - label: GitHub
+      url: https://github.com/kren-team/MICHIZURE
   image:
     src: /assets/images/products/michizure/1.png
     alt: みちづれのタイトル画像。「スクワットで仲間を助けよう」のコピーと、仲間を引っ張り上げるイラスト
