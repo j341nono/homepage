@@ -23,7 +23,7 @@
   grouped: true
   items:
     - title: 第21回言語処理若手シンポジウム (YANS2026) ハッカソン
-      category: 機械学習
+      category: 機械学習・データ分析
       period: 2026年8月
       description: 論文中の引用が引用先の内容と整合しているかを判定し、ハルシネーションを検出するタスク
       links:
@@ -31,7 +31,7 @@
           url: https://yans.anlp.jp/entry/yans2026hackathon
 
     - title: 第20回言語処理若手シンポジウム (YANS2025) ハッカソン
-      category: 機械学習
+      category: 機械学習・データ分析
       period: 2025年9月
       description: 選好チューニングを用いた訓練により、数学問題の正答率を競う課題
       links:
