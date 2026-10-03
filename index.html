@@ -67,20 +67,13 @@ title: Home
 
 {%- for section in site.data.home.activities %}
 <h2 class="portfolio-section-title">{{ section.title | escape }}</h2>
-<ul class="portfolio-list">
-  {%- for item in section.items %}
-  <li>
-    <span class="portfolio-item-title">{{ item.title | escape }}</span>
-    {%- if item.role or item.period %}<br>
-    <span class="portfolio-item-meta">{% if item.role %}{{ item.role | escape }} ｜ {% endif %}{{ item.period | escape }}</span>
-    {%- endif %}
-    {%- if item.description or item.award or item.links %}<br>
-    {{ item.description | escape }}
-    {%- if item.award %}{% if item.description %}，{% endif %}<span class="award">{{ item.award | escape }}</span>{% endif %}
-    {% include portfolio-links.html links=item.links %}
-    {%- endif %}
-    {% include portfolio-stats.html stats=item.stats %}
-  </li>
+{%- if section.grouped %}
+  {%- assign groups = section.items | group_by: 'category' %}
+  {%- for group in groups %}
+<h3 class="portfolio-subsection-title">{{ group.name | escape }}</h3>
+{% include activity-list.html items=group.items %}
   {%- endfor %}
-</ul>
+{%- else %}
+{% include activity-list.html items=section.items %}
+{%- endif %}
 {%- endfor %}

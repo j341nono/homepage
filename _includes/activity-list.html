@@ -1,0 +1,16 @@
+<ul class="portfolio-list">
+  {%- for item in include.items %}
+  <li>
+    <span class="portfolio-item-title">{{ item.title | escape }}</span>
+    {%- if item.role or item.period %}<br>
+    <span class="portfolio-item-meta">{% if item.role %}{{ item.role | escape }} ｜ {% endif %}{{ item.period | escape }}</span>
+    {%- endif %}
+    {%- if item.description or item.award or item.links %}<br>
+    {{ item.description | escape }}
+    {%- if item.award %}{% if item.description %}，{% endif %}<span class="award">{{ item.award | escape }}</span>{% endif %}
+    {% include portfolio-links.html links=item.links %}
+    {%- endif %}
+    {% include portfolio-stats.html stats=item.stats %}
+  </li>
+  {%- endfor %}
+</ul>
