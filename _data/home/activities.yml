@@ -21,7 +21,7 @@
   grouped: true
   items:
     - title: 第21回言語処理若手シンポジウム (YANS2026) ハッカソン
-      category: AI・機械学習
+      category: 機械学習
       period: 2026年8月
       description: 論文中の引用が引用先の内容と整合しているかを判定し、ハルシネーションを検出するタスク
       links:
@@ -29,7 +29,7 @@
           url: https://yans.anlp.jp/entry/yans2026hackathon
 
     - title: 第20回言語処理若手シンポジウム (YANS2025) ハッカソン
-      category: AI・機械学習
+      category: 機械学習
       period: 2025年9月
       description: 選好チューニングを用いた訓練により、数学問題の正答率を競う課題
       links:
@@ -37,7 +37,7 @@
           url: https://yans.anlp.jp/entry/yans2025hackathon
 
     - title: HACK SONIC 2026 秋
-      category: ソフトウェア・プロダクト開発
+      category: ソフトウェア開発
       period: 2026年9月
       description: ブックマークを宇宙空間に浮かぶ星に変え、銀河を眺めたり星座を作ったりしながら目的のページを探せるChrome拡張機能「ブクスペ」の開発
       award: 11チーム中2位
@@ -50,7 +50,7 @@
           url: https://speakerdeck.com/j341nono/bukku-maku-o-uchuu-kuukan-no-hoshi-toshite-tansaku-suru-chrome-kakuchou-kinou-hack-sonic-2026
 
     - title: AI HACK 2026
-      category: ソフトウェア・プロダクト開発
+      category: ソフトウェア開発
       period: 2026年9月
       description: 学生が何度でも気兼ねなく相談でき、必要に応じて学校情報の検索や相談内容の整理まで行う3D AI相談サポーターの開発
       links:
@@ -60,7 +60,7 @@
           url: https://github.com/TakuHackathons/AIHackathon202609
 
     - title: U-22 プログラミング・コンテスト2026
-      category: ソフトウェア・プロダクト開発
+      category: ソフトウェア開発
       period: 2026年8月
       description: あいまいな検索に対応したごみ分別アプリ「ごみサポ」の開発
       links:
@@ -70,7 +70,7 @@
           url: https://github.com/nlp-pbl-2026/garbage-app
 
     - title: 【技育CAMP2026】ハッカソン Vol.4
-      category: ソフトウェア・プロダクト開発
+      category: ソフトウェア開発
       period: 2026年7月〜8月
       description: 約束を破ると、仲間に「スクワット負債」が発生する連帯責任型のモバイルアプリの開発
       award: 最優秀賞
@@ -84,7 +84,7 @@
       #   - 賞金：30,000円
 
     - title: 【技育CAMP2026】ハッカソン Vol.2
-      category: ソフトウェア・プロダクト開発
+      category: ソフトウェア開発
       period: 2026年4月
       description: ユーザーの作業状況を解析し、「集中しているかどうか」を判定・可視化・通知するデスクトップアプリケーションの開発
       award: サポーターズ賞
@@ -98,7 +98,7 @@
       #   - 賞金：5,000円
 
     - title: 【技育CAMP2025】ハッカソン Vol.8
-      category: ソフトウェア・プロダクト開発
+      category: ソフトウェア開発
       period: 2025年7月
       description: 複数人で楽にアノテーションを実施できるWebアプリの開発
       links:
