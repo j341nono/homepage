@@ -46,6 +46,8 @@
       links:
         - label: Site
           url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
+        - label: Store
+          url: https://chromewebstore.google.com/detail/lhblilbjhibmhpfimdpaapphifghogoj
         - label: Code
           url: https://github.com/j341nono/bukusupe
         - label: Slide
