@@ -20,7 +20,7 @@ groups:
     items:
       - title: Optimizing Task Instructions with Soft Prompts for Prompt-Based Text Embedding Models
         authors: [Kanade Nonomura, Satoru Katsumata, Jiro Nishitoba, Tomoyuki Kajiwara]
-        venue: To appear in Proceedings of the 40th Pacific Asia Conference on Language, Information and Computation (PACLIC 2026), Taipei, Taiwan, December 2026.
+        venue: In Proceedings of the 40th Pacific Asia Conference on Language, Information and Computation (PACLIC 2026), Taipei, Taiwan, December 2026. (to appear)
 
       - title: Mitigating Language Bias in Multilingual Sentence Embeddings for Cross-lingual Similarity Estimation
         authors: [Kanade Nonomura, Keita Fukushima, Risa Kondo, Tomoyuki Kajiwara]
