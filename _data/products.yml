@@ -38,7 +38,7 @@
 - title: ブクスペ
   period: 2026年9月
   role: 個人開発
-  description: ブックマークを宇宙空間に浮かぶ星に変え、銀河を眺めたり星座を作ったりしながら目的のページを探せるブラウザ拡張機能。Chrome ウェブストアで公開中です。
+  description: ブックマークを意味の近さに基づいて宇宙空間の星として配置し、意味検索や星座の作成、宇宙船での探索を通じて、目的のページを直感的に探せるChrome拡張機能の開発
   event:
     name: HACK SONIC 2026 秋
     url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
