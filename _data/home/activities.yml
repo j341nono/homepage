@@ -124,6 +124,10 @@
 
 - title: 技術イベント・LT
   items:
+    - title: Kaigi Effect 会
+      period: 2026年10月18日
+      description: 株式会社ソニックガーデン主催のKaigi on Rails 2026事後イベントに参加。ゲームのランキング機能を題材に、PostgreSQL単体とValkeyのSorted Setを併用した構成の性能を比較・検証
+
     - title: 技育祭2026【秋】学生アンバサダー
       period: 2026年9月〜現在
       description: 株式会社サポーターズ主催の学生向けテックカンファレンス「技育祭2026【秋】」の学生アンバサダーとして活動
