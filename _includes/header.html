@@ -17,13 +17,25 @@
           {%- endfor -%}
         </div>
       </nav>
+      <div class="header-preferences">
       {%- if page.translation_key %}
-      <nav class="language-switch" aria-label="{{ ui.language | escape }}">
+      <details class="language-switch" data-language-switch>
+        <summary>
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"/>
+            <ellipse cx="12" cy="12" rx="4" ry="9"/>
+            <path d="M3 12h18"/>
+          </svg>
+          <span>{% if language == 'ja' %}日本語{% else %}English{% endif %}</span>
+          <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4"/></svg>
+        </summary>
+        <nav class="language-options" aria-label="{{ ui.language | escape }}">
         {%- assign counterparts = site.pages | where: 'translation_key', page.translation_key | sort: 'lang' | reverse -%}
         {%- for counterpart in counterparts %}
         <a href="{{ counterpart.url | relative_url }}" lang="{{ counterpart.lang }}" hreflang="{{ counterpart.lang }}"{% if counterpart.lang == language %} aria-current="true"{% endif %}>{% if counterpart.lang == 'ja' %}日本語{% else %}English{% endif %}</a>
         {%- endfor %}
-      </nav>
+        </nav>
+      </details>
       {%- endif %}
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="{{ ui.dark_mode | escape }}" aria-pressed="false">
         <svg class="theme-icon-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
@@ -40,6 +52,7 @@
           document.documentElement.dataset.theme === "dark" ? "true" : "false"
         );
       </script>
+      </div>
     </div>
   </div>
 </header>

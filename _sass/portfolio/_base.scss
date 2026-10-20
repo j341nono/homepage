@@ -132,22 +132,78 @@ a:hover {
   gap: 20px;
 }
 
-.language-switch {
+.header-preferences {
   display: flex;
   align-items: center;
   gap: 10px;
+  padding-left: 20px;
+  border-left: 1px solid var(--border);
+}
+
+.language-switch {
+  position: relative;
   font-size: 0.875rem;
   line-height: 1.4;
 
-  a {
+  summary {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 34px;
+    padding: 0 8px;
+    border-radius: 8px;
     color: var(--muted);
+    cursor: pointer;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      background: var(--tag-bg);
+      color: var(--text);
+    }
   }
 
-  a[aria-current="true"] {
-    color: var(--text);
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.language-options {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 10;
+  min-width: 130px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--page-bg);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+
+  a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: var(--muted);
+
+    &:hover {
+      background: var(--tag-bg);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    &[aria-current="true"] {
+      background: var(--tag-bg);
+      color: var(--text);
+      font-weight: 700;
+    }
   }
 }
 
@@ -250,6 +306,11 @@ blockquote {
   .site-header-actions,
   .site-nav .trigger {
     gap: 14px;
+  }
+
+  .header-preferences {
+    gap: 6px;
+    padding-left: 14px;
   }
 
   // minima のハンバーガーメニュー用スタイルを打ち消す

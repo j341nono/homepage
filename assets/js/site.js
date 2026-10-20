@@ -4,6 +4,19 @@
   var root = document.documentElement;
   var toggle = document.querySelector("[data-theme-toggle]");
 
+  var languageSwitch = document.querySelector("[data-language-switch]");
+  if (languageSwitch) {
+    document.addEventListener("click", function (event) {
+      if (!languageSwitch.contains(event.target)) languageSwitch.open = false;
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && languageSwitch.open) {
+        languageSwitch.open = false;
+        languageSwitch.querySelector("summary").focus();
+      }
+    });
+  }
+
   // ==================================================
   // テーマ切り替え
   // ==================================================
