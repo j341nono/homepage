@@ -1,0 +1,123 @@
+# English content. Keep entries and links aligned with the Japanese source.
+---
+title: Publications
+groups:
+- title: International Conferences
+  items:
+  - title: Optimizing Task Instructions with Soft Prompts for Prompt-Based Text Embedding
+      Models
+    authors:
+    - Kanade Nonomura
+    - Satoru Katsumata
+    - Jiro Nishitoba
+    - Tomoyuki Kajiwara
+    venue: In Proceedings of the 40th Pacific Asia Conference on Language, Information
+      and Computation (PACLIC 2026), Taipei, Taiwan, December 2026. (to appear)
+  - title: Mitigating Language Bias in Multilingual Sentence Embeddings for Cross-lingual
+      Similarity Estimation
+    authors:
+    - Kanade Nonomura
+    - Keita Fukushima
+    - Risa Kondo
+    - Tomoyuki Kajiwara
+    venue: In Proceedings of the 15th Joint Conference on Lexical and Computational
+      Semantics (*SEM 2026), pp.385–394, San Diego, California, United States, July
+      2026.
+    links:
+    - label: PDF
+      url: https://aclanthology.org/2026.starsem-conference.26.pdf
+  - title: Disentangling Meaning and Language Components in Diverse Multilingual Sentence
+      Embeddings
+    authors:
+    - Kanade Nonomura
+    - Keita Fukushima
+    - Risa Kondo
+    - Tomoyuki Kajiwara
+    venue: In Proceedings of the ACL 2026 Student Research Workshop (ACL SRW 2026),
+      pp.1169–1176, San Diego, California, United States, July 2026.
+    links:
+    - label: PDF
+      url: https://aclanthology.org/2026.acl-srw.102.pdf
+  - title: 'HOTATE: A Japanese Dialogue Corpus Annotated with Responses of Private
+      Thoughts and Public Statements'
+    authors:
+    - Yuko Toda
+    - Daisuke Maekawa
+    - Kota Manabe
+    - Eito Yoneyama
+    - Kanade Nonomura
+    - Yuki Fujiwara
+    - Tomoyuki Kajiwara
+    venue: In Proceedings of the 15th International Conference on Language Resources
+      and Evaluation (LREC 2026), pp.2987–2995, Mallorca, Spain, May 2026.
+    links:
+    - label: PDF
+      url: https://aclanthology.org/2026.lrec-1.233.pdf
+- title: Domestic Conferences (Japan)
+  items:
+  - title: Disentangling Meaning and Language Components in Diverse Multilingual Sentence
+      Embeddings
+    authors:
+    - Kanade Nonomura
+    - Keita Fukushima
+    - Risa Kondo
+    - Tomoyuki Kajiwara
+    venue: The 40th Annual Conference of the Japanese Society for Artificial Intelligence
+      (JSAI 2026), 4yin-b-54, June 2026. (in Japanese)
+    links:
+    - label: PDF
+      url: https://www.jstage.jst.go.jp/article/pjsai/JSAI2026/0/JSAI2026_4YinB54/_pdf/-char/ja
+  - title: 'HOTATE: Building a Dialogue Corpus of Private Thoughts and Public Statements'
+    authors:
+    - Yuko Toda
+    - Daisuke Maekawa
+    - Kota Manabe
+    - Eito Yoneyama
+    - Kanade Nonomura
+    - Yuki Fujiwara
+    - Tomoyuki Kajiwara
+    venue: The 32nd Annual Meeting of the Association for Natural Language Processing
+      (NLP 2026), pp.1748–1752, March 2026. (in Japanese)
+    links:
+    - label: PDF
+      url: https://www.anlp.jp/proceedings/annual_meeting/2026/pdf_dir/P4-3.pdf
+  - title: Analyzing Loss Functions for Disentangling Meaning and Language in Multilingual
+      Sentence Embeddings
+    authors:
+    - Kanade Nonomura
+    - Keita Fukushima
+    - Risa Kondo
+    - Tomoyuki Kajiwara
+    venue: The 32nd Annual Meeting of the Association for Natural Language Processing
+      (NLP 2026), pp.3842–3846, March 2026. (in Japanese)
+    links:
+    - label: PDF
+      url: https://www.anlp.jp/proceedings/annual_meeting/2026/pdf_dir/P8-20.pdf
+  - title: Prompt Design for Large Language Models to Obtain Japanese Sentence Embeddings
+    authors:
+    - Kanade Nonomura
+    - Tomoyuki Kajiwara
+    venue: The 88th National Convention of the Information Processing Society of Japan,
+      pp.281–282, March 2026. (in Japanese)
+    award: Student Encouragement Award
+    links:
+    - label: PDF
+      url: https://moguranosenshi.sakura.ne.jp/publications/ipsj88-nonomura.pdf
+- title: Symposia
+  items:
+  - title: Toward Continuous Control of Sentence Difficulty Based on Embedding Norms
+      of Large Language Models
+    authors:
+    - Kanade Nonomura
+    - Tomoyuki Kajiwara
+    - Yuki Arase
+    venue: The 21st Young Researcher Association for NLP Studies Symposium (YANS 2026),
+      August 2026. (in Japanese)
+  - title: A Study on Disentangling Meaning and Language Components in Multilingual
+      Sentence Embeddings
+    authors:
+    - Kanade Nonomura
+    - Risa Kondo
+    - Tomoyuki Kajiwara
+    venue: The 20th Young Researcher Association for NLP Studies Symposium (YANS 2025),
+      September 2025. (in Japanese)

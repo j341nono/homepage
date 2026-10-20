@@ -127,8 +127,28 @@ a:hover {
 
 .site-header-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 20px;
+}
+
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+
+  a {
+    color: var(--muted);
+  }
+
+  a[aria-current="true"] {
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
 }
 
 .site-nav {

@@ -1,0 +1,24 @@
+ja:
+  navigation: サイト内
+  language: 言語
+  dark_mode: ダークモード
+  research: 研究分野
+  keywords: キーワード：
+  wordcloud_alt: ホームページの内容から生成したTF-IDF重み付きワードクラウド
+  products_lead: 個人開発やハッカソンで制作したプロダクト・ツールをまとめています。
+  filter: カテゴリで絞り込み
+  awards: 受賞
+  technologies: 使用技術
+  related_links: 関連リンク
+en:
+  navigation: Main navigation
+  language: Language
+  dark_mode: Dark mode
+  research: Research Interests
+  keywords: 'Keywords: '
+  wordcloud_alt: TF-IDF weighted word cloud generated from the Japanese homepage
+  products_lead: Products and tools built through personal projects and hackathons.
+  filter: Filter by category
+  awards: Awards
+  technologies: Technologies
+  related_links: Related links

@@ -1,5 +1,34 @@
 # Homepage
 
+## Languages
+
+Japanese pages are served at `/` and `/products/`; English pages at `/en/` and
+`/en/products/` (all relative to the configured `baseurl`). The header switches
+between the corresponding pages without JavaScript. Navigation stays in the
+selected language.
+
+Both languages use `_includes/home.html` and `_includes/products.html`.
+When updating content, update both sets of data:
+
+| Content | Japanese | English |
+| --- | --- | --- |
+| Profile, publications, activities | `_data/home/*.yml` | `_data/en/home/*.yml` |
+| Products | `_data/products.yml` | `_data/en/products.yml` |
+| Interface labels | `_data/locales.yml` → `ja` | `_data/locales.yml` → `en` |
+
+Images and external links are shared. The word cloud uses the Japanese source
+data in both languages. English translations of Japanese publication titles are
+provided for readability; the linked papers remain in their original language.
+Product periods begin with the four-digit year to support the year summary.
+
+New translated page pairs need matching `translation_key` values and their own
+`lang`, `locale`, and permalink in front matter. To verify both versions locally:
+
+```sh
+bundle exec jekyll serve
+# Open http://localhost:4000/homepage/ and http://localhost:4000/homepage/en/
+```
+
 ## TF-IDF word cloud
 
 The image at `assets/images/wordcloud/tfidf-wordcloud.png` is generated from the

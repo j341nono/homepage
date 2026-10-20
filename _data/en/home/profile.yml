@@ -1,0 +1,32 @@
+# English content. Keep entries and links aligned with the Japanese source.
+---
+name: 野々村 奏
+name_en: Kanade Nonomura
+author_names:
+- 野々村 奏
+- Kanade Nonomura
+facts:
+- label: Affiliation
+  value: First-year master’s student, Natural Language Processing Laboratory, Mathematical
+    and Computer Science Program, Graduate School of Science and Engineering, Ehime
+    University
+- label: Email
+  value: nonomura[at]ai.cs.ehime-u.ac.jp
+  private: true
+bio: I study natural language processing, with a particular focus on text embeddings.
+  I am also interested in putting these technologies into practice.
+badges:
+- label: GitHub
+  url: https://github.com/j341nono
+  image: https://img.shields.io/badge/github-repository-blue?logo=github&style=for-the-badge
+- label: Qiita
+  url: https://qiita.com/j341nono
+  image: https://img.shields.io/badge/qiita-profile-55c500?logo=qiita&style=for-the-badge
+photo:
+  src: "/assets/images/profile/v1.jpg"
+  width: 200
+research_keywords:
+- Natural Language Processing
+- Text Embeddings
+- Automatic Prompt Optimization
+- Text Simplification

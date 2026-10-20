@@ -1,0 +1,262 @@
+# English content. Keep entries and links aligned with the Japanese source.
+---
+- title: Bukusupe
+  period: 2026 September
+  role: Personal project
+  description: A Chrome extension that arranges bookmarks as stars in space based
+    on semantic similarity. Find pages intuitively through semantic search, constellation
+    creation, and spaceship exploration.
+  event:
+    name: HACK SONIC 2026 Autumn
+    url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
+  achievements:
+  - 2nd place out of 11 teams
+  categories:
+  - AI
+  - Browser Extension
+  - Hackathon
+  tags:
+  - TypeScript
+  - Three.js
+  - Transformers.js
+  - WebAssembly
+  - IndexedDB
+  links:
+  - label: Chrome Web Store
+    url: https://chromewebstore.google.com/detail/lhblilbjhibmhpfimdpaapphifghogoj
+  - label: GitHub
+    url: https://github.com/j341nono/bukusupe
+  - label: Slides
+    url: https://speakerdeck.com/j341nono/bukku-maku-o-uchuu-kuukan-no-hoshi-toshite-tansaku-suru-chrome-kakuchou-kinou-hack-sonic-2026
+  - label: Demo
+    url: https://j341nono.github.io/bukusupe/
+  image:
+    src: "/assets/images/products/bukusupe/1.png"
+    alt: Bukusupe logo and interface previews against a starry background.
+    width: 1376
+    height: 774
+- title: Yorisoi AI Counseling Room
+  period: 2026 September
+  role: Team project
+  description: A 3D AI assistant that students can consult freely. It can look up
+    school information and help organize their concerns. We built it in response to
+    challenges faced by a teacher on our team.
+  event:
+    name: AI HACK 2026
+    url: https://aihackathon.jp/
+  categories:
+  - AI
+  - Web
+  - Hackathon
+  tags:
+  - TypeScript
+  - React
+  - Hono
+  - Cloudflare
+  - Three.js
+  - TanStack Start
+  - VOICEVOX
+  - OrcaRouter
+  links:
+  - label: GitHub
+    url: https://github.com/TakuHackathons/AIHackathon202609
+  - label: Qiita
+    url: https://qiita.com/Takumi-9505/items/97191f0b5e201f6483d4
+  image:
+    src: "/assets/images/products/yorisoi/1.png"
+    alt: A counseling interface with a 3D AI character responding through voice, movement,
+      and text.
+    width: 863
+    height: 538
+- title: Gomisapo
+  period: 2026 May–August
+  role: Team project
+  description: An agentic waste-sorting app that handles ambiguous queries. It rephrases
+    queries, retrieves information from a waste-sorting database using RAG, and asks
+    follow-up questions based on confidence.
+  event:
+    name: U-22 Programming Contest 2026
+    url: https://u22procon.com/
+  categories:
+  - AI
+  - Web
+  tags:
+  - Dart
+  - Flutter
+  - Python
+  - FastAPI
+  - AWS
+  - Amazon Bedrock
+  - Amazon DynamoDB
+  - Terraform
+  links:
+  - label: GitHub
+    url: https://github.com/nlp-pbl-2026/garbage-app
+  - label: Qiita
+    url: https://qiita.com/Murakami_Shogo/items/e2e1b91fde19a3f74414
+  image:
+    src: "/assets/images/products/gomisapo/1.png"
+    alt: 'Gomisapo workflow: query rephrasing, RAG over a local waste-sorting database,
+      and follow-up questions when classification is uncertain.'
+    width: 1846
+    height: 1059
+- title: Michizure
+  period: 2026 July–August
+  role: Team project
+  description: 'A mobile app with shared accountability: breaking a promise creates
+    a “squat debt” for your teammates.'
+  event:
+    name: Geek CAMP 2026 Hackathon Vol. 4
+    url: https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/
+  achievements:
+  - Grand Prize out of 14 teams
+  categories:
+  - Mobile
+  - Hackathon
+  tags:
+  - Flutter
+  - Dart
+  - Kotlin
+  - Firebase
+  - MediaPipe
+  - CameraX
+  - FastAPI
+  links:
+  - label: GitHub
+    url: https://github.com/kren-team/MICHIZURE
+  image:
+    src: "/assets/images/products/michizure/1.png"
+    alt: Michizure title graphic encouraging users to help their teammates by doing
+      squats.
+    width: 960
+    height: 540
+- title: Zurenavi
+  period: 2026 April
+  role: Team project
+  description: A desktop app that analyzes user activity to assess, visualize, and
+    notify users about their focus.
+  event:
+    name: Geek CAMP 2026 Hackathon Vol. 2
+    url: https://github.com/jupiter-team13/zurenavi
+  achievements:
+  - Supporterz Award out of 12 teams
+  categories:
+  - AI
+  - Desktop
+  - Hackathon
+  tags:
+  - Electron
+  - React
+  - TypeScript
+  - FastAPI
+  - llama.cpp
+  - SQLite
+  links:
+  - label: GitHub
+    url: https://github.com/jupiter-team13/zurenavi
+  image:
+    src: "/assets/images/products/zurenavi/1.png"
+    alt: Zurenavi title graphic.
+    width: 1376
+    height: 774
+- title: MATCHAT
+  period: 2025 October–December
+  role: Team project
+  description: A web app that simplifies text while preserving its core meaning. The
+    model is deployed on premises on a laboratory server.
+  categories:
+  - AI
+  - Web
+  tags:
+  - TypeScript
+  - React
+  - Vite
+  - Python
+  - FastAPI
+  - PyTorch
+  - Docker
+  - Nginx
+  links:
+  - label: Demo
+    url: https://aiweb.cs.ehime-u.ac.jp/matchat/
+  image:
+    src: "/assets/images/products/matchat/1.png"
+    alt: MATCHAT text simplification app.
+    width: 1376
+    height: 774
+- title: Annotopia
+  period: 2026 April
+  role: Team project
+  description: 'A web app for easy collaborative data annotation: manually labeling
+    data to build machine learning datasets.'
+  event:
+    name: Geek CAMP 2025 Hackathon Vol. 8
+    url: https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/
+  categories:
+  - Web
+  - Hackathon
+  tags:
+  - React
+  - Vite
+  - TypeScript
+  - Python
+  - Flask
+  - PostgreSQL
+  - Docker
+  - Render
+  links:
+  - label: GitHub
+    url: https://github.com/bakeryforhackathon/annotopia
+  image:
+    src: "/assets/images/products/annotopia/1.png"
+    alt: Annotopia system architecture diagram.
+    width: 960
+    height: 540
+- title: Card Game (Love Letter)
+  period: 2024 August
+  role: Team project
+  description: A card game for one or two players inspired by Love Letter. Draw cards
+    and activate their effects to eliminate your opponent first.
+  event:
+    name: Ruby Camp 2024 Summer
+    url: https://www.rubycamp.jp/reports/2024-08-31-2024-summer/
+  categories:
+  - Web
+  tags:
+  - Ruby
+  - Gosu
+  - Singleton
+  links:
+  - label: GitHub
+    url: https://github.com/j341nono/rc2024su_team1
+  image:
+    src: "/assets/images/products/rubycamp/1.png"
+    alt: Screenshot of the card game.
+    width: 912
+    height: 740
+- title: 2Dshooting
+  period: 2024 April–July
+  role: Team project
+  description: A 2D shooter web app built from scratch. Press G on the home screen
+    to challenge the strongest boss—even I, the developer, only win about once in
+    ten attempts.
+  event:
+    name: PBL Exercise
+  categories:
+  - AI
+  - Web
+  - Class
+  tags:
+  - JavaScript
+  - Zepto.js
+  - PHP
+  links:
+  - label: GitHub
+    url: https://github.com/j341nono/2Dshooting
+  - label: Demo
+    url: https://j341nono.github.io/2Dshooting/game.html
+  image:
+    src: "/assets/images/products/2Dshooting/1.png"
+    alt: Screenshot of the 2Dshooting game.
+    width: 2416
+    height: 1381

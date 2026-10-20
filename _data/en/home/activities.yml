@@ -1,0 +1,186 @@
+# English content. Keep entries and links aligned with the Japanese source.
+---
+- title: Hackathons & Competitions
+  grouped: true
+  items:
+  - title: YANS 2026 Hackathon
+    category: Machine Learning & Data Analysis
+    period: August 2026
+    description: Worked on detecting hallucinations by checking whether citations
+      in papers are consistent with the cited content.
+    links:
+    - label: Site
+      url: https://yans.anlp.jp/entry/yans2026hackathon
+  - title: YANS 2025 Hackathon
+    category: Machine Learning & Data Analysis
+    period: September 2025
+    description: Competed to improve mathematical problem-solving accuracy through
+      preference tuning.
+    links:
+    - label: Site
+      url: https://yans.anlp.jp/entry/yans2025hackathon
+  - title: HACK SONIC 2026 Autumn
+    category: Software Development
+    period: September 2026
+    description: Developed Bukusupe, a Chrome extension that turns bookmarks into
+      stars in space, letting users find pages by exploring galaxies and creating
+      constellations.
+    award: 2nd place out of 11 teams
+    links:
+    - label: Site
+      url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
+    - label: Store
+      url: https://chromewebstore.google.com/detail/lhblilbjhibmhpfimdpaapphifghogoj
+    - label: Code
+      url: https://github.com/j341nono/bukusupe
+    - label: Slide
+      url: https://speakerdeck.com/j341nono/bukku-maku-o-uchuu-kuukan-no-hoshi-toshite-tansaku-suru-chrome-kakuchou-kinou-hack-sonic-2026
+  - title: AI HACK 2026
+    category: Software Development
+    period: September 2026
+    description: Developed a 3D AI assistant that students can consult freely, with
+      support for finding school information and organizing their concerns.
+    links:
+    - label: Blog
+      url: https://qiita.com/Takumi-9505/items/97191f0b5e201f6483d4
+    - label: Code
+      url: https://github.com/TakuHackathons/AIHackathon202609
+  - title: U-22 Programming Contest 2026
+    category: Software Development
+    period: August 2026
+    description: Developed Gomisapo, a waste-sorting app that supports ambiguous search
+      queries.
+    links:
+    - label: Site
+      url: https://u22procon.com/
+    - label: Code
+      url: https://github.com/nlp-pbl-2026/garbage-app
+    - label: Blog
+      url: https://qiita.com/Murakami_Shogo/items/e2e1b91fde19a3f74414
+  - title: Geek CAMP 2026 Hackathon Vol. 4
+    category: Software Development
+    period: July–August 2026
+    description: 'Developed a mobile app with shared accountability: breaking a promise
+      creates a “squat debt” for your teammates.'
+    award: Grand Prize
+    links:
+    - label: Site
+      url: https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/
+    - label: Code
+      url: https://github.com/kren-team/michizure
+  - title: Geek CAMP 2026 Hackathon Vol. 2
+    category: Software Development
+    period: April 2026
+    description: Developed a desktop app that analyzes user activity to assess, visualize,
+      and notify users about their focus.
+    award: Supporterz Award
+    links:
+    - label: Site
+      url: https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/
+    - label: Code
+      url: https://github.com/jupiter-team13/zurenavi
+  - title: Geek CAMP 2025 Hackathon Vol. 8
+    category: Software Development
+    period: July 2025
+    description: Developed a web app for easy collaborative data annotation.
+    links:
+    - label: Site
+      url: https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/
+    - label: Code
+      url: https://github.com/bakeryforhackathon/annotopia
+  - title: National CTF Contest 2026
+    category: Security
+    period: October 2026
+    description: Participated in a cybersecurity competition organized by Japan’s
+      Ministry of Internal Affairs and Communications, solving cryptography, web,
+      networking, and forensics challenges to capture hidden flags.
+    award: 10th nationwide (in-person) / 2nd at the Matsuyama venue
+    links:
+    - label: Site
+      url: https://www.soumu.go.jp/menu_news/s-news/01cyber01_02000001_00302.html
+- title: Tech Events & Lightning Talks
+  items:
+  - title: Kaigi Effect
+    period: October 18, 2026
+    description: Participated in a Kaigi on Rails 2026 follow-up event organized by
+      Sonic Garden. Compared and evaluated the performance of PostgreSQL alone and
+      PostgreSQL with Valkey Sorted Sets using a game leaderboard.
+  - title: Geek Festival 2026 Autumn — Student Ambassador
+    period: September 2026–present
+    description: Serving as a student ambassador for Geek Festival 2026 Autumn, a
+      tech conference for students organized by Supporterz.
+    links:
+    - label: Site
+      url: https://geek.supporterz.jp/geeksai/2026autumn/
+  - title: 'DevFest Meetup #2 — Lightning Talks in Kobe'
+    period: September 2026
+    description: Gave a lightning talk titled “Building a Transparent, Stylish Development
+      Environment with Ghostty + Neovim.”
+    links:
+    - label: Site
+      url: https://gdgkwansai.connpass.com/event/405133/
+    - label: Slide
+      url: https://speakerdeck.com/j341nono/ghostty-neovim-de-tsukuru-toumeide-kakko-yoi-kaihatsu-kankyou
+  - title: Kaigi on Rails 2026 Scholarship
+    period: September 2026
+    description: Selected for Sonic Garden’s scholarship program for students.
+    links:
+    - label: Site
+      url: https://www.sonicgarden.jp/blog_articles/8105
+  - title: Ruby Camp 2024 Summer
+    period: August 2024
+    description: Participated in a four-day software development camp organized by
+      Shimane Prefecture. Developed a card game using Ruby’s Gosu library.
+    links:
+    - label: Site
+      url: https://www.rubycamp.jp/reports/2024-08-31-2024-summer/
+    - label: Code
+      url: https://github.com/j341nono/rc2024su_team1
+- title: Internships
+  items:
+  - title: LY Corporation
+    role: ML Engineer
+    period: August–September 2026 (6 weeks)
+    description: Improved AI-generated answers in Yahoo! JAPAN Search.
+  - title: Retrieva, Inc.
+    role: Researcher
+    period: February–March 2026 (7 weeks)
+    description: Researched automatic prompt optimization for text embedding models.
+    links:
+    - label: Tech Blog
+      url: https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9
+- title: Event Planning & Organization
+  items:
+  - title: University Student Planning Team — 2026 Community Experience & Exchange
+      Program for Foreign Residents
+    period: May 2026–present
+    description: Planning and organizing exchange events to help foreign residents
+      settle into the community, alongside young staff from Ehime Prefecture’s Chuyo
+      Regional Bureau and local university students.
+    links:
+    - label: Site
+      url: https://www.pref.ehime.jp/site/chuyo/147431.html
+- title: Achievements
+  items:
+  - title: National CTF Contest 2026
+    stats:
+    - 'Nationwide (in-person): 10th'
+    - 'Matsuyama venue: 2nd'
+  - title: HACK SONIC 2026 Autumn — 2nd Place
+    stats:
+    - 'Rank: 2 / 11'
+  - title: Geek CAMP 2026 Hackathon Vol. 4 — Grand Prize
+    stats:
+    - 'Rank: 1 / 14'
+    - 'Prize: JPY 30,000'
+  - title: Geek CAMP 2026 Hackathon Vol. 2 — Supporterz Award
+    stats:
+    - 'Rank: 5 / 12'
+    - 'Prize: JPY 5,000'
+  - title: Student Encouragement Award, 88th National Convention of the Information
+      Processing Society of Japan (March 2026)
+    stats:
+    - 'Award recipients in session: 2 / 7 (28.6%)'
+  - title: Outstanding Third-Year Student, Applied Information Engineering Course,
+      Faculty of Engineering, Ehime University
+  - title: Passed the Applied Information Technology Engineer Examination
