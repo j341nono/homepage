@@ -10,7 +10,8 @@
     name: HACK SONIC 2026 Autumn
     url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
   achievements:
-  - 2nd place out of 11 teams
+  - label: 2nd place among 11 entries selected through preliminary screening
+    url: https://www.dhw.co.jp/press-release/20261013_hacksonic5_report/
   categories:
   - AI
   - Browser Extension

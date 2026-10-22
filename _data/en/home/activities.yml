@@ -25,10 +25,12 @@
     description: Developed Bukusupe, a Chrome extension that turns bookmarks into
       stars in space, letting users find pages by exploring galaxies and creating
       constellations.
-    award: 2nd place out of 11 teams
+    award: 2nd place among 11 entries selected through preliminary screening
     links:
     - label: Site
       url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
+    - label: Report
+      url: https://www.dhw.co.jp/press-release/20261013_hacksonic5_report/
     - label: Store
       url: https://chromewebstore.google.com/detail/lhblilbjhibmhpfimdpaapphifghogoj
     - label: Code
@@ -88,7 +90,7 @@
       url: https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/
     - label: Code
       url: https://github.com/bakeryforhackathon/annotopia
-  - title: National CTF Contest 2026
+  - title: MIC-organized National CTF Contest 2026
     category: Security
     period: October 2026
     description: Participated in a cybersecurity competition organized by Japan’s
@@ -162,13 +164,13 @@
       url: https://www.pref.ehime.jp/site/chuyo/147431.html
 - title: Achievements
   items:
-  - title: National CTF Contest 2026
+  - title: MIC-organized National CTF Contest 2026
     stats:
     - 'Nationwide (in-person): 10th'
     - 'Matsuyama venue: 2nd'
   - title: HACK SONIC 2026 Autumn — 2nd Place
     stats:
-    - 'Rank: 2 / 11'
+    - 2nd place among 11 entries selected through preliminary screening
   - title: Geek CAMP 2026 Hackathon Vol. 4 — Grand Prize
     stats:
     - 'Rank: 1 / 14'

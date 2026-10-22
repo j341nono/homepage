@@ -16,7 +16,7 @@
 #                 リンク不要なら `event: 個人開発` のように1行でも書ける
 #   achievements: 受賞など。文字列だけでも、リンク付きでもよい
 #                   achievements:
-#                     - 11チーム中2位
+#                     - 第2位（事前審査を通過した11組中）
 #                     - label: 企業賞
 #                       url: https://...
 #   categories:   絞り込み用のカテゴリ（複数可）。書いたカテゴリがそのままフィルタのボタンになる
@@ -43,7 +43,8 @@
     name: HACK SONIC 2026 秋
     url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
   achievements:
-    - 2位（11チーム中）
+    - label: 第2位（事前審査を通過した11組中）
+      url: https://www.dhw.co.jp/press-release/20261013_hacksonic5_report/
   categories:
     - AI
     - Browser Extension

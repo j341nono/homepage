@@ -42,10 +42,12 @@
       category: ソフトウェア開発
       period: 2026年9月
       description: ブックマークを宇宙空間に浮かぶ星に変え、銀河を眺めたり星座を作ったりしながら目的のページを探せるChrome拡張機能「ブクスペ」の開発
-      award: 11チーム中2位
+      award: 第2位（事前審査を通過した11組中）
       links:
         - label: Site
           url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
+        - label: Report
+          url: https://www.dhw.co.jp/press-release/20261013_hacksonic5_report/
         - label: Store
           url: https://chromewebstore.google.com/detail/lhblilbjhibmhpfimdpaapphifghogoj
         - label: Code
@@ -113,7 +115,7 @@
         - label: Code
           url: https://github.com/bakeryforhackathon/annotopia
 
-    - title: 全国型CTFコンテスト 2026
+    - title: 総務省主催 全国型CTFコンテスト 2026
       category: セキュリティ
       period: 2026年10月
       description: 総務省主催のサイバーセキュリティ競技。暗号、Web、ネットワーク、フォレンジックなどの課題を解析し、隠されたFlagの獲得を競う
@@ -200,14 +202,14 @@
 
 - title: Achievements
   items:
-    - title: 全国型CTFコンテスト 2026
+    - title: 総務省主催 全国型CTFコンテスト 2026
       stats:
         - 全国オフライン：10位
         - 松山会場：2位
 
     - title: HACK SONIC 2026 秋 2位
       stats:
-        - 順位：2 / 11
+        - 第2位（事前審査を通過した11組中）
 
     - title: 【技育CAMP2026】ハッカソン Vol.4 最優秀賞
       stats:
