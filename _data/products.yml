@@ -247,7 +247,7 @@
   role: チーム開発
   description: 「ラブレター」というカードゲームをモチーフにした1人(2人)対戦カードゲームです。カードを引いて効果を発動させ、相手を先に脱落させた方が勝利です。
   event:
-    name: Ruby 合宿 2024 夏
+    name: 島根県主催 Ruby 合宿 2024 夏
     url: https://www.rubycamp.jp/reports/2024-08-31-2024-summer/
   categories:
     - Web

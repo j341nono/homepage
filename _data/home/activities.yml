@@ -167,7 +167,7 @@
     #     - label: Site
     #       url: https://geek.supporterz.jp/geeksai/2026extra#tokai
 
-    - title: Ruby 合宿 2024 夏
+    - title: 島根県主催 Ruby 合宿 2024 夏
       period: 2024年8月
       description: 島根県が主催する4日間のソフトウェア開発合宿に参加。RubyのGosuライブラリを用いたカードゲームの開発
       links:

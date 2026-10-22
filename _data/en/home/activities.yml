@@ -129,7 +129,7 @@
     links:
     - label: Site
       url: https://www.sonicgarden.jp/blog_articles/8105
-  - title: Ruby Camp 2024 Summer
+  - title: Shimane Prefecture-organized Ruby Camp 2024 Summer
     period: August 2024
     description: Participated in a four-day software development camp organized by
       Shimane Prefecture. Developed a card game using Ruby’s Gosu library.
