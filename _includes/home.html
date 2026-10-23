@@ -33,9 +33,7 @@
     <p class="page-lead">{{ profile.bio | escape }}</p>
 
     <div class="profile-links">
-      {%- for badge in profile.badges %}
-      <a href="{{ badge.url | escape }}"><img src="{{ badge.image | escape }}" alt="{{ badge.label | escape }}"></a>
-      {%- endfor %}
+      {% include portfolio-links.html links=profile.links %}
     </div>
   </div>
 

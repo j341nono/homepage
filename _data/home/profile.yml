@@ -20,14 +20,12 @@ facts:
 
 bio: 現在、自然言語処理を専攻しています。特に、埋め込み表現の分野に注力しており、こうした技術の社会実装にも強い関心があります。
 
-# 名前の下に並ぶバッジ（画像は shields.io などの URL）
-badges:
+# 名前の下に並ぶアイコン付きリンク
+links:
   - label: GitHub
     url: https://github.com/j341nono
-    image: https://img.shields.io/badge/github-repository-blue?logo=github&style=for-the-badge
   - label: Qiita
     url: https://qiita.com/j341nono
-    image: https://img.shields.io/badge/qiita-profile-55c500?logo=qiita&style=for-the-badge
 
 photo:
   src: /assets/images/profile/v1.jpg
