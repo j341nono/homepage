@@ -119,10 +119,7 @@
         <ul class="products-links" aria-label="{{ ui.related_links | escape }}">
           {% for link in product.links %}
           <li>
-            <a href="{{ link.url | escape }}">
-              {{- link.label | escape -}}
-              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg>
-            </a>
+            {% include portfolio-link.html link=link %}
           </li>
           {% endfor %}
         </ul>

@@ -33,19 +33,21 @@
       url: https://www.dhw.co.jp/press-release/20261013_hacksonic5_report/
     - label: Store
       url: https://chromewebstore.google.com/detail/lhblilbjhibmhpfimdpaapphifghogoj
-    - label: Code
+    - label: GitHub
       url: https://github.com/j341nono/bukusupe
-    - label: Slide
+    - label: Speaker Deck
       url: https://speakerdeck.com/j341nono/bukku-maku-o-uchuu-kuukan-no-hoshi-toshite-tansaku-suru-chrome-kakuchou-kinou-hack-sonic-2026
+    - label: 毎日新聞
+      url: https://mainichi.jp/articles/20261013/pr2/00m/020/532000c
   - title: AI HACK 2026
     category: Software Development
     period: September 2026
     description: Developed a 3D AI assistant that students can consult freely, with
       support for finding school information and organizing their concerns.
     links:
-    - label: Blog
+    - label: Qiita
       url: https://qiita.com/Takumi-9505/items/97191f0b5e201f6483d4
-    - label: Code
+    - label: GitHub
       url: https://github.com/TakuHackathons/AIHackathon202609
   - title: U-22 Programming Contest 2026
     category: Software Development
@@ -55,9 +57,9 @@
     links:
     - label: Site
       url: https://u22procon.com/
-    - label: Code
+    - label: GitHub
       url: https://github.com/nlp-pbl-2026/garbage-app
-    - label: Blog
+    - label: Qiita
       url: https://qiita.com/Murakami_Shogo/items/e2e1b91fde19a3f74414
   - title: Geek CAMP 2026 Hackathon Vol. 4
     category: Software Development
@@ -68,7 +70,7 @@
     links:
     - label: Site
       url: https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/
-    - label: Code
+    - label: GitHub
       url: https://github.com/kren-team/michizure
   - title: Geek CAMP 2026 Hackathon Vol. 2
     category: Software Development
@@ -79,7 +81,7 @@
     links:
     - label: Site
       url: https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/
-    - label: Code
+    - label: GitHub
       url: https://github.com/jupiter-team13/zurenavi
   - title: Geek CAMP 2025 Hackathon Vol. 8
     category: Software Development
@@ -88,7 +90,7 @@
     links:
     - label: Site
       url: https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/
-    - label: Code
+    - label: GitHub
       url: https://github.com/bakeryforhackathon/annotopia
   - title: MIC-organized National CTF Contest 2026
     category: Security
@@ -121,7 +123,7 @@
     links:
     - label: Site
       url: https://gdgkwansai.connpass.com/event/405133/
-    - label: Slide
+    - label: Speaker Deck
       url: https://speakerdeck.com/j341nono/ghostty-neovim-de-tsukuru-toumeide-kakko-yoi-kaihatsu-kankyou
   - title: Kaigi on Rails 2026 Scholarship
     period: September 2026
@@ -136,7 +138,7 @@
     links:
     - label: Site
       url: https://www.rubycamp.jp/reports/2024-08-31-2024-summer/
-    - label: Code
+    - label: GitHub
       url: https://github.com/j341nono/rc2024su_team1
 - title: Internships
   items:
@@ -149,7 +151,7 @@
     period: February–March 2026 (7 weeks)
     description: Researched automatic prompt optimization for text embedding models.
     links:
-    - label: Tech Blog
+    - label: Zenn
       url: https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9
 - title: Event Planning & Organization
   items:
@@ -169,6 +171,9 @@
     - 'Nationwide (in-person): 10th'
     - 'Matsuyama venue: 2nd'
   - title: HACK SONIC 2026 Autumn — 2nd Place
+    links:
+      - label: 毎日新聞
+        url: https://mainichi.jp/articles/20261013/pr2/00m/020/532000c
     stats:
     - 2nd place among 11 entries selected through preliminary screening
   - title: Geek CAMP 2026 Hackathon Vol. 4 — Grand Prize

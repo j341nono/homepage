@@ -1,0 +1,5 @@
+{%- comment -%} Home / Products 共通のリンク。URL・表示名は各ページのデータで管理する。 {%- endcomment -%}
+<a class="portfolio-link" href="{{ include.link.url | escape }}">
+  {%- include link-icon.html label=include.link.label -%}
+  <span>{{ include.link.label | escape }}</span>
+</a>

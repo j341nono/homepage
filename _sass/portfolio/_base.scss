@@ -39,6 +39,35 @@ a:hover {
   color: var(--link-hover);
 }
 
+// Home と Products の外部リンクで、アイコンと表示名の配置を統一する。
+.portfolio-link-item {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  white-space: nowrap;
+}
+
+.portfolio-link-icon {
+  flex: 0 0 auto;
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.portfolio-link-icon-brand {
+  fill: currentColor;
+  stroke: none;
+}
+
 :focus-visible {
   outline: 2px solid var(--link);
   outline-offset: 3px;

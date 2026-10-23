@@ -1,0 +1,22 @@
+{%- comment -%}
+  既存のインライン SVG 方式を使用。GitHub ロゴは minima 同梱のスプライトを再利用する。
+  アイコンは装飾扱いとし、読み上げにはリンクの表示名だけを使う。
+{%- endcomment -%}
+{%- if include.label == 'GitHub' -%}
+<svg class="portfolio-link-icon portfolio-link-icon-brand" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><use href="{{ '/assets/minima-social-icons.svg' | relative_url }}#github"></use></svg>
+{%- else -%}
+<svg class="portfolio-link-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+  {%- case include.label -%}
+  {%- when 'Store', 'Chrome Web Store' -%}
+  <path d="M6 7h12l2 14H4L6 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/>
+  {%- when 'Speaker Deck', 'Slide', 'Slides', 'スライド' -%}
+  <path d="M3 3h18M5 3v12h14V3M12 15v6M8 21l4-3 4 3"/><path d="m9 11 3-3 3 2"/>
+  {%- when '毎日新聞', 'Article' -%}
+  <path d="M4 5h16v15H5a2 2 0 0 1-2-2V8h1M7 9h4v4H7zM14 9h3M14 13h3M7 17h10"/>
+  {%- when 'PDF', 'Report', 'Qiita', 'Zenn', 'Blog', 'Tech Blog' -%}
+  <path d="M14 2H5v20h14V7l-5-5ZM14 2v6h5M8 12h8M8 16h8"/>
+  {%- else -%}
+  <path d="M10 13a5 5 0 0 0 7 .1l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7M14 11a5 5 0 0 0-7-.1l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/>
+  {%- endcase -%}
+</svg>
+{%- endif -%}
