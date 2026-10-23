@@ -7,6 +7,8 @@
 {%- else -%}
 <svg class="portfolio-link-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
   {%- case include.label -%}
+  {%- when 'ACL Anthology' -%}
+  <path d="M12 5v16M3 3h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5v16h-5a4 4 0 0 0-4 2 4 4 0 0 0-4-2H3V3Z"/>
   {%- when 'Store', 'Chrome Web Store' -%}
   <path d="M6 7h12l2 14H4L6 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/>
   {%- when 'Speaker Deck', 'Slide', 'Slides', 'スライド' -%}
