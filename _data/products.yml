@@ -56,6 +56,10 @@
     - WebAssembly
     - IndexedDB
   links:
+    - label: Site
+      url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
+    - label: Report
+      url: https://www.dhw.co.jp/press-release/20261013_hacksonic5_report/
     - label: Chrome Web Store
       url: https://chromewebstore.google.com/detail/lhblilbjhibmhpfimdpaapphifghogoj
     - label: GitHub
@@ -125,6 +129,8 @@
     - Amazon DynamoDB
     - Terraform
   links:
+    - label: Site
+      url: https://u22procon.com/
     - label: GitHub
       url: https://github.com/nlp-pbl-2026/garbage-app
     - label: Qiita
@@ -156,6 +162,8 @@
     - CameraX
     - FastAPI
   links:
+    - label: Site
+      url: https://talent.supporterz.jp/events/b96e07e6-6e17-4c2b-89c5-36e162b7ea20/
     - label: GitHub
       url: https://github.com/kren-team/MICHIZURE
   image:
@@ -185,6 +193,8 @@
     - llama.cpp
     - SQLite
   links:
+    - label: Site
+      url: https://talent.supporterz.jp/events/82c4c266-cde5-4b34-90fe-7c82d83a97dc/
     - label: GitHub
       url: https://github.com/jupiter-team13/zurenavi
   image:
@@ -238,6 +248,8 @@
     - Docker
     - Render
   links:
+    - label: Site
+      url: https://talent.supporterz.jp/events/cbcbae79-19d7-4ae3-a45c-75b8bb80a562/
     - label: GitHub
       url: https://github.com/bakeryforhackathon/annotopia
   image:
@@ -260,6 +272,8 @@
     - Gosu
     - Singleton
   links:
+    - label: Site
+      url: https://www.rubycamp.jp/reports/2024-08-31-2024-summer/
     - label: GitHub
       url: https://github.com/j341nono/rc2024su_team1
   image:
