@@ -42,7 +42,7 @@ groups:
 
       - title: "HOTATE: A Japanese Dialogue Corpus Annotated with Responses of Private Thoughts and Public Statements"
         authors: [Yuko Toda, Daisuke Maekawa, Kota Manabe, Eito Yoneyama, Kanade Nonomura, Yuki Fujiwara, Tomoyuki Kajiwara]
-        venue: In Proceedings of the 15th International Conference on Language Resources and Evaluation (LREC 2026), pp.2987–2995, Mallorca, Spain, May 2026.
+        venue: In Proceedings of the 15th Language Resources and Evaluation Conference (LREC 2026), pp.2987–2995, Mallorca, Spain, May 2026.
         links:
           - label: PDF
             url: https://aclanthology.org/2026.lrec-1.233.pdf
