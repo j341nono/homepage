@@ -33,8 +33,8 @@ groups:
     - Keita Fukushima
     - Risa Kondo
     - Tomoyuki Kajiwara
-    venue: In Proceedings of the ACL 2026 Student Research Workshop (ACL SRW 2026),
-      pp.1169–1176, San Diego, California, United States, July 2026.
+    venue: "In Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Student Research Workshop) (ACL SRW 2026),
+      pp.1169–1176, San Diego, California, United States, July 2026."
     links:
     - label: PDF
       url: https://aclanthology.org/2026.acl-srw.102.pdf
