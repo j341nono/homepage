@@ -136,6 +136,8 @@
 }
 
 .products-card {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -152,8 +154,37 @@
   }
 }
 
+// 見出しのリンクをカード全体に広げ、各関連リンクはその上で個別に操作できるようにする。
+.products-card-primary-link {
+  &,
+  &:visited {
+    color: inherit;
+  }
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    content: "";
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible::after {
+    outline: 2px solid var(--link);
+    outline-offset: -3px;
+  }
+}
+
+.products-card a:not(.products-card-primary-link) {
+  position: relative;
+  z-index: 1;
+}
+
 @media (hover: hover) {
-  .products-card:hover {
+  .products-card.has-primary-link:hover {
     box-shadow: var(--card-shadow-hover);
     transform: translateY(-2px);
   }
@@ -164,7 +195,7 @@
     transition: none;
   }
 
-  .products-card:hover {
+  .products-card.has-primary-link:hover {
     transform: none;
   }
 }

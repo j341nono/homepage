@@ -47,12 +47,15 @@ a:hover {
 
 .portfolio-link {
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
+  vertical-align: baseline;
   gap: 0.3em;
   white-space: nowrap;
 }
 
 .portfolio-link-icon {
+  display: block;
+  align-self: center;
   flex: 0 0 auto;
   width: 1em;
   height: 1em;

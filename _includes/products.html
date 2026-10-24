@@ -48,7 +48,17 @@
 
   <div class="products-grid">
     {% for product in products %}
-    <article class="products-card" aria-labelledby="product-{{ forloop.index }}" data-categories="{{ product.categories | join: '|' | escape }}">
+    {%- comment -%} 作品紹介・デモ・ストア・コードの順に、カードの代表リンクを選ぶ。 {%- endcomment -%}
+    {%- assign primary_link = product.links | first -%}
+    {%- assign primary_labels = 'ProtoPedia|デモ|Demo|Chrome Web Store|Store|GitHub' | split: '|' -%}
+    {%- for label in primary_labels -%}
+      {%- assign candidate = product.links | where: 'label', label | first -%}
+      {%- if candidate -%}
+        {%- assign primary_link = candidate -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor %}
+    <article class="products-card{% if primary_link %} has-primary-link{% endif %}" aria-labelledby="product-{{ forloop.index }}" data-categories="{{ product.categories | join: '|' | escape }}">
       {% if product.image %}
       {%- comment -%} 16:9（約 1.78）から大きく外れる画像（約 1.51 未満・2.04 超）は、切り抜かずに全体を収める {%- endcomment -%}
       {%- assign image_fit = product.image.fit -%}
@@ -67,7 +77,7 @@
 
       <div class="products-card-body">
         <div class="products-card-header">
-          <h2 id="product-{{ forloop.index }}">{{ product.title | escape }}</h2>
+          <h2 id="product-{{ forloop.index }}">{% if primary_link %}<a class="products-card-primary-link" href="{{ primary_link.url | escape }}" aria-label="{{ product.title | escape }} — {{ primary_link.label | escape }}" title="{{ product.title | escape }} — {{ primary_link.label | escape }}">{{ product.title | escape }}</a>{% else %}{{ product.title | escape }}{% endif %}</h2>
           {% if product.period %}<p class="products-card-period">{{ product.period | escape }}</p>{% endif %}
         </div>
 
