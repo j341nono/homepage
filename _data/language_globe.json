@@ -1,0 +1,3158 @@
+{
+ "source": "_data/home/*.yml (TF-IDF, see scripts/generate_wordcloud.py)",
+ "terms": [
+  {
+   "term": "kaigi",
+   "score": 5.2551,
+   "scale": 1.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "会議"
+    },
+    {
+     "lang": "en",
+     "text": "conference"
+    },
+    {
+     "lang": "zh",
+     "text": "会议"
+    },
+    {
+     "lang": "ko",
+     "text": "회의"
+    }
+   ],
+   "concepts": [
+    "Kaigi on Rails"
+   ],
+   "related": [
+    "rails",
+    "スカラシップ",
+    "検証",
+    "effect"
+   ]
+  },
+  {
+   "term": "分離",
+   "score": 5.2551,
+   "scale": 1.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "disentanglement"
+    },
+    {
+     "lang": "zh",
+     "text": "解耦"
+    },
+    {
+     "lang": "ko",
+     "text": "분리"
+    },
+    {
+     "lang": "de",
+     "text": "Entflechtung"
+    }
+   ],
+   "concepts": [
+    "意味 ≠ 言語"
+   ],
+   "related": [
+    "多言語文埋め込み",
+    "意味要素",
+    "言語要素"
+   ]
+  },
+  {
+   "term": "多言語文埋め込み",
+   "score": 5.2551,
+   "scale": 1.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "multilingual sentence embeddings"
+    },
+    {
+     "lang": "zh",
+     "text": "多语言句子嵌入"
+    },
+    {
+     "lang": "ko",
+     "text": "다국어 문장 임베딩"
+    },
+    {
+     "lang": "fr",
+     "text": "plongements de phrases multilingues"
+    }
+   ],
+   "concepts": [
+    "language-agnostic",
+    "cross-lingual similarity"
+   ],
+   "related": [
+    "分離",
+    "意味要素",
+    "言語要素"
+   ]
+  },
+  {
+   "term": "embeddings",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "埋め込み表現"
+    },
+    {
+     "lang": "zh",
+     "text": "嵌入"
+    },
+    {
+     "lang": "ko",
+     "text": "임베딩"
+    },
+    {
+     "lang": "fr",
+     "text": "plongements"
+    },
+    {
+     "lang": "es",
+     "text": "representaciones vectoriales"
+    }
+   ],
+   "concepts": [
+    "vector space",
+    "semantics"
+   ],
+   "related": [
+    "language",
+    "multilingual",
+    "sentence",
+    "bias"
+   ]
+  },
+  {
+   "term": "hotate",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "ホタテ"
+    }
+   ],
+   "concepts": [
+    "本音と建前",
+    "dialogue corpus"
+   ],
+   "related": [
+    "annotated",
+    "corpus",
+    "dialogue",
+    "private"
+   ]
+  },
+  {
+   "term": "language",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "言語"
+    },
+    {
+     "lang": "zh",
+     "text": "语言"
+    },
+    {
+     "lang": "ko",
+     "text": "언어"
+    },
+    {
+     "lang": "fr",
+     "text": "langue"
+    },
+    {
+     "lang": "de",
+     "text": "Sprache"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embeddings",
+    "multilingual",
+    "sentence",
+    "bias"
+   ]
+  },
+  {
+   "term": "lt",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "lightning talk"
+    },
+    {
+     "lang": "ja",
+     "text": "ライトニングトーク"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "検証",
+    "devfest",
+    "etc",
+    "ghostty"
+   ]
+  },
+  {
+   "term": "multilingual",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "多言語"
+    },
+    {
+     "lang": "zh",
+     "text": "多语言"
+    },
+    {
+     "lang": "ko",
+     "text": "다국어"
+    },
+    {
+     "lang": "fr",
+     "text": "multilingue"
+    },
+    {
+     "lang": "de",
+     "text": "mehrsprachig"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embeddings",
+    "language",
+    "sentence",
+    "bias"
+   ]
+  },
+  {
+   "term": "rails",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [
+    "Ruby on Rails",
+    "Kaigi on Rails"
+   ],
+   "related": [
+    "kaigi",
+    "スカラシップ",
+    "検証",
+    "effect"
+   ]
+  },
+  {
+   "term": "ruby",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "ルビー"
+    }
+   ],
+   "concepts": [
+    "Ruby 合宿",
+    "Gosu"
+   ],
+   "related": [
+    "主催",
+    "gosu",
+    "カードゲーム",
+    "ソフトウェア開発合宿"
+   ]
+  },
+  {
+   "term": "sentence",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "文"
+    },
+    {
+     "lang": "zh",
+     "text": "句子"
+    },
+    {
+     "lang": "ko",
+     "text": "문장"
+    },
+    {
+     "lang": "fr",
+     "text": "phrase"
+    },
+    {
+     "lang": "de",
+     "text": "Satz"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embeddings",
+    "language",
+    "multilingual",
+    "bias"
+   ]
+  },
+  {
+   "term": "web",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "ウェブ"
+    },
+    {
+     "lang": "zh",
+     "text": "网页"
+    },
+    {
+     "lang": "ko",
+     "text": "웹"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "解析",
+    "課題",
+    "総務省主催",
+    "flag"
+   ]
+  },
+  {
+   "term": "アンバサダー",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "ambassador"
+    },
+    {
+     "lang": "zh",
+     "text": "大使"
+    },
+    {
+     "lang": "ko",
+     "text": "앰배서더"
+    },
+    {
+     "lang": "fr",
+     "text": "ambassadeur"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "主催",
+    "テックカンファレンス"
+   ]
+  },
+  {
+   "term": "スカラシップ",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "scholarship"
+    },
+    {
+     "lang": "zh",
+     "text": "奖学金"
+    },
+    {
+     "lang": "ko",
+     "text": "장학금"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "kaigi",
+    "rails",
+    "ソニックガーデン"
+   ]
+  },
+  {
+   "term": "主催",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "hosted by"
+    },
+    {
+     "lang": "zh",
+     "text": "主办"
+    },
+    {
+     "lang": "ko",
+     "text": "주최"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "ruby",
+    "アンバサダー",
+    "gosu",
+    "カードゲーム"
+   ]
+  },
+  {
+   "term": "判定",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "judgment"
+    },
+    {
+     "lang": "zh",
+     "text": "判定"
+    },
+    {
+     "lang": "ko",
+     "text": "판정"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "解析",
+    "言語処理",
+    "デスクトップ",
+    "ハルシネーション"
+   ]
+  },
+  {
+   "term": "大規模言語モデル",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "large language models"
+    },
+    {
+     "lang": "en",
+     "text": "LLM"
+    },
+    {
+     "lang": "zh",
+     "text": "大语言模型"
+    },
+    {
+     "lang": "ko",
+     "text": "대규모 언어 모델"
+    },
+    {
+     "lang": "fr",
+     "text": "grands modèles de langage"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "プロンプト設計"
+   ]
+  },
+  {
+   "term": "意味要素",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "semantic components"
+    },
+    {
+     "lang": "zh",
+     "text": "语义成分"
+    },
+    {
+     "lang": "ko",
+     "text": "의미 요소"
+    }
+   ],
+   "concepts": [
+    "meaning",
+    "semantics"
+   ],
+   "related": [
+    "分離",
+    "多言語文埋め込み",
+    "言語要素"
+   ]
+  },
+  {
+   "term": "検証",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "verification"
+    },
+    {
+     "lang": "zh",
+     "text": "验证"
+    },
+    {
+     "lang": "ko",
+     "text": "검증"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "kaigi",
+    "lt",
+    "rails",
+    "devfest"
+   ]
+  },
+  {
+   "term": "相談",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "consultation"
+    },
+    {
+     "lang": "zh",
+     "text": "咨询"
+    },
+    {
+     "lang": "ko",
+     "text": "상담"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "ai",
+    "hack",
+    "検索"
+   ]
+  },
+  {
+   "term": "解析",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "analysis"
+    },
+    {
+     "lang": "zh",
+     "text": "分析"
+    },
+    {
+     "lang": "ko",
+     "text": "분석"
+    },
+    {
+     "lang": "de",
+     "text": "Analyse"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "web",
+    "判定",
+    "課題",
+    "総務省主催"
+   ]
+  },
+  {
+   "term": "言語処理",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "NLP"
+    },
+    {
+     "lang": "en",
+     "text": "natural language processing"
+    },
+    {
+     "lang": "zh",
+     "text": "自然语言处理"
+    },
+    {
+     "lang": "ko",
+     "text": "자연어 처리"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "判定",
+    "課題",
+    "ハルシネーション"
+   ]
+  },
+  {
+   "term": "言語要素",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "language-specific components"
+    },
+    {
+     "lang": "zh",
+     "text": "语言成分"
+    },
+    {
+     "lang": "ko",
+     "text": "언어 요소"
+    }
+   ],
+   "concepts": [
+    "language identity"
+   ],
+   "related": [
+    "分離",
+    "多言語文埋め込み",
+    "意味要素"
+   ]
+  },
+  {
+   "term": "課題",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "challenge"
+    },
+    {
+     "lang": "zh",
+     "text": "课题"
+    },
+    {
+     "lang": "ko",
+     "text": "과제"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "web",
+    "解析",
+    "言語処理",
+    "総務省主催"
+   ]
+  },
+  {
+   "term": "週間",
+   "score": 4.2398,
+   "scale": 0.7943,
+   "category": "internships",
+   "section": "internships",
+   "link": {
+    "page": "home",
+    "hash": "internships"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "weeks"
+    },
+    {
+     "lang": "zh",
+     "text": "周"
+    },
+    {
+     "lang": "ko",
+     "text": "주간"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "ai",
+    "検索",
+    "engineer",
+    "ml"
+   ]
+  },
+  {
+   "term": "ai",
+   "score": 3.5533,
+   "scale": 0.6176,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "人工知能"
+    },
+    {
+     "lang": "en",
+     "text": "artificial intelligence"
+    },
+    {
+     "lang": "zh",
+     "text": "人工智能"
+    },
+    {
+     "lang": "ko",
+     "text": "인공지능"
+    },
+    {
+     "lang": "fr",
+     "text": "IA"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "検索",
+    "相談",
+    "週間",
+    "hack"
+   ]
+  },
+  {
+   "term": "hack",
+   "score": 3.5533,
+   "scale": 0.6176,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [],
+   "concepts": [
+    "hackathon"
+   ],
+   "related": [
+    "相談",
+    "ai",
+    "検索",
+    "chrome"
+   ]
+  },
+  {
+   "term": "検索",
+   "score": 3.5533,
+   "scale": 0.6176,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "search"
+    },
+    {
+     "lang": "en",
+     "text": "retrieval"
+    },
+    {
+     "lang": "zh",
+     "text": "检索"
+    },
+    {
+     "lang": "ko",
+     "text": "검색"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "ai",
+    "相談",
+    "週間",
+    "hack"
+   ]
+  },
+  {
+   "term": "総務省主催",
+   "score": 3.5533,
+   "scale": 0.6176,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [],
+   "concepts": [
+    "national CTF"
+   ],
+   "related": [
+    "web",
+    "解析",
+    "課題",
+    "flag"
+   ]
+  },
+  {
+   "term": "achievements",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "achievements",
+   "section": "achievements",
+   "link": {
+    "page": "home",
+    "hash": "achievements"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "実績"
+    },
+    {
+     "lang": "zh",
+     "text": "成就"
+    },
+    {
+     "lang": "ko",
+     "text": "성과"
+    }
+   ],
+   "concepts": [],
+   "related": []
+  },
+  {
+   "term": "annotated",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "アノテーション付き"
+    },
+    {
+     "lang": "zh",
+     "text": "已标注"
+    },
+    {
+     "lang": "ko",
+     "text": "주석된"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "hotate",
+    "corpus",
+    "dialogue",
+    "private"
+   ]
+  },
+  {
+   "term": "bias",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "バイアス"
+    },
+    {
+     "lang": "zh",
+     "text": "偏差"
+    },
+    {
+     "lang": "ko",
+     "text": "편향"
+    },
+    {
+     "lang": "fr",
+     "text": "biais"
+    },
+    {
+     "lang": "es",
+     "text": "sesgo"
+    }
+   ],
+   "concepts": [
+    "language bias"
+   ],
+   "related": [
+    "embeddings",
+    "language",
+    "multilingual",
+    "sentence"
+   ]
+  },
+  {
+   "term": "chrome",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "Chrome 拡張機能"
+    }
+   ],
+   "concepts": [
+    "browser extension"
+   ],
+   "related": [
+    "hack",
+    "ブクスペ",
+    "ブックマーク"
+   ]
+  },
+  {
+   "term": "components",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "成分"
+    },
+    {
+     "lang": "zh",
+     "text": "成分"
+    },
+    {
+     "lang": "ko",
+     "text": "성분"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embeddings",
+    "language",
+    "multilingual",
+    "sentence"
+   ]
+  },
+  {
+   "term": "corpus",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "コーパス"
+    },
+    {
+     "lang": "zh",
+     "text": "语料库"
+    },
+    {
+     "lang": "ko",
+     "text": "말뭉치"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "hotate",
+    "annotated",
+    "dialogue",
+    "private"
+   ]
+  },
+  {
+   "term": "cross-lingual",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "言語横断"
+    },
+    {
+     "lang": "zh",
+     "text": "跨语言"
+    },
+    {
+     "lang": "ko",
+     "text": "교차 언어"
+    },
+    {
+     "lang": "de",
+     "text": "sprachübergreifend"
+    }
+   ],
+   "concepts": [
+    "zero-shot transfer"
+   ],
+   "related": [
+    "embeddings",
+    "language",
+    "multilingual",
+    "sentence"
+   ]
+  },
+  {
+   "term": "devfest",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [
+    "DevFest Meetup"
+   ],
+   "related": [
+    "lt",
+    "検証",
+    "etc",
+    "ghostty"
+   ]
+  },
+  {
+   "term": "dialogue",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "対話"
+    },
+    {
+     "lang": "zh",
+     "text": "对话"
+    },
+    {
+     "lang": "ko",
+     "text": "대화"
+    },
+    {
+     "lang": "de",
+     "text": "Dialog"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "hotate",
+    "annotated",
+    "corpus",
+    "private"
+   ]
+  },
+  {
+   "term": "disentangling",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "分離する"
+    },
+    {
+     "lang": "zh",
+     "text": "解耦"
+    },
+    {
+     "lang": "ko",
+     "text": "분리"
+    }
+   ],
+   "concepts": [
+    "meaning vs. language"
+   ],
+   "related": [
+    "embeddings",
+    "language",
+    "multilingual",
+    "sentence"
+   ]
+  },
+  {
+   "term": "diverse",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "多様な"
+    },
+    {
+     "lang": "zh",
+     "text": "多样"
+    },
+    {
+     "lang": "ko",
+     "text": "다양한"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embeddings",
+    "language",
+    "multilingual",
+    "sentence"
+   ]
+  },
+  {
+   "term": "effect",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "kaigi",
+    "rails",
+    "検証",
+    "postgresql"
+   ]
+  },
+  {
+   "term": "embedding",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "埋め込み"
+    },
+    {
+     "lang": "zh",
+     "text": "嵌入"
+    },
+    {
+     "lang": "ko",
+     "text": "임베딩"
+    },
+    {
+     "lang": "de",
+     "text": "Einbettung"
+    }
+   ],
+   "concepts": [
+    "representation"
+   ],
+   "related": [
+    "instructions",
+    "models",
+    "optimizing",
+    "prompt-based"
+   ]
+  },
+  {
+   "term": "engineer",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "internships",
+   "section": "internships",
+   "link": {
+    "page": "home",
+    "hash": "internships"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "エンジニア"
+    },
+    {
+     "lang": "zh",
+     "text": "工程师"
+    },
+    {
+     "lang": "ko",
+     "text": "엔지니어"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "週間",
+    "ai",
+    "検索",
+    "ml"
+   ]
+  },
+  {
+   "term": "estimation",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "推定"
+    },
+    {
+     "lang": "zh",
+     "text": "估计"
+    },
+    {
+     "lang": "ko",
+     "text": "추정"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embeddings",
+    "language",
+    "multilingual",
+    "sentence"
+   ]
+  },
+  {
+   "term": "etc",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "lt",
+    "検証",
+    "devfest",
+    "ghostty"
+   ]
+  },
+  {
+   "term": "flag",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "フラグ"
+    }
+   ],
+   "concepts": [
+    "CTF"
+   ],
+   "related": [
+    "web",
+    "解析",
+    "課題",
+    "総務省主催"
+   ]
+  },
+  {
+   "term": "ghostty",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [
+    "terminal",
+    "ターミナル"
+   ],
+   "related": [
+    "lt",
+    "検証",
+    "devfest",
+    "etc"
+   ]
+  },
+  {
+   "term": "gosu",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [
+    "Ruby 2D game library"
+   ],
+   "related": [
+    "ruby",
+    "主催",
+    "カードゲーム",
+    "ソフトウェア開発合宿"
+   ]
+  },
+  {
+   "term": "instructions",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "指示文"
+    },
+    {
+     "lang": "zh",
+     "text": "指令"
+    },
+    {
+     "lang": "ko",
+     "text": "지시문"
+    }
+   ],
+   "concepts": [
+    "task instructions",
+    "自動プロンプト最適化"
+   ],
+   "related": [
+    "embedding",
+    "models",
+    "optimizing",
+    "prompt-based"
+   ]
+  },
+  {
+   "term": "meaning",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "意味"
+    },
+    {
+     "lang": "zh",
+     "text": "意义"
+    },
+    {
+     "lang": "ko",
+     "text": "의미"
+    },
+    {
+     "lang": "fr",
+     "text": "sens"
+    },
+    {
+     "lang": "de",
+     "text": "Bedeutung"
+    }
+   ],
+   "concepts": [
+    "semantics"
+   ],
+   "related": [
+    "embeddings",
+    "language",
+    "multilingual",
+    "sentence"
+   ]
+  },
+  {
+   "term": "meetup",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "ミートアップ"
+    },
+    {
+     "lang": "zh",
+     "text": "聚会"
+    },
+    {
+     "lang": "ko",
+     "text": "밋업"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "lt",
+    "検証",
+    "devfest",
+    "etc"
+   ]
+  },
+  {
+   "term": "mitigating",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "緩和"
+    },
+    {
+     "lang": "zh",
+     "text": "缓解"
+    },
+    {
+     "lang": "ko",
+     "text": "완화"
+    },
+    {
+     "lang": "fr",
+     "text": "atténuation"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embeddings",
+    "language",
+    "multilingual",
+    "sentence"
+   ]
+  },
+  {
+   "term": "ml",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "internships",
+   "section": "internships",
+   "link": {
+    "page": "home",
+    "hash": "internships"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "machine learning"
+    },
+    {
+     "lang": "ja",
+     "text": "機械学習"
+    },
+    {
+     "lang": "zh",
+     "text": "机器学习"
+    },
+    {
+     "lang": "ko",
+     "text": "머신러닝"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "週間",
+    "ai",
+    "検索",
+    "engineer"
+   ]
+  },
+  {
+   "term": "models",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "モデル"
+    },
+    {
+     "lang": "zh",
+     "text": "模型"
+    },
+    {
+     "lang": "ko",
+     "text": "모델"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embedding",
+    "instructions",
+    "optimizing",
+    "prompt-based"
+   ]
+  },
+  {
+   "term": "neovim",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [
+    "editor",
+    "エディタ"
+   ],
+   "related": [
+    "lt",
+    "検証",
+    "devfest",
+    "etc"
+   ]
+  },
+  {
+   "term": "optimizing",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "最適化"
+    },
+    {
+     "lang": "zh",
+     "text": "优化"
+    },
+    {
+     "lang": "ko",
+     "text": "최적화"
+    },
+    {
+     "lang": "fr",
+     "text": "optimisation"
+    },
+    {
+     "lang": "de",
+     "text": "Optimierung"
+    }
+   ],
+   "concepts": [
+    "自動プロンプト最適化"
+   ],
+   "related": [
+    "embedding",
+    "instructions",
+    "models",
+    "prompt-based"
+   ]
+  },
+  {
+   "term": "postgresql",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [
+    "database",
+    "データベース"
+   ],
+   "related": [
+    "kaigi",
+    "rails",
+    "検証",
+    "effect"
+   ]
+  },
+  {
+   "term": "private",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "内心の"
+    },
+    {
+     "lang": "zh",
+     "text": "内心"
+    },
+    {
+     "lang": "ko",
+     "text": "속마음"
+    }
+   ],
+   "concepts": [
+    "本音"
+   ],
+   "related": [
+    "hotate",
+    "annotated",
+    "corpus",
+    "dialogue"
+   ]
+  },
+  {
+   "term": "prompt-based",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "プロンプトベース"
+    },
+    {
+     "lang": "zh",
+     "text": "基于提示"
+    },
+    {
+     "lang": "ko",
+     "text": "프롬프트 기반"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embedding",
+    "instructions",
+    "models",
+    "optimizing"
+   ]
+  },
+  {
+   "term": "prompts",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "プロンプト"
+    },
+    {
+     "lang": "zh",
+     "text": "提示词"
+    },
+    {
+     "lang": "ko",
+     "text": "프롬프트"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embedding",
+    "instructions",
+    "models",
+    "optimizing"
+   ]
+  },
+  {
+   "term": "public",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "表向きの"
+    },
+    {
+     "lang": "zh",
+     "text": "表面"
+    },
+    {
+     "lang": "ko",
+     "text": "겉으로"
+    }
+   ],
+   "concepts": [
+    "建前"
+   ],
+   "related": [
+    "hotate",
+    "annotated",
+    "corpus",
+    "dialogue"
+   ]
+  },
+  {
+   "term": "researcher",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "internships",
+   "section": "internships",
+   "link": {
+    "page": "home",
+    "hash": "internships"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "研究者"
+    },
+    {
+     "lang": "zh",
+     "text": "研究员"
+    },
+    {
+     "lang": "ko",
+     "text": "연구원"
+    },
+    {
+     "lang": "fr",
+     "text": "chercheur"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "週間",
+    "テキスト埋め込みモデル"
+   ]
+  },
+  {
+   "term": "responses",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "応答"
+    },
+    {
+     "lang": "zh",
+     "text": "回复"
+    },
+    {
+     "lang": "ko",
+     "text": "응답"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "hotate",
+    "annotated",
+    "corpus",
+    "dialogue"
+   ]
+  },
+  {
+   "term": "set",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [
+    "Sorted Set"
+   ],
+   "related": [
+    "kaigi",
+    "rails",
+    "検証",
+    "effect"
+   ]
+  },
+  {
+   "term": "similarity",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "類似度"
+    },
+    {
+     "lang": "zh",
+     "text": "相似度"
+    },
+    {
+     "lang": "ko",
+     "text": "유사도"
+    },
+    {
+     "lang": "fr",
+     "text": "similarité"
+    },
+    {
+     "lang": "de",
+     "text": "Ähnlichkeit"
+    }
+   ],
+   "concepts": [
+    "cosine similarity",
+    "STS"
+   ],
+   "related": [
+    "embeddings",
+    "language",
+    "multilingual",
+    "sentence"
+   ]
+  },
+  {
+   "term": "soft",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "ソフトプロンプト"
+    },
+    {
+     "lang": "zh",
+     "text": "软提示"
+    },
+    {
+     "lang": "ko",
+     "text": "소프트 프롬프트"
+    }
+   ],
+   "concepts": [
+    "continuous prompts",
+    "prompt tuning"
+   ],
+   "related": [
+    "embedding",
+    "instructions",
+    "models",
+    "optimizing"
+   ]
+  },
+  {
+   "term": "sorted",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [
+    "Sorted Set"
+   ],
+   "related": [
+    "kaigi",
+    "rails",
+    "検証",
+    "effect"
+   ]
+  },
+  {
+   "term": "statements",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "建前"
+    },
+    {
+     "lang": "zh",
+     "text": "场面话"
+    },
+    {
+     "lang": "ko",
+     "text": "겉치레 말"
+    }
+   ],
+   "concepts": [
+    "public statements"
+   ],
+   "related": [
+    "hotate",
+    "annotated",
+    "corpus",
+    "dialogue"
+   ]
+  },
+  {
+   "term": "task",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "タスク"
+    },
+    {
+     "lang": "zh",
+     "text": "任务"
+    },
+    {
+     "lang": "ko",
+     "text": "작업"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embedding",
+    "instructions",
+    "models",
+    "optimizing"
+   ]
+  },
+  {
+   "term": "text",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "テキスト"
+    },
+    {
+     "lang": "zh",
+     "text": "文本"
+    },
+    {
+     "lang": "ko",
+     "text": "텍스트"
+    },
+    {
+     "lang": "fr",
+     "text": "texte"
+    },
+    {
+     "lang": "de",
+     "text": "Text"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "embedding",
+    "instructions",
+    "models",
+    "optimizing"
+   ]
+  },
+  {
+   "term": "thoughts",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "本音"
+    },
+    {
+     "lang": "zh",
+     "text": "真心话"
+    },
+    {
+     "lang": "ko",
+     "text": "속마음"
+    }
+   ],
+   "concepts": [
+    "private thoughts"
+   ],
+   "related": [
+    "hotate",
+    "annotated",
+    "corpus",
+    "dialogue"
+   ]
+  },
+  {
+   "term": "valkey",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [
+    "key-value store",
+    "Sorted Set"
+   ],
+   "related": [
+    "kaigi",
+    "rails",
+    "検証",
+    "effect"
+   ]
+  },
+  {
+   "term": "yahoo",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "internships",
+   "section": "internships",
+   "link": {
+    "page": "home",
+    "hash": "internships"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "ヤフー"
+    }
+   ],
+   "concepts": [
+    "LINEヤフー"
+   ],
+   "related": [
+    "週間",
+    "ai",
+    "検索",
+    "engineer"
+   ]
+  },
+  {
+   "term": "あいまい",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "fuzzy"
+    },
+    {
+     "lang": "zh",
+     "text": "模糊"
+    },
+    {
+     "lang": "ko",
+     "text": "모호한"
+    }
+   ],
+   "concepts": [
+    "fuzzy search"
+   ],
+   "related": [
+    "検索",
+    "ごみサポ",
+    "ごみ分別",
+    "プログラミング"
+   ]
+  },
+  {
+   "term": "ごみサポ",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "products",
+    "hash": "product-3"
+   },
+   "variants": [],
+   "concepts": [
+    "waste sorting assistant",
+    "あいまい検索"
+   ],
+   "related": [
+    "検索",
+    "あいまい",
+    "ごみ分別",
+    "プログラミング"
+   ]
+  },
+  {
+   "term": "ごみ分別",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "waste sorting"
+    },
+    {
+     "lang": "zh",
+     "text": "垃圾分类"
+    },
+    {
+     "lang": "ko",
+     "text": "분리수거"
+    },
+    {
+     "lang": "de",
+     "text": "Mülltrennung"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "検索",
+    "あいまい",
+    "ごみサポ",
+    "プログラミング"
+   ]
+  },
+  {
+   "term": "アノテーション",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "annotation"
+    },
+    {
+     "lang": "zh",
+     "text": "标注"
+    },
+    {
+     "lang": "ko",
+     "text": "어노테이션"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "web"
+   ]
+  },
+  {
+   "term": "カッコ",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "cool"
+    }
+   ],
+   "concepts": [
+    "透明な開発環境"
+   ],
+   "related": [
+    "lt",
+    "検証",
+    "devfest",
+    "etc"
+   ]
+  },
+  {
+   "term": "カードゲーム",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "card game"
+    },
+    {
+     "lang": "zh",
+     "text": "卡牌游戏"
+    },
+    {
+     "lang": "ko",
+     "text": "카드 게임"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "ruby",
+    "主催",
+    "gosu",
+    "ソフトウェア開発合宿"
+   ]
+  },
+  {
+   "term": "ゲーム",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "game"
+    },
+    {
+     "lang": "zh",
+     "text": "游戏"
+    },
+    {
+     "lang": "ko",
+     "text": "게임"
+    },
+    {
+     "lang": "fr",
+     "text": "jeu"
+    },
+    {
+     "lang": "de",
+     "text": "Spiel"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "kaigi",
+    "rails",
+    "検証",
+    "effect"
+   ]
+  },
+  {
+   "term": "サイバーセキュリティ競技",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "cybersecurity competition"
+    },
+    {
+     "lang": "zh",
+     "text": "网络安全竞赛"
+    },
+    {
+     "lang": "ko",
+     "text": "사이버 보안 대회"
+    }
+   ],
+   "concepts": [
+    "CTF"
+   ],
+   "related": [
+    "web",
+    "解析",
+    "課題",
+    "総務省主催"
+   ]
+  },
+  {
+   "term": "スクワット負債",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "squat debt"
+    },
+    {
+     "lang": "zh",
+     "text": "深蹲债"
+    },
+    {
+     "lang": "ko",
+     "text": "스쿼트 빚"
+    }
+   ],
+   "concepts": [
+    "連帯責任"
+   ],
+   "related": [
+    "モバイルアプリ"
+   ]
+  },
+  {
+   "term": "ソニックガーデン",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "SonicGarden"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "kaigi",
+    "rails",
+    "スカラシップ"
+   ]
+  },
+  {
+   "term": "ソニックガーデン主催",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "hosted by SonicGarden"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "kaigi",
+    "rails",
+    "検証",
+    "effect"
+   ]
+  },
+  {
+   "term": "ソフトウェア開発合宿",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "software development camp"
+    },
+    {
+     "lang": "zh",
+     "text": "软件开发集训"
+    },
+    {
+     "lang": "ko",
+     "text": "소프트웨어 개발 합숙"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "ruby",
+    "主催",
+    "gosu",
+    "カードゲーム"
+   ]
+  },
+  {
+   "term": "テキスト埋め込みモデル",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "internships",
+   "section": "internships",
+   "link": {
+    "page": "home",
+    "hash": "internships"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "text embedding models"
+    },
+    {
+     "lang": "zh",
+     "text": "文本嵌入模型"
+    },
+    {
+     "lang": "ko",
+     "text": "텍스트 임베딩 모델"
+    }
+   ],
+   "concepts": [
+    "retrieval",
+    "embeddings"
+   ],
+   "related": [
+    "週間",
+    "researcher"
+   ]
+  },
+  {
+   "term": "テキスト平易化",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "keywords",
+   "link": {
+    "page": "home",
+    "hash": "research"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "text simplification"
+    },
+    {
+     "lang": "zh",
+     "text": "文本简化"
+    },
+    {
+     "lang": "ko",
+     "text": "텍스트 단순화"
+    },
+    {
+     "lang": "fr",
+     "text": "simplification de texte"
+    },
+    {
+     "lang": "es",
+     "text": "simplificación de textos"
+    }
+   ],
+   "concepts": [
+    "readability",
+    "plain language"
+   ],
+   "related": []
+  },
+  {
+   "term": "テックカンファレンス",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "tech conference"
+    },
+    {
+     "lang": "zh",
+     "text": "技术大会"
+    },
+    {
+     "lang": "ko",
+     "text": "테크 컨퍼런스"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "アンバサダー",
+    "主催"
+   ]
+  },
+  {
+   "term": "デスクトップ",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "desktop"
+    },
+    {
+     "lang": "zh",
+     "text": "桌面"
+    },
+    {
+     "lang": "ko",
+     "text": "데스크톱"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "判定",
+    "解析",
+    "ユーザー"
+   ]
+  },
+  {
+   "term": "ネットワーク",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "network"
+    },
+    {
+     "lang": "zh",
+     "text": "网络"
+    },
+    {
+     "lang": "ko",
+     "text": "네트워크"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "web",
+    "解析",
+    "課題",
+    "総務省主催"
+   ]
+  },
+  {
+   "term": "ハッカソン・コンテスト",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "hackathons & contests"
+    },
+    {
+     "lang": "zh",
+     "text": "黑客马拉松"
+    },
+    {
+     "lang": "ko",
+     "text": "해커톤"
+    }
+   ],
+   "concepts": [],
+   "related": []
+  },
+  {
+   "term": "ハルシネーション",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "hallucination"
+    },
+    {
+     "lang": "zh",
+     "text": "幻觉"
+    },
+    {
+     "lang": "ko",
+     "text": "환각"
+    }
+   ],
+   "concepts": [
+    "citation consistency"
+   ],
+   "related": [
+    "判定",
+    "言語処理"
+   ]
+  },
+  {
+   "term": "フォレンジック",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "forensics"
+    },
+    {
+     "lang": "zh",
+     "text": "取证"
+    },
+    {
+     "lang": "ko",
+     "text": "포렌식"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "web",
+    "解析",
+    "課題",
+    "総務省主催"
+   ]
+  },
+  {
+   "term": "ブクスペ",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "products",
+    "hash": "product-1"
+   },
+   "variants": [],
+   "concepts": [
+    "bookmarks as stars",
+    "Chrome extension"
+   ],
+   "related": [
+    "hack",
+    "chrome",
+    "ブックマーク"
+   ]
+  },
+  {
+   "term": "ブックマーク",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "bookmark"
+    },
+    {
+     "lang": "zh",
+     "text": "书签"
+    },
+    {
+     "lang": "ko",
+     "text": "북마크"
+    },
+    {
+     "lang": "de",
+     "text": "Lesezeichen"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "hack",
+    "chrome",
+    "ブクスペ"
+   ]
+  },
+  {
+   "term": "プログラミング",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "programming"
+    },
+    {
+     "lang": "zh",
+     "text": "编程"
+    },
+    {
+     "lang": "ko",
+     "text": "프로그래밍"
+    },
+    {
+     "lang": "fr",
+     "text": "programmation"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "検索",
+    "あいまい",
+    "ごみサポ",
+    "ごみ分別"
+   ]
+  },
+  {
+   "term": "プロンプト設計",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "prompt design"
+    },
+    {
+     "lang": "zh",
+     "text": "提示设计"
+    },
+    {
+     "lang": "ko",
+     "text": "프롬프트 설계"
+    }
+   ],
+   "concepts": [
+    "prompt engineering"
+   ],
+   "related": [
+    "大規模言語モデル"
+   ]
+  },
+  {
+   "term": "モバイルアプリ",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "mobile app"
+    },
+    {
+     "lang": "zh",
+     "text": "移动应用"
+    },
+    {
+     "lang": "ko",
+     "text": "모바일 앱"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "スクワット負債"
+   ]
+  },
+  {
+   "term": "ヤフー",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "internships",
+   "section": "internships",
+   "link": {
+    "page": "home",
+    "hash": "internships"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "Yahoo"
+    }
+   ],
+   "concepts": [
+    "LINEヤフー"
+   ],
+   "related": [
+    "週間",
+    "ai",
+    "検索",
+    "engineer"
+   ]
+  },
+  {
+   "term": "ユーザー",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "user"
+    },
+    {
+     "lang": "zh",
+     "text": "用户"
+    },
+    {
+     "lang": "ko",
+     "text": "사용자"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "判定",
+    "解析",
+    "デスクトップ"
+   ]
+  }
+ ]
+}

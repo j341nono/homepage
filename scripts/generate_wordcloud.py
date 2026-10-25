@@ -54,15 +54,23 @@ def load_home_data(source_dir: Path) -> tuple[dict[str, Any], str]:
     return data, "\n".join(raw)
 
 
+ACTIVITY_FIELDS = ("title", "role", "period", "description", "award")
+
+
 def item_text(item: dict[str, Any], fields: tuple[str, ...]) -> str:
     return "\n".join(str(item[field]) for field in fields if item.get(field))
 
 
-def split_documents(data: dict[str, Any]) -> list[str]:
-    """Treat each Home section as a document, excluding structured author metadata."""
+def labeled_documents(data: dict[str, Any]) -> list[tuple[str, str]]:
+    """Treat each Home section as a document, excluding structured author metadata.
+
+    Each document is paired with a label naming its section ("profile",
+    "keywords", "publications", or an activity section's `id`) so that other
+    generators, such as the Language Globe, can tell where a term came from.
+    """
     profile = data.get("profile") or {}
     publications = data.get("publications") or {}
-    docs: list[str] = []
+    docs: list[tuple[str, str]] = []
 
     # Private facts (e.g. the e-mail address) never enter the tokenizer.
     facts = [
@@ -70,28 +78,32 @@ def split_documents(data: dict[str, Any]) -> list[str]:
         for fact in profile.get("facts") or []
         if not fact.get("private")
     ]
-    docs.append("\n".join([*facts, str(profile.get("bio") or "")]))
-    docs.append("研究分野\nキーワード：" + ", ".join(profile.get("research_keywords") or []))
+    docs.append(("profile", "\n".join([*facts, str(profile.get("bio") or "")])))
+    docs.append(("keywords", "研究分野\nキーワード：" + ", ".join(profile.get("research_keywords") or [])))
 
     # In publications, only the work titles describe the portfolio owner. Author
     # and venue fields are metadata and contain third-party names, so they are
     # never read here.
-    docs.append("\n".join(
+    docs.append(("publications", "\n".join(
         str(item["title"])
         for group in publications.get("groups") or []
         for item in group.get("items") or []
         if item.get("title")
-    ))
+    )))
 
     for section in data.get("activities") or []:
         lines = [str(section.get("title") or "")]
         lines += [
-            item_text(item, ("title", "role", "period", "description", "award"))
+            item_text(item, ACTIVITY_FIELDS)
             for item in section.get("items") or []
         ]
-        docs.append("\n".join(lines))
+        docs.append((str(section.get("id") or section.get("title") or ""), "\n".join(lines)))
 
-    return [doc.strip() for doc in docs if doc.strip()]
+    return [(label, doc.strip()) for label, doc in docs if doc.strip()]
+
+
+def split_documents(data: dict[str, Any]) -> list[str]:
+    return [doc for _, doc in labeled_documents(data)]
 
 
 def useful(term: str) -> bool:
@@ -157,14 +169,15 @@ def terms_for(text: str, tokenizer: Tokenizer) -> list[str]:
     return terms
 
 
-def tfidf_weights(documents: list[str]) -> dict[str, float]:
+def tfidf_scores(documents: list[str], limit: int = 100) -> list[tuple[str, float, int]]:
+    """Return (term, weight, index of the document that gave the weight), best first."""
     tokenizer = Tokenizer()
     counts = [Counter(terms_for(document, tokenizer)) for document in documents]
     document_frequency = Counter(term for counter in counts for term in counter)
     number_of_documents = len(counts)
-    scores: dict[str, float] = {}
+    scores: dict[str, tuple[float, int]] = {}
 
-    for counter in counts:
+    for index, counter in enumerate(counts):
         for term, count in counter.items():
             # Sublinear TF keeps repeated CV metadata from overwhelming meaningful terms.
             tf = 1.0 + math.log(count)
@@ -172,9 +185,16 @@ def tfidf_weights(documents: list[str]) -> dict[str, float]:
             # A cloud needs one corpus-level weight per word. Taking the maximum
             # section score preserves IDF's suppression of broadly repeated words;
             # summing sections would partially undo that suppression.
-            scores[term] = max(scores.get(term, 0.0), tf * idf)
+            score = tf * idf
+            if term not in scores or score > scores[term][0]:
+                scores[term] = (score, index)
 
-    return dict(sorted(scores.items(), key=lambda item: (-item[1], item[0]))[:100])
+    ranked = sorted(scores.items(), key=lambda item: (-item[1][0], item[0]))[:limit]
+    return [(term, score, index) for term, (score, index) in ranked]
+
+
+def tfidf_weights(documents: list[str]) -> dict[str, float]:
+    return {term: score for term, score, _ in tfidf_scores(documents)}
 
 
 def find_font(explicit_font: str | None) -> str:

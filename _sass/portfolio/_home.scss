@@ -50,24 +50,107 @@
 }
 
 // ==================================================
-// TF-IDF ワードクラウド
+// Language Globe（TF-IDF × Multilingual）
 // ==================================================
-.wordcloud-card {
+// 色はテーマに依らず固定する。語ごとの色は assets/js/language-globe.js の CATEGORY_COLORS。
+.language-globe {
+  --globe-text: #e6ebf5;
+  --globe-muted: #97a3ba;
+  --globe-accent: #9dbcff;
   position: relative;
   overflow: hidden;
   margin: 0.5rem 0 2.5rem;
-  padding: clamp(0.75rem, 2vw, 1.25rem);
-  border: 1px solid var(--wordcloud-border);
+  border: 1px solid var(--globe-border);
   border-radius: 18px;
-  background: var(--wordcloud-bg);
-  box-shadow: var(--wordcloud-shadow);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(76, 116, 214, 0.16), transparent 55%),
+    radial-gradient(circle at 0% 100%, rgba(124, 92, 214, 0.14), transparent 46%),
+    linear-gradient(160deg, #0c1224, #070a14 70%);
+  box-shadow: var(--globe-shadow);
+  color: var(--globe-text);
 
-  img {
+  p {
+    margin: 0;
+  }
+
+  noscript img {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 7;
-    object-fit: contain;
+    padding: clamp(0.75rem, 2vw, 1.25rem);
+    // 画像は明るい背景向けの配色なので、暗いカードの中では白い台紙に載せる
+    background: #fbfdff;
+  }
+}
+
+.language-globe-stage {
+  position: relative;
+  min-height: 460px;
+  // 球の後ろの淡い光。Canvas で毎フレーム描くと重いので CSS で描く
+  background: radial-gradient(circle at 50% calc(50% - 6px), rgba(90, 130, 230, 0.12), rgba(90, 130, 230, 0.03) 32%, transparent 46%);
+
+  canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    // 縦方向のスワイプはページのスクロールに使い、横方向だけ球体の回転に使う
+    touch-action: pan-y;
+    outline: none;
+
+    &.is-dragging {
+      cursor: grabbing;
+    }
+
+    &.is-pointing {
+      cursor: pointer;
+    }
+
+    &:focus-visible {
+      box-shadow: inset 0 0 0 2px rgba(157, 188, 255, 0.55);
+      border-radius: 18px;
+    }
+  }
+}
+
+// 読み上げ専用。語の一覧は、Canvas が使えないときだけ語の大きさを付けて表示する
+.language-globe-info,
+.language-globe-terms {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.language-globe.is-fallback .language-globe-terms {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.9rem;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  overflow: visible;
+  clip: auto;
+  list-style: none;
+  white-space: normal;
+
+  li {
+    font-size: calc(0.8rem + var(--scale) * 0.9rem);
+    font-weight: 700;
+    opacity: calc(0.6 + var(--scale) * 0.4);
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .language-globe-stage {
+    min-height: min(92vw, 400px);
   }
 }
 

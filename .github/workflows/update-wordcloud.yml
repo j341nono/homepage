@@ -1,4 +1,4 @@
-name: Update TF-IDF word cloud
+name: Update TF-IDF word cloud and Language Globe
 
 on:
   push:
@@ -6,6 +6,9 @@ on:
     paths:
       - "_data/home/**"
       - "scripts/generate_wordcloud.py"
+      - "scripts/generate_language_globe.py"
+      - "scripts/language_globe_lexicon.yml"
+      - "_data/products.yml"
       - "requirements-wordcloud.txt"
       - ".github/workflows/update-wordcloud.yml"
   workflow_dispatch:
@@ -48,14 +51,17 @@ jobs:
       - name: Generate the word cloud
         run: python scripts/generate_wordcloud.py --font /tmp/LINESeedJP-Bold.ttf
 
-      - name: Commit the updated image
+      - name: Generate the Language Globe data
+        run: python scripts/generate_language_globe.py
+
+      - name: Commit the updated image and data
         run: |
-          if git diff --quiet -- assets/images/wordcloud/tfidf-wordcloud.png; then
-            echo "The generated image is already current."
+          if git diff --quiet -- assets/images/wordcloud/tfidf-wordcloud.png _data/language_globe.json; then
+            echo "The generated files are already current."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/images/wordcloud/tfidf-wordcloud.png
-          git commit -m "chore: update TF-IDF word cloud"
+          git add assets/images/wordcloud/tfidf-wordcloud.png _data/language_globe.json
+          git commit -m "chore: update TF-IDF word cloud and Language Globe"
           git push

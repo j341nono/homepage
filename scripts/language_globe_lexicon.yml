@@ -1,0 +1,531 @@
+# ==================================================
+# Language Globe の多言語対応表（手動で整える）
+# ==================================================
+# scripts/generate_language_globe.py が、TF-IDF で選ばれた語にこの表を結び付けて
+# _data/language_globe.json を作る。ここに無い語も Globe には載る（ホバー時は共起語だけを出す）。
+# 単語の選定は TF-IDF 側で行うため、ここに語を足しても Globe の語は増えない。
+#
+# 見出し語: TF-IDF の出力どおりに書く（英字は小文字で照合する）
+#   variants: 言語コード → 表記（複数あればリスト）。ホバーで周囲に広がる。先頭 5 件まで
+#   concepts: 近い概念・言い換え。先頭 3 件まで
+#   category: 自動判定（その語の重みが付いたセクション）を上書きしたいときだけ書く
+#
+# 翻訳の厳密さより、ポートフォリオとして意味が伝わることを優先している。
+
+# ---------- 研究：多言語文埋め込み ----------
+多言語文埋め込み:
+  variants:
+    en: multilingual sentence embeddings
+    zh: 多语言句子嵌入
+    ko: 다국어 문장 임베딩
+    fr: plongements de phrases multilingues
+  concepts: [language-agnostic, cross-lingual similarity]
+分離:
+  variants:
+    en: disentanglement
+    zh: 解耦
+    ko: 분리
+    de: Entflechtung
+  concepts: [意味 ≠ 言語]
+disentangling:
+  variants:
+    ja: 分離する
+    zh: 解耦
+    ko: 분리
+  concepts: [meaning vs. language]
+意味要素:
+  variants:
+    en: semantic components
+    zh: 语义成分
+    ko: 의미 요소
+  concepts: [meaning, semantics]
+言語要素:
+  variants:
+    en: language-specific components
+    zh: 语言成分
+    ko: 언어 요소
+  concepts: [language identity]
+embeddings:
+  variants:
+    ja: 埋め込み表現
+    zh: 嵌入
+    ko: 임베딩
+    fr: plongements
+    es: representaciones vectoriales
+  concepts: [vector space, semantics]
+embedding:
+  variants:
+    ja: 埋め込み
+    zh: 嵌入
+    ko: 임베딩
+    de: Einbettung
+  concepts: [representation]
+multilingual:
+  variants:
+    ja: 多言語
+    zh: 多语言
+    ko: 다국어
+    fr: multilingue
+    de: mehrsprachig
+cross-lingual:
+  variants:
+    ja: 言語横断
+    zh: 跨语言
+    ko: 교차 언어
+    de: sprachübergreifend
+  concepts: [zero-shot transfer]
+language:
+  variants:
+    ja: 言語
+    zh: 语言
+    ko: 언어
+    fr: langue
+    de: Sprache
+sentence:
+  variants:
+    ja: 文
+    zh: 句子
+    ko: 문장
+    fr: phrase
+    de: Satz
+meaning:
+  variants:
+    ja: 意味
+    zh: 意义
+    ko: 의미
+    fr: sens
+    de: Bedeutung
+  concepts: [semantics]
+bias:
+  variants:
+    ja: バイアス
+    zh: 偏差
+    ko: 편향
+    fr: biais
+    es: sesgo
+  concepts: [language bias]
+mitigating:
+  variants:
+    ja: 緩和
+    zh: 缓解
+    ko: 완화
+    fr: atténuation
+similarity:
+  variants:
+    ja: 類似度
+    zh: 相似度
+    ko: 유사도
+    fr: similarité
+    de: Ähnlichkeit
+  concepts: [cosine similarity, STS]
+estimation:
+  variants:
+    ja: 推定
+    zh: 估计
+    ko: 추정
+components:
+  variants:
+    ja: 成分
+    zh: 成分
+    ko: 성분
+diverse:
+  variants:
+    ja: 多様な
+    zh: 多样
+    ko: 다양한
+
+# ---------- 研究：プロンプト・テキスト埋め込み ----------
+大規模言語モデル:
+  variants:
+    en: [large language models, LLM]
+    zh: 大语言模型
+    ko: 대규모 언어 모델
+    fr: grands modèles de langage
+プロンプト設計:
+  variants:
+    en: prompt design
+    zh: 提示设计
+    ko: 프롬프트 설계
+  concepts: [prompt engineering]
+prompts:
+  variants:
+    ja: プロンプト
+    zh: 提示词
+    ko: 프롬프트
+soft:
+  variants:
+    ja: ソフトプロンプト
+    zh: 软提示
+    ko: 소프트 프롬프트
+  concepts: [continuous prompts, prompt tuning]
+prompt-based:
+  variants:
+    ja: プロンプトベース
+    zh: 基于提示
+    ko: 프롬프트 기반
+instructions:
+  variants:
+    ja: 指示文
+    zh: 指令
+    ko: 지시문
+  concepts: [task instructions, 自動プロンプト最適化]
+optimizing:
+  variants:
+    ja: 最適化
+    zh: 优化
+    ko: 최적화
+    fr: optimisation
+    de: Optimierung
+  concepts: [自動プロンプト最適化]
+models:
+  variants:
+    ja: モデル
+    zh: 模型
+    ko: 모델
+task:
+  variants:
+    ja: タスク
+    zh: 任务
+    ko: 작업
+text:
+  variants:
+    ja: テキスト
+    zh: 文本
+    ko: 텍스트
+    fr: texte
+    de: Text
+テキスト埋め込みモデル:
+  variants:
+    en: text embedding models
+    zh: 文本嵌入模型
+    ko: 텍스트 임베딩 모델
+  concepts: [retrieval, embeddings]
+テキスト平易化:
+  variants:
+    en: text simplification
+    zh: 文本简化
+    ko: 텍스트 단순화
+    fr: simplification de texte
+    es: simplificación de textos
+  concepts: [readability, plain language]
+
+# ---------- 研究：HOTATE（本音と建前の対話コーパス） ----------
+hotate:
+  variants:
+    ja: ホタテ
+  concepts: [本音と建前, dialogue corpus]
+thoughts:
+  variants:
+    ja: 本音
+    zh: 真心话
+    ko: 속마음
+  concepts: [private thoughts]
+statements:
+  variants:
+    ja: 建前
+    zh: 场面话
+    ko: 겉치레 말
+  concepts: [public statements]
+private:
+  variants:
+    ja: 内心の
+    zh: 内心
+    ko: 속마음
+  concepts: [本音]
+public:
+  variants:
+    ja: 表向きの
+    zh: 表面
+    ko: 겉으로
+  concepts: [建前]
+dialogue:
+  variants:
+    ja: 対話
+    zh: 对话
+    ko: 대화
+    de: Dialog
+corpus:
+  variants:
+    ja: コーパス
+    zh: 语料库
+    ko: 말뭉치
+annotated:
+  variants:
+    ja: アノテーション付き
+    zh: 已标注
+    ko: 주석된
+responses:
+  variants:
+    ja: 応答
+    zh: 回复
+    ko: 응답
+
+# ---------- ハッカソン・プロダクト ----------
+言語処理:
+  variants:
+    en: [NLP, natural language processing]
+    zh: 自然语言处理
+    ko: 자연어 처리
+ハルシネーション:
+  variants:
+    en: hallucination
+    zh: 幻觉
+    ko: 환각
+  concepts: [citation consistency]
+判定:
+  variants:
+    en: judgment
+    zh: 判定
+    ko: 판정
+検索:
+  variants:
+    en: [search, retrieval]
+    zh: 检索
+    ko: 검색
+あいまい:
+  variants:
+    en: fuzzy
+    zh: 模糊
+    ko: 모호한
+  concepts: [fuzzy search]
+ごみ分別:
+  variants:
+    en: waste sorting
+    zh: 垃圾分类
+    ko: 분리수거
+    de: Mülltrennung
+ごみサポ:
+  concepts: [waste sorting assistant, あいまい検索]
+ブクスペ:
+  concepts: [bookmarks as stars, Chrome extension]
+ブックマーク:
+  variants:
+    en: bookmark
+    zh: 书签
+    ko: 북마크
+    de: Lesezeichen
+chrome:
+  variants:
+    ja: Chrome 拡張機能
+  concepts: [browser extension]
+アノテーション:
+  variants:
+    en: annotation
+    zh: 标注
+    ko: 어노테이션
+相談:
+  variants:
+    en: consultation
+    zh: 咨询
+    ko: 상담
+ai:
+  variants:
+    ja: 人工知能
+    en: artificial intelligence
+    zh: 人工智能
+    ko: 인공지능
+    fr: IA
+hack:
+  concepts: [hackathon]
+ハッカソン・コンテスト:
+  variants:
+    en: hackathons & contests
+    zh: 黑客马拉松
+    ko: 해커톤
+web:
+  variants:
+    ja: ウェブ
+    zh: 网页
+    ko: 웹
+解析:
+  variants:
+    en: analysis
+    zh: 分析
+    ko: 분석
+    de: Analyse
+課題:
+  variants:
+    en: challenge
+    zh: 课题
+    ko: 과제
+サイバーセキュリティ競技:
+  variants:
+    en: cybersecurity competition
+    zh: 网络安全竞赛
+    ko: 사이버 보안 대회
+  concepts: [CTF]
+総務省主催:
+  concepts: [national CTF]
+フォレンジック:
+  variants:
+    en: forensics
+    zh: 取证
+    ko: 포렌식
+ネットワーク:
+  variants:
+    en: network
+    zh: 网络
+    ko: 네트워크
+flag:
+  variants:
+    ja: フラグ
+  concepts: [CTF]
+プログラミング:
+  variants:
+    en: programming
+    zh: 编程
+    ko: 프로그래밍
+    fr: programmation
+モバイルアプリ:
+  variants:
+    en: mobile app
+    zh: 移动应用
+    ko: 모바일 앱
+デスクトップ:
+  variants:
+    en: desktop
+    zh: 桌面
+    ko: 데스크톱
+ユーザー:
+  variants:
+    en: user
+    zh: 用户
+    ko: 사용자
+スクワット負債:
+  variants:
+    en: squat debt
+    zh: 深蹲债
+    ko: 스쿼트 빚
+  concepts: [連帯責任]
+
+# ---------- 技術イベント ----------
+kaigi:
+  variants:
+    ja: 会議
+    en: conference
+    zh: 会议
+    ko: 회의
+  concepts: [Kaigi on Rails]
+rails:
+  concepts: [Ruby on Rails, Kaigi on Rails]
+ruby:
+  variants:
+    ja: ルビー
+  concepts: [Ruby 合宿, Gosu]
+gosu:
+  concepts: [Ruby 2D game library]
+lt:
+  variants:
+    en: lightning talk
+    ja: ライトニングトーク
+meetup:
+  variants:
+    ja: ミートアップ
+    zh: 聚会
+    ko: 밋업
+devfest:
+  concepts: [DevFest Meetup]
+ghostty:
+  concepts: [terminal, ターミナル]
+neovim:
+  concepts: [editor, エディタ]
+カッコ:
+  variants:
+    en: cool
+  concepts: [透明な開発環境]
+postgresql:
+  concepts: [database, データベース]
+valkey:
+  concepts: [key-value store, Sorted Set]
+sorted:
+  concepts: [Sorted Set]
+set:
+  concepts: [Sorted Set]
+検証:
+  variants:
+    en: verification
+    zh: 验证
+    ko: 검증
+ゲーム:
+  variants:
+    en: game
+    zh: 游戏
+    ko: 게임
+    fr: jeu
+    de: Spiel
+カードゲーム:
+  variants:
+    en: card game
+    zh: 卡牌游戏
+    ko: 카드 게임
+ソフトウェア開発合宿:
+  variants:
+    en: software development camp
+    zh: 软件开发集训
+    ko: 소프트웨어 개발 합숙
+アンバサダー:
+  variants:
+    en: ambassador
+    zh: 大使
+    ko: 앰배서더
+    fr: ambassadeur
+スカラシップ:
+  variants:
+    en: scholarship
+    zh: 奖学金
+    ko: 장학금
+主催:
+  variants:
+    en: hosted by
+    zh: 主办
+    ko: 주최
+テックカンファレンス:
+  variants:
+    en: tech conference
+    zh: 技术大会
+    ko: 테크 컨퍼런스
+ソニックガーデン:
+  variants:
+    en: SonicGarden
+ソニックガーデン主催:
+  variants:
+    en: hosted by SonicGarden
+
+# ---------- インターン ----------
+ml:
+  variants:
+    en: machine learning
+    ja: 機械学習
+    zh: 机器学习
+    ko: 머신러닝
+engineer:
+  variants:
+    ja: エンジニア
+    zh: 工程师
+    ko: 엔지니어
+researcher:
+  variants:
+    ja: 研究者
+    zh: 研究员
+    ko: 연구원
+    fr: chercheur
+yahoo:
+  variants:
+    ja: ヤフー
+  concepts: [LINEヤフー]
+ヤフー:
+  variants:
+    en: Yahoo
+  concepts: [LINEヤフー]
+週間:
+  variants:
+    en: weeks
+    zh: 周
+    ko: 주간
+
+# ---------- その他 ----------
+achievements:
+  variants:
+    ja: 実績
+    zh: 成就
+    ko: 성과

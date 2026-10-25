@@ -40,19 +40,45 @@
   <img class="profile-photo" src="{{ profile.photo.src | relative_url }}" width="{{ profile.photo.width }}" alt="{{ display_name | escape }}">
 </div>
 
-<figure class="wordcloud-card">
-  <img
-    src="{{ '/assets/images/wordcloud/tfidf-wordcloud.png' | relative_url }}"
-    alt="{{ ui.wordcloud_alt | escape }}"
-    width="1600"
-    height="700"
-  >
-</figure>
+{%- comment -%}
+  Language Globe: _data/language_globe.json（scripts/generate_language_globe.py が TF-IDF から生成）を
+  assets/js/language-globe.js が Canvas 上の球体として描く。
+  JS が無い環境ではワードクラウド画像を、Canvas が使えない環境では語の一覧を代わりに表示する。
+{%- endcomment -%}
+{%- assign globe_ui = ui.globe -%}
+{%- assign products_page = site.pages | where: 'translation_key', 'products' | where: 'lang', language | first -%}
+<figure class="language-globe" data-language-globe data-products-url="{{ products_page.url | relative_url }}">
+  <div class="language-globe-stage" data-language-globe-stage hidden>
+    <canvas tabindex="0" role="img" aria-label="{{ globe_ui.label | escape }}"></canvas>
+    {%- comment -%} 選択中の語の情報（読み上げ専用）。JS が書き込む {%- endcomment %}
+    <p class="language-globe-info" data-language-globe-info aria-live="polite"></p>
+  </div>
 
-<h2 class="portfolio-section-title">{{ ui.research | escape }}</h2>
+  {%- comment -%} スクリーンリーダー向けの一覧。Canvas が使えないときは、これがそのまま表示される {%- endcomment %}
+  <ul class="language-globe-terms" aria-label="{{ globe_ui.terms | escape }}">
+    {%- for item in site.data.language_globe.terms limit: 40 %}
+    <li style="--scale: {{ item.scale }}">{{ item.term | escape }}</li>
+    {%- endfor %}
+  </ul>
+
+  <noscript>
+    <img
+      src="{{ '/assets/images/wordcloud/tfidf-wordcloud.png' | relative_url }}"
+      alt="{{ ui.wordcloud_alt | escape }}"
+      width="1600"
+      height="700"
+    >
+  </noscript>
+
+  <script type="application/json" data-language-globe-data>{"labels":{{ globe_ui | jsonify | replace: "</", "<\/" }},"terms":{{ site.data.language_globe.terms | jsonify | replace: "</", "<\/" }}}</script>
+</figure>
+{%- assign asset_version = site.time | date: "%s" %}
+<script defer src="{{ '/assets/js/language-globe.js' | relative_url }}?v={{ asset_version }}"></script>
+
+<h2 class="portfolio-section-title" id="research">{{ ui.research | escape }}</h2>
 <p>{{ ui.keywords | escape }}{{ profile.research_keywords | join: ", " | escape }}</p>
 
-<h2 class="portfolio-section-title">{{ publications.title | escape }}</h2>
+<h2 class="portfolio-section-title" id="publications">{{ publications.title | escape }}</h2>
 {%- for group in publications.groups %}
 <h3 class="portfolio-subsection-title">{{ group.title | escape }}</h3>
 <ul class="portfolio-list">
@@ -72,7 +98,7 @@
 {%- endfor %}
 
 {%- for section in home_data.activities %}
-<h2 class="portfolio-section-title">{{ section.title | escape }}</h2>
+<h2 class="portfolio-section-title"{% if section.id %} id="{{ section.id }}"{% endif %}>{{ section.title | escape }}</h2>
 {%- if section.grouped %}
   {%- assign groups = section.items | group_by: 'category' %}
   {%- for group in groups %}

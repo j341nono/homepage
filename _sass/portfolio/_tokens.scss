@@ -14,12 +14,10 @@
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --card-shadow: 0 1px 2px rgba(17, 17, 17, 0.04);
   --card-shadow-hover: 0 8px 24px rgba(17, 17, 17, 0.08);
-  --wordcloud-border: rgba(76, 81, 191, 0.18);
-  --wordcloud-bg:
-    radial-gradient(circle at 15% 20%, rgba(66, 153, 225, 0.14), transparent 34%),
-    radial-gradient(circle at 88% 80%, rgba(159, 122, 234, 0.14), transparent 38%),
-    #fbfdff;
-  --wordcloud-shadow: 0 12px 30px rgba(45, 55, 72, 0.08);
+  // Language Globe はどちらのテーマでも濃紺のカードとして見せる（球体の文字を暗背景で光らせるため）。
+  // ライトテーマでは影で、ダークテーマでは枠線でページから浮かせる。
+  --globe-border: rgba(140, 162, 214, 0.18);
+  --globe-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
   --font-sans: "LINE Seed JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -41,7 +39,6 @@
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   --card-shadow-hover: 0 10px 28px rgba(0, 0, 0, 0.4);
-  --wordcloud-border: #3b424e;
-  --wordcloud-bg: #20242c;
-  --wordcloud-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  --globe-border: #3b424e;
+  --globe-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }

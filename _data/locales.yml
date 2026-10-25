@@ -10,6 +10,18 @@ ja:
   awards: 受賞
   technologies: 使用技術
   related_links: 関連リンク
+  globe:
+    label: Language Globe（TF-IDF で抽出した語の球体）。左右の矢印キーで単語を選び、Enter で該当セクションへ移動します。
+    terms: Globe を構成する主な語
+    score: TF-IDF
+    related: 共起語：
+    categories:
+      research: 研究
+      products: 開発・ハッカソン
+      events: 技術イベント
+      internships: インターン
+      achievements: 実績
+      misc: その他
 en:
   navigation: Main navigation
   language: Language
@@ -22,3 +34,15 @@ en:
   awards: Awards
   technologies: Technologies
   related_links: Related links
+  globe:
+    label: Language Globe (a sphere of TF-IDF terms). Use the left and right arrow keys to choose a word and Enter to jump to its section.
+    terms: Main terms on the globe
+    score: TF-IDF
+    related: 'Co-occurs with: '
+    categories:
+      research: Research
+      products: Development & hackathons
+      events: Tech events
+      internships: Internships
+      achievements: Achievements
+      misc: Other

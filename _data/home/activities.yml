@@ -4,6 +4,7 @@
 # ここに書いた順にセクションが並び、items は上から順に表示される。
 # grouped: true のセクションでは、category ごとに小見出しを付ける。
 # セクションを増やすときは `- title:` と `items:` を足すだけでよい。
+# id: はページ内リンク（#hackathons など）と Language Globe のカテゴリに使う。日英で同じ値にする。
 #
 # 各項目（title 以外は省略可。省略した項目は表示されない）
 #   title:       名前（イベント名・会社名・賞の名前など）
@@ -20,6 +21,7 @@
 # ※ 一時的に隠したい項目は、行頭に # を付けてコメントアウトする
 
 - title: ハッカソン・コンテスト
+  id: hackathons
   grouped: true
   items:
     - title: 第21回言語処理若手シンポジウム (YANS2026) ハッカソン
@@ -131,6 +133,7 @@
           url: https://www.soumu.go.jp/menu_news/s-news/01cyber01_02000001_00302.html
 
 - title: 技術イベント
+  id: events
   items:
     - title: Kaigi Effect 会
       period: 2026年10月18日
@@ -183,6 +186,7 @@
           url: https://github.com/j341nono/rc2024su_team1
 
 - title: インターン
+  id: internships
   items:
     - title: LINEヤフー株式会社
       role: ML Engineer
@@ -198,6 +202,7 @@
           url: https://zenn.dev/retrieva_tech/articles/b5c21fe10e4ee9
 
 - title: 企画・運営
+  id: organizing
   items:
     - title: 令和8年度 外国人材地域体験・交流モデル事業 大学生企画運営チーム
       period: 2026年5月〜現在
@@ -207,6 +212,7 @@
           url: https://www.pref.ehime.jp/site/chuyo/147431.html
 
 - title: Achievements
+  id: achievements
   items:
     - title: 総務省主催 全国型CTFコンテスト 2026
       stats:
