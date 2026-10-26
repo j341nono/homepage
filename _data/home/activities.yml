@@ -138,8 +138,12 @@
   id: events
   items:
     - title: Kaigi Effect 会
-      period: 2026年10月18日
+      period: 2026年10月
       description: 株式会社ソニックガーデン主催のKaigi on Rails 2026事後イベントに参加。ゲームのランキング機能を題材に、PostgreSQL単体とValkeyのSorted Setを併用した構成の性能を比較・検証
+
+    - title: アンバサLTだぁ！
+      period: 2026年10月
+      description: 「即席チームで学ぶ視点」という題目でLT登壇
 
     - title: 技育祭2026【秋】学生アンバサダー
       period: 2026年9月〜10月

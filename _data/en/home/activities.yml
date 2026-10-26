@@ -113,10 +113,13 @@
   id: events
   items:
   - title: Kaigi Effect
-    period: October 18, 2026
+    period: October 2026
     description: Participated in a Kaigi on Rails 2026 follow-up event organized by
       Sonic Garden. Compared and evaluated the performance of PostgreSQL alone and
       PostgreSQL with Valkey Sorted Sets using a game leaderboard.
+  - title: アンバサLTだぁ！
+    period: October 2026
+    description: Gave a lightning talk titled “Perspectives Learned from an Ad Hoc Team.”
   - title: Geek Festival 2026 Autumn — Student Ambassador
     period: September–October 2026
     description: Serving as a student ambassador for Geek Festival 2026 Autumn, a
