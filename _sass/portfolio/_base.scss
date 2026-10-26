@@ -157,6 +157,30 @@ a:hover {
   }
 }
 
+// sticky keeps the header's space in the document, so showing it never shifts text.
+.site-header.is-scroll-aware {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--page-bg);
+  transition: transform 220ms ease;
+
+  &.is-scroll-hidden {
+    transform: translateY(-100%);
+  }
+}
+
+// Keep section headings clear of the header when following in-page links.
+html {
+  scroll-padding-top: calc(var(--site-header-height, 57px) + 16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header.is-scroll-aware {
+    transition: none;
+  }
+}
+
 .site-header-actions {
   display: flex;
   flex-wrap: wrap;

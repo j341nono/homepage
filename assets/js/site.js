@@ -5,6 +5,77 @@
   var toggle = document.querySelector("[data-theme-toggle]");
 
   var languageSwitch = document.querySelector("[data-language-switch]");
+
+  // ==================================================
+  // 下へ読む間は隠し、上へ戻ると再表示するヘッダー
+  // ==================================================
+  var header = document.querySelector(".site-header");
+  if (header) {
+    var headerHeight = 0;
+    var scrollDirection = 0;
+    var scrollDistance = 0;
+    var scrollPending = false;
+
+    function scrollPosition() {
+      // モバイルの上下端でのバウンドを方向転換として扱わない。
+      var maximum = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      return Math.min(maximum, Math.max(0, window.scrollY));
+    }
+
+    var lastScrollPosition = scrollPosition();
+
+    function measureHeader() {
+      headerHeight = Math.ceil(header.getBoundingClientRect().height);
+      root.style.setProperty("--site-header-height", headerHeight + "px");
+    }
+
+    function showHeader() {
+      header.classList.remove("is-scroll-hidden");
+      scrollDistance = 0;
+    }
+
+    function updateHeader() {
+      scrollPending = false;
+      var position = scrollPosition();
+      var delta = position - lastScrollPosition;
+      var direction = Math.sign(delta);
+
+      if (direction && direction !== scrollDirection) {
+        scrollDirection = direction;
+        scrollDistance = 0;
+      }
+      scrollDistance += Math.abs(delta);
+      lastScrollPosition = position;
+
+      // 先頭付近、言語メニューの展開中、キーボードでの操作中は表示を保つ。
+      if (position <= headerHeight || (languageSwitch && languageSwitch.open) || header.querySelector(":focus-visible")) {
+        showHeader();
+      } else if (scrollDistance >= 12) {
+        header.classList.toggle("is-scroll-hidden", direction > 0);
+        scrollDistance = 0;
+      }
+    }
+
+    header.classList.add("is-scroll-aware");
+    measureHeader();
+    window.addEventListener("scroll", function () {
+      if (!scrollPending) {
+        scrollPending = true;
+        window.requestAnimationFrame(updateHeader);
+      }
+    }, { passive: true });
+    window.addEventListener("resize", measureHeader);
+    if (window.ResizeObserver) {
+      new ResizeObserver(measureHeader).observe(header);
+    }
+    header.addEventListener("focusin", showHeader);
+    if (languageSwitch) {
+      languageSwitch.addEventListener("toggle", function () {
+        if (languageSwitch.open) showHeader();
+      });
+    }
+  }
+
   if (languageSwitch) {
     document.addEventListener("click", function (event) {
       if (!languageSwitch.contains(event.target)) languageSwitch.open = false;
