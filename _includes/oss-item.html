@@ -1,0 +1,10 @@
+{%- assign item = include.item -%}
+{%- assign project = include.project -%}
+{%- assign kind = 'issues' -%}
+{%- assign label = 'Issue' -%}
+{%- if item.type == 'pr' -%}
+  {%- assign kind = 'pull' -%}
+  {%- assign label = 'PR' -%}
+{%- endif -%}
+<a class="oss-reference" href="https://github.com/{{ project.repo | escape }}/{{ kind }}/{{ item.number }}" title="{{ item.github_title | escape }}">{{ label }} #{{ item.number }}</a>
+<span class="oss-status oss-status--{{ item.status | escape }}">{% if item.type == 'issue' %}{{ ui.oss.issue_statuses[item.status] | escape }}{% else %}{{ ui.oss.statuses[item.status] | escape }}{% endif %}</span>

@@ -29,6 +29,25 @@ bundle exec jekyll serve
 # Open http://localhost:4000/homepage/ and http://localhost:4000/homepage/en/
 ```
 
+## OSS contributions
+
+Both homepages render `_includes/oss.html` from the shared `_data/oss.yml`.
+The section follows Hackathons & Contests and uses the existing portfolio list
+styles. Projects appear in data order without contribution categories.
+Japanese and English summaries and item titles live together in this file.
+Interface labels are under `oss` in `_data/locales.yml`.
+
+Add contributions to `items` with `type: issue` or `type: pr`, `number`,
+`status: open`, `merged`, or `closed`, and translated `title` values. Keep the
+original GitHub title in `github_title` for link tooltips. Counts and GitHub
+links are derived from these items; projects with multiple items use a
+disclosure list for their issues and PRs. Repository links use the shared
+`portfolio-links.html` include and each project’s `links` data.
+Only mark a PR `merged` after verifying its merge on GitHub; `closed` alone
+does not imply merged. Stars and statuses are a fixed GitHub API snapshot,
+not fetched during build or page load. Refresh them together with `checked_at`
+when updating the data. The initial snapshot was checked on 2026-10-27.
+
 ## Language Globe
 
 The top of the Home page shows the **Language Globe**: a rotatable sphere made of

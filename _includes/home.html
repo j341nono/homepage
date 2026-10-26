@@ -108,4 +108,5 @@
 {%- else %}
 {% include activity-list.html items=section.items %}
 {%- endif %}
+{% if section.id == 'hackathons' %}{% include oss.html %}{% endif %}
 {%- endfor %}

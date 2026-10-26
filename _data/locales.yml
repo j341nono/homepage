@@ -1,4 +1,15 @@
 ja:
+  oss:
+    title: OSSへの貢献
+    details: Issue・PRの詳細
+    count_suffix: 件
+    statuses:
+      open: Open / 提案中
+      merged: Merged / マージ済み
+      closed: Closed / 終了
+    issue_statuses:
+      open: Open / 未解決
+      closed: Closed / 終了
   navigation: サイト内
   language: 言語
   dark_mode: ダークモード
@@ -23,6 +34,17 @@ ja:
       achievements: 実績
       misc: その他
 en:
+  oss:
+    title: Open source contributions
+    details: Issue and pull request details
+    count_suffix: ''
+    statuses:
+      open: Open
+      merged: Merged
+      closed: Closed
+    issue_statuses:
+      open: Open
+      closed: Closed
   navigation: Main navigation
   language: Language
   dark_mode: Dark mode

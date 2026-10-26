@@ -1,0 +1,25 @@
+{%- assign project = include.project -%}
+{%- assign issues = project.items | where: 'type', 'issue' -%}
+{%- assign prs = project.items | where: 'type', 'pr' -%}
+<li>
+  <span class="portfolio-item-title">{{ project.name | escape }}</span>
+  {% if project.stars %}<span class="oss-stars" aria-label="{{ project.stars }} GitHub stars"><span aria-hidden="true">☆</span> {{ project.stars }}</span>{% endif %}
+  <span class="oss-counts">{% if issues.size > 0 %}Issue {{ issues.size }}{{ ui.oss.count_suffix }} / {% endif %}PR {{ prs.size }}{{ ui.oss.count_suffix }}</span>
+  <div class="oss-summary">{{ project.summary[language] | escape }} {% include portfolio-links.html links=project.links %}</div>
+  {% if project.items.size > 1 %}
+  <details class="oss-details">
+    <summary>{{ ui.oss.details | escape }}</summary>
+    <ul class="oss-item-list">
+      {% for item in project.items %}
+      <li><span>{{ item.title[language] | escape }}</span> <span class="oss-item-meta">{% include oss-item.html item=item project=project %}</span></li>
+      {% endfor %}
+    </ul>
+  </details>
+  {% else %}
+  <div class="oss-references">
+    {% for item in project.items %}
+    <span class="oss-item-meta">{% include oss-item.html item=item project=project %}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+</li>

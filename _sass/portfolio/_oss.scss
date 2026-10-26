@@ -1,0 +1,90 @@
+// Reuse portfolio headings, list spacing and item titles.
+.oss-section {
+  overflow-wrap: anywhere;
+}
+
+.oss-stars,
+.oss-counts {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.oss-stars {
+  margin: 0 0.4rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.oss-summary {
+  margin: 0.2rem 0 0.4rem;
+}
+
+.oss-references,
+.oss-item-meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.45rem;
+}
+
+.oss-references {
+  gap: 0.4rem 1rem;
+}
+
+.oss-reference {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.oss-status {
+  padding: 0.08rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  white-space: nowrap;
+
+  &--merged {
+    border-color: var(--text);
+    background: var(--text);
+    color: var(--page-bg);
+  }
+
+  &--closed {
+    background: var(--tag-bg);
+  }
+}
+
+.oss-details {
+  margin-top: 0.4rem;
+
+  summary {
+    width: fit-content;
+    color: var(--muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+}
+
+.oss-item-list {
+  margin: 0.65rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+
+  li {
+    margin-bottom: 0.7rem;
+  }
+
+  .oss-item-meta {
+    margin-left: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .oss-item-list .oss-item-meta {
+    display: flex;
+    margin-left: 0;
+    margin-top: 0.15rem;
+  }
+}

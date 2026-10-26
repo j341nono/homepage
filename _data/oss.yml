@@ -1,0 +1,216 @@
+# GitHub API snapshot. Stars and item statuses are fixed at checked_at.
+# Projects appear in data order.
+# type: issue/pr; status: open/merged/closed. Counts are derived from items.
+checked_at: "2026-10-27"
+projects:
+  - name: "DSPy"
+    repo: "stanfordnlp/dspy"
+    links:
+      - label: "GitHub"
+        url: "https://github.com/stanfordnlp/dspy"
+    summary:
+      ja: "GEPAの自動評価予算計算の不整合を報告。評価フローに合わせた計算の修正を提案。"
+      en: "Reported an inconsistency in GEPA’s automatic evaluation budget and proposed a fix aligned with the evaluation flow."
+    items:
+      - type: "issue"
+        number: 10245
+        status: "open"
+        title:
+          ja: "GEPAの自動評価予算計算の不整合"
+          en: "[Bug] GEPA auto_budget does not reflect the current reflective evaluation loop"
+        github_title: "[Bug] GEPA auto_budget does not reflect the current reflective evaluation loop"
+      - type: "pr"
+        number: 10246
+        status: "open"
+        title:
+          ja: "評価フローに合わせたGEPAの予算計算修正"
+          en: "fix(gepa): align GEPA auto budget with evaluation costs"
+        github_title: "fix(gepa): align GEPA auto budget with evaluation costs"
+    stars: 38802
+  - name: "Nyxis"
+    repo: "NyxFoundation/nyxis"
+    links:
+      - label: "GitHub"
+        url: "https://github.com/NyxFoundation/nyxis"
+    summary:
+      ja: "LeanベースのWebフレームワークで、Cedar構文互換・Linuxビルド・依存テストの不具合を報告し、修正PRを提出。"
+      en: "Reported bugs and submitted fixes for Cedar syntax compatibility, Linux builds, and dependency tests in a Lean-based web framework."
+    items:
+      - type: "issue"
+        number: 4
+        status: "open"
+        title:
+          ja: "READMEのバージョン表記が古い"
+          en: "Outdated version badge in the README"
+        github_title: "README version badge still shows v0.1.0"
+      - type: "issue"
+        number: 6
+        status: "open"
+        title:
+          ja: "Cedarスキーマ解析でCR改行処理の不整合"
+          en: "Inconsistent CR line endings in Cedar schema parsing"
+        github_title: "Schema parser: a `//` comment does not end at CR, so Nyxis and Cedar read different schemas"
+      - type: "issue"
+        number: 8
+        status: "open"
+        title:
+          ja: "PostgreSQL依存テストの16進デコード不具合"
+          en: "Incorrect hex decoding in the PostgreSQL dependency test"
+        github_title: "`checkPostgresDependency` always fails: the bytea hex does not decode to \"nyxis\""
+      - type: "issue"
+        number: 10
+        status: "open"
+        title:
+          ja: "JWT依存テストが旧HTTP APIを使用"
+          en: "JWT dependency test uses the old HTTP API"
+        github_title: "`check-jwt-dependency.sh` fails to build: `scripts/jwt-dependency/ServeHttp.lean` uses the old HTTP API"
+      - type: "issue"
+        number: 12
+        status: "open"
+        title:
+          ja: "Handler Effects検証スクリプトの誤検出"
+          en: "False positives in the Handler Effects check"
+        github_title: "`check-handler-effects.sh` always fails: the sample's module comment contains the forbidden words"
+      - type: "issue"
+        number: 14
+        status: "open"
+        title:
+          ja: "宣言チェックのテストデータが旧仕様"
+          en: "Outdated declaration-check fixtures"
+        github_title: "`check-approved-declaration.py` fails: its startup fixtures predate `user_not_service`, jobs and the outbox"
+      - type: "issue"
+        number: 16
+        status: "open"
+        title:
+          ja: "Cedar非対応のブロックコメントを許容"
+          en: "Parser accepts block comments unsupported by Cedar"
+        github_title: "Schema parser accepts `/* */` block comments, which Cedar's schema syntax does not have"
+      - type: "issue"
+        number: 17
+        status: "open"
+        title:
+          ja: "Linuxビルド時のLean sysrootリンク問題"
+          en: "Lean sysroot linking issue in Linux builds"
+        github_title: "`lake build` fails on Linux: `-L<system libdir>` from `postgresLinkArgs` overrides the Lean sysroot"
+      - type: "issue"
+        number: 18
+        status: "open"
+        title:
+          ja: "Linux実行時にlibcrypto_shim.soが見つからない"
+          en: "Missing libcrypto_shim.so at runtime on Linux"
+        github_title: "On Linux, executables cannot find `libcrypto_shim.so` at run time"
+      - type: "pr"
+        number: 5
+        status: "open"
+        title:
+          ja: "READMEのバージョンバッジ更新"
+          en: "Update the README version badge"
+        github_title: "docs(readme): update version badge to v0.1.1"
+      - type: "pr"
+        number: 7
+        status: "open"
+        title:
+          ja: "Cedar互換スキーマ解析のCRコメント終了処理を修正"
+          en: "End line comments at CR for Cedar compatibility"
+        github_title: "fix(schema): end line comments at CR as Cedar does"
+      - type: "pr"
+        number: 9
+        status: "open"
+        title:
+          ja: "libpqスモークテストの16進デコードを修正"
+          en: "Fix hex decoding in the libpq smoke test"
+        github_title: "fix(test): decode the hex for nyxis in the libpq smoke check"
+      - type: "pr"
+        number: 11
+        status: "open"
+        title:
+          ja: "JWT依存チェックを現行HTTP APIに対応"
+          en: "Update the JWT dependency check to the current HTTP API"
+        github_title: "fix(scripts): update the JWT dependency check server to the current HTTP API"
+      - type: "pr"
+        number: 13
+        status: "open"
+        title:
+          ja: "Bulletin Boardのコメント修正で検証の誤検出に対処"
+          en: "Fix Bulletin Board comments that trigger false positives"
+        github_title: "fix(examples): keep forbidden words out of the bulletin-board module comment"
+      - type: "pr"
+        number: 15
+        status: "open"
+        title:
+          ja: "宣言チェック用テストデータを現行Startup APIに対応"
+          en: "Update declaration-check fixtures to the current Startup API"
+        github_title: "fix(scripts): update the approved declaration check fixtures to the current startup API"
+      - type: "pr"
+        number: 19
+        status: "open"
+        title:
+          ja: "Linuxのlibpqリンク処理を修正しLean sysrootを維持"
+          en: "Fix libpq linking on Linux while preserving the Lean sysroot"
+        github_title: "fix(build): link libpq on Linux without overriding the Lean sysroot"
+    stars: 203
+  - name: "Spinel"
+    repo: "matz/spinel"
+    links:
+      - label: "GitHub"
+        url: "https://github.com/matz/spinel"
+    summary:
+      ja: "spinel diffの再実行時に発生するクラッシュ・タイムアウトを正しく報告する修正を提案。"
+      en: "Proposed a fix to correctly report crashes and timeouts during confirmation runs of spinel diff."
+    items:
+      - type: "pr"
+        number: 10285
+        status: "open"
+        title:
+          ja: "差分テストのクラッシュ・タイムアウト判定を改善"
+          en: "spinel diff reports a confirmation run's crash or timeout"
+        github_title: "spinel diff reports a confirmation run's crash or timeout"
+    stars: 2281
+  - name: "MTEB"
+    repo: "embeddings-benchmark/mteb"
+    links:
+      - label: "GitHub"
+        url: "https://github.com/embeddings-benchmark/mteb"
+    summary:
+      ja: "評価結果の提出ドキュメントを改善し、再現性に関わる技術要件を明確化するPRを提出。"
+      en: "Submitted documentation improvements clarifying technical requirements for reproducible evaluation result submissions."
+    items:
+      - type: "pr"
+        number: 5735
+        status: "open"
+        title:
+          ja: "評価結果の提出要件と再現性要件を明確化"
+          en: "docs: clarify result submission requirements"
+        github_title: "docs: clarify result submission requirements"
+    stars: 3476
+  - name: "sentence-transformers"
+    repo: "huggingface/sentence-transformers"
+    links:
+      - label: "GitHub"
+        url: "https://github.com/huggingface/sentence-transformers"
+    summary:
+      ja: "ドキュメントの参照先固定、埋め込み出力用Evaluator、Routerの経路の単体エクスポートを提案。"
+      en: "Proposed pinned documentation source links, an embedding export evaluator, and standalone export of Router routes."
+    items:
+      - type: "pr"
+        number: 4280
+        status: "open"
+        title:
+          ja: "ドキュメントのソースリンクをビルド時のコミットに固定"
+          en: "[fix] Pin documentation source links to the build commit"
+        github_title: "[fix] Pin documentation source links to the build commit"
+      - type: "pr"
+        number: 4281
+        status: "open"
+        title:
+          ja: "文埋め込みを出力するEvaluatorを追加"
+          en: "[feat] Add an evaluator for exporting sentence embeddings"
+        github_title: "[feat] Add an evaluator for exporting sentence embeddings"
+      - type: "pr"
+        number: 4282
+        status: "open"
+        title:
+          ja: "Routerの経路を単体のSentenceTransformerとして出力"
+          en: "[feat] Export a Router route as a standalone SentenceTransformer"
+        github_title: "[feat] Export a Router route as a standalone SentenceTransformer"
+    stars: 19226
