@@ -45,12 +45,6 @@
   line-height: 1.5;
   white-space: nowrap;
 
-  &--merged {
-    border-color: var(--text);
-    background: var(--text);
-    color: var(--page-bg);
-  }
-
   &--closed {
     background: var(--tag-bg);
   }
