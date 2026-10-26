@@ -1,4 +1,6 @@
 ja:
+  collapse_section: 閉じる
+  expand_section: 開く
   oss:
     title: OSSへの貢献
     details: Issue・PRの詳細
@@ -34,6 +36,8 @@ ja:
       achievements: 実績
       misc: その他
 en:
+  collapse_section: Collapse
+  expand_section: Expand
   oss:
     title: Open source contributions
     details: Issue and pull request details

@@ -764,6 +764,9 @@
     }
     var section = document.getElementById(link.hash);
     if (!section) return;
+    var container = section.closest("[data-collapsible-section]");
+    var sectionToggle = container && container.querySelector("[data-section-toggle]");
+    if (sectionToggle && sectionToggle.getAttribute("aria-expanded") === "false") sectionToggle.click();
     scrollToSection(section);
     if (history.replaceState) history.replaceState(null, "", "#" + link.hash);
   }

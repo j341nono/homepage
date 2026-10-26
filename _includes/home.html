@@ -75,10 +75,16 @@
 {%- assign asset_version = site.time | date: "%s" %}
 <script defer src="{{ '/assets/js/language-globe.js' | relative_url }}?v={{ asset_version }}"></script>
 
-<h2 class="portfolio-section-title" id="research">{{ ui.research | escape }}</h2>
+<section data-collapsible-section aria-labelledby="research">
+{% include section-heading.html id='research' title=ui.research %}
+<div id="research-content">
 <p>{{ ui.keywords | escape }}{{ profile.research_keywords | join: ", " | escape }}</p>
+</div>
+</section>
 
-<h2 class="portfolio-section-title" id="publications">{{ publications.title | escape }}</h2>
+<section data-collapsible-section aria-labelledby="publications">
+{% include section-heading.html id='publications' title=publications.title %}
+<div id="publications-content">
 {%- for group in publications.groups %}
 <h3 class="portfolio-subsection-title">{{ group.title | escape }}</h3>
 <ul class="portfolio-list">
@@ -96,9 +102,15 @@
   {%- endfor %}
 </ul>
 {%- endfor %}
+</div>
+</section>
 
 {%- for section in home_data.activities %}
-<h2 class="portfolio-section-title"{% if section.id %} id="{{ section.id }}"{% endif %}>{{ section.title | escape }}</h2>
+{% capture fallback_section_id %}activity-{{ forloop.index }}{% endcapture %}
+{% assign section_id = section.id | default: fallback_section_id %}
+<section data-collapsible-section aria-labelledby="{{ section_id | escape }}">
+{% include section-heading.html id=section_id title=section.title %}
+<div id="{{ section_id | escape }}-content">
 {%- if section.grouped %}
   {%- assign groups = section.items | group_by: 'category' %}
   {%- for group in groups %}
@@ -108,5 +120,7 @@
 {%- else %}
 {% include activity-list.html items=section.items %}
 {%- endif %}
+</div>
+</section>
 {% if section.id == 'hackathons' %}{% include oss.html %}{% endif %}
 {%- endfor %}

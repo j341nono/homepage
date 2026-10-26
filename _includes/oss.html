@@ -1,7 +1,9 @@
 {%- assign oss = site.data.oss -%}
-<section class="oss-section" aria-labelledby="oss">
-  <h2 class="portfolio-section-title" id="oss">{{ ui.oss.title | escape }}</h2>
+<section class="oss-section" data-collapsible-section aria-labelledby="oss">
+  {% include section-heading.html id='oss' title=ui.oss.title %}
+  <div id="oss-content">
   <ul class="portfolio-list">
     {% for project in oss.projects %}{% include oss-project.html project=project %}{% endfor %}
   </ul>
+  </div>
 </section>

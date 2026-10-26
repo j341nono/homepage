@@ -1,0 +1,10 @@
+<h2 class="portfolio-section-title portfolio-section-heading" id="{{ include.id | escape }}">
+  <span>{{ include.title | escape }}</span>
+  <button class="portfolio-section-toggle" type="button" data-section-toggle
+    data-section-title="{{ include.title | escape }}"
+    data-collapse-label="{{ ui.collapse_section | escape }}" data-expand-label="{{ ui.expand_section | escape }}"
+    aria-controls="{{ include.id | escape }}-content" aria-expanded="true"
+    aria-label="{{ include.title | escape }}: {{ ui.collapse_section | escape }}" title="{{ ui.collapse_section | escape }}" hidden>
+    <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path d="m4 10 4-4 4 4"/></svg>
+  </button>
+</h2>

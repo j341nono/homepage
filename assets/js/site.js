@@ -129,6 +129,51 @@
   setTheme(root.dataset.theme === "dark" ? "dark" : "light", false);
 
   // ==================================================
+  // Home のセクション開閉。JS がない場合は本文を表示し続ける。
+  // ==================================================
+  var collapsibleSections = [];
+  document.querySelectorAll("[data-section-toggle]").forEach(function (button) {
+    var content = document.getElementById(button.getAttribute("aria-controls"));
+    if (!content) return;
+
+    function setExpanded(expanded) {
+      var label = expanded ? button.dataset.collapseLabel : button.dataset.expandLabel;
+      content.hidden = !expanded;
+      button.setAttribute("aria-expanded", expanded ? "true" : "false");
+      button.setAttribute("aria-label", button.dataset.sectionTitle + ": " + label);
+      button.setAttribute("title", label);
+    }
+
+    button.addEventListener("click", function () {
+      setExpanded(button.getAttribute("aria-expanded") !== "true");
+    });
+    button.hidden = false;
+    collapsibleSections.push({
+      section: button.closest("[data-collapsible-section]"),
+      content: content,
+      setExpanded: setExpanded
+    });
+  });
+
+  // ページ内リンクで移動した先が閉じている場合は開く。
+  function revealHashSection() {
+    var id;
+    try { id = decodeURIComponent(window.location.hash.slice(1)); } catch (error) { return; }
+    var target = id && document.getElementById(id);
+    if (!target) return;
+    var revealed = false;
+    collapsibleSections.forEach(function (entry) {
+      if (entry.content.hidden && entry.section.contains(target)) {
+        entry.setExpanded(true);
+        revealed = true;
+      }
+    });
+    if (revealed) target.scrollIntoView({ block: "start" });
+  }
+  window.addEventListener("hashchange", revealHashSection);
+  revealHashSection();
+
+  // ==================================================
   // Products のカテゴリ絞り込み
   // ==================================================
   var filter = document.querySelector("[data-products-filter]");

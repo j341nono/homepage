@@ -29,6 +29,14 @@ bundle exec jekyll serve
 # Open http://localhost:4000/homepage/ and http://localhost:4000/homepage/en/
 ```
 
+## Collapsible Home sections
+
+Home sections start expanded. Their heading buttons hide or show each section
+independently, using `_includes/section-heading.html` and `assets/js/site.js`.
+Labels are translated in `_data/locales.yml`. Without JavaScript, all content
+stays visible and the buttons stay hidden. Hash links and Language Globe links
+reopen their destination section. Expansion state resets on page load.
+
 ## OSS contributions
 
 Both homepages render `_includes/oss.html` from the shared `_data/oss.yml`.
