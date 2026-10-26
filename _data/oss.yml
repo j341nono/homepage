@@ -1,4 +1,5 @@
-# GitHub API snapshot. Stars and item statuses are fixed at checked_at.
+# Fixed GitHub API snapshot. checked_at is the last full review date.
+# Individual item checked_at values record later targeted reviews.
 # Projects appear in data order.
 # type: issue/pr; status: open/merged/closed. Counts are derived from items.
 checked_at: "2026-10-27"
@@ -189,12 +190,14 @@ projects:
       - label: "GitHub"
         url: "https://github.com/huggingface/sentence-transformers"
     summary:
-      ja: "ドキュメントの参照先固定、埋め込み出力用Evaluator、Routerの経路の単体エクスポートを提案。"
-      en: "Proposed pinned documentation source links, an embedding export evaluator, and standalone export of Router routes."
+      ja: "ドキュメントのソースリンクをビルド時のコミットに固定する修正がマージ。埋め込み出力用EvaluatorとRouterの経路の単体エクスポートを提案。"
+      en: "A fix pinning documentation source links to the build commit was merged. Proposed an embedding export evaluator and standalone export of Router routes."
     items:
       - type: "pr"
         number: 4280
-        status: "open"
+        status: "merged"
+        checked_at: "2026-10-27"
+        merged_at: "2026-10-26T16:52:58Z"
         title:
           ja: "ドキュメントのソースリンクをビルド時のコミットに固定"
           en: "[fix] Pin documentation source links to the build commit"
@@ -202,6 +205,7 @@ projects:
       - type: "pr"
         number: 4281
         status: "open"
+        checked_at: "2026-10-27"
         title:
           ja: "文埋め込みを出力するEvaluatorを追加"
           en: "[feat] Add an evaluator for exporting sentence embeddings"
@@ -209,6 +213,7 @@ projects:
       - type: "pr"
         number: 4282
         status: "open"
+        checked_at: "2026-10-27"
         title:
           ja: "Routerの経路を単体のSentenceTransformerとして出力"
           en: "[feat] Export a Router route as a standalone SentenceTransformer"

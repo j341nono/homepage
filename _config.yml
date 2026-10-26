@@ -52,6 +52,7 @@ plugins:
 #
 exclude:
   - README.md
+  - docs/
   - requirements-wordcloud.txt
   - scripts/
   - tests/

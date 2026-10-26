@@ -53,8 +53,12 @@ disclosure list for their issues and PRs. Repository links use the shared
 `portfolio-links.html` include and each project’s `links` data.
 Only mark a PR `merged` after verifying its merge on GitHub; `closed` alone
 does not imply merged. Stars and statuses are a fixed GitHub API snapshot,
-not fetched during build or page load. Refresh them together with `checked_at`
-when updating the data. The initial snapshot was checked on 2026-10-27.
+not fetched during build or page load. The initial snapshot was checked on
+2026-10-27. Top-level `checked_at` records the last full review; individual
+items can have their own `checked_at` for targeted reviews. Dates remain
+internal metadata and are not displayed on the site.
+
+For future checks and updates, follow [OSS contribution review procedure](docs/oss-contributions.md).
 
 ## Language Globe
 
