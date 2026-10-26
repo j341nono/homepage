@@ -2,9 +2,37 @@
  "source": "_data/home/*.yml (TF-IDF, see scripts/generate_wordcloud.py)",
  "terms": [
   {
+   "term": "lt",
+   "score": 5.9755,
+   "scale": 1.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "lightning talk"
+    },
+    {
+     "lang": "ja",
+     "text": "ライトニングトーク"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "登壇",
+    "題目",
+    "検証",
+    "devfest"
+   ]
+  },
+  {
    "term": "kaigi",
    "score": 5.2551,
-   "scale": 1.0,
+   "scale": 0.8902,
    "category": "events",
    "section": "events",
    "link": {
@@ -42,7 +70,7 @@
   {
    "term": "分離",
    "score": 5.2551,
-   "scale": 1.0,
+   "scale": 0.8902,
    "category": "research",
    "section": "publications",
    "link": {
@@ -79,7 +107,7 @@
   {
    "term": "多言語文埋め込み",
    "score": 5.2551,
-   "scale": 1.0,
+   "scale": 0.8902,
    "category": "research",
    "section": "publications",
    "link": {
@@ -117,7 +145,7 @@
   {
    "term": "embeddings",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "research",
    "section": "publications",
    "link": {
@@ -160,7 +188,7 @@
   {
    "term": "hotate",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "research",
    "section": "publications",
    "link": {
@@ -187,7 +215,7 @@
   {
    "term": "language",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "research",
    "section": "publications",
    "link": {
@@ -225,37 +253,9 @@
    ]
   },
   {
-   "term": "lt",
-   "score": 4.2398,
-   "scale": 0.7943,
-   "category": "events",
-   "section": "events",
-   "link": {
-    "page": "home",
-    "hash": "events"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "lightning talk"
-    },
-    {
-     "lang": "ja",
-     "text": "ライトニングトーク"
-    }
-   ],
-   "concepts": [],
-   "related": [
-    "検証",
-    "devfest",
-    "etc",
-    "ghostty"
-   ]
-  },
-  {
    "term": "multilingual",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "research",
    "section": "publications",
    "link": {
@@ -295,7 +295,7 @@
   {
    "term": "rails",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "events",
    "section": "events",
    "link": {
@@ -317,7 +317,7 @@
   {
    "term": "ruby",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "events",
    "section": "events",
    "link": {
@@ -344,7 +344,7 @@
   {
    "term": "sentence",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "research",
    "section": "publications",
    "link": {
@@ -384,7 +384,7 @@
   {
    "term": "web",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "products",
    "section": "hackathons",
    "link": {
@@ -416,7 +416,7 @@
   {
    "term": "アンバサダー",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "events",
    "section": "events",
    "link": {
@@ -450,7 +450,7 @@
   {
    "term": "スカラシップ",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "events",
    "section": "events",
    "link": {
@@ -481,7 +481,7 @@
   {
    "term": "主催",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "events",
    "section": "events",
    "link": {
@@ -513,7 +513,7 @@
   {
    "term": "判定",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "products",
    "section": "hackathons",
    "link": {
@@ -545,7 +545,7 @@
   {
    "term": "大規模言語モデル",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "research",
    "section": "publications",
    "link": {
@@ -582,7 +582,7 @@
   {
    "term": "意味要素",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "research",
    "section": "publications",
    "link": {
@@ -616,7 +616,7 @@
   {
    "term": "検証",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "events",
    "section": "events",
    "link": {
@@ -639,16 +639,35 @@
    ],
    "concepts": [],
    "related": [
-    "kaigi",
     "lt",
+    "kaigi",
     "rails",
+    "登壇"
+   ]
+  },
+  {
+   "term": "登壇",
+   "score": 4.2398,
+   "scale": 0.7071,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "lt",
+    "題目",
+    "検証",
     "devfest"
    ]
   },
   {
    "term": "相談",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "products",
    "section": "hackathons",
    "link": {
@@ -679,7 +698,7 @@
   {
    "term": "解析",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "products",
    "section": "hackathons",
    "link": {
@@ -715,7 +734,7 @@
   {
    "term": "言語処理",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "products",
    "section": "hackathons",
    "link": {
@@ -750,7 +769,7 @@
   {
    "term": "言語要素",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "research",
    "section": "publications",
    "link": {
@@ -783,7 +802,7 @@
   {
    "term": "課題",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "products",
    "section": "hackathons",
    "link": {
@@ -815,7 +834,7 @@
   {
    "term": "週間",
    "score": 4.2398,
-   "scale": 0.7943,
+   "scale": 0.7071,
    "category": "internships",
    "section": "internships",
    "link": {
@@ -845,9 +864,28 @@
    ]
   },
   {
+   "term": "題目",
+   "score": 4.2398,
+   "scale": 0.7071,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "lt",
+    "登壇",
+    "検証",
+    "devfest"
+   ]
+  },
+  {
    "term": "ai",
    "score": 3.5533,
-   "scale": 0.6176,
+   "scale": 0.5498,
    "category": "products",
    "section": "hackathons",
    "link": {
@@ -887,7 +925,7 @@
   {
    "term": "hack",
    "score": 3.5533,
-   "scale": 0.6176,
+   "scale": 0.5498,
    "category": "products",
    "section": "hackathons",
    "link": {
@@ -908,7 +946,7 @@
   {
    "term": "検索",
    "score": 3.5533,
-   "scale": 0.6176,
+   "scale": 0.5498,
    "category": "products",
    "section": "hackathons",
    "link": {
@@ -944,7 +982,7 @@
   {
    "term": "総務省主催",
    "score": 3.5533,
-   "scale": 0.6176,
+   "scale": 0.5498,
    "category": "products",
    "section": "hackathons",
    "link": {
@@ -1207,8 +1245,8 @@
    "related": [
     "lt",
     "検証",
-    "etc",
-    "ghostty"
+    "登壇",
+    "題目"
    ]
   },
   {
@@ -1449,8 +1487,8 @@
    "related": [
     "lt",
     "検証",
-    "devfest",
-    "ghostty"
+    "登壇",
+    "題目"
    ]
   },
   {
@@ -1497,8 +1535,8 @@
    "related": [
     "lt",
     "検証",
-    "devfest",
-    "etc"
+    "登壇",
+    "題目"
    ]
   },
   {
@@ -1627,8 +1665,8 @@
    "related": [
     "lt",
     "検証",
-    "devfest",
-    "etc"
+    "登壇",
+    "題目"
    ]
   },
   {
@@ -1753,8 +1791,8 @@
    "related": [
     "lt",
     "検証",
-    "devfest",
-    "etc"
+    "登壇",
+    "題目"
    ]
   },
   {
@@ -2449,6 +2487,24 @@
    ]
   },
   {
+   "term": "アンバサ",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "events",
+   "section": "events",
+   "link": {
+    "page": "home",
+    "hash": "events"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "lt",
+    "登壇",
+    "題目"
+   ]
+  },
+  {
    "term": "カッコ",
    "score": 2.5041,
    "scale": 0.0,
@@ -2470,8 +2526,8 @@
    "related": [
     "lt",
     "検証",
-    "devfest",
-    "etc"
+    "登壇",
+    "題目"
    ]
   },
   {
@@ -2607,9 +2663,7 @@
    "concepts": [
     "連帯責任"
    ],
-   "related": [
-    "モバイルアプリ"
-   ]
+   "related": []
   },
   {
    "term": "ソニックガーデン",
@@ -2818,8 +2872,7 @@
    "concepts": [],
    "related": [
     "判定",
-    "解析",
-    "ユーザー"
+    "解析"
    ]
   },
   {
@@ -3066,92 +3119,6 @@
    ],
    "related": [
     "大規模言語モデル"
-   ]
-  },
-  {
-   "term": "モバイルアプリ",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "mobile app"
-    },
-    {
-     "lang": "zh",
-     "text": "移动应用"
-    },
-    {
-     "lang": "ko",
-     "text": "모바일 앱"
-    }
-   ],
-   "concepts": [],
-   "related": [
-    "スクワット負債"
-   ]
-  },
-  {
-   "term": "ヤフー",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "internships",
-   "section": "internships",
-   "link": {
-    "page": "home",
-    "hash": "internships"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "Yahoo"
-    }
-   ],
-   "concepts": [
-    "LINEヤフー"
-   ],
-   "related": [
-    "週間",
-    "ai",
-    "検索",
-    "engineer"
-   ]
-  },
-  {
-   "term": "ユーザー",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "user"
-    },
-    {
-     "lang": "zh",
-     "text": "用户"
-    },
-    {
-     "lang": "ko",
-     "text": "사용자"
-    }
-   ],
-   "concepts": [],
-   "related": [
-    "判定",
-    "解析",
-    "デスクトップ"
    ]
   }
  ]
