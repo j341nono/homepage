@@ -156,12 +156,14 @@ projects:
       - label: "GitHub"
         url: "https://github.com/matz/spinel"
     summary:
-      ja: "spinel diffの再実行時に発生するクラッシュ・タイムアウトを正しく報告する修正を提案。"
-      en: "Proposed a fix to correctly report crashes and timeouts during confirmation runs of spinel diff."
+      ja: "spinel diffの再実行時に発生するクラッシュ・タイムアウトを正しく報告する修正がマージ。"
+      en: "A fix to correctly report crashes and timeouts during confirmation runs of spinel diff was merged."
     items:
       - type: "pr"
         number: 10285
-        status: "open"
+        status: "merged"
+        checked_at: "2026-10-27"
+        merged_at: "2026-10-26T21:02:15Z"
         title:
           ja: "差分テストのクラッシュ・タイムアウト判定を改善"
           en: "spinel diff reports a confirmation run's crash or timeout"
