@@ -37,7 +37,8 @@ theme: minima
 minima:
   nav_pages:
     - index.html
-    - products.markdown
+    # Products は ASCII ページの下部に移したため、タブには出さない（/products/ 自体は残す）
+    # - products.markdown
     - ascii.html
 # theme: jekyll-theme-tactile
 plugins:

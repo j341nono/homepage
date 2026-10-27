@@ -21,8 +21,6 @@
 {%- endif -%}
 {%- assign home_page = site.pages | where: 'translation_key', 'home' | where: 'lang', language | first -%}
 {%- assign section_index = 0 -%}
-{%- comment -%} Products セクションは見た目を調整するまで非表示にする。true に戻すと表示される {%- endcomment -%}
-{%- assign show_products = false -%}
 
 <div class="ascii-page" data-ascii-page>
 
@@ -188,7 +186,6 @@
 {%- endif %}
 {%- endfor %}
 
-{%- if show_products %}
 {%- assign section_index = section_index | plus: 1 %}
 <section class="ascii-section" aria-labelledby="products">
   {% capture index %}{{ section_index | prepend: '0' | slice: -2, 2 }}{% endcapture %}
@@ -242,7 +239,6 @@
     {%- endfor %}
   </div>
 </section>
-{%- endif %}
 
 <footer class="ascii-exit">
   <p class="ascii-command" aria-hidden="true"><span class="ascii-user">nonomura@ehime</span><span class="ascii-dim">:</span><span class="ascii-path">~</span><span class="ascii-dim">$</span> <span data-ascii-type>exit</span></p>
