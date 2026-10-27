@@ -180,6 +180,15 @@
   gap: 0.75rem;
 }
 
+// JS が開閉を有効にした見出しは、全体をクリックできる
+.portfolio-section-heading.is-toggleable {
+  cursor: pointer;
+
+  &:hover .portfolio-section-toggle {
+    color: var(--text);
+  }
+}
+
 .portfolio-section-toggle {
   flex: 0 0 auto;
   align-items: center;

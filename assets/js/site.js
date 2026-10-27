@@ -148,6 +148,19 @@
       setExpanded(button.getAttribute("aria-expanded") !== "true");
     });
     button.hidden = false;
+
+    // 見出し全体をクリックしても開閉する。キーボード操作は従来どおりボタンで行い、
+    // 見出しの文字を選択しただけのときは開閉しない。
+    var heading = button.closest(".portfolio-section-heading");
+    if (heading) {
+      heading.classList.add("is-toggleable");
+      heading.addEventListener("click", function (event) {
+        if (event.target.closest("button, a")) return;
+        var selection = window.getSelection && window.getSelection();
+        if (selection && !selection.isCollapsed && heading.contains(selection.anchorNode)) return;
+        button.click();
+      });
+    }
     collapsibleSections.push({
       section: button.closest("[data-collapsible-section]"),
       content: content,

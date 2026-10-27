@@ -1,5 +1,7 @@
 {%- comment -%} 各リンク内は折り返さず、リンク間で自然に改行する。 {%- endcomment -%}
 {%- for link in include.links -%}
 {%- unless forloop.first %}{{ " " }}{% endunless -%}
-<span class="portfolio-link-item">[{% include portfolio-link.html link=link %}]</span>
+{%- comment -%} include の末尾の改行が「]」の前の空白にならないよう、strip してから括弧で囲む {%- endcomment -%}
+{%- capture link_html -%}{% include portfolio-link.html link=link %}{%- endcapture -%}
+<span class="portfolio-link-item">[{{ link_html | strip }}]</span>
 {%- endfor -%}
