@@ -198,7 +198,10 @@
     }
 
     // 語は Fibonacci sphere 上に並べる（Language Globe と同じ考え方）
-    var terms = (payload.terms || []).map(function (item, index, list) {
+    // 移動先のセクションがページに無い語（非表示のセクションなど）は浮かべない
+    var terms = (payload.terms || []).filter(function (item) {
+      return item.link && document.getElementById(item.link.hash);
+    }).map(function (item, index, list) {
       var y = 1 - (2 * (index + 0.5)) / list.length;
       var radius = Math.sqrt(1 - y * y);
       var theta = index * Math.PI * (3 - Math.sqrt(5));
