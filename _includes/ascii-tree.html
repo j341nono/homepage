@@ -1,0 +1,23 @@
+{%- comment -%} ASCII モードの活動一覧。`tree` コマンドの出力のように枝で項目をつなぐ {%- endcomment -%}
+<ul class="ascii-tree">
+  {%- for item in include.items %}
+  <li>
+    <span class="ascii-item-title">{{ item.title | escape }}</span>
+    {%- if item.role or item.period %}
+    <span class="ascii-meta">{% if item.role %}{{ item.role | escape }} · {% endif %}{{ item.period | escape }}</span>
+    {%- endif %}
+    {%- if item.description %}
+    <span class="ascii-desc">{{ item.description | escape }}</span>
+    {%- endif %}
+    {%- if item.award %}
+    <span class="ascii-award">★ {{ item.award | escape }}</span>
+    {%- endif %}
+    {%- if item.stats %}
+    <span class="ascii-stats">{% for stat in item.stats %}<span>‹{{ stat | escape }}›</span>{% endfor %}</span>
+    {%- endif %}
+    {%- if item.links %}
+    <span class="ascii-links">{% include portfolio-links.html links=item.links %}</span>
+    {%- endif %}
+  </li>
+  {%- endfor %}
+</ul>

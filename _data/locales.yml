@@ -35,6 +35,19 @@ ja:
       internships: インターン
       achievements: 実績
       misc: その他
+  ascii:
+    boot:
+      - mounting embedding space
+      - loading publications
+      - indexing products
+      - calibrating language globe
+    tagline: 自然言語処理 / 埋め込み表現
+    globe_label: ASCII で描いた地球儀。ドラッグで回転できます。表面の語（TF-IDF）を選ぶと該当セクションへ移動します。
+    globe_hint: DRAG TO ROTATE · CLICK A TERM
+    location: EHIME UNIV.
+    portrait_alt: プロフィール写真を ASCII で描いたもの
+    exit: 通常モードへ戻る
+    end: 接続を終了しました
 en:
   collapse_section: Collapse
   expand_section: Expand
@@ -72,3 +85,16 @@ en:
       internships: Internships
       achievements: Achievements
       misc: Other
+  ascii:
+    boot:
+      - mounting embedding space
+      - loading publications
+      - indexing products
+      - calibrating language globe
+    tagline: Natural Language Processing / Text Embeddings
+    globe_label: An ASCII globe. Drag to rotate it. Select a TF-IDF term on its surface to jump to the related section.
+    globe_hint: DRAG TO ROTATE · CLICK A TERM
+    location: EHIME UNIV.
+    portrait_alt: Profile photo rendered as ASCII art
+    exit: Back to the standard site
+    end: Connection closed

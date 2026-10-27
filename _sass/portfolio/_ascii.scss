@@ -1,0 +1,915 @@
+// ==================================================
+// ASCII モード（/ascii/）
+// ==================================================
+// main.css の上に重ねて読み込む。テーマ切り替えは使わず、常に暗い端末の配色にする。
+// 共通のヘッダーは、main.css の色トークンを上書きするだけで同じ配色に揃える。
+
+:root.ascii-mode,
+:root.ascii-mode[data-theme] {
+  color-scheme: dark;
+  --ascii-bg: #04060c;
+  --ascii-panel: rgba(9, 14, 25, 0.72);
+  --ascii-ink: #d3deef;
+  --ascii-muted: #8d9bb3;
+  --ascii-dim: #5c6a84;
+  --ascii-faint: #263048;
+  --ascii-green: #7cf5c8;
+  --ascii-cyan: #74c9ff;
+  --ascii-amber: #ffbf66;
+  --ascii-pink: #ff7cb9;
+  --ascii-line: rgba(124, 245, 200, 0.2);
+  --ascii-font: "JetBrains Mono", "M PLUS 1 Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --page-bg: rgba(4, 6, 12, 0.82);
+  --surface: var(--ascii-bg);
+  --text: var(--ascii-ink);
+  --muted: var(--ascii-muted);
+  --border: var(--ascii-faint);
+  --tag-bg: rgba(124, 245, 200, 0.08);
+  --link: var(--ascii-cyan);
+  --link-hover: var(--ascii-green);
+  --award: var(--ascii-amber);
+  --font-sans: var(--ascii-font);
+  --font-mono: var(--ascii-font);
+
+  background: var(--ascii-bg);
+}
+
+.ascii-body {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: transparent;
+  color: var(--ascii-ink);
+  font-family: var(--ascii-font);
+  font-size: 15px;
+  line-height: 1.75;
+  font-feature-settings: "calt" 0;
+
+  ::selection {
+    background: var(--ascii-green);
+    color: var(--ascii-bg);
+  }
+
+  a,
+  a:visited {
+    color: var(--ascii-cyan);
+    text-decoration: none;
+  }
+
+  a:hover {
+    background: var(--ascii-green);
+    color: var(--ascii-bg);
+    text-decoration: none;
+  }
+
+  :focus-visible {
+    outline: 1px dashed var(--ascii-green);
+    outline-offset: 3px;
+  }
+}
+
+.ascii-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+// 背景の星空と、走査線・周辺減光
+.ascii-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ascii-crt {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+// ==================================================
+// ヘッダー（共通の header.html を端末風に）
+// ==================================================
+.ascii-body .site-header {
+  position: relative;
+  z-index: 30;
+  border-bottom: 1px dashed var(--ascii-faint);
+  backdrop-filter: blur(8px);
+
+  .wrapper {
+    justify-content: space-between;
+    max-width: 1168px;
+
+    &::before {
+      content: "■ ~/kanade-nonomura";
+      color: var(--ascii-dim);
+      font-size: 0.8125rem;
+      white-space: nowrap;
+    }
+  }
+
+  .theme-toggle {
+    display: none;
+  }
+
+  .header-preferences {
+    border-left-style: dashed;
+  }
+}
+
+.ascii-body .site-nav {
+  .trigger {
+    gap: 6px;
+  }
+
+  .page-link,
+  .page-link:visited {
+    padding: 2px 6px;
+    color: var(--ascii-muted);
+    font-size: 0.875rem;
+
+    &::before {
+      content: "[ ";
+      color: var(--ascii-dim);
+    }
+
+    &::after {
+      content: " ]";
+      color: var(--ascii-dim);
+    }
+
+    &:hover {
+      background: transparent;
+      color: var(--ascii-green);
+    }
+  }
+
+  .page-link.is-current {
+    padding-bottom: 2px;
+    border-bottom: 0;
+    color: var(--ascii-green);
+    text-shadow: 0 0 10px rgba(124, 245, 200, 0.6);
+  }
+}
+
+.ascii-body .language-switch summary {
+  border-radius: 0;
+}
+
+.ascii-body .language-options {
+  border-radius: 0;
+  background: var(--ascii-bg);
+
+  a {
+    border-radius: 0;
+  }
+}
+
+// ==================================================
+// 本文
+// ==================================================
+.ascii-main {
+  position: relative;
+  z-index: 1;
+}
+
+.ascii-page {
+  max-width: 1168px;
+  margin: 0 auto;
+  padding: 40px 24px 96px;
+}
+
+.ascii-dim {
+  color: var(--ascii-dim);
+}
+
+// ---------- 冒頭 ----------
+.ascii-hero {
+  margin-bottom: 72px;
+}
+
+.ascii-boot {
+  margin: 0 0 28px;
+  padding: 0;
+  color: var(--ascii-muted);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  list-style: none;
+
+  li {
+    animation: ascii-type 0.45s steps(28, end) both;
+    animation-delay: calc(var(--i) * 0.22s);
+  }
+}
+
+.ascii-boot-dots::before {
+  content: "..............";
+  color: var(--ascii-faint);
+}
+
+.ascii-ok {
+  color: var(--ascii-green);
+}
+
+.ascii-title {
+  margin: 0 0 20px;
+  font-size: inherit;
+  font-weight: 400;
+}
+
+// ANSI Shadow 体のバナー。2 行目（74 桁）が画面幅に収まる大きさにする
+.ascii-banner {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  // Web フォントの JetBrains Mono には罫線・ブロック要素が含まれず、和文フォント（全角）で表示されてしまうため、OS の等幅フォントで描く
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "DejaVu Sans Mono", "Droid Sans Mono", monospace;
+  font-size: min(15px, calc((100vw - 48px) / 45));
+  line-height: 1.04;
+  white-space: pre;
+  background: linear-gradient(100deg, var(--ascii-green) 0%, var(--ascii-cyan) 55%, var(--ascii-pink) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgba(116, 201, 255, 0.35));
+  animation: ascii-flicker 6s infinite;
+
+  & + & {
+    margin-top: 0.6em;
+  }
+}
+
+.ascii-tagline {
+  margin: 0 0 40px;
+  color: var(--ascii-ink);
+  font-size: 0.9375rem;
+}
+
+.ascii-cursor::after {
+  content: "█";
+  margin-left: 0.25em;
+  color: var(--ascii-green);
+  animation: ascii-blink 1.1s steps(1) infinite;
+}
+
+// ---------- 地球儀 ----------
+.ascii-globe {
+  margin: 0;
+}
+
+.ascii-globe-stage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  max-height: 80vh;
+  margin: 0 auto;
+  border: 1px solid var(--ascii-faint);
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(116, 201, 255, 0.07), transparent 62%),
+    rgba(4, 6, 12, 0.55);
+
+  canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    touch-action: pan-y;
+
+    &.is-dragging {
+      cursor: grabbing;
+    }
+
+    &.is-pointing {
+      cursor: pointer;
+    }
+
+    &:focus-visible {
+      outline-offset: -4px;
+    }
+  }
+}
+
+.ascii-hud {
+  position: absolute;
+  inset: 0;
+  color: var(--ascii-dim);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+
+  > span {
+    position: absolute;
+  }
+}
+
+.ascii-hud-tl { top: 12px; left: 14px; }
+.ascii-hud-tr { top: 12px; right: 14px; text-align: right; }
+.ascii-hud-bl { bottom: 12px; left: 14px; }
+.ascii-hud-br { right: 14px; bottom: 12px; max-width: 50%; color: var(--ascii-green); text-align: right; }
+
+// ---------- セクション ----------
+.ascii-section {
+  margin: 0 0 88px;
+  scroll-margin-top: 24px;
+
+  &.is-armed {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  &.is-armed.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ascii-section-head {
+  margin-bottom: 28px;
+}
+
+.ascii-command {
+  margin: 0 0 6px;
+  color: var(--ascii-ink);
+  font-size: 0.8125rem;
+}
+
+.ascii-user {
+  color: var(--ascii-green);
+}
+
+.ascii-path {
+  color: var(--ascii-cyan);
+}
+
+[data-ascii-type].is-typing::after {
+  content: "▌";
+  color: var(--ascii-green);
+}
+
+.ascii-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75em;
+  margin: 0;
+  color: var(--ascii-ink);
+  font-size: clamp(1.25rem, 2.6vw, 1.625rem);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+
+  &::after {
+    content: "";
+    flex: 1 1 auto;
+    min-width: 2em;
+    border-bottom: 1px dashed var(--ascii-line);
+    transform: translateY(-0.3em);
+  }
+}
+
+.ascii-heading-index {
+  color: var(--ascii-green);
+  font-size: 0.75em;
+  text-shadow: 0 0 10px rgba(124, 245, 200, 0.5);
+
+  &::after {
+    content: " /";
+    color: var(--ascii-dim);
+  }
+}
+
+.ascii-subheading {
+  margin: 28px 0 14px;
+  color: var(--ascii-amber);
+  font-size: 0.9375rem;
+  font-weight: 400;
+}
+
+.ascii-item-title {
+  color: var(--ascii-ink);
+  font-weight: 700;
+}
+
+.ascii-meta {
+  color: var(--ascii-muted);
+  font-size: 0.8125rem;
+}
+
+.ascii-desc {
+  color: #b9c6da;
+}
+
+.ascii-award,
+.ascii-award a,
+.ascii-award a:visited {
+  color: var(--ascii-amber);
+}
+
+.ascii-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1em;
+  color: var(--ascii-green);
+  font-size: 0.8125rem;
+}
+
+.ascii-links {
+  margin: 0;
+  font-size: 0.8125rem;
+
+  .portfolio-link-icon {
+    display: none;
+  }
+
+  .portfolio-link-item {
+    margin-right: 0.5em;
+    color: var(--ascii-dim);
+  }
+}
+
+.ascii-lead {
+  margin: 0 0 24px;
+  color: var(--ascii-muted);
+}
+
+// ---------- whoami ----------
+.ascii-whoami {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.ascii-whoami-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ascii-facts {
+  margin: 0;
+
+  > div {
+    display: grid;
+    grid-template-columns: 9em minmax(0, 1fr);
+    gap: 1em;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--ascii-faint);
+  }
+
+  dt {
+    color: var(--ascii-cyan);
+
+    &::after {
+      content: " :";
+      color: var(--ascii-dim);
+    }
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.ascii-bio {
+  margin: 0;
+  padding-left: 1em;
+  border-left: 2px solid var(--ascii-green);
+  color: #b9c6da;
+}
+
+// ---------- 画像の ASCII 化（ポートレート・プロダクト） ----------
+[data-ascii-image] {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  // ASCII 化に成功したら、元画像はホバー時だけ重ねて見せる
+  &.is-ascii img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+  }
+
+  &.is-ascii:hover img {
+    transition: opacity 0.35s ease;
+  }
+}
+
+.ascii-portrait {
+  border: 1px solid var(--ascii-faint);
+
+  &::before,
+  &::after {
+    position: absolute;
+    z-index: 2;
+    color: var(--ascii-green);
+    font-size: 0.75rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  &::before {
+    content: "┌";
+    top: 4px;
+    left: 4px;
+  }
+
+  &::after {
+    content: "┘";
+    right: 4px;
+    bottom: 4px;
+  }
+
+  &.is-ascii:hover img {
+    opacity: 0.9;
+  }
+}
+
+// ---------- 研究分野 ----------
+.ascii-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 6px 14px;
+    border: 1px dashed var(--ascii-line);
+    color: var(--ascii-green);
+
+    &::before {
+      content: "#";
+      margin-right: 0.15em;
+      color: var(--ascii-dim);
+    }
+  }
+}
+
+// ---------- 研究業績 ----------
+.ascii-publications {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    display: grid;
+    grid-template-columns: 4.5ch minmax(0, 1fr);
+    gap: 0.75em;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--ascii-faint);
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2em;
+    }
+  }
+
+  u {
+    color: var(--ascii-green);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+}
+
+.ascii-index {
+  color: var(--ascii-amber);
+}
+
+.ascii-authors {
+  color: #b9c6da;
+  font-size: 0.875rem;
+}
+
+// ---------- tree（活動・OSS） ----------
+// 縦線と枝は CSS の罫線で描き、和文が折り返しても線が途切れないようにする
+.ascii-tree {
+  margin: 0;
+  padding: 0 0 0 0.5ch;
+  list-style: none;
+
+  > li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
+    padding: 0 0 1.4em 2.6em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      border-left: 1px solid var(--ascii-faint);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0.875em;
+      left: 0;
+      width: 1.9em;
+      border-top: 1px solid var(--ascii-faint);
+      transition: border-color 0.2s ease;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+
+      &::before {
+        bottom: auto;
+        height: 0.875em;
+      }
+    }
+
+    &:hover::after {
+      border-color: var(--ascii-green);
+    }
+
+    > .ascii-item-title::before {
+      content: "◆ ";
+      color: var(--ascii-green);
+      font-size: 0.7em;
+      vertical-align: 0.15em;
+    }
+  }
+}
+
+.ascii-stars {
+  margin-left: 0.5em;
+  color: var(--ascii-amber);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.ascii-oss-items {
+  margin: 6px 0 0;
+  padding: 0;
+  font-size: 0.8125rem;
+  list-style: none;
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.75em;
+    padding: 2px 0;
+  }
+}
+
+.ascii-status {
+  min-width: 8ch;
+  color: var(--ascii-dim);
+
+  &::before { content: "["; }
+  &::after { content: "]"; }
+}
+
+.ascii-status--merged { color: var(--ascii-green); }
+.ascii-status--open { color: var(--ascii-cyan); }
+
+// ---------- プロダクト ----------
+.ascii-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 24px;
+}
+
+.ascii-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 0 18px;
+  border: 1px solid var(--ascii-faint);
+  background: var(--ascii-panel);
+  scroll-margin-top: 24px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+  > :not(.ascii-card-bar):not(.ascii-card-thumb) {
+    margin-right: 18px;
+    margin-left: 18px;
+  }
+
+  &:hover,
+  &:focus-within,
+  &:target {
+    border-color: var(--ascii-line);
+    box-shadow: 0 0 0 1px rgba(124, 245, 200, 0.12), 0 0 32px rgba(124, 245, 200, 0.08);
+  }
+
+  .ascii-desc,
+  .ascii-meta,
+  .ascii-award {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 0.8125rem;
+  }
+}
+
+.ascii-card-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 12px;
+  border-bottom: 1px dashed var(--ascii-faint);
+  color: var(--ascii-dim);
+  font-size: 0.75rem;
+
+  span:first-child {
+    color: var(--ascii-amber);
+  }
+}
+
+.ascii-card-thumb {
+  aspect-ratio: 16 / 9;
+  border-bottom: 1px dashed var(--ascii-faint);
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ascii-card:hover &.is-ascii img {
+    opacity: 1;
+  }
+}
+
+.ascii-card-title {
+  margin-top: 4px;
+  margin-bottom: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.5;
+
+  a,
+  a:visited {
+    color: var(--ascii-ink);
+  }
+}
+
+.ascii-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  color: var(--ascii-green);
+  font-size: 0.75rem;
+  list-style: none;
+
+  li::before {
+    content: "#";
+    color: var(--ascii-dim);
+  }
+}
+
+// ---------- 終了 ----------
+.ascii-exit {
+  padding-top: 32px;
+  border-top: 1px dashed var(--ascii-faint);
+  font-size: 0.875rem;
+
+  p {
+    margin: 0 0 10px;
+  }
+}
+
+.ascii-button,
+.ascii-button:visited {
+  display: inline-block;
+  margin: 10px 0;
+  color: var(--ascii-green);
+}
+
+// ==================================================
+// アニメーション
+// ==================================================
+@keyframes ascii-type {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes ascii-blink {
+  50% { opacity: 0; }
+}
+
+@keyframes ascii-flicker {
+  0%, 92%, 100% { opacity: 1; }
+  93% { opacity: 0.82; }
+  94% { opacity: 1; }
+  96% { opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ascii-boot li,
+  .ascii-banner,
+  .ascii-cursor::after {
+    animation: none;
+  }
+
+  .ascii-section.is-armed {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+// ==================================================
+// スマートフォン
+// ==================================================
+@media screen and (max-width: 720px) {
+  .ascii-body {
+    font-size: 14px;
+  }
+
+  .ascii-body .site-header .wrapper::before {
+    content: none;
+  }
+
+  .ascii-body .site-nav .trigger {
+    gap: 0;
+  }
+
+  .ascii-body .site-nav .page-link,
+  .ascii-body .site-nav .page-link:visited {
+    padding: 2px 4px;
+    font-size: 0.8125rem;
+
+    &::before { content: "["; }
+    &::after { content: "]"; }
+  }
+
+  .ascii-body .header-preferences {
+    padding-left: 8px;
+  }
+
+  .ascii-body .language-switch summary span {
+    display: none;
+  }
+
+  .ascii-page {
+    padding: 28px 16px 72px;
+  }
+
+  .ascii-banner {
+    font-size: calc((100vw - 32px) / 45);
+  }
+
+  .ascii-globe-stage {
+    aspect-ratio: 1 / 1.05;
+  }
+
+  .ascii-hud {
+    font-size: 0.625rem;
+  }
+
+  .ascii-whoami {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .ascii-portrait {
+    max-width: 320px;
+  }
+
+  .ascii-facts > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .ascii-section {
+    margin-bottom: 64px;
+  }
+}

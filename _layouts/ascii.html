@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}" class="ascii-mode">
+
+  {%- include head.html -%}
+
+  <body class="ascii-body">
+    {%- comment -%} 背景の星空（ASCII）と、ブラウン管風の走査線。どちらも装飾なので読み上げない {%- endcomment %}
+    <canvas class="ascii-sky" data-ascii-sky aria-hidden="true"></canvas>
+    <div class="ascii-crt" aria-hidden="true"></div>
+
+    {%- include header.html -%}
+
+    <main class="ascii-main" aria-label="Content">
+      {{ content }}
+    </main>
+
+  </body>
+
+</html>

@@ -1,0 +1,250 @@
+{%- assign language = page.lang | default: site.lang -%}
+{%- assign ui = site.data.locales[language] -%}
+{%- assign aui = ui.ascii -%}
+{%- comment -%}
+  ASCII モード（裏モード）。Home・Products と同じ _data を、ターミナル風の 1 ページにまとめて表示する。
+  地球儀・星空・画像の ASCII 化は assets/js/ascii.js が担当し、JS が無い環境でも本文はそのまま読める。
+{%- endcomment -%}
+{%- assign home_data = site.data.home -%}
+{%- assign products = site.data.products -%}
+{%- if language == 'en' -%}
+  {%- assign home_data = site.data.en.home -%}
+  {%- assign products = site.data.en.products -%}
+{%- endif -%}
+{%- assign profile = home_data.profile -%}
+{%- assign publications = home_data.publications -%}
+{%- assign display_name = profile.name -%}
+{%- assign secondary_name = profile.name_en -%}
+{%- if language == 'en' -%}
+  {%- assign display_name = profile.name_en -%}
+  {%- assign secondary_name = profile.name -%}
+{%- endif -%}
+{%- assign home_page = site.pages | where: 'translation_key', 'home' | where: 'lang', language | first -%}
+{%- assign section_index = 0 -%}
+
+<div class="ascii-page" data-ascii-page>
+
+<section class="ascii-hero" aria-labelledby="ascii-title">
+  <ol class="ascii-boot" aria-hidden="true">
+    {%- for line in aui.boot %}
+    <li style="--i: {{ forloop.index0 }}"><span class="ascii-dim">[{{ forloop.index | prepend: '00' | slice: -2, 2 }}]</span> {{ line | escape }} <span class="ascii-boot-dots"></span> <span class="ascii-ok">OK</span></li>
+    {%- endfor %}
+  </ol>
+
+  <h1 class="ascii-title" id="ascii-title">
+    <span class="ascii-visually-hidden">{{ display_name | escape }}（{{ secondary_name | escape }}）</span>
+    <span class="ascii-banner" aria-hidden="true">██╗  ██╗ █████╗ ███╗   ██╗ █████╗ ██████╗ ███████╗
+██║ ██╔╝██╔══██╗████╗  ██║██╔══██╗██╔══██╗██╔════╝
+█████╔╝ ███████║██╔██╗ ██║███████║██║  ██║█████╗
+██╔═██╗ ██╔══██║██║╚██╗██║██╔══██║██║  ██║██╔══╝
+██║  ██╗██║  ██║██║ ╚████║██║  ██║██████╔╝███████╗
+╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝</span>
+    <span class="ascii-banner ascii-banner--second" aria-hidden="true">███╗   ██╗ ██████╗ ███╗   ██╗ ██████╗ ███╗   ███╗██╗   ██╗██████╗  █████╗
+████╗  ██║██╔═══██╗████╗  ██║██╔═══██╗████╗ ████║██║   ██║██╔══██╗██╔══██╗
+██╔██╗ ██║██║   ██║██╔██╗ ██║██║   ██║██╔████╔██║██║   ██║██████╔╝███████║
+██║╚██╗██║██║   ██║██║╚██╗██║██║   ██║██║╚██╔╝██║██║   ██║██╔══██╗██╔══██║
+██║ ╚████║╚██████╔╝██║ ╚████║╚██████╔╝██║ ╚═╝ ██║╚██████╔╝██║  ██║██║  ██║
+╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝</span>
+  </h1>
+
+  <p class="ascii-tagline"><span class="ascii-dim">&gt;</span> {{ display_name | escape }} <span class="ascii-dim">//</span> {{ aui.tagline | escape }}<span class="ascii-cursor" aria-hidden="true"></span></p>
+
+  {%- comment -%} TF-IDF の語（_data/language_globe.json）を地表に浮かべた ASCII の地球儀 {%- endcomment %}
+  <figure class="ascii-globe" data-ascii-globe hidden>
+    <div class="ascii-globe-stage">
+      <canvas tabindex="0" role="img" aria-label="{{ aui.globe_label | escape }}"></canvas>
+      <div class="ascii-hud" aria-hidden="true">
+        <span class="ascii-hud-tl">┌─ LANGUAGE.GLOBE<br>│  TF-IDF × {{ site.data.language_globe.terms.size }} TERMS</span>
+        <span class="ascii-hud-tr" data-ascii-hud-rotation>ROT 000.0°<br>TILT 00.0°</span>
+        <span class="ascii-hud-bl">│  {{ aui.location | escape }}<br>└─ 33.85°N 132.77°E</span>
+        <span class="ascii-hud-br" data-ascii-hud-term>{{ aui.globe_hint | escape }}</span>
+      </div>
+    </div>
+    <script type="application/json" data-ascii-globe-data>{"location":{{ aui.location | jsonify }},"terms":{{ site.data.language_globe.terms | slice: 0, 36 | jsonify | replace: "</", "<\/" }}}</script>
+  </figure>
+</section>
+
+{%- assign section_index = section_index | plus: 1 %}
+<section class="ascii-section" aria-labelledby="profile">
+  {% capture index %}{{ section_index | prepend: '0' | slice: -2, 2 }}{% endcapture %}
+  {% include ascii-command.html command='whoami' id='profile' index=index title='whoami' %}
+  <div class="ascii-whoami">
+    <figure class="ascii-portrait" data-ascii-image data-ascii-color="mono" data-ascii-columns="48">
+      <img src="{{ profile.photo.src | relative_url }}" alt="{{ display_name | escape }}" decoding="async">
+      <figcaption class="ascii-visually-hidden">{{ aui.portrait_alt | escape }}</figcaption>
+    </figure>
+    <div class="ascii-whoami-body">
+      <dl class="ascii-facts">
+        <div><dt>name</dt><dd>{{ display_name | escape }} <span class="ascii-dim">/ {{ secondary_name | escape }}</span></dd></div>
+        {%- for fact in profile.facts %}
+        <div><dt>{{ fact.label | escape }}</dt><dd>{% if fact.private %}<span class="no-select">{{ fact.value | escape }}</span>{% else %}{{ fact.value | escape }}{% endif %}</dd></div>
+        {%- endfor %}
+      </dl>
+      <p class="ascii-bio">{{ profile.bio | escape }}</p>
+      <p class="ascii-links">{% include portfolio-links.html links=profile.links %}</p>
+    </div>
+  </div>
+</section>
+
+{%- assign section_index = section_index | plus: 1 %}
+<section class="ascii-section" aria-labelledby="research">
+  {% capture index %}{{ section_index | prepend: '0' | slice: -2, 2 }}{% endcapture %}
+  {% include ascii-command.html command='cat research.txt' id='research' index=index title=ui.research %}
+  <ul class="ascii-keywords">
+    {%- for keyword in profile.research_keywords %}
+    <li>{{ keyword | escape }}</li>
+    {%- endfor %}
+  </ul>
+</section>
+
+{%- assign section_index = section_index | plus: 1 %}
+<section class="ascii-section" aria-labelledby="publications">
+  {% capture index %}{{ section_index | prepend: '0' | slice: -2, 2 }}{% endcapture %}
+  {% include ascii-command.html command='ls -l ./publications' id='publications' index=index title=publications.title %}
+  {%- assign publication_index = 0 %}
+  {%- for group in publications.groups %}
+  <h3 class="ascii-subheading"><span class="ascii-dim">//</span> {{ group.title | escape }}</h3>
+  <ol class="ascii-publications">
+    {%- for item in group.items %}
+    {%- assign publication_index = publication_index | plus: 1 %}
+    <li>
+      <span class="ascii-index" aria-hidden="true">[{{ publication_index | prepend: '0' | slice: -2, 2 }}]</span>
+      <div>
+        <span class="ascii-item-title">{{ item.title | escape }}</span>
+        <span class="ascii-authors">
+          {%- for author in item.authors -%}
+            {%- if profile.author_names contains author -%}<u>{{ author | escape }}</u>{%- else -%}{{ author | escape }}{%- endif -%}
+            {%- unless forloop.last %}, {% endunless -%}
+          {%- endfor -%}
+        </span>
+        <span class="ascii-meta">{{ item.venue | escape }}</span>
+        {%- if item.award %}
+        <span class="ascii-award">★ {{ item.award | escape }}</span>
+        {%- endif %}
+        {%- if item.stats %}
+        <span class="ascii-stats">{% for stat in item.stats %}<span>‹{{ stat | escape }}›</span>{% endfor %}</span>
+        {%- endif %}
+        {%- if item.links %}
+        <span class="ascii-links">{% include portfolio-links.html links=item.links %}</span>
+        {%- endif %}
+      </div>
+    </li>
+    {%- endfor %}
+  </ol>
+  {%- endfor %}
+</section>
+
+{%- for section in home_data.activities %}
+{%- capture fallback_section_id %}activity-{{ forloop.index }}{% endcapture %}
+{%- assign section_id = section.id | default: fallback_section_id %}
+{%- assign section_index = section_index | plus: 1 %}
+<section class="ascii-section" aria-labelledby="{{ section_id | escape }}">
+  {% capture index %}{{ section_index | prepend: '0' | slice: -2, 2 }}{% endcapture %}
+  {% capture command %}tree ./{{ section_id }}{% endcapture %}
+  {% include ascii-command.html command=command id=section_id index=index title=section.title %}
+  {%- if section.grouped %}
+    {%- assign groups = section.items | group_by: 'category' %}
+    {%- for group in groups %}
+  <h3 class="ascii-subheading"><span class="ascii-dim">//</span> {{ group.name | escape }}</h3>
+  {% include ascii-tree.html items=group.items %}
+    {%- endfor %}
+  {%- else %}
+  {% include ascii-tree.html items=section.items %}
+  {%- endif %}
+</section>
+
+{%- if section.id == 'hackathons' %}
+{%- assign section_index = section_index | plus: 1 %}
+<section class="ascii-section" aria-labelledby="oss">
+  {% capture index %}{{ section_index | prepend: '0' | slice: -2, 2 }}{% endcapture %}
+  {% include ascii-command.html command='git log --author=j341nono' id='oss' index=index title=ui.oss.title %}
+  <ul class="ascii-tree ascii-oss">
+    {%- for project in site.data.oss.projects %}
+    <li>
+      <span class="ascii-item-title">{{ project.name | escape }}{% if project.stars %} <span class="ascii-stars" aria-label="{{ project.stars }} GitHub stars">☆ {{ project.stars }}</span>{% endif %}</span>
+      <span class="ascii-meta">{{ project.repo | escape }}</span>
+      <span class="ascii-desc">{{ project.summary[language] | escape }}</span>
+      <ul class="ascii-oss-items">
+        {%- for item in project.items %}
+        {%- assign kind = 'issues' -%}
+        {%- assign label = 'Issue' -%}
+        {%- if item.type == 'pr' -%}
+          {%- assign kind = 'pull' -%}
+          {%- assign label = 'PR' -%}
+        {%- endif %}
+        <li>
+          <span class="ascii-status ascii-status--{{ item.status | escape }}">{{ item.status | upcase | escape }}</span>
+          <a href="https://github.com/{{ project.repo | escape }}/{{ kind }}/{{ item.number }}" title="{{ item.github_title | escape }}">{{ label }} #{{ item.number }}</a>
+          <span>{{ item.title[language] | escape }}</span>
+        </li>
+        {%- endfor %}
+      </ul>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}
+{%- endfor %}
+
+{%- assign section_index = section_index | plus: 1 %}
+<section class="ascii-section" aria-labelledby="products">
+  {% capture index %}{{ section_index | prepend: '0' | slice: -2, 2 }}{% endcapture %}
+  {% include ascii-command.html command='ls ~/products' id='products' index=index title='Products' %}
+  <p class="ascii-lead">{{ ui.products_lead | escape }} <span class="ascii-dim">— {{ products.size }} items</span></p>
+  <div class="ascii-products">
+    {%- for product in products %}
+    {%- assign primary_link = product.links | first -%}
+    {%- assign primary_labels = 'ProtoPedia|デモ|Demo|Chrome Web Store|Store|GitHub' | split: '|' -%}
+    {%- for label in primary_labels -%}
+      {%- assign candidate = product.links | where: 'label', label | first -%}
+      {%- if candidate -%}
+        {%- assign primary_link = candidate -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor %}
+    <article class="ascii-card" id="product-{{ forloop.index }}" aria-labelledby="product-{{ forloop.index }}-title">
+      <div class="ascii-card-bar" aria-hidden="true"><span>[{{ forloop.index | prepend: '0' | slice: -2, 2 }}]</span><span>{{ product.period | escape }}</span></div>
+      {%- if product.image %}
+      <figure class="ascii-card-thumb" data-ascii-image data-ascii-color="color" data-ascii-columns="72">
+        <img src="{{ product.image.src | relative_url }}" alt="{{ product.image.alt | escape }}" width="{{ product.image.width }}" height="{{ product.image.height }}" loading="lazy" decoding="async">
+      </figure>
+      {%- endif %}
+      <h3 class="ascii-card-title" id="product-{{ forloop.index }}-title">{% if primary_link %}<a href="{{ primary_link.url | escape }}">{{ product.title | escape }}</a>{% else %}{{ product.title | escape }}{% endif %}</h3>
+      {%- if product.description %}
+      <p class="ascii-desc">{{ product.description | escape }}</p>
+      {%- endif %}
+      {%- if product.event or product.role %}
+      <p class="ascii-meta">
+        {%- if product.event -%}
+          {%- if product.event.url -%}<a href="{{ product.event.url | escape }}">{{ product.event.name | escape }}</a>{%- else -%}{{ product.event.name | default: product.event | escape }}{%- endif -%}
+        {%- endif -%}
+        {%- if product.event and product.role %} · {% endif -%}
+        {%- if product.role %}{{ product.role | escape }}{% endif -%}
+      </p>
+      {%- endif %}
+      {%- for achievement in product.achievements %}
+      <p class="ascii-award">★ {% if achievement.url %}<a href="{{ achievement.url | escape }}">{{ achievement.label | escape }}</a>{% else %}{{ achievement.label | default: achievement | escape }}{% endif %}</p>
+      {%- endfor %}
+      {%- if product.tags %}
+      <ul class="ascii-tags" aria-label="{{ ui.technologies | escape }}">
+        {%- for tag in product.tags %}
+        <li>{{ tag | escape }}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      {%- if product.links %}
+      <p class="ascii-links">{% include portfolio-links.html links=product.links %}</p>
+      {%- endif %}
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+
+<footer class="ascii-exit">
+  <p class="ascii-command" aria-hidden="true"><span class="ascii-user">nonomura@ehime</span><span class="ascii-dim">:</span><span class="ascii-path">~</span><span class="ascii-dim">$</span> <span data-ascii-type>exit</span></p>
+  <p class="ascii-dim">logout · {{ aui.end | escape }}.</p>
+  <p><a class="ascii-button" href="{{ home_page.url | relative_url }}">[ {{ aui.exit | escape }} ]</a></p>
+  <p class="ascii-dim">© {{ site.time | date: '%Y' }} Kanade Nonomura</p>
+</footer>
+
+</div>
