@@ -2,7 +2,7 @@
 # Individual item checked_at values record later targeted reviews.
 # Projects appear in data order.
 # type: issue/pr; status: open/merged/closed. Counts are derived from items.
-checked_at: "2026-10-27"
+checked_at: "2026-10-28"
 projects:
   - name: "DSPy"
     repo: "stanfordnlp/dspy"
@@ -16,6 +16,7 @@ projects:
       - type: "issue"
         number: 10245
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "GEPAの自動評価予算計算の不整合"
           en: "[Bug] GEPA auto_budget does not reflect the current reflective evaluation loop"
@@ -23,11 +24,12 @@ projects:
       - type: "pr"
         number: 10246
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "評価フローに合わせたGEPAの予算計算修正"
           en: "fix(gepa): align GEPA auto budget with evaluation costs"
         github_title: "fix(gepa): align GEPA auto budget with evaluation costs"
-    stars: 38802
+    stars: 38830
   - name: "Nyxis"
     repo: "NyxFoundation/nyxis"
     links:
@@ -40,6 +42,7 @@ projects:
       - type: "issue"
         number: 4
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "READMEのバージョン表記が古い"
           en: "Outdated version badge in the README"
@@ -47,6 +50,7 @@ projects:
       - type: "issue"
         number: 6
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "Cedarスキーマ解析でCR改行処理の不整合"
           en: "Inconsistent CR line endings in Cedar schema parsing"
@@ -54,6 +58,7 @@ projects:
       - type: "issue"
         number: 8
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "PostgreSQL依存テストの16進デコード不具合"
           en: "Incorrect hex decoding in the PostgreSQL dependency test"
@@ -61,6 +66,7 @@ projects:
       - type: "issue"
         number: 10
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "JWT依存テストが旧HTTP APIを使用"
           en: "JWT dependency test uses the old HTTP API"
@@ -68,6 +74,7 @@ projects:
       - type: "issue"
         number: 12
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "Handler Effects検証スクリプトの誤検出"
           en: "False positives in the Handler Effects check"
@@ -75,6 +82,7 @@ projects:
       - type: "issue"
         number: 14
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "宣言チェックのテストデータが旧仕様"
           en: "Outdated declaration-check fixtures"
@@ -82,6 +90,7 @@ projects:
       - type: "issue"
         number: 16
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "Cedar非対応のブロックコメントを許容"
           en: "Parser accepts block comments unsupported by Cedar"
@@ -89,6 +98,7 @@ projects:
       - type: "issue"
         number: 17
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "Linuxビルド時のLean sysrootリンク問題"
           en: "Lean sysroot linking issue in Linux builds"
@@ -96,6 +106,7 @@ projects:
       - type: "issue"
         number: 18
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "Linux実行時にlibcrypto_shim.soが見つからない"
           en: "Missing libcrypto_shim.so at runtime on Linux"
@@ -103,6 +114,7 @@ projects:
       - type: "pr"
         number: 5
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "READMEのバージョンバッジ更新"
           en: "Update the README version badge"
@@ -110,6 +122,7 @@ projects:
       - type: "pr"
         number: 7
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "Cedar互換スキーマ解析のCRコメント終了処理を修正"
           en: "End line comments at CR for Cedar compatibility"
@@ -117,6 +130,7 @@ projects:
       - type: "pr"
         number: 9
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "libpqスモークテストの16進デコードを修正"
           en: "Fix hex decoding in the libpq smoke test"
@@ -124,6 +138,7 @@ projects:
       - type: "pr"
         number: 11
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "JWT依存チェックを現行HTTP APIに対応"
           en: "Update the JWT dependency check to the current HTTP API"
@@ -131,6 +146,7 @@ projects:
       - type: "pr"
         number: 13
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "Bulletin Boardのコメント修正で検証の誤検出に対処"
           en: "Fix Bulletin Board comments that trigger false positives"
@@ -138,6 +154,7 @@ projects:
       - type: "pr"
         number: 15
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "宣言チェック用テストデータを現行Startup APIに対応"
           en: "Update declaration-check fixtures to the current Startup API"
@@ -145,11 +162,12 @@ projects:
       - type: "pr"
         number: 19
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "Linuxのlibpqリンク処理を修正しLean sysrootを維持"
           en: "Fix libpq linking on Linux while preserving the Lean sysroot"
         github_title: "fix(build): link libpq on Linux without overriding the Lean sysroot"
-    stars: 203
+    stars: 306
   - name: "Spinel"
     repo: "matz/spinel"
     links:
@@ -162,13 +180,13 @@ projects:
       - type: "pr"
         number: 10285
         status: "merged"
-        checked_at: "2026-10-27"
+        checked_at: "2026-10-28"
         merged_at: "2026-10-26T21:02:15Z"
         title:
           ja: "差分テストのクラッシュ・タイムアウト判定を改善"
           en: "spinel diff reports a confirmation run's crash or timeout"
         github_title: "spinel diff reports a confirmation run's crash or timeout"
-    stars: 2281
+    stars: 2284
   - name: "MTEB"
     repo: "embeddings-benchmark/mteb"
     links:
@@ -181,24 +199,25 @@ projects:
       - type: "pr"
         number: 5735
         status: "open"
+        checked_at: "2026-10-28"
         title:
           ja: "評価結果の提出要件と再現性要件を明確化"
           en: "docs: clarify result submission requirements"
         github_title: "docs: clarify result submission requirements"
-    stars: 3476
+    stars: 3479
   - name: "sentence-transformers"
     repo: "huggingface/sentence-transformers"
     links:
       - label: "GitHub"
         url: "https://github.com/huggingface/sentence-transformers"
     summary:
-      ja: "ドキュメントのソースリンクをビルド時のコミットに固定する修正がマージ。埋め込み出力用EvaluatorとRouterの経路の単体エクスポートを提案。"
-      en: "A fix pinning documentation source links to the build commit was merged. Proposed an embedding export evaluator and standalone export of Router routes."
+      ja: "ドキュメントのソースリンクをビルド時のコミットに固定する修正がマージ。埋め込み出力用Evaluatorは提案中、Routerの経路の単体エクスポート案はクローズ。"
+      en: "A fix pinning documentation source links to the build commit was merged. An embedding export evaluator remains open; the standalone Router-route export proposal was closed."
     items:
       - type: "pr"
         number: 4280
         status: "merged"
-        checked_at: "2026-10-27"
+        checked_at: "2026-10-28"
         merged_at: "2026-10-26T16:52:58Z"
         title:
           ja: "ドキュメントのソースリンクをビルド時のコミットに固定"
@@ -207,17 +226,17 @@ projects:
       - type: "pr"
         number: 4281
         status: "open"
-        checked_at: "2026-10-27"
+        checked_at: "2026-10-28"
         title:
           ja: "文埋め込みを出力するEvaluatorを追加"
           en: "[feat] Add an evaluator for exporting sentence embeddings"
         github_title: "[feat] Add an evaluator for exporting sentence embeddings"
       - type: "pr"
         number: 4282
-        status: "open"
-        checked_at: "2026-10-27"
+        status: "closed"
+        checked_at: "2026-10-28"
         title:
           ja: "Routerの経路を単体のSentenceTransformerとして出力"
           en: "[feat] Export a Router route as a standalone SentenceTransformer"
         github_title: "[feat] Export a Router route as a standalone SentenceTransformer"
-    stars: 19226
+    stars: 19230
