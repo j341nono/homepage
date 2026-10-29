@@ -56,6 +56,7 @@ exclude:
   - README.md
   - docs/
   - requirements-wordcloud.txt
+  - requirements-oss.txt
   - scripts/
   - tests/
   - bak/

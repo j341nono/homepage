@@ -51,14 +51,26 @@ original GitHub title in `github_title` for link tooltips. Counts and GitHub
 links are derived from these items; projects with multiple items use a
 disclosure list for their issues and PRs. Repository links use the shared
 `portfolio-links.html` include and each project’s `links` data.
-Only mark a PR `merged` after verifying its merge on GitHub; `closed` alone
-does not imply merged. Stars and statuses are a fixed GitHub API snapshot,
-not fetched during build or page load. The initial snapshot was checked on
-2026-10-27. Top-level `checked_at` records the last full review; individual
-items can have their own `checked_at` for targeted reviews. Dates remain
-internal metadata and are not displayed on the site.
+The Pages workflow refreshes stars, statuses, original GitHub titles, merge
+timestamps, and check dates before **every** production build. It runs on pushes
+to `main`, manually, and at 03:17 UTC (12:17 JST) on odd-numbered days: usually
+48 hours apart, with a 24-hour gap from the 31st (or February 29th) to the
+next month's 1st.
+The updated YAML exists only in the runner; no OSS update commits are created.
+API or validation failures stop deployment and preserve the published site.
+The browser receives static HTML and makes no GitHub API calls.
 
-For future checks and updates, follow [OSS contribution review procedure](docs/oss-contributions.md).
+Translated summaries/titles, project order, links, and custom fields stay
+hand-edited. Write summaries without changing state claims; the existing
+localized badges show current status. New contributions still need manual
+registration. Tracked metadata is a fallback for offline local builds; dates
+remain internal and are not displayed on the site.
+
+Setup requires **Settings → Pages → Build and deployment → Source → GitHub
+Actions**, replacing the previous `main` branch publishing mode. Then run
+**Actions → Deploy Pages with fresh OSS metadata → Run workflow → main**.
+See [OSS maintenance and deployment](docs/oss-contributions.md) for tests,
+failure handling, and contribution registration.
 
 ## Language Globe
 

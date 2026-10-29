@@ -1,5 +1,5 @@
-# Fixed GitHub API snapshot. checked_at is the last full review date.
-# Individual item checked_at values record later targeted reviews.
+# Tracked values are a fallback snapshot for local builds.
+# Pages Actions refresh GitHub metadata in the runner only; see docs/oss-contributions.md.
 # Projects appear in data order.
 # type: issue/pr; status: open/merged/closed. Counts are derived from items.
 checked_at: "2026-10-28"
@@ -174,8 +174,8 @@ projects:
       - label: "GitHub"
         url: "https://github.com/matz/spinel"
     summary:
-      ja: "spinel diffの再実行時に発生するクラッシュ・タイムアウトを正しく報告する修正がマージ。"
-      en: "A fix to correctly report crashes and timeouts during confirmation runs of spinel diff was merged."
+      ja: "spinel diffの再実行時に発生するクラッシュ・タイムアウトを正しく報告する修正を提出。"
+      en: "Submitted a fix to correctly report crashes and timeouts during confirmation runs of spinel diff."
     items:
       - type: "pr"
         number: 10285
@@ -211,8 +211,8 @@ projects:
       - label: "GitHub"
         url: "https://github.com/huggingface/sentence-transformers"
     summary:
-      ja: "ドキュメントのソースリンクをビルド時のコミットに固定する修正がマージ。埋め込み出力用Evaluatorは提案中、Routerの経路の単体エクスポート案はクローズ。"
-      en: "A fix pinning documentation source links to the build commit was merged. An embedding export evaluator remains open; the standalone Router-route export proposal was closed."
+      ja: "ドキュメントのソースリンク固定、埋め込み出力用Evaluator、Routerの経路の単体エクスポートに関するPRを提出。"
+      en: "Submitted PRs for pinned documentation source links, an embedding export evaluator, and standalone Router-route export."
     items:
       - type: "pr"
         number: 4280

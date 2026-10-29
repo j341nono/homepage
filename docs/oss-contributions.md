@@ -1,123 +1,144 @@
-# OSS貢献の確認・更新手順
+# OSS貢献の自動更新と運用
 
-このポートフォリオのOSS情報を更新するときの手順。今後「PRがマージされたので更新して」「OSSの掲載内容を確認して」と依頼されたら、この文書に沿って確認する。
+## 調査結果と構成
 
-## 仕組みと対象ファイル
+2026-10-29の調査時、Pages APIの `build_type` は `legacy`、公開元は `main:/`。
+Actions履歴の `pages build and deployment` はGitHub管理の自動生成ワークフローで、
+リポジトリには編集可能なPagesワークフローがなかった。このため
+`.github/workflows/deploy-pages.yml` を追加し、公開元をGitHub Actionsへ切り替える。
 
-情報はGitHubで確認して `_data/oss.yml` に保存する固定データ。ページ閲覧時・Jekyllビルド時の自動取得や、定期同期は行っていない。更新を公開するには、データ変更後に通常のビルド・公開が必要。
+既存の `update-wordcloud.yml` は画像・Language Globeの生成とコミット用。
+OSS更新とは分離して維持する。この既存処理のコミットを含め、次の定期実行でも
+`main` の最新内容が公開される。`GITHUB_TOKEN` によるbotのpushは別のActionsを
+起動しないため、画像生成完了直後の公開までは保証しない。すぐ反映する場合は
+Pagesワークフローを手動実行する。
 
 | ファイル | 役割 |
 | --- | --- |
-| `_data/oss.yml` | リポジトリ、star数、日英の要約、個別Issue・PRの情報 |
-| `_includes/oss.html` | OSSセクション全体 |
-| `_includes/oss-project.html` | プロジェクトごとの表示・件数集計・詳細トグル |
-| `_includes/oss-item.html` | Issue・PRのURLとステータス表示 |
-| `_data/locales.yml` の `oss` | 日英のステータス文言 |
-| `_sass/portfolio/_oss.scss` | Open・Merged・Closedなどの見た目 |
+| `_data/oss.yml` | 共通データ。トップの `checked_at`、順序付き `projects`、各 `items` |
+| `_includes/oss.html` | 日英共通のOSSセクション |
+| `_includes/oss-project.html` | Stars・要約・件数・詳細トグル |
+| `_includes/oss-item.html` | Issue/PRリンク、GitHub原題のツールチップ、状態バッジ |
+| `_data/locales.yml` | 日英の状態ラベル |
+| `_sass/portfolio/_oss.scss` | 状態の見た目（変更なし） |
+| `scripts/update_oss.py` | GitHub REST APIで登録済み項目を取得・検証・更新 |
+| `requirements-oss.txt` | 既存スクリプトと同じPyYAMLバージョン |
+| `tests/test_update_oss.py` | 外部API不要のモック・YAML・ワークフローテスト |
+| `.github/workflows/deploy-pages.yml` | API取得 → Jekyllビルド → artifact → Pages |
 
-この `docs/` は管理用で、Jekyllの公開対象から除外している。
+Jekyllは既存のGemfile/Gemfile.lock（Jekyll 4.4系・minima・jekyll-feed）を使用し、
+`bundle exec jekyll build` で生成する。公開URLのサブパスは `configure-pages` の
+`base_path` をビルドに渡す。管理用の `scripts/`・`tests/`・`docs/`・依存ファイルは
+`_config.yml` で公開対象から除外。表示テンプレート・デザインは共通の既存実装を使用する。
 
-## 1. 確認範囲を決める
+## 初回導入
 
-- **特定のPR・Issueの更新**：依頼された項目を確認する。同じプロジェクトの要約に関係する項目も必要に応じて確認する。他のプロジェクトやstar数を一括更新する必要はない。
-- **掲載済み情報の全件確認**：`_data/oss.yml` にあるすべてのIssue・PRと、各リポジトリのstar数を確認する。
-- **新しい貢献の追加**：ユーザー `j341nono` の対象リポジトリへの貢献を探し、掲載候補の個別ページ・APIで内容と状態を確認してから追加する。
+1. 変更を `main` に取り込む。
+2. リポジトリの **Settings → Pages → Build and deployment → Source** を
+   **Deploy from a branch** から **GitHub Actions** に変更する。
+   従来方式の公開を停止し、Pagesの二重デプロイを避ける。設定変更とmain反映は
+   同じ導入作業内で行う。初回pushの実行が切替前に失敗した場合は次の手順で再実行する。
+3. **Actions → Deploy Pages with fresh OSS metadata → Run workflow** で
+   ブランチ **main** を選んで実行する。
+4. `build`・`deploy` の成功、Environment `github-pages` の公開URL、
+   `/homepage/` と `/homepage/en/` のStars・状態バッジを確認する。
 
-依頼されていない項目を推測で書き換えない。番号だけで照合せず、`repo`・`type`・`number` の組み合わせで識別する。
+追加Secret・PATは不要。標準の `GITHUB_TOKEN` を取得ステップだけに渡す。
+ビルドは `contents: read` と設定参照用の `pages: read`、デプロイは
+`pages: write` と `id-token: write` に限定する。`contents: write` は使わない。
+手動実行はmainのみ公開できる。Environmentに保護ルールがある場合はmainからの
+デプロイを許可する。公開元設定は管理者が変更する（ワークフローは自動変更しない）。
 
-## 2. GitHubの一次情報を確認する
+## 更新頻度・公開経路
 
-GitHubの個別ページ、またはREST APIの個別エンドポイントを使う。検索結果や手元のブランチ、PR本文の「修正した」という記述だけでマージ済みと判断しない。
+- `main` への通常push：パス制限なしで、必ずAPI取得後にビルドする。
+- `workflow_dispatch`：同じ取得・ビルド・デプロイ経路で手動更新する。
+- `schedule: 17 3 1-31/2 * *`：UTCの奇数日03:17、日本時間12:17。
+  通常48時間間隔。31日ある月の31日→翌月1日と、うるう年の2月29日→3月1日は24時間間隔。
+  30日ある月は29日→翌月1日が48時間、2月も28日なら27日→3月1日が48時間、
+  うるう年なら29日→3月1日が24時間となる。厳密な48時間タイマーではない。
+  GitHubの混雑による遅延・スキップや、公開リポジトリの長期無活動によるschedule無効化も
+  あり得るため、必要時はActions画面から有効化・手動実行する。
 
-GitHub CLIを使う場合の例（読み取りのみ）：
+すべて同じ `pages` concurrencyグループで直列化し、実行中のデプロイをキャンセルしない。
+OSS YAMLはcheckoutしたrunner内でのみ更新する。Gitへのコミットやpushは行わない。
+通常push時も取得を省略しないため、リポジトリに残る古いスナップショットがそのまま
+本番サイトに戻ることはない。ローカルの通常ビルドは保存済みの値を使い、APIを呼ばない。
 
-```sh
-# PR：投稿者、リポジトリ、番号、原題、状態、マージ日時、URL
-gh api repos/huggingface/sentence-transformers/pulls/4280 \
-  --jq '{repo: .base.repo.full_name, author: .user.login, number, title, state, merged, merged_at, html_url}'
+## 自動更新する情報
 
-# Issue：PRと取り違えていないかも確認する
-gh api repos/stanfordnlp/dspy/issues/10245 \
-  --jq '{author: .user.login, number, title, state, html_url, is_pull_request: has("pull_request")}'
-
-# star数：全件確認時やstar数更新を依頼されたときに取得する
-gh api repos/huggingface/sentence-transformers \
-  --jq '{full_name, stargazers_count}'
-```
-
-CLIが使えない場合は、次のURLをブラウザやHTTPクライアントで確認する。
-
-- PRページ：`https://github.com/{owner}/{repo}/pull/{number}`
-- Issueページ：`https://github.com/{owner}/{repo}/issues/{number}`
-- PR API：`https://api.github.com/repos/{owner}/{repo}/pulls/{number}`
-- Issue API：`https://api.github.com/repos/{owner}/{repo}/issues/{number}`
-- リポジトリAPI：`https://api.github.com/repos/{owner}/{repo}`
-
-APIの失敗・レート制限・404を、Closedや削除済みと読み替えない。確認できない項目は既存値を保持し、未確認として報告する。検索で候補を探す場合はページ送りも確認し、最終判定には個別APIか個別ページを使う。
-
-## 3. ステータスを判定する
-
-| 対象 | GitHubで確認できた状態 | YAMLの `status` |
+| 対象 | エンドポイント | 更新フィールド |
 | --- | --- | --- |
-| PR | `merged_at` が存在し、`merged` が `true` | `merged` |
-| PR | `merged_at` が `null`、`state` が `open` | `open` |
-| PR | `merged_at` が `null`、`state` が `closed` | `closed` |
-| Issue | `state` が `open` | `open` |
-| Issue | `state` が `closed` | `closed` |
+| プロジェクト | `GET /repos/{owner}/{repo}` | `stars` ← `stargazers_count` |
+| Issue | `GET /repos/{owner}/{repo}/issues/{number}` | `status`、`github_title`、`checked_at` |
+| PR | `GET /repos/{owner}/{repo}/pulls/{number}` | 上記に加え `merged_at` |
 
-**PRの `state: closed` だけではマージ済みと判定できない。** マージ済みPRもAPIでは `state: closed` になる。Issueには `merged` を設定しない。関連PRがマージされても、対応するIssueが閉じたとは推測しない。
+Issueは `state` に従って `open` / `closed`。PRは `merged_at != null` なら `merged`、
+それ以外は `state` の `open` / `closed`。`state: closed` だけでマージとは判定しない。
+マージ日時の形式・実在日とstateの整合性も検証する。マージされていないPRやIssueに
+以前の `merged_at` があれば削除する。関連Issueの状態はPRから推測せず個別取得する。
+Issue番号が実はPRだった場合、未知のstateや必須フィールド欠落も失敗として扱う。
 
-マージ済みでもリリース済みとは限らないため、リリースへの収録は別途確認できたときだけ記述する。
+全件成功したときだけトップレベルと各項目の `checked_at` を日本時間の
+`YYYY-MM-DD` 文字列に揃える。マージ日時はAPIのUTC文字列を保持する。
+確認日・マージ日時は管理用で、既存どおり画面には表示しない。
+GitHub原題は既存リンクのツールチップに反映される。
 
-## 4. データを更新する
+## 手動編集する情報
 
-対象項目の `status` と確認済みの情報を変更する。タイトルが変わっていれば `github_title` も更新し、日英の要約・タイトルと矛盾しないか確認する。要約は簡潔にし、提案中と採用済みを区別する。
+`summary.ja/en`、`title.ja/en`、プロジェクト名・repo・表示順・links、独自フィールドは
+自動処理で上書きしない。更新対象のフィールドだけを明示的に変更する。
+YAMLのコメント・引用符などの書式はrunner内の再シリアライズで変わり得るが、値を保持する。
 
-```yaml
-- type: "pr"
-  number: 4280
-  status: "merged"
-  checked_at: "2026-10-27"
-  merged_at: "2026-10-26T16:52:58Z"
-  title:
-    ja: "ドキュメントのソースリンクをビルド時のコミットに固定"
-    en: "[fix] Pin documentation source links to the build commit"
-  github_title: "[fix] Pin documentation source links to the build commit"
-```
+要約には「マージ済み」「提案中」「クローズ」など将来変わる状態を書かず、貢献内容を書く。
+導入時にSpinelとsentence-transformersの固定状態表現をこの方針へ修正した。
+現在の状態は日英共通テンプレートのバッジが常にデータから表示する。
+件数・リンク・折りたたみ・日英切替などの既存仕様は維持する。
 
-- `checked_at` は確認日を `YYYY-MM-DD` の文字列で保存する。このプロジェクトでは日本時間の日付を使う。
-- 特定項目だけを確認した場合は、その `items` 要素に `checked_at` を記録する。トップレベルの `checked_at` は更新しない。
-- 全項目とstar数を確認できた場合だけ、トップレベルの `checked_at` を更新する。項目ごとの確認日も併せて揃える。
-- `merged_at` はマージが確認できたPRに、APIのUTC日時をそのまま記録する。推測した日時を入れない。
-- 確認日は管理用データとして残す。画面上には表示しない。
-- Issue・PR件数は `items` から自動集計する。マージ後もPRの提出件数は減らさず、同じPRを重複追加しない。
-- 複数のIssue・PRはトグルにまとめる。ライブラリ名にはリンクを付けず、リポジトリへのリンクは共通の `[GitHub]` 表示を維持する。
-- プロジェクトの並び順やセクション位置は、更新依頼に含まれていなければ変更しない。
+新規Issue/PRは自動発見・追加しない。人が一次情報でリポジトリ・種類・番号・内容を確認し、
+`projects[].items` に `type: issue/pr`、`number`、日英の `title` を追加する。
+ローカル表示用の `status`、`github_title` も登録しておく。本番ではAPI値で置き換わる。
+リポジトリは `owner/repo`。番号だけで照合せず `repo`・`type`・`number` の組で識別する。
+マージはリリースへの収録を意味しないため、リリースに関する説明は別途確認する。
 
-## 5. ビルド・表示を確認する
+## 失敗時の挙動
+
+全APIの取得と検証、YAMLの再読込検証が成功してから同じディレクトリの一時ファイルを
+atomic replaceする。一件でも失敗すれば元のYAMLは変更しない。
+通信障害・タイムアウト・5xxは最大3回（待機1秒・2秒、各通信30秒）試す。
+403/429は認証・レート制限として即失敗し、404・その他のHTTPエラー・不正JSON・
+不正メタデータも失敗する。404をclosedとみなさない。
+リダイレクトは認証ヘッダーを転送せず失敗させるので、リポジトリ移転時は人がrepoを確認する。
+
+失敗は非ゼロ終了となり、ビルド・artifact upload・deployへ進まない。
+取得失敗時もビルド失敗時も、既存の公開サイトを維持する。
+ログにAPIレスポンス本文・トークン・認証ヘッダーは出さず、公開ファイルには必要な
+メタデータのみ保存する。失敗時はActionsログのHTTP種別を確認し、アクセス・登録番号・
+GitHubの障害状況などを解決してから `Run workflow` で再実行する。
+
+## 検証
 
 ```sh
-bundle exec jekyll build
+python3 -m venv /tmp/homepage-tests
+/tmp/homepage-tests/bin/pip install -r requirements-wordcloud.txt
+bundle install
+# 既存テストを含む全テスト（OSSテストは外部APIを使わない）
+# Ruby/Bundler導入後は日英HTMLの統合ビルドテストも有効化できる
+OSS_TEST_JEKYLL=1 /tmp/homepage-tests/bin/python -m unittest discover -s tests -v
+# OSSだけなら requirements-oss.txt のインストールで十分
+/tmp/homepage-tests/bin/python -m unittest discover -s tests -p 'test_update_oss.py' -v
+JEKYLL_ENV=production bundle exec jekyll build
 git diff --check
-bundle exec jekyll serve
 ```
 
-日本語 `http://localhost:4000/homepage/` と英語 `http://localhost:4000/homepage/en/` を確認する。サーバーを別のポートで起動している場合は読み替える。
+Stars、Issueのopen/closed、PRのopen/closed/merged、マージ日時の整合性と削除、
+日英の手動フィールド・独自フィールド・順序の保持、全登録項目の取得、
+404・レート制限・通信障害・不正JSON・不正YAML、失敗時の原本保持、
+YAML round-trip、再実行の安定性、秘密値のログ抑止をモックで検証する。
+push・schedule・手動の共通経路、API取得→ビルド→uploadの順序、成功時だけのdeploy、
+最小権限・同時実行制御もワークフローの契約テストで確認する。
+GitHub上の実際のイベント起動・権限・公開は初回手動実行で確認する。
 
-1. OSSセクションと対象プロジェクトの詳細トグルを開く。
-2. 状態表示が確認結果と一致することを確認する。マージ済みPRなら `Merged / マージ済み`（英語は `Merged`）となり、Open項目と区別できることを確認する。
-3. 対象リンクのリポジトリ・`issues` / `pull`・番号が正しく、別項目の状態を変えていないことを確認する。
-4. 日英の要約、件数、スマホ表示、ダークモードを確認する。
-5. 最終差分を確認する。確認日の画面表示を復活させない。
-
-## 6. 更新結果を報告する
-
-変更した項目・ステータス、確認元のGitHubリンク、変更したファイル、実施したビルド・表示確認を簡潔に報告する。確認範囲と、未確認の項目があれば明記する。自動同期や公開まで完了したとは、実施していなければ書かない。
-
-依頼例：
-
-> docs/oss-contributions.md に従って、掲載済みのOSS貢献のステータスとstar数を全件確認し、更新してください。
-
-## 確認例：Sentence-Transformers #4280
-
-2026-10-27に、[PR #4280](https://github.com/huggingface/sentence-transformers/pull/4280) の個別APIで `merged: true`、`merged_at: 2026-10-26T16:52:58Z` を確認し、`open` から `merged` に変更した。同じリポジトリの #4281・#4282 は個別APIでOpenを確認。今回はこの3件の確認で、他プロジェクトやstar数の再取得は行っていない。
+参考：[GitHub Pagesのカスタムワークフロー](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)、
+[scheduleイベント](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)、
+[PR API](https://docs.github.com/en/rest/pulls/pulls#get-a-pull-request)。
