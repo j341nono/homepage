@@ -1,5 +1,10 @@
-{%- comment -%} ASCII モードのセクション見出し。プロンプト行（コマンド）と、番号付きの見出しを並べる {%- endcomment -%}
+{%- comment -%} ASCII モードのセクション見出し。番号付きの見出しと罫線でシンプルに構成する {%- endcomment -%}
 <header class="ascii-section-head">
-  <p class="ascii-command" aria-hidden="true"><span class="ascii-user">nonomura@ehime</span><span class="ascii-dim">:</span><span class="ascii-path">~</span><span class="ascii-dim">$</span> <span data-ascii-type>{{ include.command | escape }}</span></p>
-  <h2 class="ascii-heading" id="{{ include.id | escape }}"><span class="ascii-heading-index" aria-hidden="true">{{ include.index }}</span><span data-ascii-scramble>{{ include.title | escape }}</span></h2>
+  <h2 class="ascii-heading" id="{{ include.id | escape }}">
+    <span class="ascii-heading-index" aria-hidden="true">{{ include.index }}</span>
+    <span class="ascii-heading-text" data-ascii-scramble>{{ include.title | escape }}</span>
+    {%- if include.count %}
+    <span class="ascii-heading-count" aria-hidden="true">{{ include.count }}</span>
+    {%- endif %}
+  </h2>
 </header>

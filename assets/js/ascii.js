@@ -804,11 +804,9 @@
   })();
 
   // ==================================================
-  // セクション: 打ち込み・解読・フェードイン
+  // セクション: 打ち込み・解読・フェードイン・バッファバー連動
   // ==================================================
   (function sections() {
-    if (reducedMotion) return;
-
     function type(element) {
       var text = element.getAttribute("data-ascii-text") || element.textContent;
       element.setAttribute("data-ascii-text", text);
@@ -851,22 +849,81 @@
       section.querySelectorAll("[data-ascii-scramble]").forEach(scramble);
     }
 
-    var targets = Array.prototype.slice.call(page.querySelectorAll(".ascii-section, .ascii-exit"));
-    if (!window.IntersectionObserver) return;
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        observer.unobserve(entry.target);
-        play(entry.target);
-      });
-    }, { rootMargin: "0px 0px -12% 0px" });
+    if (!reducedMotion && window.IntersectionObserver) {
+      var targets = Array.prototype.slice.call(page.querySelectorAll(".ascii-section, .ascii-exit"));
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          observer.unobserve(entry.target);
+          play(entry.target);
+        });
+      }, { rootMargin: "0px 0px -12% 0px" });
 
-    targets.forEach(function (section) {
-      // 最初から見えている位置にあるものは隠さず、打ち込みだけ見せる
-      if (section.getBoundingClientRect().top > window.innerHeight && section.classList.contains("ascii-section")) {
-        section.classList.add("is-armed");
+      targets.forEach(function (section) {
+        // 最初から見えている位置にあるものは隠さず、打ち込みだけ見せる
+        if (section.getBoundingClientRect().top > window.innerHeight && section.classList.contains("ascii-section")) {
+          section.classList.add("is-armed");
+        }
+        observer.observe(section);
+      });
+    }
+
+    // バッファバー（セクションジャンプ）の現在地ハイライト
+    var jumpNav = page.querySelector("[data-ascii-jump]");
+    if (jumpNav && window.IntersectionObserver) {
+      var jumpLinks = Array.prototype.slice.call(jumpNav.querySelectorAll(".ascii-jump-link"));
+      var linkById = {};
+      jumpLinks.forEach(function (link) {
+        var href = link.getAttribute("href") || "";
+        if (href.charAt(0) === "#") linkById[href.slice(1)] = link;
+      });
+
+      function setActive(id) {
+        jumpLinks.forEach(function (link) {
+          var active = link === linkById[id];
+          link.classList.toggle("is-active", active);
+        });
       }
-      observer.observe(section);
+
+      var navSections = Array.prototype.slice.call(page.querySelectorAll(".ascii-section[aria-labelledby]"));
+      var activeObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var id = entry.target.getAttribute("aria-labelledby");
+            if (id && linkById[id]) setActive(id);
+          }
+        });
+      }, { rootMargin: "-20% 0px -65% 0px" });
+
+      navSections.forEach(function (sec) { activeObserver.observe(sec); });
+    }
+  })();
+
+  // ==================================================
+  // Products のカテゴリ絞り込み
+  // ==================================================
+  (function productFilter() {
+    var filter = page.querySelector("[data-ascii-filter]");
+    if (!filter) return;
+    var buttons = Array.prototype.slice.call(filter.querySelectorAll("[data-filter]"));
+    var cards = Array.prototype.slice.call(page.querySelectorAll(".ascii-card[data-categories]"));
+
+    function apply(category) {
+      buttons.forEach(function (button) {
+        button.setAttribute("aria-pressed", button.getAttribute("data-filter") === category ? "true" : "false");
+      });
+      cards.forEach(function (card) {
+        var list = (card.getAttribute("data-categories") || "").split("|");
+        card.hidden = category !== "all" && list.indexOf(category) === -1;
+      });
+    }
+
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        apply(button.getAttribute("data-filter"));
+      });
     });
+
+    filter.hidden = false;
   })();
 })();

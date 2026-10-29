@@ -43,9 +43,17 @@ ja:
       - calibrating language globe
     tagline: 自然言語処理 / 埋め込み表現
     globe_label: ASCII で描いた地球儀。ドラッグで回転できます。表面の語（TF-IDF）を選ぶと該当セクションへ移動します。
-    globe_hint: DRAG TO ROTATE · CLICK A TERM
+    globe_hint: DRAG TO ROTATE · CLICK A TERM TO JUMP
     location: EHIME UNIV.
     portrait_alt: プロフィール写真を ASCII で描いたもの
+    image_hint: HOVER FOR ORIGINAL
+    nav_label: セクション移動
+    filter_all: ALL
+    stats:
+      publications: PUBLICATIONS
+      products: PRODUCTS
+      oss: OSS REPOS
+      location: LOCATION
     exit: 通常モードへ戻る
     end: 接続を終了しました
 en:
@@ -93,8 +101,16 @@ en:
       - calibrating language globe
     tagline: Natural Language Processing / Text Embeddings
     globe_label: An ASCII globe. Drag to rotate it. Select a TF-IDF term on its surface to jump to the related section.
-    globe_hint: DRAG TO ROTATE · CLICK A TERM
+    globe_hint: DRAG TO ROTATE · CLICK A TERM TO JUMP
     location: EHIME UNIV.
     portrait_alt: Profile photo rendered as ASCII art
+    image_hint: HOVER FOR ORIGINAL
+    nav_label: Section navigation
+    filter_all: ALL
+    stats:
+      publications: PUBLICATIONS
+      products: PRODUCTS
+      oss: OSS REPOS
+      location: LOCATION
     exit: Back to the standard site
     end: Connection closed
