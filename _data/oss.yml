@@ -240,3 +240,45 @@ projects:
           en: "[feat] Export a Router route as a standalone SentenceTransformer"
         github_title: "[feat] Export a Router route as a standalone SentenceTransformer"
     stars: 19230
+  - name: "marimo"
+    repo: "marimo-team/marimo"
+    links:
+      - label: "GitHub"
+        url: "https://github.com/marimo-team/marimo"
+    summary:
+      ja: "ノートブックのレイアウト保存、globパターンの展開、Unicode数字を含むファイル名の並べ替えに関する不具合を報告し、ファイル名の並べ替えを修正するPRを提出。"
+      en: "Reported bugs in notebook layout saving, glob pattern expansion, and sorting filenames containing Unicode digits, and submitted a fix for filename sorting."
+    items:
+      - type: "issue"
+        number: 11475
+        status: "open"
+        checked_at: "2026-10-31"
+        title:
+          ja: "異なるノートブック名でレイアウト保存先が衝突し上書きされる"
+          en: "Saving layouts for distinct notebook names can overwrite another notebook layout"
+        github_title: "Saving layouts for distinct notebook names can overwrite another notebook layout"
+      - type: "issue"
+        number: 11474
+        status: "open"
+        checked_at: "2026-10-31"
+        title:
+          ja: "marimo checkのglobパターンが直下のファイルを除外しディレクトリ境界を越える"
+          en: "marimo check glob patterns skip root-level files and cross directory boundaries"
+        github_title: "marimo check glob patterns skip root-level files and cross directory boundaries"
+      - type: "issue"
+        number: 11472
+        status: "open"
+        checked_at: "2026-10-31"
+        title:
+          ja: "Unicode数字を含むファイル名でディレクトリ一覧の取得に失敗"
+          en: "File browser fails to list directories containing Unicode digit filenames"
+        github_title: "File browser fails to list directories containing Unicode digit filenames"
+      - type: "pr"
+        number: 11555
+        status: "open"
+        checked_at: "2026-10-31"
+        title:
+          ja: "Unicode数字を含むファイル名の並べ替えを修正"
+          en: "fix: handle Unicode digits in filename sorting"
+        github_title: "fix: handle Unicode digits in filename sorting"
+    stars: 23376
