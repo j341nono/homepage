@@ -20,6 +20,19 @@
     links:
     - label: Site
       url: https://yans.anlp.jp/entry/yans2025hackathon
+  - title: 技育展2026
+    category: Software Development
+    period: October 2026
+    description: Presented Bukusupe, a Chrome extension for exploring bookmarks as
+      stars in space, at the online preliminary round. Presentation completed;
+      awaiting judging results.
+    links:
+    - label: Site
+      url: https://geek.supporterz.jp/geekten/2026/
+    - label: Store
+      url: https://chromewebstore.google.com/detail/lhblilbjhibmhpfimdpaapphifghogoj
+    - label: GitHub
+      url: https://github.com/j341nono/bukusupe
   - title: HACK SONIC 2026 Autumn
     category: Software Development
     period: September 2026

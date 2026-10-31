@@ -40,6 +40,18 @@
         - label: Site
           url: https://yans.anlp.jp/entry/yans2025hackathon
 
+    - title: 技育展2026
+      category: ソフトウェア開発
+      period: 2026年10月
+      description: ブックマークを宇宙空間の星として探索できるChrome拡張機能「ブクスペ」をオンライン予選大会で発表。発表を終え、審査結果待ち
+      links:
+        - label: Site
+          url: https://geek.supporterz.jp/geekten/2026/
+        - label: Store
+          url: https://chromewebstore.google.com/detail/lhblilbjhibmhpfimdpaapphifghogoj
+        - label: GitHub
+          url: https://github.com/j341nono/bukusupe
+
     - title: HACK SONIC 2026 秋
       category: ソフトウェア開発
       period: 2026年9月

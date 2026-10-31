@@ -5,7 +5,8 @@
   role: Personal project
   description: A Chrome extension that arranges bookmarks as stars in space based
     on semantic similarity. Find pages intuitively through semantic search, constellation
-    creation, and spaceship exploration.
+    creation, and spaceship exploration. Presented at the online preliminary round
+    of 技育展2026; awaiting judging results.
   event:
     name: HACK SONIC 2026 Autumn
     url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
@@ -23,6 +24,8 @@
   - WebAssembly
   - IndexedDB
   links:
+  - label: 技育展2026
+    url: https://geek.supporterz.jp/geekten/2026/
   - label: Site
     url: https://www.dhw.co.jp/press-release/20260819_hacksonic5/
   - label: Report
