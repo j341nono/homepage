@@ -143,6 +143,32 @@
    ]
   },
   {
+   "term": "chrome",
+   "score": 4.2398,
+   "scale": 0.7071,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "ja",
+     "text": "Chrome 拡張機能"
+    }
+   ],
+   "concepts": [
+    "browser extension"
+   ],
+   "related": [
+    "ブクスペ",
+    "ブックマーク",
+    "宇宙空間",
+    "拡張機能"
+   ]
+  },
+  {
    "term": "embeddings",
    "score": 4.2398,
    "scale": 0.7071,
@@ -479,6 +505,64 @@
    ]
   },
   {
+   "term": "ブクスペ",
+   "score": 4.2398,
+   "scale": 0.7071,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "products",
+    "hash": "product-1"
+   },
+   "variants": [],
+   "concepts": [
+    "bookmarks as stars",
+    "Chrome extension"
+   ],
+   "related": [
+    "chrome",
+    "ブックマーク",
+    "宇宙空間",
+    "拡張機能"
+   ]
+  },
+  {
+   "term": "ブックマーク",
+   "score": 4.2398,
+   "scale": 0.7071,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "bookmark"
+    },
+    {
+     "lang": "zh",
+     "text": "书签"
+    },
+    {
+     "lang": "ko",
+     "text": "북마크"
+    },
+    {
+     "lang": "de",
+     "text": "Lesezeichen"
+    }
+   ],
+   "concepts": [],
+   "related": [
+    "chrome",
+    "ブクスペ",
+    "宇宙空間",
+    "拡張機能"
+   ]
+  },
+  {
    "term": "主催",
    "score": 4.2398,
    "scale": 0.7071,
@@ -538,8 +622,7 @@
    "related": [
     "解析",
     "言語処理",
-    "デスクトップ",
-    "ハルシネーション"
+    "デスクトップ"
    ]
   },
   {
@@ -575,8 +658,25 @@
     }
    ],
    "concepts": [],
+   "related": []
+  },
+  {
+   "term": "宇宙空間",
+   "score": 4.2398,
+   "scale": 0.7071,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [],
+   "concepts": [],
    "related": [
-    "プロンプト設計"
+    "chrome",
+    "ブクスペ",
+    "ブックマーク",
+    "拡張機能"
    ]
   },
   {
@@ -614,6 +714,25 @@
    ]
   },
   {
+   "term": "拡張機能",
+   "score": 4.2398,
+   "scale": 0.7071,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "chrome",
+    "ブクスペ",
+    "ブックマーク",
+    "宇宙空間"
+   ]
+  },
+  {
    "term": "検証",
    "score": 4.2398,
    "scale": 0.7071,
@@ -643,6 +762,25 @@
     "kaigi",
     "rails",
     "登壇"
+   ]
+  },
+  {
+   "term": "発表",
+   "score": 4.2398,
+   "scale": 0.7071,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "chrome",
+    "ブクスペ",
+    "ブックマーク",
+    "宇宙空間"
    ]
   },
   {
@@ -762,8 +900,7 @@
    "concepts": [],
    "related": [
     "判定",
-    "課題",
-    "ハルシネーション"
+    "課題"
    ]
   },
   {
@@ -937,10 +1074,10 @@
     "hackathon"
    ],
    "related": [
-    "相談",
-    "ai",
-    "検索",
-    "chrome"
+    "chrome",
+    "ブクスペ",
+    "ブックマーク",
+    "宇宙空間"
    ]
   },
   {
@@ -1099,31 +1236,6 @@
     "language",
     "multilingual",
     "sentence"
-   ]
-  },
-  {
-   "term": "chrome",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [
-    {
-     "lang": "ja",
-     "text": "Chrome 拡張機能"
-    }
-   ],
-   "concepts": [
-    "browser extension"
-   ],
-   "related": [
-    "hack",
-    "ブクスペ",
-    "ブックマーク"
    ]
   },
   {
@@ -2395,8 +2507,7 @@
    "related": [
     "検索",
     "ごみサポ",
-    "ごみ分別",
-    "プログラミング"
+    "ごみ分別"
    ]
   },
   {
@@ -2417,8 +2528,7 @@
    "related": [
     "検索",
     "あいまい",
-    "ごみ分別",
-    "プログラミング"
+    "ごみ分別"
    ]
   },
   {
@@ -2453,8 +2563,7 @@
    "related": [
     "検索",
     "あいまい",
-    "ごみサポ",
-    "プログラミング"
+    "ごみサポ"
    ]
   },
   {
@@ -2502,6 +2611,25 @@
     "lt",
     "登壇",
     "題目"
+   ]
+  },
+  {
+   "term": "オンライン予選",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "chrome",
+    "ブクスペ",
+    "ブックマーク",
+    "宇宙空間"
    ]
   },
   {
@@ -2933,193 +3061,6 @@
    ],
    "concepts": [],
    "related": []
-  },
-  {
-   "term": "ハルシネーション",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "hallucination"
-    },
-    {
-     "lang": "zh",
-     "text": "幻觉"
-    },
-    {
-     "lang": "ko",
-     "text": "환각"
-    }
-   ],
-   "concepts": [
-    "citation consistency"
-   ],
-   "related": [
-    "判定",
-    "言語処理"
-   ]
-  },
-  {
-   "term": "フォレンジック",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "forensics"
-    },
-    {
-     "lang": "zh",
-     "text": "取证"
-    },
-    {
-     "lang": "ko",
-     "text": "포렌식"
-    }
-   ],
-   "concepts": [],
-   "related": [
-    "web",
-    "解析",
-    "課題",
-    "総務省主催"
-   ]
-  },
-  {
-   "term": "ブクスペ",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "products",
-    "hash": "product-1"
-   },
-   "variants": [],
-   "concepts": [
-    "bookmarks as stars",
-    "Chrome extension"
-   ],
-   "related": [
-    "hack",
-    "chrome",
-    "ブックマーク"
-   ]
-  },
-  {
-   "term": "ブックマーク",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "bookmark"
-    },
-    {
-     "lang": "zh",
-     "text": "书签"
-    },
-    {
-     "lang": "ko",
-     "text": "북마크"
-    },
-    {
-     "lang": "de",
-     "text": "Lesezeichen"
-    }
-   ],
-   "concepts": [],
-   "related": [
-    "hack",
-    "chrome",
-    "ブクスペ"
-   ]
-  },
-  {
-   "term": "プログラミング",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "programming"
-    },
-    {
-     "lang": "zh",
-     "text": "编程"
-    },
-    {
-     "lang": "ko",
-     "text": "프로그래밍"
-    },
-    {
-     "lang": "fr",
-     "text": "programmation"
-    }
-   ],
-   "concepts": [],
-   "related": [
-    "検索",
-    "あいまい",
-    "ごみサポ",
-    "ごみ分別"
-   ]
-  },
-  {
-   "term": "プロンプト設計",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "research",
-   "section": "publications",
-   "link": {
-    "page": "home",
-    "hash": "publications"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "prompt design"
-    },
-    {
-     "lang": "zh",
-     "text": "提示设计"
-    },
-    {
-     "lang": "ko",
-     "text": "프롬프트 설계"
-    }
-   ],
-   "concepts": [
-    "prompt engineering"
-   ],
-   "related": [
-    "大規模言語モデル"
-   ]
   }
  ]
 }
