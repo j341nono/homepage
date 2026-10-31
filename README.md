@@ -37,6 +37,10 @@ Labels are translated in `_data/locales.yml`. Without JavaScript, all content
 stays visible and the buttons stay hidden. Hash links and Language Globe links
 reopen their destination section. Expansion state resets on page load.
 
+Conference attendance is stored separately in the Tech Events section's
+`attendance` list in both activity data files. Standard and ASCII pages display
+it in a native disclosure that starts closed, including without JavaScript.
+
 ## OSS contributions
 
 Both homepages render `_includes/oss.html` from the shared `_data/oss.yml`.

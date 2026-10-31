@@ -257,6 +257,22 @@
 // ==================================================
 // 採択率・受賞率など
 // ==================================================
+.conference-attendance {
+  margin-top: 1.5rem;
+
+  summary {
+    width: fit-content;
+    padding: 0.35rem 0;
+    color: var(--muted);
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--text);
+    }
+  }
+}
+
 .portfolio-stats {
   display: flex;
   flex-wrap: wrap;

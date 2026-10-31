@@ -151,6 +151,37 @@
       url: https://www.rubycamp.jp/reports/2024-08-31-2024-summer/
     - label: GitHub
       url: https://github.com/j341nono/rc2024su_team1
+  attendance:
+  - title: Kaigi on Rails 2026
+    period: October 2026
+    description: Attended conference talks in Tokyo.
+    links:
+    - label: Site
+      url: https://kaigionrails.org/2026/
+  - title: 技育祭2026【秋】
+    period: October 2026
+    description: Attended conference talks at the Tokyo venue.
+    links:
+    - label: Site
+      url: https://geek.supporterz.jp/geeksai/2026autumn/
+  - title: PHPカンファレンス愛媛2026
+    period: October 2026
+    description: Attended conference talks in Matsuyama, Ehime.
+    links:
+    - label: Site
+      url: https://phpcon.ehime.jp/
+  - title: 技育祭2026【九州】
+    period: June 2026
+    description: Attended conference talks in Fukuoka.
+    links:
+    - label: Site
+      url: https://geek.supporterz.jp/geeksai/2026extra/#kyushu
+  - title: 技育祭2026【東海】
+    period: April 2026
+    description: Attended conference talks in Nagoya.
+    links:
+    - label: Site
+      url: https://geek.supporterz.jp/geeksai/2026extra/#tokai
 - title: Internships
   id: internships
   items:

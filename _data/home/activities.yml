@@ -168,20 +168,6 @@
         - label: Site
           url: https://www.sonicgarden.jp/blog_articles/8105
 
-    # - title: 技育祭2026【九州】
-    #   period: 2026年6月
-    #   description: 福岡で開催された学生エンジニア向けテックカンファレンスに参加
-    #   links:
-    #     - label: Site
-    #       url: https://geek.supporterz.jp/geeksai/2026extra#kyushu
-
-    # - title: 技育祭2026【東海】
-    #   period: 2026年4月
-    #   description: 名古屋で開催された学生エンジニア向けテックカンファレンスに参加
-    #   links:
-    #     - label: Site
-    #       url: https://geek.supporterz.jp/geeksai/2026extra#tokai
-
     - title: 島根県主催 Ruby 合宿 2024 夏
       period: 2024年8月
       description: 島根県が主催する4日間のソフトウェア開発合宿に参加。RubyのGosuライブラリを用いたカードゲームの開発
@@ -190,6 +176,42 @@
           url: https://www.rubycamp.jp/reports/2024-08-31-2024-summer/
         - label: GitHub
           url: https://github.com/j341nono/rc2024su_team1
+
+  attendance:
+    - title: Kaigi on Rails 2026
+      period: 2026年10月
+      description: 東京で開催されたカンファレンスに聴講参加
+      links:
+        - label: Site
+          url: https://kaigionrails.org/2026/
+
+    - title: 技育祭2026【秋】
+      period: 2026年10月
+      description: 東京会場で聴講参加
+      links:
+        - label: Site
+          url: https://geek.supporterz.jp/geeksai/2026autumn/
+
+    - title: PHPカンファレンス愛媛2026
+      period: 2026年10月
+      description: 愛媛県松山市で開催されたカンファレンスに聴講参加
+      links:
+        - label: Site
+          url: https://phpcon.ehime.jp/
+
+    - title: 技育祭2026【九州】
+      period: 2026年6月
+      description: 福岡で開催されたカンファレンスに聴講参加
+      links:
+        - label: Site
+          url: https://geek.supporterz.jp/geeksai/2026extra/#kyushu
+
+    - title: 技育祭2026【東海】
+      period: 2026年4月
+      description: 名古屋で開催されたカンファレンスに聴講参加
+      links:
+        - label: Site
+          url: https://geek.supporterz.jp/geeksai/2026extra/#tokai
 
 - title: インターン
   id: internships

@@ -205,6 +205,12 @@
   {%- else %}
   {% include ascii-tree.html items=section.items %}
   {%- endif %}
+  {%- if section.attendance %}
+  <details class="conference-attendance">
+    <summary>{{ ui.conference_attendance | escape }} ({{ section.attendance.size }})</summary>
+    {% include ascii-tree.html items=section.attendance %}
+  </details>
+  {%- endif %}
 </section>
 
 {%- if section.id == 'hackathons' %}

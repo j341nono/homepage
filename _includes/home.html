@@ -120,6 +120,12 @@
 {%- else %}
 {% include activity-list.html items=section.items %}
 {%- endif %}
+{%- if section.attendance %}
+<details class="conference-attendance">
+  <summary>{{ ui.conference_attendance | escape }} ({{ section.attendance.size }})</summary>
+  {% include activity-list.html items=section.attendance %}
+</details>
+{%- endif %}
 </div>
 </section>
 {% if section.id == 'hackathons' %}{% include oss.html %}{% endif %}
