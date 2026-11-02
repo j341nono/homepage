@@ -282,3 +282,21 @@ projects:
           en: "fix: handle Unicode digits in filename sorting"
         github_title: "fix: handle Unicode digits in filename sorting"
     stars: 23376
+  - name: "RustXNG"
+    repo: "sahenjp/RustXNG"
+    links:
+      - label: "GitHub"
+        url: "https://github.com/sahenjp/RustXNG"
+    summary:
+      ja: "単位変換で不正な数値から誤った変換結果を返す問題を修正し、回帰テストを追加するPRを提出。"
+      en: "Submitted a fix and regression tests to prevent unit conversion from returning incorrect results for malformed numbers."
+    items:
+      - type: "pr"
+        number: 20
+        status: "closed"
+        checked_at: "2026-11-02"
+        title:
+          ja: "単位変換で不正な数値を受理しないように修正"
+          en: "Reject malformed numbers in unit conversion"
+        github_title: "fix: 単位変換で不正な数値を受理しないようにする"
+    stars: 616
