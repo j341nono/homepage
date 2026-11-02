@@ -765,25 +765,6 @@
    ]
   },
   {
-   "term": "発表",
-   "score": 4.2398,
-   "scale": 0.7071,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [],
-   "concepts": [],
-   "related": [
-    "chrome",
-    "ブクスペ",
-    "ブックマーク",
-    "宇宙空間"
-   ]
-  },
-  {
    "term": "登壇",
    "score": 4.2398,
    "scale": 0.7071,
@@ -2611,6 +2592,25 @@
     "lt",
     "登壇",
     "題目"
+   ]
+  },
+  {
+   "term": "オフライン",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "chrome",
+    "ブクスペ",
+    "ブックマーク",
+    "宇宙空間"
    ]
   },
   {
