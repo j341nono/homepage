@@ -2841,6 +2841,20 @@
    ]
   },
   {
+   "term": "ソフトウェア",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "research",
+   "section": "profile",
+   "link": {
+    "page": "home",
+    "hash": "research"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": []
+  },
+  {
    "term": "ソフトウェア開発合宿",
    "score": 2.5041,
    "scale": 0.0,
@@ -3034,33 +3048,6 @@
     "課題",
     "総務省主催"
    ]
-  },
-  {
-   "term": "ハッカソン・コンテスト",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "hackathons & contests"
-    },
-    {
-     "lang": "zh",
-     "text": "黑客马拉松"
-    },
-    {
-     "lang": "ko",
-     "text": "해커톤"
-    }
-   ],
-   "concepts": [],
-   "related": []
   }
  ]
 }
