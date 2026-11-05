@@ -1119,33 +1119,6 @@
    ]
   },
   {
-   "term": "achievements",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "achievements",
-   "section": "achievements",
-   "link": {
-    "page": "home",
-    "hash": "achievements"
-   },
-   "variants": [
-    {
-     "lang": "ja",
-     "text": "実績"
-    },
-    {
-     "lang": "zh",
-     "text": "成就"
-    },
-    {
-     "lang": "ko",
-     "text": "성과"
-    }
-   ],
-   "concepts": [],
-   "related": []
-  },
-  {
    "term": "annotated",
    "score": 2.5041,
    "scale": 0.0,
@@ -3048,6 +3021,33 @@
     "課題",
     "総務省主催"
    ]
+  },
+  {
+   "term": "ハッカソン・コンテスト",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "hackathons & contests"
+    },
+    {
+     "lang": "zh",
+     "text": "黑客马拉松"
+    },
+    {
+     "lang": "ko",
+     "text": "해커톤"
+    }
+   ],
+   "concepts": [],
+   "related": []
   }
  ]
 }
