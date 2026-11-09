@@ -630,6 +630,22 @@
    ]
   },
   {
+   "term": "作品",
+   "score": 4.2398,
+   "scale": 0.7071,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "protopedia"
+   ]
+  },
+  {
    "term": "判定",
    "score": 4.2398,
    "scale": 0.7071,
@@ -2024,6 +2040,22 @@
    ]
   },
   {
+   "term": "protopedia",
+   "score": 2.5041,
+   "scale": 0.0,
+   "category": "products",
+   "section": "hackathons",
+   "link": {
+    "page": "home",
+    "hash": "hackathons"
+   },
+   "variants": [],
+   "concepts": [],
+   "related": [
+    "作品"
+   ]
+  },
+  {
    "term": "public",
    "score": 2.5041,
    "scale": 0.0,
@@ -2989,65 +3021,6 @@
     "判定",
     "解析"
    ]
-  },
-  {
-   "term": "ネットワーク",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "network"
-    },
-    {
-     "lang": "zh",
-     "text": "网络"
-    },
-    {
-     "lang": "ko",
-     "text": "네트워크"
-    }
-   ],
-   "concepts": [],
-   "related": [
-    "web",
-    "解析",
-    "課題",
-    "総務省主催"
-   ]
-  },
-  {
-   "term": "ハッカソン・コンテスト",
-   "score": 2.5041,
-   "scale": 0.0,
-   "category": "products",
-   "section": "hackathons",
-   "link": {
-    "page": "home",
-    "hash": "hackathons"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "hackathons & contests"
-    },
-    {
-     "lang": "zh",
-     "text": "黑客马拉松"
-    },
-    {
-     "lang": "ko",
-     "text": "해커톤"
-    }
-   ],
-   "concepts": [],
-   "related": []
   }
  ]
 }
