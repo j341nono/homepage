@@ -20,6 +20,22 @@
     links:
     - label: Site
       url: https://yans.anlp.jp/entry/yans2025hackathon
+  - title: HEROES LEAGUE 2026
+    category: Software Development
+    period: '2026'
+    description: Submitted two existing products. Both entries are reviewed through
+      their ProtoPedia project pages.
+    items:
+    - title: Gomisapo
+      description: A waste-sorting app that supports ambiguous search queries.
+      links:
+      - label: ProtoPedia
+        url: https://protopedia.net/prototype/9582
+    - title: Bukusupe
+      description: A Chrome extension for exploring bookmarks as stars in space.
+      links:
+      - label: ProtoPedia
+        url: https://protopedia.net/prototype/9933
   - title: 技育展2026
     category: Software Development
     period: October 2026

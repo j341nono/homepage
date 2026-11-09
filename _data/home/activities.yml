@@ -40,6 +40,22 @@
         - label: Site
           url: https://yans.anlp.jp/entry/yans2025hackathon
 
+    - title: ヒーローズリーグ2026
+      category: ソフトウェア開発
+      period: 2026年
+      description: 既存プロダクト2作品を応募。いずれもProtoPediaの作品ページを通じて審査
+      items:
+        - title: ごみサポ
+          description: あいまいな検索に対応したごみ分別アプリ
+          links:
+            - label: ProtoPedia
+              url: https://protopedia.net/prototype/9582
+        - title: ブクスペ
+          description: ブックマークを宇宙空間の星として探索できるChrome拡張機能
+          links:
+            - label: ProtoPedia
+              url: https://protopedia.net/prototype/9933
+
     - title: 技育展2026
       category: ソフトウェア開発
       period: 2026年10月

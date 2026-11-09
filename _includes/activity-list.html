@@ -11,6 +11,9 @@
     {% include portfolio-links.html links=item.links %}
     {%- endif %}
     {% include portfolio-stats.html stats=item.stats %}
+    {%- if item.items %}
+    {% include activity-list.html items=item.items %}
+    {%- endif %}
   </li>
   {%- endfor %}
 </ul>
