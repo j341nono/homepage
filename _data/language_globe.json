@@ -143,6 +143,41 @@
    ]
   },
   {
+   "term": "大規模言語モデル",
+   "score": 5.2551,
+   "scale": 0.8902,
+   "category": "research",
+   "section": "publications",
+   "link": {
+    "page": "home",
+    "hash": "publications"
+   },
+   "variants": [
+    {
+     "lang": "en",
+     "text": "large language models"
+    },
+    {
+     "lang": "en",
+     "text": "LLM"
+    },
+    {
+     "lang": "zh",
+     "text": "大语言模型"
+    },
+    {
+     "lang": "ko",
+     "text": "대규모 언어 모델"
+    },
+    {
+     "lang": "fr",
+     "text": "grands modèles de langage"
+    }
+   ],
+   "concepts": [],
+   "related": []
+  },
+  {
    "term": "chrome",
    "score": 4.2398,
    "scale": 0.7071,
@@ -624,41 +659,6 @@
     "言語処理",
     "デスクトップ"
    ]
-  },
-  {
-   "term": "大規模言語モデル",
-   "score": 4.2398,
-   "scale": 0.7071,
-   "category": "research",
-   "section": "publications",
-   "link": {
-    "page": "home",
-    "hash": "publications"
-   },
-   "variants": [
-    {
-     "lang": "en",
-     "text": "large language models"
-    },
-    {
-     "lang": "en",
-     "text": "LLM"
-    },
-    {
-     "lang": "zh",
-     "text": "大语言模型"
-    },
-    {
-     "lang": "ko",
-     "text": "대규모 언어 모델"
-    },
-    {
-     "lang": "fr",
-     "text": "grands modèles de langage"
-    }
-   ],
-   "concepts": [],
-   "related": []
   },
   {
    "term": "宇宙空間",
