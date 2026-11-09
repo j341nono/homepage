@@ -80,8 +80,11 @@ groups:
           - label: PDF
             url: https://moguranosenshi.sakura.ne.jp/publications/ipsj88-nonomura.pdf
 
-  - title: シンポジウム
+  - title: シンポジウム・研究会
     items:
+      - title: 大規模言語モデルによる文難易度の連続的制御
+        venue: 第3回語彙・コロケーション研究会, November 2026
+
       - title: 大規模言語モデルの埋め込みノルムに基づく連続的な文難易度制御に向けて
         authors: [野々村 奏, 梶原 智之, 荒瀬 由紀]
         venue: 第21回言語処理若手シンポジウム (YANS2026), August 2026
