@@ -38,7 +38,7 @@ stays visible and the buttons stay hidden. Hash links and Language Globe links
 reopen their destination section. Expansion state resets on page load.
 
 Conference attendance is stored separately in the Tech Events section's
-`attendance` list in both activity data files. Standard and ASCII pages display
+`attendance` list in both activity data files. Standard and Cosmos pages display
 it in a native disclosure that starts closed, including without JavaScript.
 
 ## OSS contributions
@@ -75,6 +75,37 @@ Actions**, replacing the previous `main` branch publishing mode. Then run
 **Actions → Deploy Pages with fresh OSS metadata → Run workflow → main**.
 See [OSS maintenance and deployment](docs/oss-contributions.md) for tests,
 failure handling, and contribution registration.
+
+## Cosmos page
+
+`/cosmos/` and `/en/cosmos/` (the header's **Cosmos** tab) show the Home and
+Products data as a journey through space. A fixed WebGL2 canvas sits behind the
+page, and the scroll position drives the camera along a path:
+
+1. **Big Bang** – the hero is a singularity. Scrolling sets it off, and the
+   particles swirl into a spiral galaxy while the cosmic-time HUD advances.
+2. **Star systems** – every section is a star system in that galaxy. While a
+   section's panel is on screen, the camera orbits its star; the gaps between
+   panels are flights to the next system. Each item marked `data-cosmos-body` is
+   a planet (nested `items` are its moons); hovering or focusing an item lights
+   up its planet and orbit.
+3. **Flight log** – the footer rises above the galaxy and traces the route.
+
+| Part | File |
+| --- | --- |
+| Markup | `_includes/cosmos.html`, `cosmos-heading.html`, `cosmos-items.html` |
+| Layout | `_layouts/cosmos.html` |
+| Scene (WebGL2, no dependencies) | `assets/js/cosmos.js` |
+| Styles | `_sass/portfolio/_cosmos.scss` |
+| Labels and cosmic epochs | `_data/locales.yml` → `cosmos` |
+
+Star types per section live in `SYSTEM_STYLES` in `cosmos.js`; a section with an
+unknown `id` gets a star from `FALLBACK_STARS`, so new activity sections work
+without code changes. The scene renders in HDR with bloom, lowers its resolution
+on slow devices, and pauses while the tab is hidden. With
+`prefers-reduced-motion`, the camera cuts between still shots instead of flying.
+Without WebGL2 the page shows a CSS starfield and all content stays readable.
+The old `/ascii/` URLs redirect to the Cosmos pages.
 
 ## Language Globe
 

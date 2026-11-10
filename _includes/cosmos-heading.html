@@ -1,0 +1,15 @@
+{%- assign cui = site.data.locales[page.lang].cosmos -%}
+{%- comment -%}
+  Cosmos モードのセクション見出し。星系の番号と、JS が書き込むスペクトル型（data-cosmos-class）を添える。
+{%- endcomment -%}
+<header class="cosmos-head">
+  <p class="cosmos-designation" aria-hidden="true">
+    <span class="cosmos-designation-index">{{ include.index }}</span>
+    <span>{{ cui.system | escape }}</span>
+    <span class="cosmos-designation-class" data-cosmos-class></span>
+  </p>
+  <h2 class="cosmos-heading" id="{{ include.id | escape }}">{{ include.title | escape }}</h2>
+  {%- if include.count %}
+  <p class="cosmos-count" aria-hidden="true"><span>{{ include.count }}</span> {{ cui.bodies | escape }}</p>
+  {%- endif %}
+</header>

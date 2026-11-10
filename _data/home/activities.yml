@@ -43,7 +43,7 @@
     - title: ヒーローズリーグ2026
       category: ソフトウェア開発
       period: 2026年
-      description: 既存プロダクト2作品を応募。いずれもProtoPediaの作品ページを通じて審査
+      description: プロダクト2作品を応募。いずれもProtoPediaの作品ページを通じて審査
       items:
         - title: ごみサポ
           description: あいまいな検索に対応したごみ分別アプリ

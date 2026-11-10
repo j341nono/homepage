@@ -36,27 +36,29 @@ ja:
       internships: インターン
       achievements: 実績
       misc: その他
-  ascii:
-    boot:
-      - mounting embedding space
-      - loading publications
-      - indexing products
-      - calibrating language globe
+  cosmos:
     tagline: 自然言語処理 / 埋め込み表現
-    globe_label: ASCII で描いた地球儀。ドラッグで回転できます。表面の語（TF-IDF）を選ぶと該当セクションへ移動します。
-    globe_hint: DRAG TO ROTATE · CLICK A TERM TO JUMP
-    location: EHIME UNIV.
-    portrait_alt: プロフィール写真を ASCII で描いたもの
-    image_hint: HOVER FOR ORIGINAL
-    nav_label: セクション移動
-    filter_all: ALL
-    stats:
-      publications: PUBLICATIONS
-      products: PRODUCTS
-      oss: OSS REPOS
-      location: LOCATION
+    scroll: スクロールして宇宙を旅する
+    map_label: 星系マップ
+    system: 星系
+    bodies: 天体
+    epoch_label: 宇宙の時刻
+    epochs:
+      - time: t = 0
+        label: 特異点
+      - time: t = 10⁻³⁶ s
+        label: インフレーション
+      - time: t = 3 min
+        label: 元素の誕生
+      - time: t = 380,000 yr
+        label: 宇宙の晴れ上がり
+      - time: t = 200 Myr
+        label: 最初の星
+      - time: t = 1 Gyr
+        label: 銀河の形成
+    outro_title: 航路の記録
+    outro_lead: ここまでに訪れた星系を、銀河の上から振り返ります。
     exit: 通常モードへ戻る
-    end: 接続を終了しました
 en:
   conference_attendance: Conference attendance
   collapse_section: Collapse
@@ -95,24 +97,26 @@ en:
       internships: Internships
       achievements: Achievements
       misc: Other
-  ascii:
-    boot:
-      - mounting embedding space
-      - loading publications
-      - indexing products
-      - calibrating language globe
+  cosmos:
     tagline: Natural Language Processing / Text Embeddings
-    globe_label: An ASCII globe. Drag to rotate it. Select a TF-IDF term on its surface to jump to the related section.
-    globe_hint: DRAG TO ROTATE · CLICK A TERM TO JUMP
-    location: EHIME UNIV.
-    portrait_alt: Profile photo rendered as ASCII art
-    image_hint: HOVER FOR ORIGINAL
-    nav_label: Section navigation
-    filter_all: ALL
-    stats:
-      publications: PUBLICATIONS
-      products: PRODUCTS
-      oss: OSS REPOS
-      location: LOCATION
+    scroll: Scroll to travel through the cosmos
+    map_label: Star map
+    system: System
+    bodies: bodies
+    epoch_label: Cosmic time
+    epochs:
+      - time: t = 0
+        label: Singularity
+      - time: t = 10⁻³⁶ s
+        label: Inflation
+      - time: t = 3 min
+        label: Nucleosynthesis
+      - time: t = 380,000 yr
+        label: Recombination
+      - time: t = 200 Myr
+        label: First stars
+      - time: t = 1 Gyr
+        label: Galaxies form
+    outro_title: Flight log
+    outro_lead: Every system on this journey, seen from above the galaxy.
     exit: Back to the standard site
-    end: Connection closed

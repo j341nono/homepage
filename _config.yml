@@ -37,9 +37,9 @@ theme: minima
 minima:
   nav_pages:
     - index.html
-    # Products は ASCII ページの下部に移したため、タブには出さない（/products/ 自体は残す）
+    # Products は Cosmos ページの最後の星系に移したため、タブには出さない（/products/ 自体は残す）
     # - products.markdown
-    - ascii.html
+    - cosmos.html
 # theme: jekyll-theme-tactile
 plugins:
   - jekyll-feed

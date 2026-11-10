@@ -1,0 +1,33 @@
+{%- comment -%}
+  Cosmos モードの活動一覧。bodies=true のとき、各項目を星系の惑星（data-cosmos-body）として数え、
+  入れ子の items は、その惑星を回る衛星（data-cosmos-moons）として数える。
+{%- endcomment -%}
+<ul class="cosmos-list{% if include.nested %} cosmos-sublist{% endif %}">
+  {%- for item in include.items %}
+  <li{% if include.bodies %} data-cosmos-body{% if item.items %} data-cosmos-moons="{{ item.items.size }}"{% endif %}{% endif %}>
+    <span class="cosmos-item-title">{{ item.title | escape }}</span>
+    {%- if item.role or item.period %}
+    <span class="cosmos-meta">{% if item.role %}<span class="cosmos-role">{{ item.role | escape }}</span> · {% endif %}{{ item.period | escape }}</span>
+    {%- endif %}
+    {%- if item.description %}
+    <span class="cosmos-desc">{{ item.description | escape }}</span>
+    {%- endif %}
+    {%- if item.award or item.stats or item.links %}
+    <span class="cosmos-item-foot">
+      {%- if item.award %}
+      <span class="cosmos-award">★ {{ item.award | escape }}</span>
+      {%- endif %}
+      {%- for stat in item.stats %}
+      <span class="cosmos-stat">{{ stat | escape }}</span>
+      {%- endfor %}
+      {%- if item.links %}
+      <span class="cosmos-links">{% include portfolio-links.html links=item.links %}</span>
+      {%- endif %}
+    </span>
+    {%- endif %}
+    {%- if item.items %}
+    {% include cosmos-items.html items=item.items nested=true %}
+    {%- endif %}
+  </li>
+  {%- endfor %}
+</ul>
