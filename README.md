@@ -25,6 +25,7 @@ New translated page pairs need matching `translation_key` values and their own
 `lang`, `locale`, and permalink in front matter. To verify both versions locally:
 
 ```sh
+./scripts/build_cosmos.sh # Requires Go 1.25+; run again after changing cosmos/.
 bundle exec jekyll serve
 # Open http://localhost:4000/homepage/ and http://localhost:4000/homepage/en/
 ```
@@ -95,17 +96,47 @@ page, and the scroll position drives the camera along a path:
 | --- | --- |
 | Markup | `_includes/cosmos.html`, `cosmos-heading.html`, `cosmos-items.html` |
 | Layout | `_layouts/cosmos.html` |
-| Scene (WebGL2, no dependencies) | `assets/js/cosmos.js` |
+| Simulation (Go, compiled to WebAssembly) | `cosmos/scene.go`, `camera.go`, `particles.go`, `math.go` |
+| Browser bridge (Go → JavaScript) | `cosmos/main_js.go` |
+| Rendering (WebGL2 and GLSL) and DOM events | `assets/js/cosmos.js` |
 | Styles | `_sass/portfolio/_cosmos.scss` |
 | Labels and cosmic epochs | `_data/locales.yml` → `cosmos` |
 
-Star types per section live in `SYSTEM_STYLES` in `cosmos.js`; a section with an
-unknown `id` gets a star from `FALLBACK_STARS`, so new activity sections work
+Star types per section live in `systemStyles` in `cosmos/config.json`; a section with an
+unknown `id` gets a star from `fallbackStars`, so new activity sections work
 without code changes. The scene renders in HDR with bloom, lowers its resolution
 on slow devices, and pauses while the tab is hidden. With
 `prefers-reduced-motion`, the camera cuts between still shots instead of flying.
-Without WebGL2 the page shows a CSS starfield and all content stays readable.
+Without WebGL2 or if Wasm fails to load, the page shows a CSS starfield and all content stays readable.
 The old `/ascii/` URLs redirect to the Cosmos pages.
+
+Go generates the systems, seeded particle distributions, orbital positions,
+camera paths and orbit/route geometry. JavaScript measures the page, forwards
+input and submits WebGL draws; GPU shaders remain GLSL. Static geometry crosses
+the Wasm boundary once as packed Float32 buffers, and body positions cross once
+per frame as a packed Float64 buffer. No Go server is needed on GitHub Pages.
+
+Build and verify the simulation before serving or building Jekyll:
+
+```sh
+(cd cosmos && go test ./...)
+./scripts/build_cosmos.sh
+node tests/test_cosmos_wasm.cjs
+bundle exec jekyll build
+```
+
+The build script generates `assets/wasm/cosmos.wasm` and copies the matching
+compiler's `wasm_exec.js`; both are ignored by Git. Pages CI tests and builds
+them before Jekyll. Deploy the generated Wasm and support script together to
+avoid runtime/compiler mismatches. The standard Go runtime adds about 3.1 MiB
+before compression. Go sources and reference fixtures are excluded from the site.
+
+`cosmos/testdata/javascript.json` contains reference results captured from
+`assets/js/cosmos.js` at commit `78fe3ea`, covering all star styles, Unicode IDs,
+moons, the planet limit, cameras and samples across particle buffers. Go tests
+check numerical parity. The Node integration tests execute the actual Wasm,
+exercise the renderer against DOM/WebGL stubs, and check reduced motion and
+load failures; they do not validate GPU output or visual appearance.
 
 ## Language Globe
 

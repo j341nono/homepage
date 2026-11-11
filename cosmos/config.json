@@ -1,0 +1,219 @@
+{
+  "starTypes": {
+    "G": {
+      "hex": "#ffd7a1",
+      "radius": 6.5,
+      "cls": "G2V",
+      "intensity": 3.4
+    },
+    "A": {
+      "hex": "#d4e0ff",
+      "radius": 7.5,
+      "cls": "A1V",
+      "intensity": 3.8
+    },
+    "F": {
+      "hex": "#fff0d8",
+      "radius": 7,
+      "cls": "F5V",
+      "intensity": 3.6
+    },
+    "K": {
+      "hex": "#ffae66",
+      "radius": 10,
+      "cls": "K1III",
+      "intensity": 3.1
+    },
+    "M": {
+      "hex": "#ff7b4d",
+      "radius": 4.6,
+      "cls": "M4V",
+      "intensity": 2.8
+    },
+    "B": {
+      "hex": "#a3bfff",
+      "radius": 9,
+      "cls": "B3V",
+      "intensity": 4.4
+    },
+    "Kc": {
+      "hex": "#ffb072",
+      "radius": 4.4,
+      "cls": "K2V",
+      "intensity": 3
+    },
+    "Gg": {
+      "hex": "#ffc878",
+      "radius": 12,
+      "cls": "G8III",
+      "intensity": 3.3
+    },
+    "WD": {
+      "hex": "#e2ecff",
+      "radius": 2.2,
+      "cls": "DA2",
+      "intensity": 5.2
+    }
+  },
+  "systemStyles": {
+    "profile": {
+      "star": "G",
+      "planets": 3,
+      "home": true
+    },
+    "research": {
+      "star": "A",
+      "belt": true
+    },
+    "publications": {
+      "star": "F",
+      "companion": "Kc"
+    },
+    "hackathons": {
+      "star": "K",
+      "belt": true
+    },
+    "oss": {
+      "star": "B"
+    },
+    "events": {
+      "star": "M"
+    },
+    "internships": {
+      "star": "F"
+    },
+    "organizing": {
+      "star": "WD",
+      "nebula": true
+    },
+    "achievements": {
+      "star": "Gg",
+      "rings": true
+    },
+    "products": {
+      "star": "B",
+      "rings": true,
+      "belt": true
+    }
+  },
+  "fallbackStars": [
+    "G",
+    "A",
+    "K",
+    "F",
+    "M",
+    "B"
+  ],
+  "planetKinds": {
+    "rocky": 0,
+    "gas": 1,
+    "terran": 2,
+    "lava": 3,
+    "ice": 4
+  },
+  "palettes": {
+    "rocky": [
+      [
+        "#8f7d6c",
+        "#cbb79c",
+        "#5d4c40"
+      ],
+      [
+        "#7a736c",
+        "#bdb6ad",
+        "#4a4542"
+      ],
+      [
+        "#9b5a3a",
+        "#d79a68",
+        "#5e2f1f"
+      ],
+      [
+        "#77705c",
+        "#b3a888",
+        "#403c33"
+      ]
+    ],
+    "lava": [
+      [
+        "#2b1912",
+        "#ff7a2a",
+        "#6b2a12"
+      ]
+    ],
+    "gas": [
+      [
+        "#c79a6a",
+        "#f1dcb9",
+        "#8b5638"
+      ],
+      [
+        "#e2c995",
+        "#fff1d2",
+        "#b08e5b"
+      ],
+      [
+        "#5b7fd3",
+        "#a8c6ff",
+        "#2c468f"
+      ],
+      [
+        "#b98ac8",
+        "#f0d6f2",
+        "#6b3f87"
+      ],
+      [
+        "#d3a36f",
+        "#f6e2c4",
+        "#a0603a"
+      ]
+    ],
+    "ice": [
+      [
+        "#9bd6e6",
+        "#e2f7ff",
+        "#6ab0cc"
+      ],
+      [
+        "#7ea7dc",
+        "#d0e4ff",
+        "#5a83c0"
+      ]
+    ],
+    "terran": [
+      [
+        "#1b4f8f",
+        "#4b7a3a",
+        "#b49a6a"
+      ]
+    ]
+  },
+  "atmospheres": {
+    "rocky": [
+      "#d8c8b8",
+      0.25
+    ],
+    "lava": [
+      "#ff6a2a",
+      0.6
+    ],
+    "gas": [
+      "#ffe6c4",
+      0.55
+    ],
+    "ice": [
+      "#b0e8ff",
+      0.8
+    ],
+    "terran": [
+      "#6fb6ff",
+      1.2
+    ]
+  },
+  "ringColors": [
+    "#d9c4a0",
+    "#c9b8a6",
+    "#e6d7bd",
+    "#b9c4d6"
+  ]
+}

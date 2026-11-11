@@ -1,5 +1,5 @@
 /*
- * Cosmos モード（/cosmos/）の 3D シーン。依存ライブラリなしの WebGL2。
+ * Cosmos の WebGL2 描画とブラウザ連携。宇宙の生成・公転・カメラ計算は Go/Wasm（cosmos/）。
  *
  * 画面に固定したキャンバスの中を、スクロール量に合わせてカメラが移動する。
  *   冒頭    特異点 → ビッグバン → 粒子が渦を巻いて円盤になり、銀河ができる
@@ -11,12 +11,44 @@
  * 描画は HDR（半精度浮動小数点）のバッファに行い、ブルームをかけてからトーンマッピングする。
  * WebGL2 が無い環境では何もせず、CSS の星空と本文だけが表示される。
  */
-(function () {
+(async function () {
   "use strict";
 
   const canvas = document.querySelector("[data-cosmos-canvas]");
   const page = document.querySelector("[data-cosmos]");
   if (!canvas || !page) return;
+
+  // Resolve relative to this script, so project Pages and both languages work.
+  const scriptURL = new URL(document.currentScript.src);
+  const wasmURL = new URL("../wasm/cosmos.wasm", scriptURL);
+  wasmURL.search = scriptURL.search;
+  let engine;
+  try {
+    if (typeof Go !== "function") throw new Error("Go Wasm runtime is unavailable");
+    const go = new Go();
+    const response = await fetch(wasmURL);
+    if (!response.ok) throw new Error("Cosmos Wasm: HTTP " + response.status);
+    const ready = new Promise((resolve) => { window.__cosmosGoReady = resolve; });
+    // arrayBuffer also works on static hosts without application/wasm MIME support.
+    const { instance } = await WebAssembly.instantiate(await response.arrayBuffer(), go.importObject);
+    const running = go.run(instance);
+    engine = await Promise.race([
+      ready,
+      running.then(() => { throw new Error("Cosmos Wasm exited before initialization"); }),
+    ]);
+    delete window.__cosmosGoReady;
+    running.catch((error) => {
+      canvas.classList.remove("is-ready");
+      console.warn("[cosmos]", error);
+    });
+  } catch (error) {
+    delete window.__cosmosGoReady;
+    // Keep the readable HTML and CSS star field when Wasm cannot be loaded.
+    console.warn("[cosmos]", error);
+    return;
+  }
+  const floats32 = (bytes) => new Float32Array(bytes.buffer, bytes.byteOffset, bytes.byteLength / 4);
+  const floats64 = (bytes) => new Float64Array(bytes.buffer, bytes.byteOffset, bytes.byteLength / 8);
 
   const root = document.documentElement;
   const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -25,18 +57,13 @@
   // ==================================================
   // 数学
   // ==================================================
-  const TAU = Math.PI * 2;
   const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
   const mix = (a, b, t) => a + (b - a) * t;
   const smooth = (a, b, x) => {
     const t = clamp((x - a) / (b - a), 0, 1);
     return t * t * (3 - 2 * t);
   };
-  const smoother = (t) => t * t * t * (t * (t * 6 - 15) + 10);
-  const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-  const add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
   const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
-  const scale = (a, s) => [a[0] * s, a[1] * s, a[2] * s];
   const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
   const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
   const len = (a) => Math.hypot(a[0], a[1], a[2]);
@@ -95,34 +122,6 @@
     return out;
   }
 
-  // 再現性のある乱数（同じ星系は毎回同じ形になる）
-  function mulberry32(seed) {
-    let a = seed >>> 0;
-    return function () {
-      a = (a + 0x6d2b79f5) | 0;
-      let t = Math.imul(a ^ (a >>> 15), 1 | a);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-  function hashString(text) {
-    let h = 2166136261;
-    for (let i = 0; i < text.length; i++) {
-      h ^= text.charCodeAt(i);
-      h = Math.imul(h, 16777619);
-    }
-    return h >>> 0;
-  }
-  function gauss(rnd) {
-    let u = 0;
-    while (!u) u = rnd();
-    return Math.sqrt(-2 * Math.log(u)) * Math.cos(TAU * rnd());
-  }
-  function unitVector(rnd) {
-    const z = rnd() * 2 - 1, a = rnd() * TAU, r = Math.sqrt(1 - z * z);
-    return [r * Math.cos(a), z, r * Math.sin(a)];
-  }
-
   // 色は sRGB の 16 進で書き、シェーダーにはリニアで渡す
   function hexToRgb(hex) {
     const v = parseInt(hex.slice(1), 16);
@@ -138,47 +137,6 @@
   // ==================================================
   // 宇宙の設計
   // ==================================================
-  const GALAXY_RADIUS = 5200;
-
-  // 恒星の種類。cls はパネルの見出しに添えるスペクトル型
-  const STAR_TYPES = {
-    G: { hex: "#ffd7a1", radius: 6.5, cls: "G2V", intensity: 3.4 },
-    A: { hex: "#d4e0ff", radius: 7.5, cls: "A1V", intensity: 3.8 },
-    F: { hex: "#fff0d8", radius: 7, cls: "F5V", intensity: 3.6 },
-    K: { hex: "#ffae66", radius: 10, cls: "K1III", intensity: 3.1 },
-    M: { hex: "#ff7b4d", radius: 4.6, cls: "M4V", intensity: 2.8 },
-    B: { hex: "#a3bfff", radius: 9, cls: "B3V", intensity: 4.4 },
-    Kc: { hex: "#ffb072", radius: 4.4, cls: "K2V", intensity: 3.0 },
-    Gg: { hex: "#ffc878", radius: 12, cls: "G8III", intensity: 3.3 },
-    WD: { hex: "#e2ecff", radius: 2.2, cls: "DA2", intensity: 5.2 },
-  };
-
-  // セクション（id）ごとの星系の性格。知らない id は FALLBACK_STARS を順に使う
-  const SYSTEM_STYLES = {
-    profile: { star: "G", planets: 3, home: true }, // 3 番目に地球型の惑星
-    research: { star: "A", belt: true },
-    publications: { star: "F", companion: "Kc" }, // 連星
-    hackathons: { star: "K", belt: true },
-    oss: { star: "B" },
-    events: { star: "M" },
-    internships: { star: "F" },
-    organizing: { star: "WD", nebula: true }, // 白色矮星と惑星状星雲
-    achievements: { star: "Gg", rings: true },
-    products: { star: "B", rings: true, belt: true },
-  };
-  const FALLBACK_STARS = ["G", "A", "K", "F", "M", "B"];
-
-  const PLANET_KINDS = { rocky: 0, gas: 1, terran: 2, lava: 3, ice: 4 };
-  const PALETTES = {
-    rocky: [["#8f7d6c", "#cbb79c", "#5d4c40"], ["#7a736c", "#bdb6ad", "#4a4542"], ["#9b5a3a", "#d79a68", "#5e2f1f"], ["#77705c", "#b3a888", "#403c33"]],
-    lava: [["#2b1912", "#ff7a2a", "#6b2a12"]],
-    gas: [["#c79a6a", "#f1dcb9", "#8b5638"], ["#e2c995", "#fff1d2", "#b08e5b"], ["#5b7fd3", "#a8c6ff", "#2c468f"], ["#b98ac8", "#f0d6f2", "#6b3f87"], ["#d3a36f", "#f6e2c4", "#a0603a"]],
-    ice: [["#9bd6e6", "#e2f7ff", "#6ab0cc"], ["#7ea7dc", "#d0e4ff", "#5a83c0"]],
-    terran: [["#1b4f8f", "#4b7a3a", "#b49a6a"]],
-  };
-  const ATMOSPHERES = { rocky: ["#d8c8b8", 0.25], lava: ["#ff6a2a", 0.6], gas: ["#ffe6c4", 0.55], ice: ["#b0e8ff", 0.8], terran: ["#6fb6ff", 1.2] };
-  const RING_COLORS = ["#d9c4a0", "#c9b8a6", "#e6d7bd", "#b9c4d6"];
-
   // 宇宙の時刻の表示を切り替える、ビッグバンの進み具合
   const EPOCH_STEPS = [0, 0.05, 0.13, 0.3, 0.52, 0.78];
 
@@ -196,151 +154,28 @@
   // ==================================================
   // 星系の生成
   // ==================================================
-  const systems = sectionEls.map((el, index) => {
-    const id = el.getAttribute("data-cosmos-system");
-    const style = SYSTEM_STYLES[id] || { star: FALLBACK_STARS[index % FALLBACK_STARS.length] };
-    const rnd = mulberry32(hashString(id) ^ 0x9e3779b9);
-    const bodies = Array.from(el.querySelectorAll("[data-cosmos-body]"));
-    const count = clamp(bodies.length || style.planets || 3, 1, 12);
-
-    // 銀河の外縁から中心へ向かう渦に沿って並べる
-    const t = sectionEls.length > 1 ? index / (sectionEls.length - 1) : 0;
-    const angle = 0.6 + index * 0.36;
-    const radius = mix(4300, 1650, t);
-    const center = [Math.cos(angle) * radius, 70 * Math.sin(index * 1.9), Math.sin(angle) * radius];
-
-    // 公転面は銀河面から少し傾ける
-    const normal = norm([(rnd() - 0.5) * 0.36, 1, (rnd() - 0.5) * 0.36]);
-    const u = norm(cross(normal, [0, 0, 1]));
-    const v = cross(normal, u);
-
-    const primary = STAR_TYPES[style.star];
-    const stars = [];
-    let inner;
-    if (style.companion) {
-      const companion = STAR_TYPES[style.companion];
-      const separation = (primary.radius + companion.radius) * 2.3;
-      const total = primary.radius + companion.radius;
-      stars.push({ type: primary, offset: (separation * companion.radius) / total, phase: 0 });
-      stars.push({ type: companion, offset: (separation * primary.radius) / total, phase: Math.PI });
-      inner = separation * 2.4 + 12;
-    } else {
-      stars.push({ type: primary, offset: 0, phase: 0 });
-      inner = primary.radius * 3.4 + 10;
-    }
-    stars.forEach((star) => {
-      star.color = linear(star.type.hex);
-      star.radius = star.type.radius;
-      star.intensity = star.type.intensity;
-      star.position = center.slice();
-      star.seed = rnd();
-    });
-
-    const lightColor = lerp3([1, 1, 1], stars[0].color, 0.55);
-    const planets = [];
-    let a = inner;
-    for (let j = 0; j < count; j++) {
-      const f = count > 1 ? j / (count - 1) : 0.5;
-      let kind = f < 0.34 ? "rocky" : f < 0.72 ? "gas" : "ice";
-      if (count <= 2) kind = j === 0 ? "rocky" : "gas";
-      if (style.home && j === 2) kind = "terran";
-      else if (kind === "rocky" && j === 0 && !style.home && rnd() < 0.55) kind = "lava";
-      if (style.rings && kind === "ice" && rnd() < 0.5) kind = "gas";
-
-      const size = kind === "gas" ? mix(3.2, 5.4, rnd()) : kind === "ice" ? mix(2.2, 3.1, rnd()) : kind === "terran" ? 2.15 : mix(1.0, 1.9, rnd());
-      const palettes = PALETTES[kind];
-      const palette = palettes[Math.floor(rnd() * palettes.length)].map(linear);
-      const tilt = (rnd() - 0.5) * (kind === "gas" ? 0.9 : 0.6);
-      const ring = kind === "gas" && (style.rings || rnd() < 0.3)
-        ? {
-            inner: size * 1.35,
-            outer: size * mix(2.1, 2.55, rnd()),
-            color: linear(RING_COLORS[Math.floor(rnd() * RING_COLORS.length)]),
-            normal: [0, Math.cos(tilt), Math.sin(tilt)],
-            seed: rnd(),
-          }
-        : null;
-      const moonData = bodies[j] ? parseInt(bodies[j].getAttribute("data-cosmos-moons") || "0", 10) : 0;
-      const moonCount = moonData || (kind === "terran" ? 1 : kind === "gas" && rnd() < 0.45 ? 1 + Math.floor(rnd() * 2) : 0);
-      const reach = (ring ? ring.outer : size) + moonCount * 1.7 + (moonCount ? 2 : 0);
-
-      a += reach + (j ? mix(5, 9, rnd()) : 0);
-      const moons = [];
-      for (let m = 0; m < moonCount; m++) {
-        moons.push({
-          a: (ring ? ring.outer : size) + 1.6 + m * 1.7,
-          radius: mix(0.32, 0.62, rnd()),
-          phase: rnd() * TAU,
-          speed: 0.55 / (1 + m * 0.6),
-          incl: (rnd() - 0.5) * 0.4,
-          palette: PALETTES.rocky[1].map(linear),
-          seed: rnd(),
-          position: [0, 0, 0],
-        });
-      }
-      planets.push({
-        kind,
-        type: PLANET_KINDS[kind],
-        a,
-        radius: size,
-        phase: rnd() * TAU,
-        speed: 0.16 * Math.pow(inner / a, 1.5),
-        incl: (rnd() - 0.5) * 0.07,
-        node: rnd() * TAU,
-        tilt,
-        spinSpeed: mix(0.05, 0.22, rnd()) * (kind === "gas" ? 1.6 : 1),
-        palette,
-        atmosphere: linear(ATMOSPHERES[kind][0]),
-        atmosphereStrength: ATMOSPHERES[kind][1],
-        ring,
-        moons,
-        seed: rnd(),
-        angle: 0,
-        position: [0, 0, 0],
-        highlight: 0,
-        highlightTarget: 0,
-        orbitStart: 0,
-      });
-      a += reach;
-    }
-
-    // 惑星が少ない星系でも、恒星に近づきすぎない
-    let extent = Math.max(a + 8, Math.max.apply(null, stars.map((star) => star.type.radius)) * 14 + 30);
-    let belt = null;
-    if (style.belt) {
-      belt = { inner: extent + 4, outer: extent + 18, speed: 0.012 + rnd() * 0.01 };
-      extent += 22;
-    }
-
-    const designation = stars.map((star) => star.type.cls).join(" + ");
-    const starRgb = hexToRgb(primary.hex).join(", ");
-    el.style.setProperty("--star-rgb", starRgb);
+  const scene = JSON.parse(engine.init(JSON.stringify({
+    portrait: window.innerWidth < window.innerHeight,
+    systems: sectionEls.map((el) => {
+      const bodies = Array.from(el.querySelectorAll("[data-cosmos-body]"));
+      return {
+        id: el.getAttribute("data-cosmos-system"),
+        count: bodies.length,
+        moons: bodies.map((body) => Number(body.getAttribute("data-cosmos-moons") || 0)),
+        side: el.classList.contains("cosmos-system--right") ? "right" : "left",
+      };
+    }),
+  })));
+  const systems = scene.systems.map((sys, index) => {
+    const el = sectionEls[index];
+    el.style.setProperty("--star-rgb", hexToRgb(sys.starHex).join(", "));
     const classSlot = el.querySelector("[data-cosmos-class]");
-    if (classSlot) classSlot.textContent = designation;
-
-    return {
-      id,
+    if (classSlot) classSlot.textContent = sys.stars.map((star) => star.type.cls).join(" + ");
+    return Object.assign(sys, {
       el,
       panel: el.querySelector(".cosmos-panel") || el,
-      side: el.classList.contains("cosmos-system--right") ? "right" : "left",
-      style,
-      center,
-      normal,
-      u,
-      v,
-      stars,
-      planets,
-      bodies,
-      belt,
-      extent,
-      lightColor,
-      nebula: !!style.nebula,
-      binarySpeed: 0.09,
-      starHex: primary.hex,
-      az0: 0,
-      dir: 1,
-      sweep: 1.95,
-    };
+      bodies: Array.from(el.querySelectorAll("[data-cosmos-body]")),
+    });
   });
 
   // 星系マップの点を、恒星の色にする
@@ -350,128 +185,30 @@
     if (system) link.style.setProperty("--star", system.starHex);
   });
 
-  // ---------- 天体の位置 ----------
-  function orbitPoint(sys, a, angle, incl, node) {
-    const c = Math.cos(angle), s = Math.sin(angle), h = a * incl * Math.sin(angle - node);
-    return [
-      sys.center[0] + a * (sys.u[0] * c + sys.v[0] * s) + sys.normal[0] * h,
-      sys.center[1] + a * (sys.u[1] * c + sys.v[1] * s) + sys.normal[1] * h,
-      sys.center[2] + a * (sys.u[2] * c + sys.v[2] * s) + sys.normal[2] * h,
-    ];
-  }
-
-  function updateBodies(sys, time) {
-    sys.stars.forEach((star) => {
-      if (!star.offset) return;
-      const angle = star.phase + time * sys.binarySpeed;
-      star.position = orbitPoint(sys, star.offset, angle, 0, 0);
-    });
-    sys.planets.forEach((planet) => {
-      planet.angle = (((planet.phase + time * planet.speed) % TAU) + TAU) % TAU;
-      planet.position = orbitPoint(sys, planet.a, planet.angle, planet.incl, planet.node);
-      planet.moons.forEach((moon) => {
-        const angle = moon.phase + time * moon.speed;
-        const c = Math.cos(angle), s = Math.sin(angle), h = Math.sin(angle) * moon.incl;
-        moon.position = [
-          planet.position[0] + moon.a * (sys.u[0] * c + sys.v[0] * s + sys.normal[0] * h),
-          planet.position[1] + moon.a * (sys.u[1] * c + sys.v[1] * s + sys.normal[1] * h),
-          planet.position[2] + moon.a * (sys.u[2] * c + sys.v[2] * s + sys.normal[2] * h),
-        ];
+  // Copy one packed Go result per frame, rather than calling across Wasm for
+  // every planet/moon. WebGL consumes the renderer's existing scene objects.
+  function updateBodies(time) {
+    const values = floats64(engine.bodies(time));
+    let offset = 0;
+    const readPosition = (position) => {
+      for (let k = 0; k < 3; k++) position[k] = values[offset++];
+    };
+    systems.forEach((sys) => {
+      sys.stars.forEach((star) => readPosition(star.position));
+      sys.planets.forEach((planet) => {
+        planet.angle = values[offset++];
+        readPosition(planet.position);
+        planet.moons.forEach((moon) => readPosition(moon.position));
       });
     });
   }
 
-  // ==================================================
-  // カメラの経路
-  // ==================================================
+  // DOM layout is measured in JS and sent to Go only when it changes.
   let narrow = narrowQuery.matches;
   let portrait = window.innerWidth < window.innerHeight;
-  const HERO_AZ = -0.4;
-
-  function heroShot(p, out) {
-    // シェーダーと同じ式で、火の玉の広がりにカメラが少し遅れて下がる
-    const e = smooth(0.045, 0.62, p);
-    const blast = 1 - Math.pow(1 - e, 2.6);
-    let d = 120 + 1.45 * blast * 4300;
-    d = mix(d, 15500 * (portrait ? 1.65 : 1), easeInOut(smooth(0.45, 1, p)));
-    const el = mix(0.06, 0.66, smooth(0.2, 1, p));
-    const az = HERO_AZ + mix(-0.35, 0.55, p);
-    out.pos = [Math.cos(el) * Math.cos(az) * d, Math.sin(el) * d, Math.cos(el) * Math.sin(az) * d];
-    out.target = [0, 0, 0];
-    out.fov = portrait ? 62 : 50;
-    out.shift = [0, mix(0.24, 0.12, smooth(0.3, 1, p))];
-    return out;
-  }
-
-  function systemShot(sys, p, out) {
-    const e = sys.extent * (portrait ? 1.45 : 1);
-    const az = sys.az0 + sys.dir * sys.sweep * p;
-    const el = mix(0.52, 0.27, p);
-    const d = e * mix(1.9, 1.32, easeInOut(p));
-    const c = sys.center;
-    out.pos = [c[0] + Math.cos(el) * Math.cos(az) * d, c[1] + Math.sin(el) * d, c[2] + Math.cos(el) * Math.sin(az) * d];
-    out.target = c.slice();
-    out.fov = portrait ? 60 : 44;
-    out.shift = narrow ? [0, 0.48] : [sys.side === "left" ? 0.4 : -0.4, 0.02];
-    return out;
-  }
-
-  const OUTRO_AZ = 1.9;
-  function outroShot(p, out) {
-    const d = mix(17000, 19500, p) * (portrait ? 1.7 : 1);
-    const el = mix(0.92, 1.18, p);
-    const az = OUTRO_AZ + p * 0.25;
-    out.pos = [Math.cos(el) * Math.cos(az) * d, Math.sin(el) * d, Math.cos(el) * Math.sin(az) * d];
-    out.target = [0, 0, 0];
-    out.fov = portrait ? 62 : 48;
-    out.shift = [0, 0.2];
-    return out;
-  }
-
-  // 停留所：冒頭（ビッグバン）・各星系・終わり。shot(p) は停留所の中でのカメラ（p は 0〜1）
-  const stops = [{ kind: "hero", el: heroEl, shot: heroShot, R: 0, D: 1 }]
-    .concat(systems.map((sys) => ({ kind: "system", sys, el: sys.panel, shot: (p, out) => systemShot(sys, p, out), R: 0, D: 1 })))
-    .concat([{ kind: "outro", el: outroEl, shot: outroShot, R: 0, D: 1 }]);
-
-  // 星系に着いたときの向き（前の場所の側から近づく）と、回る向き（次の星系の側で離れる）
-  (function planOrbits() {
-    const heroEnd = heroShot(1, {}).pos;
-    systems.forEach((sys, i) => {
-      const prev = i === 0 ? heroEnd : systems[i - 1].center;
-      const next = i === systems.length - 1 ? outroShot(0, {}).pos : systems[i + 1].center;
-      const toPrev = Math.atan2(prev[2] - sys.center[2], prev[0] - sys.center[0]);
-      const toNext = Math.atan2(next[2] - sys.center[2], next[0] - sys.center[0]);
-      const diff = (x) => Math.abs(((((x - toNext) % TAU) + TAU + Math.PI) % TAU) - Math.PI);
-      sys.az0 = toPrev + (i % 2 ? 0.45 : -0.45);
-      sys.dir = diff(sys.az0 + sys.sweep) <= diff(sys.az0 - sys.sweep) ? 1 : -1;
-    });
-  })();
-
-  // 停留所のあいだ：前の停留所の終わりから、次の停留所の始まりへ 3 次ベジェで飛ぶ
-  const shotA0 = {}, shotA1 = {}, shotB0 = {}, shotB1 = {};
-  function transitShot(a, b, t, out) {
-    a.shot(1, shotA1);
-    a.shot(0.985, shotA0);
-    b.shot(0, shotB0);
-    b.shot(0.015, shotB1);
-    const P0 = shotA1.pos, P3 = shotB0.pos;
-    const D = len(sub(P3, P0)) || 1;
-    const lift = [0, D * 0.1, 0];
-    const P1 = add(add(P0, scale(norm(sub(shotA1.pos, shotA0.pos)), D * 0.38)), lift);
-    const P2 = add(sub(P3, scale(norm(sub(shotB1.pos, shotB0.pos)), D * 0.38)), lift);
-    const te = mix(t, smoother(t), 0.65);
-    const k = 1 - te;
-    out.pos = [0, 1, 2].map((i) => k * k * k * P0[i] + 3 * k * k * te * P1[i] + 3 * k * te * te * P2[i] + te * te * te * P3[i]);
-    const vel = [0, 1, 2].map((i) => 3 * k * k * (P1[i] - P0[i]) + 6 * k * te * (P2[i] - P1[i]) + 3 * te * te * (P3[i] - P2[i]));
-    const s = smoother(t);
-    const bump = Math.pow(Math.sin(Math.PI * t), 2);
-    // 飛んでいる間は進行方向を見る
-    const look = add(out.pos, scale(norm(vel), D * 0.5));
-    out.target = lerp3(lerp3(shotA1.target, shotB0.target, s), look, bump * 0.75);
-    out.fov = mix(shotA1.fov, shotB0.fov, s) + bump * 12;
-    out.shift = [mix(shotA1.shift[0], shotB0.shift[0], s) * (1 - 0.7 * bump), mix(shotA1.shift[1], shotB0.shift[1], s) * (1 - 0.7 * bump)];
-    return out;
-  }
+  const stops = [{ kind: "hero", el: heroEl, R: 0, D: 1 }]
+    .concat(systems.map((sys) => ({ kind: "system", sys, el: sys.panel, R: 0, D: 1 })))
+    .concat([{ kind: "outro", el: outroEl, R: 0, D: 1 }]);
 
   // ---------- スクロール量と停留所の対応 ----------
   let viewportHeight = window.innerHeight;
@@ -507,6 +244,9 @@
       stop.R = Math.max(stop.R, stops[i - 1].D + vh * 0.2);
       stop.D = Math.max(stop.D, stop.R + vh * 0.1);
     });
+    engine.layout(JSON.stringify({
+      stops: stops.map(({ R, D }) => ({ R, D })), portrait, narrow,
+    }));
   }
 
   // スクロール量 → どの停留所（または航行区間）にいるか
@@ -533,29 +273,14 @@
   }
 
   const camera = { pos: [0, 0, 100], target: [0, 0, 0], fov: 50, shift: [0, 0] };
-  function cameraAt(scroll, out) {
-    const where = locate(scroll);
-    const stop = stops[where.index];
-    if (where.transit) transitShot(stops[where.index - 1], stop, where.p, out);
-    else stop.shot(where.p, out);
-    out.bang = where.index === 0 && !where.transit ? where.p : 1;
-    out.outro = stop.kind === "outro" ? (where.transit ? 0 : where.p) : 0;
-    if (stop.kind === "outro" && where.transit) out.outro = smooth(0.5, 1, where.p) * 0.4;
-    return out;
-  }
-
-  // 視差を抑える設定：飛ばずに、停留所ごとの 1 枚の構図に切り替える
-  function stillShot(index, out) {
-    const stop = stops[index];
-    if (stop.kind === "hero") {
-      const formed = window.scrollY > stop.D * 0.5;
-      stop.shot(formed ? 1 : 0, out);
-      out.bang = formed ? 1 : 0;
-    } else {
-      stop.shot(0.5, out);
-      out.bang = 1;
-    }
-    out.outro = stop.kind === "outro" ? 1 : 0;
+  function readCamera(scroll, stillIndex, time, out) {
+    const values = floats64(engine.camera(scroll, stillIndex, time));
+    out.pos = Array.from(values.subarray(0, 3));
+    out.target = Array.from(values.subarray(3, 6));
+    out.fov = values[6];
+    out.shift = [values[7], values[8]];
+    out.bang = values[9];
+    out.outro = values[10];
     return out;
   }
 
@@ -1287,79 +1012,22 @@ void main(){
   }
 
   // ---------- 銀河の粒子 ----------
-  const GALAXY_COUNT = lowPower ? 52000 : 96000;
-  const galaxy = (function buildGalaxy() {
-    const rnd = mulberry32(20261110);
-    const data = new Float32Array(GALAXY_COUNT * 11);
-    // 爆発の広がりにむらを付け、フィラメント状にする
-    const waves = [];
-    for (let i = 0; i < 7; i++) waves.push({ k: scale(unitVector(rnd), mix(2, 5.5, rnd())), phase: rnd() * TAU, amp: mix(0.05, 0.13, rnd()) });
-    const avoid = systems.map((s) => [s.center, s.extent + 160]);
-    const bulge = [linear("#ffe2b8"), linear("#ffcf95"), linear("#fff2dc")];
-    const young = [linear("#c8d8ff"), linear("#e2ebff"), linear("#a9c2ff")];
-    const old = [linear("#fff1dc"), linear("#ffe0bd"), linear("#f2f2f2")];
-    const hii = linear("#ff7aa0");
-    const pick = (list) => list[Math.floor(rnd() * list.length)];
-
-    for (let i = 0; i < GALAXY_COUNT; i++) {
-      let p = [0, 0, 0], col = old[0], size = 1;
-      for (let attempt = 0; attempt < 8; attempt++) {
-        const kind = rnd();
-        if (kind < 0.16) {
-          const r = Math.abs(gauss(rnd)) * 620 + rnd() * 140;
-          const d = unitVector(rnd);
-          p = [d[0] * r, d[1] * r * 0.6, d[2] * r];
-          col = pick(bulge);
-          size = 0.6 + Math.pow(rnd(), 3) * 1.6;
-        } else if (kind < 0.8) {
-          const arm = Math.floor(rnd() * 4);
-          const major = arm % 2 === 0;
-          const r = GALAXY_RADIUS * (0.09 + 0.91 * Math.pow(rnd(), major ? 0.9 : 0.75));
-          const theta = arm * (TAU / 4) + Math.log(r / 420) * 2.7;
-          const spread = (major ? 0.15 : 0.25) * (1 + 0.6 * (1 - r / GALAXY_RADIUS));
-          const a = theta + gauss(rnd) * spread;
-          const rr = r + gauss(rnd) * 90;
-          p = [Math.cos(a) * rr, gauss(rnd) * (70 - 35 * (r / GALAXY_RADIUS)), Math.sin(a) * rr];
-          const roll = rnd();
-          col = roll < 0.06 ? hii : roll < 0.62 ? pick(young) : pick(old);
-          size = 0.55 + Math.pow(rnd(), 3) * 2.4 + (roll < 0.06 ? 0.6 : 0);
-        } else {
-          const r = GALAXY_RADIUS * Math.sqrt(rnd()) * 1.05;
-          const a = rnd() * TAU;
-          p = [Math.cos(a) * r, gauss(rnd) * 110 * (1 - 0.5 * (r / GALAXY_RADIUS)), Math.sin(a) * r];
-          col = pick(old);
-          size = 0.45 + Math.pow(rnd(), 4) * 1.4;
-        }
-        // 星系のすぐ近くには置かない（目の前に大きな点が出ないように）
-        if (avoid.every(([c, r]) => len(sub(p, c)) > r)) break;
-      }
-      const L = len(p) + 60;
-      const dir = norm([p[0] + gauss(rnd) * L * 0.55, p[1] + gauss(rnd) * L * 0.9, p[2] + gauss(rnd) * L * 0.55]);
-      let k = 1;
-      waves.forEach((w) => (k += w.amp * Math.cos(dot(dir, w.k) + w.phase)));
-      const reach = L * (1.05 + 0.5 * rnd()) * k + 300 * rnd();
-      const brightness = mix(0.65, 1.25, rnd());
-      const o = i * 11;
-      data[o] = p[0]; data[o + 1] = p[1]; data[o + 2] = p[2];
-      data[o + 3] = dir[0] * reach; data[o + 4] = dir[1] * reach; data[o + 5] = dir[2] * reach; data[o + 6] = rnd();
-      data[o + 7] = col[0] * brightness; data[o + 8] = col[1] * brightness; data[o + 9] = col[2] * brightness; data[o + 10] = size;
-    }
+  const galaxy = (function () {
+    const data = floats32(engine.particles("galaxy", lowPower));
     const buf = buffer(data);
     const vao = vertexArray(() => {
       attrib(0, buf, 3, 44, 0);
       attrib(1, buf, 4, 44, 12);
       attrib(2, buf, 4, 44, 28);
     });
-    return { vao, count: GALAXY_COUNT };
+    return { vao, count: data.length / 11 };
   })();
 
   // ---------- 遠くの星空・小惑星帯 ----------
-  function pointCloud(points) {
-    const data = new Float32Array(points.length * 7);
-    points.forEach((pt, i) => data.set(pt, i * 7));
+  function pointCloud(data) {
     const buf = buffer(data);
     return {
-      count: points.length,
+      count: data.length / 7,
       vao: vertexArray(() => {
         attrib(0, buf, 3, 28, 0);
         attrib(1, buf, 4, 28, 12);
@@ -1367,48 +1035,19 @@ void main(){
     };
   }
 
-  const skyStars = (function () {
-    const rnd = mulberry32(7);
-    const tints = ["#ffffff", "#cfdcff", "#ffe8cc", "#ffd2a8", "#b8ccff"].map(linear);
-    const points = [];
-    const count = lowPower ? 5000 : 9000;
-    for (let i = 0; i < count; i++) {
-      const d = unitVector(rnd);
-      const c = tints[Math.floor(rnd() * tints.length)];
-      const b = mix(0.25, 0.9, rnd());
-      points.push([d[0] * 30000, d[1] * 30000, d[2] * 30000, c[0] * b, c[1] * b, c[2] * b, 0.45 + Math.pow(rnd(), 5) * 1.6]);
-    }
-    return pointCloud(points);
-  })();
-
-  systems.forEach((sys) => {
+  const skyStars = pointCloud(floats32(engine.particles("sky", lowPower)));
+  systems.forEach((sys, index) => {
     if (!sys.belt) return;
-    const rnd = mulberry32(hashString(sys.id + ":belt"));
-    const tints = ["#b8a58f", "#8f877d", "#d1c2ad"].map(linear);
-    const points = [];
-    const count = lowPower ? 1400 : 2600;
-    for (let i = 0; i < count; i++) {
-      const a = rnd() * TAU;
-      const r = mix(sys.belt.inner, sys.belt.outer, Math.pow(rnd(), 0.8));
-      const h = gauss(rnd) * 1.4;
-      const base = orbitPoint(sys, r, a, 0, 0);
-      const c = tints[Math.floor(rnd() * tints.length)];
-      const b = mix(0.18, 0.5, rnd());
-      points.push([base[0] + sys.normal[0] * h, base[1] + sys.normal[1] * h, base[2] + sys.normal[2] * h, c[0] * b, c[1] * b, c[2] * b, 0.5 + rnd() * 0.9]);
-    }
-    sys.beltCloud = pointCloud(points);
+    sys.beltCloud = pointCloud(floats32(engine.particles("belt", lowPower, index)));
     sys.beltMatrix = new Float32Array(16);
   });
   const IDENTITY = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
 
   // ---------- 星雲 ----------
-  const NEBULA_MASKS = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]];
-  function nebulaSet(list) {
-    const data = new Float32Array(list.length * 16);
-    list.forEach((n, i) => data.set([].concat(n.pos, [n.size], n.c1, [n.intensity], n.c2, [n.rot], n.mask), i * 16));
+  function nebulaSet(data) {
     const buf = buffer(data);
     return {
-      count: list.length,
+      count: data.length / 16,
       vao: vertexArray(() => {
         attrib(0, quadBuffer, 2, 8, 0, 0);
         for (let k = 0; k < 4; k++) attrib(1 + k, buf, 4, 64, k * 16, 1);
@@ -1416,69 +1055,8 @@ void main(){
     };
   }
 
-  const galaxyNebulae = (function () {
-    const rnd = mulberry32(31337);
-    const palette = [
-      ["#ff5c7a", "#ff9a6a", 0.4],
-      ["#5f86ff", "#9fc4ff", 0.25],
-      ["#9a6bff", "#ff7ad0", 0.15],
-      ["#3fd0c8", "#7a9cff", 0.1],
-      ["#ffb06a", "#ff6a5a", 0.1],
-    ];
-    const list = [];
-    const count = lowPower ? 46 : 72;
-    for (let i = 0; i < count; i++) {
-      const arm = Math.floor(rnd() * 4);
-      const r = GALAXY_RADIUS * mix(0.18, 0.98, Math.pow(rnd(), 0.8));
-      const a = arm * (TAU / 4) + Math.log(r / 420) * 2.7 + gauss(rnd) * 0.14;
-      let roll = rnd(), choice = palette[0];
-      for (const entry of palette) {
-        if ((roll -= entry[2]) <= 0) {
-          choice = entry;
-          break;
-        }
-      }
-      list.push({
-        pos: [Math.cos(a) * r, gauss(rnd) * 50, Math.sin(a) * r],
-        size: mix(380, 1500, Math.pow(rnd(), 1.6)),
-        c1: linear(choice[0]),
-        c2: linear(choice[1]),
-        intensity: mix(0.05, 0.13, rnd()),
-        rot: rnd() * TAU,
-        mask: NEBULA_MASKS[Math.floor(rnd() * 3)],
-      });
-    }
-    // 銀河の中心の、ぼんやりした光
-    list.push({ pos: [0, 0, 0], size: 2600, c1: linear("#ffd29a"), c2: linear("#ffe8c8"), intensity: 0.12, rot: 0.3, mask: NEBULA_MASKS[0] });
-    list.push({ pos: [0, 0, 0], size: 1200, c1: linear("#fff0d8"), c2: linear("#ffd6a0"), intensity: 0.2, rot: 1.7, mask: NEBULA_MASKS[0] });
-    // 惑星状星雲
-    systems.forEach((sys) => {
-      if (!sys.nebula) return;
-      list.push({ pos: sys.center.slice(), size: sys.extent * 1.15, c1: linear("#5ff2d6"), c2: linear("#ff5a4a"), intensity: 0.45, rot: 0.4, mask: NEBULA_MASKS[3] });
-      list.push({ pos: sys.center.slice(), size: sys.extent * 1.8, c1: linear("#ff4a5e"), c2: linear("#6a7cff"), intensity: 0.07, rot: 1.2, mask: NEBULA_MASKS[1] });
-    });
-    return nebulaSet(list);
-  })();
-
-  // 爆発の火の玉（原点のまわり。大きさは描くときに広げる）
-  const blastClouds = (function () {
-    const rnd = mulberry32(99);
-    const colors = [["#ffffff", "#bcd2ff"], ["#ffd6a0", "#ff8a4a"], ["#ff8a5a", "#ff4a6a"], ["#a8c0ff", "#ffffff"]];
-    const list = [];
-    for (let i = 0; i < 14; i++) {
-      const c = colors[Math.floor(rnd() * colors.length)];
-      list.push({
-        pos: scale(unitVector(rnd), mix(0.05, 0.55, rnd())),
-        size: mix(0.35, 0.9, rnd()),
-        c1: linear(c[0]),
-        c2: linear(c[1]),
-        intensity: mix(0.25, 0.6, rnd()),
-        rot: rnd() * TAU,
-        mask: NEBULA_MASKS[Math.floor(rnd() * 3)],
-      });
-    }
-    return nebulaSet(list);
-  })();
+  const galaxyNebulae = nebulaSet(floats32(engine.particles("nebula", lowPower)));
+  const blastClouds = nebulaSet(floats32(engine.particles("blast", lowPower)));
 
   // 星雲のテクスチャを一度だけ焼く
   const nebulaTexture = (function () {
@@ -1505,41 +1083,14 @@ void main(){
   })();
 
   // ---------- 軌道と航路の線 ----------
-  const ORBIT_SEGMENTS = 192;
+  const ORBIT_SEGMENTS = scene.orbitSegments;
   const lines = (function () {
-    const values = [];
-    systems.forEach((sys) => {
-      sys.planets.forEach((planet) => {
-        planet.orbitStart = values.length / 4;
-        for (let s = 0; s <= ORBIT_SEGMENTS; s++) {
-          const angle = (s / ORBIT_SEGMENTS) * TAU;
-          const p = orbitPoint(sys, planet.a, angle, planet.incl, planet.node);
-          values.push(p[0], p[1], p[2], angle);
-        }
-      });
-    });
-    // 航路：訪れた星系を通る滑らかな曲線（param は道のり）
-    const routeStart = values.length / 4;
-    const pts = systems.map((s) => s.center);
-    let distance = 0, last = null;
-    for (let i = 0; i < pts.length - 1; i++) {
-      const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
-      for (let s = 0; s < 32; s++) {
-        const t = s / 32, t2 = t * t, t3 = t2 * t;
-        const p = [0, 1, 2].map((k) => 0.5 * (2 * p1[k] + (p2[k] - p0[k]) * t + (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * t2 + (3 * p1[k] - p0[k] - 3 * p2[k] + p3[k]) * t3));
-        if (last) distance += len(sub(p, last));
-        values.push(p[0], p[1], p[2], distance);
-        last = p;
-      }
-    }
-    if (pts.length) {
-      const p = pts[pts.length - 1];
-      if (last) distance += len(sub(p, last));
-      values.push(p[0], p[1], p[2], distance);
-    }
-    const routeCount = values.length / 4 - routeStart;
-    const buf = buffer(new Float32Array(values));
-    return { vao: vertexArray(() => attrib(0, buf, 4, 16, 0)), routeStart, routeCount };
+    const data = floats32(engine.particles("lines", lowPower));
+    const buf = buffer(data);
+    return {
+      vao: vertexArray(() => attrib(0, buf, 4, 16, 0)),
+      routeStart: scene.routeStart, routeCount: scene.routeCount,
+    };
   })();
 
   // ---------- 毎フレーム書き換えるインスタンス ----------
@@ -1741,8 +1292,8 @@ void main(){
 
     // 近くの星系だけ、惑星や軌道を描く
     const near = [];
+    updateBodies(time);
     systems.forEach((sys) => {
-      updateBodies(sys, time);
       sys.camDist = len(sub(cam.pos, sys.center));
       if (bang > 0.9 && sys.camDist < Math.max(3200, sys.extent * 26)) near.push(sys);
     });
@@ -1999,12 +1550,9 @@ void main(){
           }, 220);
         }
       }
-      stillShot(stillIndex, camera);
+      readCamera(goal, stillIndex, time, camera);
     } else {
-      cameraAt(scrollCurrent, camera);
-      // ほんの少しだけ漂わせる
-      const sway = len(sub(camera.pos, camera.target)) * 0.0025;
-      camera.pos = [camera.pos[0] + Math.sin(time * 0.31) * sway, camera.pos[1] + Math.sin(time * 0.23 + 1) * sway, camera.pos[2] + Math.cos(time * 0.27) * sway];
+      readCamera(scrollCurrent, -1, time, camera);
     }
 
     const where = locate(goal);

@@ -40,6 +40,22 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: cosmos/go.mod
+          cache: false
+      - name: Test Cosmos simulation
+        working-directory: cosmos
+        run: go test ./...
+      - name: Build Cosmos WebAssembly
+        run: ./scripts/build_cosmos.sh
+      - name: Set up Node for Wasm integration tests
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test Cosmos Wasm and JavaScript bridge
+        run: node tests/test_cosmos_wasm.cjs
       - name: Test OSS refresh and deployment contract (offline)
         env:
           OSS_TEST_JEKYLL: "1"

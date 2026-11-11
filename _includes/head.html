@@ -30,6 +30,7 @@
   {%- if page.layout == 'cosmos' %}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap">
   <link rel="stylesheet" href="{{ '/assets/cosmos.css' | relative_url }}?v={{ asset_version }}">
+  <script defer src="{{ '/assets/wasm/wasm_exec.js' | relative_url }}?v={{ asset_version }}"></script>
   <script defer src="{{ '/assets/js/cosmos.js' | relative_url }}?v={{ asset_version }}"></script>
   {%- endif %}
   {%- feed_meta -%}
