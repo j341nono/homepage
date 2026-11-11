@@ -18,7 +18,8 @@
   --cosmos-accent: #9fd8ff;
   --cosmos-accent-2: #c9b6ff;
   --cosmos-gold: #f4cf86;
-  --cosmos-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Zen Kurenaido", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --cosmos-mono: var(--font-sans);
 
   --page-bg: var(--cosmos-bg);
   --surface: var(--cosmos-bg);
