@@ -1,0 +1,23 @@
+# ==================================================
+# Cosmos（ホーム画面風 UI）のタイル設定
+# ==================================================
+# tiles:    セクションの id ごとのアクセント色とアイコン（_includes/cosmos-icon.html の名前）
+# fallback: tiles に無いセクション・プロダクトに順番に割り当てる色
+# 新しい活動セクションは id を書かなくても fallback の色と spark アイコンで表示される。
+tiles:
+  profile:      { accent: "#5aa9ff", icon: profile }
+  research:     { accent: "#8b7bff", icon: research }
+  publications: { accent: "#3fc8b8", icon: book }
+  hackathons:   { accent: "#ff7a59", icon: code }
+  oss:          { accent: "#47c26b", icon: branch }
+  events:       { accent: "#f2b84b", icon: mic }
+  internships:  { accent: "#4f8cff", icon: briefcase }
+  organizing:   { accent: "#e86fb4", icon: people }
+  achievements: { accent: "#f5d06b", icon: medal }
+fallback:
+  - "#6aa7ff"
+  - "#a58bff"
+  - "#45c9c1"
+  - "#ff8f6b"
+  - "#e978b8"
+  - "#7bd389"

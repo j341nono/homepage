@@ -4,19 +4,8 @@
   {%- include head.html -%}
 
   <body class="cosmos-body">
-    {%- comment -%}
-      宇宙の 3D シーン（assets/js/cosmos.js）。装飾なので読み上げない。
-      WebGL2 が使えない環境では CSS の星空だけを表示し、本文はそのまま読める。
-    {%- endcomment %}
-    <canvas class="cosmos-canvas" data-cosmos-canvas aria-hidden="true"></canvas>
-    <div class="cosmos-vignette" aria-hidden="true"></div>
-
-    {%- include header.html -%}
-
-    <main class="cosmos-main" aria-label="Content">
-      {{ content }}
-    </main>
-
+    {%- comment -%} ヘッダー（サイト内リンク・言語切り替え）は cosmos.html の上段に組み込んでいる {%- endcomment %}
+    {{ content }}
   </body>
 
 </html>

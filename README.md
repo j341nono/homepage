@@ -25,7 +25,6 @@ New translated page pairs need matching `translation_key` values and their own
 `lang`, `locale`, and permalink in front matter. To verify both versions locally:
 
 ```sh
-./scripts/build_cosmos.sh # Requires Go 1.25+; run again after changing cosmos/.
 bundle exec jekyll serve
 # Open http://localhost:4000/homepage/ and http://localhost:4000/homepage/en/
 ```
@@ -80,63 +79,40 @@ failure handling, and contribution registration.
 ## Cosmos page
 
 `/cosmos/` and `/en/cosmos/` (the header's **Cosmos** tab) show the Home and
-Products data as a journey through space. A fixed WebGL2 canvas sits behind the
-page, and the scroll position drives the camera along a path:
+Products data as a game-console-style home screen:
 
-1. **Big Bang** – the hero is a singularity. Scrolling sets it off, and the
-   particles swirl into a spiral galaxy while the cosmic-time HUD advances.
-2. **Star systems** – every section is a star system in that galaxy. While a
-   section's panel is on screen, the camera orbits its star; the gaps between
-   panels are flights to the next system. Each item marked `data-cosmos-body` is
-   a planet (nested `items` are its moons); hovering or focusing an item lights
-   up its planet and orbit.
-3. **Flight log** – the footer rises above the galaxy and traces the route.
+1. **Tabs** – *Portfolio* and *Products* switch between two rows of tiles
+   (keys: Q / E).
+2. **Tiles** – one tile per section (Profile, Research, Publications, each
+   activity section, OSS) or per product. The selected tile grows, shows its
+   name, and recolours the background; product tiles also show their image as
+   background art.
+3. **Panel** – a large hero (title, summary, primary button) above a horizontal
+   rail of cards. Activating a card opens its full details in a dialog.
+
+Keyboard: ←/→ choose a tile, ↓ moves into the hero and rail, ←/→ move between
+cards, Enter opens, Esc / ↑ go back. The mouse wheel over the tile row steps
+through tiles. The URL hash follows the selected tile (`/cosmos/#publications`).
 
 | Part | File |
 | --- | --- |
-| Markup | `_includes/cosmos.html`, `cosmos-heading.html`, `cosmos-items.html` |
+| Markup | `_includes/cosmos.html`, `cosmos-tile.html`, `cosmos-cards.html`, `cosmos-icon.html` |
+| Tile colours and icons per section | `_data/cosmos.yml` |
 | Layout | `_layouts/cosmos.html` |
-| Simulation (Go, compiled to WebAssembly) | `cosmos/scene.go`, `camera.go`, `particles.go`, `math.go` |
-| Browser bridge (Go → JavaScript) | `cosmos/main_js.go` |
-| Rendering (WebGL2 and GLSL) and DOM events | `assets/js/cosmos.js` |
+| Interaction and animated background (vanilla JS, Canvas 2D) | `assets/js/cosmos.js` |
 | Styles | `_sass/portfolio/_cosmos.scss` |
-| Labels and cosmic epochs | `_data/locales.yml` → `cosmos` |
+| Labels | `_data/locales.yml` → `cosmos` |
 
-Star types per section live in `systemStyles` in `cosmos/config.json`; a section with an
-unknown `id` gets a star from `fallbackStars`, so new activity sections work
-without code changes. The scene renders in HDR with bloom, lowers its resolution
-on slow devices, and pauses while the tab is hidden. With
-`prefers-reduced-motion`, the camera cuts between still shots instead of flying.
-Without WebGL2 or if Wasm fails to load, the page shows a CSS starfield and all content stays readable.
-The old `/ascii/` URLs redirect to the Cosmos pages.
+A new activity section appears automatically as a tile; give it an entry in
+`_data/cosmos.yml` to choose its colour and icon, otherwise it gets a colour
+from `fallback` and a generic icon. Nothing needs building: there is no Wasm or
+bundler step.
 
-Go generates the systems, seeded particle distributions, orbital positions,
-camera paths and orbit/route geometry. JavaScript measures the page, forwards
-input and submits WebGL draws; GPU shaders remain GLSL. Static geometry crosses
-the Wasm boundary once as packed Float32 buffers, and body positions cross once
-per frame as a packed Float64 buffer. No Go server is needed on GitHub Pages.
-
-Build and verify the simulation before serving or building Jekyll:
-
-```sh
-(cd cosmos && go test ./...)
-./scripts/build_cosmos.sh
-node tests/test_cosmos_wasm.cjs
-bundle exec jekyll build
-```
-
-The build script generates `assets/wasm/cosmos.wasm` and copies the matching
-compiler's `wasm_exec.js`; both are ignored by Git. Pages CI tests and builds
-them before Jekyll. Deploy the generated Wasm and support script together to
-avoid runtime/compiler mismatches. The standard Go runtime adds about 3.1 MiB
-before compression. Go sources and reference fixtures are excluded from the site.
-
-`cosmos/testdata/javascript.json` contains reference results captured from
-`assets/js/cosmos.js` at commit `78fe3ea`, covering all star styles, Unicode IDs,
-moons, the planet limit, cameras and samples across particle buffers. Go tests
-check numerical parity. The Node integration tests execute the actual Wasm,
-exercise the renderer against DOM/WebGL stubs, and check reduced motion and
-load failures; they do not validate GPU output or visual appearance.
+Without JavaScript, the tiles act as a table of contents and every panel and
+card detail is shown in one readable page. With `prefers-reduced-motion`, the
+background is drawn as a still image and transitions are disabled. Screens
+narrower than 760px or shorter than 600px scroll vertically instead of fitting
+into one viewport. The old `/ascii/` URLs redirect to the Cosmos pages.
 
 ## Language Globe
 

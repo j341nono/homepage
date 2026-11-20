@@ -1,0 +1,66 @@
+{%- comment -%}
+  Cosmos の活動カード。表のボタン（console-card-face）には要点だけを出し、
+  裏（console-detail）に全文を置く。JS が動くと裏は隠れ、カードを開いたときのダイアログに複製される。
+  JS が無いときは表と裏が並んで表示される。
+  引数: items（活動の項目）、eyebrow（カード上部の小見出し。省略可）
+{%- endcomment -%}
+{%- for item in include.items %}
+<article class="console-card" data-console-card>
+  <button class="console-card-face" type="button" aria-haspopup="dialog">
+    {%- if include.eyebrow %}
+    <span class="console-card-eyebrow">{{ include.eyebrow | escape }}</span>
+    {%- endif %}
+    <span class="console-card-title">{{ item.title | escape }}</span>
+    {%- if item.role or item.period %}
+    <span class="console-card-meta">{% if item.role %}{{ item.role | escape }}{% if item.period %} · {% endif %}{% endif %}{{ item.period | escape }}</span>
+    {%- endif %}
+    {%- if item.award %}
+    <span class="console-card-award">★ {{ item.award | escape }}</span>
+    {%- elsif item.items %}
+    <span class="console-card-badge">+{{ item.items.size }}</span>
+    {%- endif %}
+  </button>
+  <div class="console-detail">
+    {%- if include.eyebrow %}
+    <p class="console-detail-eyebrow">{{ include.eyebrow | escape }}</p>
+    {%- endif %}
+    <h3 class="console-detail-title">{{ item.title | escape }}</h3>
+    {%- if item.role or item.period %}
+    <p class="console-detail-meta">{% if item.role %}{{ item.role | escape }}{% if item.period %} · {% endif %}{% endif %}{{ item.period | escape }}</p>
+    {%- endif %}
+    {%- if item.description %}
+    <p>{{ item.description | escape }}</p>
+    {%- endif %}
+    {%- if item.award %}
+    <p class="console-award">★ {{ item.award | escape }}</p>
+    {%- endif %}
+    {%- if item.stats %}
+    <p class="console-chips">{% for stat in item.stats %}<span>{{ stat | escape }}</span>{% endfor %}</p>
+    {%- endif %}
+    {%- if item.items %}
+    <ul class="console-detail-list">
+      {%- for child in item.items %}
+      <li>
+        <strong>{{ child.title | escape }}</strong>
+        {%- if child.role or child.period %}
+        <span class="console-detail-meta">{% if child.role %}{{ child.role | escape }}{% if child.period %} · {% endif %}{% endif %}{{ child.period | escape }}</span>
+        {%- endif %}
+        {%- if child.description %}
+        <span>{{ child.description | escape }}</span>
+        {%- endif %}
+        {%- if child.award %}
+        <span class="console-award">★ {{ child.award | escape }}</span>
+        {%- endif %}
+        {%- if child.links %}
+        <span class="console-links">{% include portfolio-links.html links=child.links %}</span>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- if item.links %}
+    <p class="console-links">{% include portfolio-links.html links=item.links %}</p>
+    {%- endif %}
+  </div>
+</article>
+{%- endfor %}

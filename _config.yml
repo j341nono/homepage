@@ -59,7 +59,6 @@ exclude:
   - requirements-oss.txt
   - scripts/
   - tests/
-  - cosmos/
   - bak/
   - tmp/
   - __pycache__/

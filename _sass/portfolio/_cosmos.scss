@@ -1,1079 +1,1235 @@
 // ==================================================
-// Cosmos モード（/cosmos/）
+// Cosmos モード（/cosmos/）— ゲーム機のホーム画面風 UI
 // ==================================================
-// main.css の上に重ねて読み込む。宇宙が舞台なのでテーマ切り替えは使わず、常に暗い配色にする。
-// 3D シーン（assets/js/cosmos.js）は画面に固定したキャンバスに描き、本文のパネルはその上をスクロールする。
-// JS が星系の色（--star）、ビッグバンの進み具合（--bang）などを書き込み、見た目をシーンに合わせる。
+// main.css の上に重ねて読み込む。常に暗い配色にし、テーマ切り替えは使わない。
+//   上段 .console-topbar  タブ・サイト内リンク・時計
+//   中段 .console-shelf   タイルの列（選択中のタイルは大きくなり、右に名前が出る）
+//   下段 .console-stage   選択中のパネル（ヒーロー + カードのレール）
+//   最下 .console-hints   操作のヒントと通常モードへのリンク
+// JS（assets/js/cosmos.js）が動くと <html> に .console-ready が付き、1 画面に収まるレイアウトになる。
+// 付かないとき（JS 無効など）は、全パネルと詳細が縦に並ぶ読み物として表示する。
 
 :root.cosmos-mode,
 :root.cosmos-mode[data-theme] {
   color-scheme: dark;
-  --cosmos-bg: #020309;
-  --cosmos-ink: #e8edf8;
-  --cosmos-muted: #a3aec4;
-  --cosmos-dim: #6b7791;
-  --cosmos-hair: rgba(178, 196, 255, 0.13);
-  --cosmos-hair-strong: rgba(178, 196, 255, 0.24);
-  --cosmos-panel: rgba(6, 9, 21, 0.74);
-  --cosmos-accent: #9fd8ff;
-  --cosmos-accent-2: #c9b6ff;
-  --cosmos-gold: #f4cf86;
-  --font-sans: "Zen Kurenaido", "Hiragino Sans", "Yu Gothic", sans-serif;
-  --cosmos-mono: var(--font-sans);
+  --console-bg: #04050c;
+  --console-ink: #f3f6fc;
+  --console-muted: rgba(232, 238, 250, 0.68);
+  --console-dim: rgba(232, 238, 250, 0.46);
+  --console-glass: rgba(255, 255, 255, 0.07);
+  --console-glass-strong: rgba(255, 255, 255, 0.14);
+  --console-line: rgba(255, 255, 255, 0.12);
+  --console-gold: #ffd66e;
+  --accent: #5aa9ff;
+  --gutter: clamp(16px, 5vw, 72px);
 
-  --page-bg: var(--cosmos-bg);
-  --surface: var(--cosmos-bg);
-  --text: var(--cosmos-ink);
-  --muted: var(--cosmos-muted);
-  --border: var(--cosmos-hair-strong);
-  --tag-bg: rgba(159, 216, 255, 0.08);
-  --link: var(--cosmos-accent);
+  --page-bg: var(--console-bg);
+  --surface: var(--console-bg);
+  --text: var(--console-ink);
+  --muted: var(--console-muted);
+  --border: var(--console-line);
+  --link: #cfe3ff;
   --link-hover: #ffffff;
-  --award: var(--cosmos-gold);
+  --award: var(--console-gold);
 
-  // WebGL が無いときの星空（JS が動けばキャンバスで覆われる）
+  // Canvas が使えないときの背景
   background:
-    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.8), transparent 60%),
-    radial-gradient(1px 1px at 72% 34%, rgba(210, 225, 255, 0.7), transparent 60%),
-    radial-gradient(1.5px 1.5px at 38% 72%, rgba(255, 236, 210, 0.75), transparent 60%),
-    radial-gradient(1px 1px at 88% 82%, rgba(255, 255, 255, 0.6), transparent 60%),
-    radial-gradient(1px 1px at 56% 8%, rgba(200, 220, 255, 0.6), transparent 60%),
-    radial-gradient(ellipse 70% 45% at 70% 20%, rgba(98, 76, 180, 0.16), transparent 70%),
-    radial-gradient(ellipse 60% 50% at 20% 85%, rgba(40, 110, 170, 0.14), transparent 70%),
-    var(--cosmos-bg);
+    radial-gradient(ellipse 70% 60% at 85% 5%, rgba(90, 169, 255, 0.28), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 5% 100%, rgba(139, 123, 255, 0.16), transparent 70%),
+    var(--console-bg);
   background-attachment: fixed;
-  background-size: 340px 340px, 420px 420px, 520px 520px, 380px 380px, 460px 460px, auto, auto, auto;
 }
 
 .cosmos-body {
-  position: relative;
   min-height: 100vh;
+  margin: 0;
   overflow-x: clip;
   background: transparent;
-  color: var(--cosmos-ink);
+  color: var(--console-ink);
+  font-family: var(--font-sans);
   font-size: 15px;
-  line-height: 1.8;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 
   ::selection {
-    background: rgba(159, 216, 255, 0.85);
-    color: #020309;
+    background: var(--accent);
+    color: #04050c;
   }
 
   a,
   a:visited {
-    color: var(--cosmos-accent);
+    color: var(--link);
     text-decoration: none;
-    transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
   }
 
   a:hover {
     color: #ffffff;
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   :focus-visible {
-    outline: 2px solid var(--cosmos-accent);
+    outline: 3px solid #ffffff;
     outline-offset: 3px;
   }
 }
 
+.console [hidden] {
+  display: none !important;
+}
+
 // ==================================================
-// 3D シーンと周辺減光
+// 背景
 // ==================================================
-.cosmos-canvas {
+.console-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 100vw;
-  // モバイルのアドレスバーの出入りでキャンバスの大きさが変わらないよう、最大の高さに合わせる
-  height: 100vh;
-  height: 100lvh;
-  opacity: 0;
+  inset: 0;
+  // .console の重なりの中で一番下に置く（0 だと位置指定の無い要素の上に描かれてしまう）
+  z-index: -1;
+  overflow: hidden;
   pointer-events: none;
-  transition: opacity 1.4s ease;
+}
+
+.console-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease;
 
   &.is-ready {
     opacity: 1;
   }
+}
 
-  // 視差を抑える設定では、星系を切り替えるときに一瞬だけ暗転させる
-  &.is-cut {
-    opacity: 0;
-    transition-duration: 0.22s;
+// プロダクトのタイトル画像。右側に大きく出し、左の文字側へ向けて消えていく
+.console-art {
+  position: absolute;
+  inset: 0 0 0 28%;
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.7s ease, transform 1.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 55%), linear-gradient(to top, transparent 0%, #000 45%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0%, #000 55%), linear-gradient(to top, transparent 0%, #000 45%);
+  mask-composite: intersect;
+
+  // 明るい画像でも文字が読めるよう、暗く沈めてから重ねる
+  filter: brightness(0.55) saturate(1.1);
+
+  &.is-visible {
+    opacity: 0.75;
+    transform: scale(1);
   }
 }
 
-.cosmos-vignette {
-  position: fixed;
+.console-shade {
+  position: absolute;
   inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse 120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 3, 0.55) 100%);
+  background:
+    linear-gradient(to right, rgba(4, 5, 12, 0.82), rgba(4, 5, 12, 0) 65%),
+    linear-gradient(to top, rgba(4, 5, 12, 0.85), rgba(4, 5, 12, 0) 45%);
 }
 
 // ==================================================
-// ヘッダー（シーンの上に重ねる）
+// 全体の枠
 // ==================================================
-.cosmos-body .site-header,
-.cosmos-body .site-header.is-scroll-aware {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 30;
-  border-bottom: 0;
-  background: linear-gradient(to bottom, rgba(2, 3, 9, 0.78), rgba(2, 3, 9, 0));
+.console {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0 var(--gutter);
+}
+
+.console-ready .console {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+// ==================================================
+// 上段：タブ・サイト内リンク・時計
+// ==================================================
+.console-topbar {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  min-height: 72px;
+  padding-top: 8px;
+}
+
+.console-tabs {
+  display: flex;
+  gap: 28px;
+}
+
+.console .console-tab,
+.console .console-tab:visited {
+  position: relative;
+  padding: 6px 0;
+  color: var(--console-dim);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--console-ink);
+    text-decoration: none;
+  }
+
+  &.is-current {
+    color: var(--console-ink);
+  }
+}
+
+.console-system {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.console-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+
+.console-avatar {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.console-clock {
+  min-width: 3.2em;
+  white-space: nowrap;
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+// サイト共通のヘッダーを、上段の右側に溶け込ませる
+.console .site-header,
+.console .site-header.is-scroll-aware {
+  position: static;
+  z-index: auto;
+  min-height: 0;
+  border: 0;
+  background: none;
+  transform: none;
+
+  .wrapper {
+    max-width: none;
+    padding: 0;
+  }
 
   .theme-toggle {
     display: none;
   }
 
   .header-preferences {
-    border-left-color: var(--cosmos-hair);
+    padding-left: 14px;
+    border-left: 1px solid var(--console-line);
   }
 }
 
-.cosmos-body .site-nav {
+.console .site-nav {
   .page-link,
   .page-link:visited {
-    color: var(--cosmos-muted);
+    color: var(--console-muted);
+    font-size: 0.9rem;
 
     &:hover {
-      color: var(--cosmos-ink);
+      color: var(--console-ink);
+      text-decoration: none;
     }
   }
 
   .page-link.is-current {
-    color: var(--cosmos-ink);
+    border-bottom-color: var(--accent);
+    color: var(--console-ink);
   }
 }
 
-.cosmos-body .language-switch summary:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--cosmos-ink);
-}
-
-.cosmos-body .language-options {
-  border: 1px solid var(--cosmos-hair-strong);
-  background: rgba(6, 9, 21, 0.96);
-}
-
-// ==================================================
-// 共通
-// ==================================================
-.cosmos-main {
-  position: relative;
-  z-index: 1;
-}
-
-.cosmos-dim {
-  color: var(--cosmos-dim);
-}
-
-// リンクは角括弧を消し、細い枠のピルにする
-.cosmos-body .portfolio-link-item {
-  font-size: 0;
-}
-
-.cosmos-body .portfolio-link {
-  align-items: center;
-  margin: 0 6px 6px 0;
-  padding: 3px 11px;
-  border: 1px solid var(--cosmos-hair-strong);
-  border-radius: 999px;
-  background: rgba(159, 216, 255, 0.04);
-  font-size: 0.78rem;
-  line-height: 1.6;
+.console .language-switch summary {
+  color: var(--console-muted);
 
   &:hover {
-    border-color: rgba(159, 216, 255, 0.6);
-    background: rgba(159, 216, 255, 0.12);
+    background: var(--console-glass);
+    color: var(--console-ink);
   }
 }
 
+.console .language-options {
+  border: 1px solid var(--console-line);
+  background: rgba(14, 16, 28, 0.96);
+  backdrop-filter: blur(12px);
+}
+
 // ==================================================
-// 冒頭：ビッグバン
+// 中段：タイルの列
 // ==================================================
-// 高さの分だけスクロールすると、特異点が爆発して銀河ができあがる
-.cosmos-hero {
+.console-shelf {
+  flex: 0 0 auto;
+  margin: 0 calc(var(--gutter) * -1);
+}
+
+.console-shelf-track {
+  --tile-size: 92px;
+  --tile-big: 140px;
   position: relative;
-  height: 260vh;
-}
-
-.cosmos-hero-inner {
-  position: sticky;
-  top: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100vh;
-  height: 100svh;
-  // 特異点（画面上部 38% の位置）の下に名前を置く
-  padding: calc(38vh + 76px) 24px 0;
-  box-sizing: border-box;
-  text-align: center;
-  opacity: calc(1 - var(--bang, 0) * 3.2);
-  transform: translateY(calc(var(--bang, 0) * -60px)) scale(calc(1 + var(--bang, 0) * 0.15));
-  will-change: opacity, transform;
+  align-items: flex-start;
+  gap: 14px;
+  height: calc(var(--tile-big) + 28px);
+  padding: 12px var(--gutter) 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // 最後のタイルも左端まで送れるよう、末尾に余白を足す
+  &::after {
+    content: "";
+    flex: 0 0 calc(100vw - var(--tile-big) - var(--gutter) * 2);
+  }
 }
 
-.cosmos-title {
+.console .console-tile:focus-visible {
+  outline: none;
+}
+
+.console .console-tile,
+.console .console-tile:visited {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  margin: 0 0 18px;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  gap: 18px;
+  border-radius: 18px;
+  color: var(--console-ink);
+  outline: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
-.cosmos-title-main {
-  background: linear-gradient(180deg, #ffffff 30%, #b9c9ec 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-size: clamp(2.4rem, 7.2vw, 5.6rem);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: 0.01em;
-  filter: drop-shadow(0 0 28px rgba(150, 190, 255, 0.28));
-}
+.console-tile-face {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  overflow: hidden;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.32), transparent 55%),
+    linear-gradient(150deg, var(--accent), color-mix(in srgb, var(--accent) 45%, #04050c));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  transition:
+    width 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
 
-.cosmos-title-sub {
-  color: var(--cosmos-muted);
-  font-family: var(--cosmos-mono);
-  font-size: clamp(0.72rem, 1.4vw, 0.9rem);
-  font-weight: 400;
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
-}
-
-.cosmos-tagline {
-  margin: 0 0 18px;
-  color: var(--cosmos-ink);
-  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-  letter-spacing: 0.08em;
-}
-
-.cosmos-hero-links {
-  margin: 0;
-}
-
-.cosmos-cue {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  margin: 0;
-  color: var(--cosmos-muted);
-  font-family: var(--cosmos-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  transform: translateX(-50%);
-
-  svg {
+  .console-icon {
+    width: 42%;
+    height: 42%;
     fill: none;
-    stroke: currentColor;
+    stroke: #ffffff;
     stroke-width: 1.6;
     stroke-linecap: round;
     stroke-linejoin: round;
-    animation: cosmos-cue 2.4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
-@keyframes cosmos-cue {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.5;
-  }
-
-  50% {
-    transform: translateY(6px);
-    opacity: 1;
-  }
+.console-tile-label {
+  display: -webkit-box;
+  max-width: 300px;
+  margin-top: 10px;
+  overflow: hidden;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
-// 宇宙の時刻（ビッグバンの間だけ表示）
-.cosmos-epoch {
-  position: fixed;
-  bottom: 28px;
-  left: 32px;
-  z-index: 2;
-  display: none;
-  font-family: var(--cosmos-mono);
-  pointer-events: none;
-  opacity: var(--epoch-visible, 0);
-  transition: opacity 0.4s ease;
-
-  .cosmos-ready & {
-    display: block;
+.console-ready {
+  .console-tile-face {
+    filter: saturate(0.8) brightness(0.86);
   }
 
-  ol {
-    position: relative;
-    height: 2.9em;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  .console-tile:hover .console-tile-face {
+    filter: none;
   }
 
-  li {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+  .console-tile-label {
+    display: none;
+  }
 
-    &.is-active {
-      opacity: 1;
-      transform: none;
+  .console-tile.is-selected {
+    .console-tile-face {
+      width: var(--tile-big);
+      height: var(--tile-big);
+      filter: none;
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45), 0 0 46px color-mix(in srgb, var(--accent) 45%, transparent), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .console-tile-label {
+      display: -webkit-box;
+      animation: console-fade-in 0.35s ease both;
     }
   }
-}
 
-.cosmos-epoch-label {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--cosmos-dim);
-  font-size: 0.65rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-}
-
-.cosmos-epoch-time {
-  color: var(--cosmos-ink);
-  font-size: 1.05rem;
-  line-height: 1.4;
-}
-
-.cosmos-epoch-name {
-  color: var(--cosmos-muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  // フォーカス中だけ白い枠を出す（パネルへ降りたときは消える）
+  .console-tile:focus-visible .console-tile-face {
+    outline: 3px solid #ffffff;
+    outline-offset: 4px;
+  }
 }
 
 // ==================================================
-// 星系マップ（右端）
+// 下段：パネル
 // ==================================================
-.cosmos-map {
-  position: fixed;
-  top: 50%;
-  right: 22px;
-  z-index: 3;
-  transform: translateY(-50%);
-  opacity: var(--map-visible, 1);
-  transition: opacity 0.4s ease;
-
-  ol {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  a,
-  a:visited {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 12px;
-    padding: 5px 0;
-    color: var(--cosmos-muted);
-    font-size: 0.75rem;
-    line-height: 1.2;
-  }
-
-  a:hover,
-  a[aria-current] {
-    color: var(--cosmos-ink);
-  }
-}
-
-.cosmos-map-dot {
+.console-stage {
   position: relative;
-  flex: 0 0 auto;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--star, #cfd8ea);
-  opacity: 0.45;
-  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-
-  a:hover &,
-  a[aria-current] & {
-    opacity: 1;
-    box-shadow: 0 0 10px 1px var(--star, #cfd8ea);
-  }
-
-  a[aria-current] & {
-    transform: scale(1.5);
-  }
-}
-
-.cosmos-map-label {
-  max-width: 13em;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  opacity: 0;
-  transform: translateX(6px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-
-  .cosmos-map:hover &,
-  .cosmos-map:focus-within &,
-  a[aria-current] & {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-// ==================================================
-// 恒星系（各セクション）
-// ==================================================
-// 上下の余白が星系のあいだの航行区間になる。パネルは恒星と反対側に寄せる
-.cosmos-system {
-  padding: 46vh 0;
-
-  &:first-of-type {
-    padding-top: 30vh;
-  }
-}
-
-.cosmos-panel {
-  position: relative;
-  box-sizing: border-box;
-  width: min(560px, 44vw);
-  padding: 34px 38px 30px;
-  border: 1px solid var(--cosmos-hair);
-  border-radius: 20px;
-  background:
-    linear-gradient(160deg, rgba(var(--star-rgb, 200, 215, 255), 0.07), transparent 42%),
-    var(--cosmos-panel);
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
-  backdrop-filter: blur(14px) saturate(130%);
-
-  .cosmos-system--left & {
-    margin-left: max(32px, 7vw);
-  }
-
-  .cosmos-system--right & {
-    margin-right: max(72px, calc(7vw + 48px));
-    margin-left: auto;
-  }
-}
-
-.cosmos-head {
-  margin-bottom: 22px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--cosmos-hair);
-}
-
-.cosmos-designation {
   display: flex;
-  flex-wrap: wrap;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.console-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px 0 32px;
+}
+
+.console-ready .console-panel {
+  flex: 1 1 auto;
+  padding: 0;
+}
+
+.console-hero {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-width: 720px;
+  padding: 8px 0 20px;
+
+  > p,
+  > dl,
+  > ul {
+    margin: 0 0 12px;
+  }
+}
+
+.console-ready .console-hero {
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.console-eyebrow {
+  display: flex;
   align-items: center;
-  gap: 4px 10px;
-  margin: 0 0 8px;
-  color: var(--cosmos-dim);
-  font-family: var(--cosmos-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.cosmos-designation-index {
-  color: rgb(var(--star-rgb, 200, 215, 255));
-}
-
-.cosmos-designation-class:empty {
-  display: none;
-}
-
-.cosmos-designation-class::before {
-  content: "· ";
-}
-
-.cosmos-heading {
-  margin: 0;
-  color: var(--cosmos-ink);
-  font-size: clamp(1.55rem, 2.6vw, 2rem);
-  font-weight: 800;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-}
-
-.cosmos-count {
-  margin: 6px 0 0;
-  color: var(--cosmos-muted);
-  font-family: var(--cosmos-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-
-  span {
-    color: var(--cosmos-ink);
-  }
-}
-
-.cosmos-subheading {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin: 26px 0 8px;
-  color: var(--cosmos-muted);
-  font-size: 0.82rem;
+  gap: 8px;
+  color: var(--console-muted);
+  font-size: 0.86rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
 
-  &:first-of-type {
-    margin-top: 0;
+  .console-icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 }
 
-.cosmos-subheading-count {
-  color: var(--cosmos-dim);
-  font-family: var(--cosmos-mono);
-  font-size: 0.72rem;
-  font-weight: 400;
+.console-title {
+  margin: 0 0 6px;
+  font-size: clamp(2rem, 4.4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  overflow-wrap: anywhere;
 }
 
-// ---------- プロフィール ----------
-.cosmos-profile {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 18px;
-}
-
-.cosmos-portrait {
-  flex: 0 0 auto;
-  width: 88px;
-  height: 88px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow:
-    0 0 0 1px var(--cosmos-hair-strong),
-    0 0 0 6px rgba(var(--star-rgb, 255, 220, 170), 0.08),
-    0 0 36px rgba(var(--star-rgb, 255, 220, 170), 0.25);
-}
-
-.cosmos-profile-name {
-  margin: 0 0 4px;
+.console-hero > .console-subtitle {
+  margin-top: -2px;
+  color: var(--console-muted);
   font-size: 1.05rem;
 }
 
-.cosmos-bio {
-  margin: 0;
-  color: var(--cosmos-muted);
-  font-size: 0.9rem;
-  line-height: 1.75;
+.console-lead {
+  color: var(--console-muted);
+  font-size: 1rem;
 }
 
-.cosmos-facts {
-  margin: 0 0 16px;
+.console-lead-part {
+  display: inline-block;
+  margin-right: 18px;
+  white-space: nowrap;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    vertical-align: middle;
+  }
+}
+
+.console-facts {
+  display: grid;
+  gap: 2px;
+  font-size: 0.9rem;
 
   div {
-    display: grid;
-    grid-template-columns: 5.5em 1fr;
-    gap: 12px;
-    padding: 8px 0;
-    border-top: 1px solid var(--cosmos-hair);
+    display: flex;
+    gap: 14px;
   }
 
   dt {
-    color: var(--cosmos-dim);
-    font-family: var(--cosmos-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    line-height: 2.2;
+    flex: 0 0 auto;
+    min-width: 3.5em;
+    color: var(--console-dim);
+    font-weight: 700;
   }
 
   dd {
     margin: 0;
-    font-size: 0.9rem;
+    color: var(--console-muted);
   }
 }
 
-// ---------- 研究分野 ----------
-.cosmos-keywords {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    padding: 12px 14px;
-    border: 1px solid var(--cosmos-hair);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.02);
-    font-size: 0.95rem;
-    font-weight: 700;
-  }
-}
-
-.cosmos-keyword-idx {
-  color: rgb(var(--star-rgb, 200, 215, 255));
-  font-family: var(--cosmos-mono);
-  font-size: 0.7rem;
-  font-weight: 400;
-}
-
-// ---------- 一覧（業績・活動・OSS） ----------
-.cosmos-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  > li {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    margin: 0 -14px;
-    padding: 12px 14px 12px 30px;
-    border-radius: 12px;
-    transition: background-color 0.2s ease;
-
-    // 項目の頭の小さな「惑星」
-    &::before {
-      content: "";
-      position: absolute;
-      top: 1.32em;
-      left: 12px;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ffffff, rgb(var(--star-rgb, 200, 215, 255)) 70%);
-      opacity: 0.7;
-    }
-  }
-
-  > li[data-cosmos-body]:hover,
-  > li.is-highlighted {
-    background: rgba(var(--star-rgb, 200, 215, 255), 0.07);
-  }
-}
-
-// 入れ子の項目は「衛星」として小さく並べる
-.cosmos-sublist {
-  margin-top: 6px;
-
-  > li {
-    margin: 0;
-    padding: 4px 0 4px 18px;
-
-    &::before {
-      top: 1.2em;
-      left: 2px;
-      width: 5px;
-      height: 5px;
-      background: #c5cddc;
-      opacity: 0.5;
-    }
-  }
-}
-
-.cosmos-item-title {
-  font-size: 0.97rem;
+.console-award {
+  color: var(--console-gold);
   font-weight: 700;
-  line-height: 1.6;
+
+  a,
+  a:visited {
+    color: inherit;
+  }
 }
 
-.cosmos-authors {
-  color: var(--cosmos-muted);
-  font-size: 0.84rem;
+.console-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  list-style: none;
+
+  > li,
+  > span {
+    padding: 2px 11px;
+    border: 1px solid var(--console-line);
+    border-radius: 999px;
+    background: var(--console-glass);
+    color: var(--console-muted);
+    font-size: 0.78rem;
+  }
+}
+
+.console-detail-meta {
+  color: var(--console-muted);
+  font-size: 0.9rem;
+}
+
+// ボタン（ヒーローの「詳しく見る」「開く」、ダイアログの「閉じる」）
+.console-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 6px;
+}
+
+.console .console-button,
+.console .console-button:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 176px;
+  justify-content: center;
+  padding: 11px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0a0c16;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+
+  &:hover {
+    color: #0a0c16;
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+    transform: scale(1.04);
+    box-shadow: 0 10px 40px color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+}
+
+.console-button-note {
+  color: rgba(10, 12, 22, 0.55);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+// リンクは角括弧を消し、ガラスのピルにする
+.console .portfolio-link-item {
+  font-size: 0;
+}
+
+.console .portfolio-link,
+.console .portfolio-link:visited {
+  align-items: center;
+  margin: 0 6px 6px 0;
+  padding: 4px 13px;
+  border: 1px solid var(--console-line);
+  border-radius: 999px;
+  background: var(--console-glass);
+  color: var(--console-ink);
+  font-size: 0.8rem;
   line-height: 1.6;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: var(--console-glass-strong);
+    text-decoration: none;
+  }
+}
+
+// ==================================================
+// カードのレール
+// ==================================================
+.console-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.console-ready .console-rail {
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  margin: 0 calc(var(--gutter) * -1);
+  padding: 10px var(--gutter) 22px;
+  overflow-x: auto;
+  scroll-padding: 0 var(--gutter);
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.console-card {
+  flex: 0 0 auto;
+  width: 264px;
+  margin: 0;
+}
+
+.console-card-face {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  padding: 16px 18px;
+  border: 1px solid var(--console-line);
+  border-radius: 16px;
+  background: var(--console-glass);
+  color: var(--console-ink);
+  font: inherit;
+  text-align: left;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:is(button, a) {
+    cursor: pointer;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: rgba(255, 255, 255, 0.35);
+    background: var(--console-glass-strong);
+    color: var(--console-ink);
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+    transform: translateY(-4px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 34px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+}
+
+.console-ready .console-card-face {
+  height: 168px;
+}
+
+.console-card-eyebrow {
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.console-card-title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.console-card-meta {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--console-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.console-card-award,
+.console-card-badge {
+  margin-top: auto;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.console-card-award {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--console-gold);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.console-card-badge {
+  padding: 1px 10px;
+  border-radius: 999px;
+  background: var(--console-glass-strong);
+  color: var(--console-muted);
+}
+
+.console-card-number {
+  margin-top: auto;
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.console-card--stat {
+  width: 176px;
+
+  .console-card-eyebrow {
+    color: var(--console-muted);
+  }
+}
+
+.console-card--keyword {
+  width: 220px;
+
+  .console-card-number {
+    margin: 0 0 auto;
+    color: var(--accent);
+    font-size: 1.1rem;
+  }
+
+  .console-card-title {
+    font-size: 1.2rem;
+  }
+}
+
+.console-card--link {
+  width: 200px;
+
+  .console-card-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin-bottom: auto;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--accent) 30%, transparent);
+    font-size: 20px;
+  }
+}
+
+// カードの裏（詳細）。JS が動くと隠れ、ダイアログの中に複製される
+.console-detail {
+  padding: 12px 4px 0;
+  font-size: 0.88rem;
+
+  > p {
+    margin: 0 0 10px;
+  }
+}
+
+.console-detail-eyebrow {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.console-detail-title {
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+.console-authors {
+  color: var(--console-muted);
 
   u {
-    color: var(--cosmos-ink);
-    text-decoration-color: rgba(var(--star-rgb, 200, 215, 255), 0.7);
+    color: var(--console-ink);
+    text-decoration-color: var(--accent);
     text-underline-offset: 3px;
   }
 }
 
-.cosmos-meta {
-  color: var(--cosmos-dim);
-  font-size: 0.8rem;
-  line-height: 1.6;
-}
+.console-detail-list {
+  display: grid;
+  gap: 10px;
+  margin: 4px 0 14px;
+  padding: 0;
+  list-style: none;
 
-.cosmos-role {
-  color: var(--cosmos-muted);
-}
+  > li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--console-line);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
 
-.cosmos-desc {
-  color: var(--cosmos-muted);
-  font-size: 0.86rem;
-  line-height: 1.7;
-}
-
-.cosmos-item-foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 10px;
-  margin-top: 6px;
-
-  .cosmos-links .portfolio-link {
-    margin-bottom: 0;
+    > strong,
+    > span:not(.console-status) {
+      flex: 1 1 100%;
+    }
   }
 }
 
-.cosmos-award {
-  margin: 0;
-  color: var(--cosmos-gold);
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.cosmos-stat {
-  padding: 1px 9px;
-  border: 1px solid rgba(244, 207, 134, 0.3);
+.console-status {
+  padding: 0 8px;
   border-radius: 999px;
-  color: var(--cosmos-gold);
-  font-size: 0.76rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+
+  &--open {
+    background: rgba(71, 194, 107, 0.2);
+    color: #8fe3a8;
+  }
+
+  &--merged {
+    background: rgba(163, 113, 247, 0.22);
+    color: #cdb3ff;
+  }
+
+  &--closed {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--console-muted);
+  }
 }
 
-.cosmos-attendance {
-  margin-top: 14px;
-  padding-top: 10px;
-  border-top: 1px solid var(--cosmos-hair);
+// JS が無いとき、表に出ている内容と重なる見出しは裏から省く
+:root:not(.console-ready) {
+  .console-detail-eyebrow,
+  .console-detail-title,
+  [data-console-enter],
+  .console-keys,
+  .console-dialog {
+    display: none;
+  }
 
-  summary {
-    width: fit-content;
-    color: var(--cosmos-muted);
-    font-size: 0.86rem;
-    cursor: pointer;
+  .console-card {
+    width: min(100%, 360px);
+  }
 
-    &:hover {
-      color: var(--cosmos-ink);
+  .console-shelf-track {
+    flex-wrap: wrap;
+    height: auto;
+    overflow: visible;
+
+    &::after {
+      display: none;
     }
   }
 
-  .cosmos-list {
-    margin-top: 6px;
+  .console-tile {
+    flex-direction: column;
+    gap: 6px;
+    width: var(--tile-size);
+  }
+
+  .console-tile-label {
+    margin: 0;
+    font-size: 0.78rem;
+  }
+
+  .console-panel {
+    padding-top: 32px;
+    border-top: 1px solid var(--console-line);
+  }
+
+  .console-art {
+    display: none;
   }
 }
 
-// ---------- OSS ----------
-.cosmos-oss-head {
+// ==================================================
+// 最下段：ヒント
+// ==================================================
+.console-hints {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 10px 0 16px;
+  border-top: 1px solid var(--console-line);
+  color: var(--console-dim);
+  font-size: 0.8rem;
+}
+
+.console .console-exit,
+.console .console-exit:visited {
+  color: var(--console-muted);
+  font-weight: 700;
+}
+
+.console-keys {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 12px;
-}
-
-.cosmos-stars {
-  color: var(--cosmos-gold);
-  font-family: var(--cosmos-mono);
-  font-size: 0.74rem;
-}
-
-.cosmos-oss-items {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin: 8px 0 0;
+  gap: 6px 18px;
+  margin: 0;
   padding: 0;
   list-style: none;
 
   li {
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 2px 8px;
-    font-size: 0.8rem;
-    line-height: 1.6;
-  }
-}
-
-.cosmos-status {
-  padding: 0 7px;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  font-family: var(--cosmos-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  line-height: 1.6;
-}
-
-.cosmos-status--merged {
-  color: #c9b6ff;
-}
-
-.cosmos-status--open {
-  color: #8fe3b4;
-}
-
-.cosmos-status--closed {
-  color: var(--cosmos-dim);
-}
-
-.cosmos-oss-ref {
-  font-family: var(--cosmos-mono);
-  font-size: 0.74rem;
-}
-
-.cosmos-oss-title {
-  color: var(--cosmos-muted);
-}
-
-// ---------- Products ----------
-.cosmos-lead {
-  margin: 0 0 18px;
-  color: var(--cosmos-muted);
-  font-size: 0.9rem;
-}
-
-.cosmos-products {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.cosmos-card {
-  display: grid;
-  grid-template-columns: 132px minmax(0, 1fr);
-  gap: 16px;
-  padding: 14px;
-  border: 1px solid var(--cosmos-hair);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.02);
-  transition: border-color 0.2s ease, background-color 0.2s ease;
-
-  &:hover,
-  &.is-highlighted {
-    border-color: rgba(var(--star-rgb, 200, 215, 255), 0.4);
-    background: rgba(var(--star-rgb, 200, 215, 255), 0.06);
+    align-items: center;
+    gap: 4px;
   }
 
-  &:not(:has(.cosmos-card-thumb)) {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-.cosmos-card-thumb {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-  border-radius: 8px;
-  object-fit: cover;
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.cosmos-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
-
-  p {
-    margin: 0;
-  }
-}
-
-.cosmos-card-period {
-  color: var(--cosmos-dim);
-  font-family: var(--cosmos-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-}
-
-.cosmos-card-title {
-  margin: 0;
-  font-size: 1.02rem;
-  line-height: 1.5;
-
-  a,
-  a:visited {
-    color: var(--cosmos-ink);
-  }
-
-  a:hover {
-    color: var(--cosmos-accent);
-  }
-}
-
-.cosmos-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin: 4px 0 2px;
-  padding: 0;
-  list-style: none;
-
-  li {
-    padding: 0 8px;
+  kbd {
+    min-width: 1.6em;
+    padding: 1px 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 6px;
-    background: var(--tag-bg);
-    color: var(--cosmos-muted);
-    font-family: var(--cosmos-mono);
-    font-size: 0.68rem;
-    line-height: 1.8;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--console-ink);
+    font-family: inherit;
+    font-size: 0.72rem;
+    text-align: center;
   }
 }
 
-.cosmos-links {
-  margin: 4px 0 0;
+.console-copyright {
+  margin: 0;
 }
 
 // ==================================================
-// 終わり：銀河の上空
+// 詳細ダイアログ
 // ==================================================
-.cosmos-outro {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  min-height: 165vh;
-  padding: 0 24px 9vh;
-  box-sizing: border-box;
-  text-align: center;
-}
+.console-dialog {
+  width: min(640px, calc(100vw - 32px));
+  max-height: min(80vh, 720px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-top: 3px solid var(--accent);
+  border-radius: 22px;
+  background: rgba(16, 18, 32, 0.9);
+  color: var(--console-ink);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6), 0 0 80px color-mix(in srgb, var(--accent) 22%, transparent);
 
-.cosmos-outro-inner {
-  max-width: 560px;
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    animation: console-pop 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  }
 
-  p {
-    margin: 0 0 18px;
+  &::backdrop {
+    background: rgba(2, 3, 8, 0.6);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+
+  form {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 14px 24px 20px;
+    border-top: 1px solid var(--console-line);
   }
 }
 
-.cosmos-outro-title {
-  margin: 0 0 10px;
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
+.console-dialog-body {
+  min-height: 0;
+  padding: 24px 28px 8px;
+  overflow-y: auto;
 
-.cosmos-outro-lead {
-  color: var(--cosmos-muted);
-}
+  .console-detail {
+    padding: 0;
+    font-size: 0.95rem;
+  }
 
-.cosmos-button,
-.cosmos-button:visited {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 22px;
-  border: 1px solid var(--cosmos-hair-strong);
-  border-radius: 999px;
-  background: rgba(6, 9, 21, 0.6);
-  color: var(--cosmos-ink);
-  font-size: 0.9rem;
-
-  &:hover {
-    border-color: rgba(159, 216, 255, 0.6);
-    background: rgba(159, 216, 255, 0.12);
+  .console-detail-title {
+    font-size: 1.5rem;
   }
 }
 
-.cosmos-copyright {
-  color: var(--cosmos-dim);
-  font-family: var(--cosmos-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
+.console-dialog-close {
+  min-width: 140px;
 }
 
 // ==================================================
-// 狭い画面：パネルを全幅にし、恒星はパネルの上に見せる
+// アニメーション
 // ==================================================
-@media screen and (max-width: 900px) {
-  .cosmos-system {
-    padding: 58vh 0 40vh;
+@keyframes console-fade-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes console-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes console-slide-in {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes console-pop {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+.console-panel.is-entering {
+  .console-hero > * {
+    animation: console-rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   }
 
-  .cosmos-panel,
-  .cosmos-system--left .cosmos-panel,
-  .cosmos-system--right .cosmos-panel {
-    width: auto;
-    margin: 0 30px 0 16px;
-    padding: 26px 20px 22px;
-  }
-
-  .cosmos-map {
-    right: 8px;
-
-    a,
-    a:visited {
-      padding: 4px 0;
+  @for $i from 2 through 8 {
+    .console-hero > :nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 40}ms;
     }
   }
 
-  .cosmos-map-dot {
-    width: 5px;
-    height: 5px;
+  .console-card {
+    animation: console-rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   }
 
-  .cosmos-map-label {
-    display: none;
-  }
-
-  .cosmos-epoch {
-    bottom: 20px;
-    left: 16px;
-  }
-
-  // 左下の宇宙の時刻と重ならないよう、スクロールの案内を上げる
-  .cosmos-cue {
-    bottom: 104px;
-  }
-
-  .cosmos-card {
-    grid-template-columns: 96px minmax(0, 1fr);
-    gap: 12px;
+  @for $i from 1 through 8 {
+    .console-card:nth-child(#{$i}) {
+      animation-delay: #{120 + $i * 35}ms;
+    }
   }
 }
 
-@media screen and (max-width: 520px) {
-  .cosmos-keywords {
-    grid-template-columns: minmax(0, 1fr);
+.console.is-booting {
+  .console-tile {
+    animation: console-slide-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 45ms + 120ms);
   }
 
-  .cosmos-card {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .cosmos-card-thumb {
-    aspect-ratio: 16 / 9;
+  .console-topbar {
+    animation: console-rise 0.6s ease both;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cosmos-cue svg {
-    animation: none;
+  .console *,
+  .console *::before,
+  .console *::after {
+    animation: none !important;
+    transition: none !important;
   }
 
-  .cosmos-canvas {
-    transition-duration: 0.01s;
+  .console-art {
+    transform: none;
   }
 }
 
-// ビッグバンで名前が消えたあとは、見えないリンクを押せないようにする
-.cosmos-hero.is-faded .cosmos-hero-inner {
-  pointer-events: none;
+// 背の低いデスクトップ（ノート PC など）では、タイルとカードを小さくしてヒーローの場所を空ける
+@media (min-width: 761px) and (max-height: 860px) {
+  .console-shelf-track {
+    --tile-size: 72px;
+    --tile-big: 108px;
+    padding-top: 6px;
+  }
+
+  .console-tile-label {
+    margin-top: 4px;
+    font-size: 1.1rem;
+  }
+
+  .console-topbar {
+    min-height: 60px;
+  }
+
+  .console-title {
+    font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  }
+
+  .console-hero {
+    padding-bottom: 12px;
+
+    > p,
+    > dl,
+    > ul {
+      margin-bottom: 8px;
+    }
+  }
+
+  .console-ready .console-card-face {
+    height: 138px;
+    min-height: 0;
+    padding: 14px 16px;
+  }
+
+  .console-ready .console-rail {
+    padding-bottom: 14px;
+  }
+
+  .console-card-number {
+    font-size: 2.1rem;
+  }
+
+  .console-hints {
+    padding: 8px 0 10px;
+  }
 }
 
-// 冒頭では隠している星系マップも、キーボードで移動してきたら見せる
-.cosmos-map:focus-within {
-  opacity: 1;
+// ==================================================
+// 狭い画面・低い画面：1 画面に収めず、縦にスクロールして読む
+// ==================================================
+@media (max-width: 760px), (max-height: 600px) {
+  .console-ready .console {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .console-ready .console-panel,
+  .console-ready .console-hero {
+    flex: 0 0 auto;
+    overflow: visible;
+  }
+
+  .console-shelf-track {
+    --tile-size: 68px;
+    --tile-big: 96px;
+    gap: 10px;
+  }
+
+  .console-tile-label {
+    max-width: 52vw;
+    margin-top: 4px;
+    font-size: 1.05rem;
+  }
+
+  .console-keys {
+    display: none;
+  }
+
+  .console-card {
+    width: 230px;
+  }
+}
+
+@media (max-width: 760px) {
+  .console-topbar {
+    padding-top: 12px;
+  }
+
+  .console-system {
+    order: -1;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .console .site-header-actions,
+  .console .site-nav .trigger {
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+
+  .console .site-header .header-preferences {
+    padding-left: 10px;
+  }
+
+  .console-status .console-avatar {
+    display: none;
+  }
+
+  .console-art {
+    inset: 0 0 45% 0;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 70%);
+    mask-image: linear-gradient(to top, transparent 0%, #000 70%);
+  }
 }

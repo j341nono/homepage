@@ -38,27 +38,24 @@ ja:
       misc: その他
   cosmos:
     tagline: 自然言語処理 / 埋め込み表現
-    scroll: スクロールして宇宙を旅する
-    map_label: 星系マップ
-    system: 星系
-    bodies: 天体
-    epoch_label: 宇宙の時刻
-    epochs:
-      - time: t = 0
-        label: 特異点
-      - time: t = 10⁻³⁶ s
-        label: インフレーション
-      - time: t = 3 min
-        label: 元素の誕生
-      - time: t = 380,000 yr
-        label: 宇宙の晴れ上がり
-      - time: t = 200 Myr
-        label: 最初の星
-      - time: t = 1 Gyr
-        label: 銀河の形成
-    outro_title: 航路の記録
-    outro_lead: ここまでに訪れた星系を、銀河の上から振り返ります。
+    tabs_label: カテゴリ
+    portfolio: ポートフォリオ
+    products: プロダクト
+    open: 開く
+    view: 詳しく見る
+    close: 閉じる
+    items: 件
+    links: リンク
+    profile: プロフィール
+    research_lead: 研究で取り組んでいるテーマです。
+    oss_lead: Issue や Pull Request で貢献したオープンソースプロジェクトです。
     exit: 通常モードへ戻る
+    hints:
+      select: 選択
+      move: 移動
+      enter: 決定
+      back: 戻る
+      switch: 切り替え
 en:
   conference_attendance: Conference attendance
   collapse_section: Collapse
@@ -99,24 +96,21 @@ en:
       misc: Other
   cosmos:
     tagline: Natural Language Processing / Text Embeddings
-    scroll: Scroll to travel through the cosmos
-    map_label: Star map
-    system: System
-    bodies: bodies
-    epoch_label: Cosmic time
-    epochs:
-      - time: t = 0
-        label: Singularity
-      - time: t = 10⁻³⁶ s
-        label: Inflation
-      - time: t = 3 min
-        label: Nucleosynthesis
-      - time: t = 380,000 yr
-        label: Recombination
-      - time: t = 200 Myr
-        label: First stars
-      - time: t = 1 Gyr
-        label: Galaxies form
-    outro_title: Flight log
-    outro_lead: Every system on this journey, seen from above the galaxy.
+    tabs_label: Categories
+    portfolio: Portfolio
+    products: Products
+    open: Open
+    view: View details
+    close: Close
+    items: items
+    links: Links
+    profile: Profile
+    research_lead: Topics I work on in my research.
+    oss_lead: Open source projects I have contributed to through issues and pull requests.
     exit: Back to the standard site
+    hints:
+      select: Select
+      move: Move
+      enter: Enter
+      back: Back
+      switch: Switch
