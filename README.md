@@ -79,40 +79,41 @@ failure handling, and contribution registration.
 ## Cosmos page
 
 `/cosmos/` and `/en/cosmos/` (the header's **Cosmos** tab) show the Home and
-Products data as a game-console-style home screen:
+Products data as a cross-media-bar menu, like a handheld game console's home
+screen:
 
-1. **Tabs** – *Portfolio* and *Products* switch between two rows of tiles
-   (keys: Q / E).
-2. **Tiles** – one tile per section (Profile, Research, Publications, each
-   activity section, OSS) or per product. The selected tile grows, shows its
-   name, and recolours the background; product tiles also show their image as
-   background art.
-3. **Panel** – a large hero (title, summary, primary button) above a horizontal
-   rail of cards. Activating a card opens its full details in a dialog.
+- **Horizontal row: categories** – Profile, Research, Publications, each
+  activity section, OSS, Products, and Site (back to the standard site and the
+  other language). The selected category stays in a fixed column; its colour
+  tints the animated light waves behind the menu.
+- **Vertical column: items** of the selected category. The selected item sits
+  just below the category icon; earlier items move above the row and fade out.
+- **Detail sheet** – choosing an item slides its full details in from the right.
+  Link items (GitHub, Site, …) open their link directly.
 
-Keyboard: ←/→ choose a tile, ↓ moves into the hero and rail, ←/→ move between
-cards, Enter opens, Esc / ↑ go back. The mouse wheel over the tile row steps
-through tiles. The URL hash follows the selected tile (`/cosmos/#publications`).
+Controls: ←/→ category, ↑/↓ item (Home/End, PageUp/PageDown), Enter to open,
+Esc or ← to close the sheet. The mouse wheel moves through items (horizontal or
+Shift+wheel through categories); a first click selects an item and a second
+opens it. On touch screens, swipe horizontally for categories and vertically for
+items. The URL hash follows the category (`/cosmos/#publications`), and item ids
+such as `#product-3` open with that item selected.
 
 | Part | File |
 | --- | --- |
-| Markup | `_includes/cosmos.html`, `cosmos-tile.html`, `cosmos-cards.html`, `cosmos-icon.html` |
-| Tile colours and icons per section | `_data/cosmos.yml` |
+| Markup | `_includes/cosmos.html`, `cosmos-items.html`, `cosmos-icon.html` |
+| Category colours and icons | `_data/cosmos.yml` |
 | Layout | `_layouts/cosmos.html` |
-| Interaction and animated background (vanilla JS, Canvas 2D) | `assets/js/cosmos.js` |
+| Positioning, input and animated background (vanilla JS, Canvas 2D) | `assets/js/cosmos.js` |
 | Styles | `_sass/portfolio/_cosmos.scss` |
 | Labels | `_data/locales.yml` → `cosmos` |
 
-A new activity section appears automatically as a tile; give it an entry in
+A new activity section appears automatically as a category; give it an entry in
 `_data/cosmos.yml` to choose its colour and icon, otherwise it gets a colour
-from `fallback` and a generic icon. Nothing needs building: there is no Wasm or
-bundler step.
+from `fallback` and a generic icon. Nothing needs building.
 
-Without JavaScript, the tiles act as a table of contents and every panel and
-card detail is shown in one readable page. With `prefers-reduced-motion`, the
-background is drawn as a still image and transitions are disabled. Screens
-narrower than 760px or shorter than 600px scroll vertically instead of fitting
-into one viewport. The old `/ascii/` URLs redirect to the Cosmos pages.
+Without JavaScript, every category, item and detail is shown as one readable
+page. With `prefers-reduced-motion`, the background is a still image and
+movement is instant. The old `/ascii/` URLs redirect to the Cosmos pages.
 
 ## Language Globe
 

@@ -1,0 +1,59 @@
+{%- comment -%}
+  Cosmos の活動の項目（カテゴリの縦の列に並ぶ 1 行ずつ）。
+  表のボタン（xmb-item-face）にはアイコン・名前・時期だけを出し、裏（xmb-detail）に全文を置く。
+  JS が動くと裏は隠れ、項目を決定したときの詳細シートに複製される。JS が無いときは表と裏が並んで表示される。
+  引数: items（活動の項目）、icon（_includes/cosmos-icon.html の名前）、label（小見出し。省略可）
+{%- endcomment -%}
+{%- for item in include.items %}
+<li class="xmb-item" data-xmb-item>
+  <button class="xmb-item-face" type="button" aria-haspopup="dialog">
+    <span class="xmb-item-icon">{% include cosmos-icon.html name=include.icon %}{% if item.award %}<span class="xmb-item-badge" aria-hidden="true">★</span>{% endif %}</span>
+    <span class="xmb-item-text">
+      <span class="xmb-item-title">{{ item.title | escape }}</span>
+      <span class="xmb-item-sub">{% if include.label %}{{ include.label | escape }}{% if item.period %} · {% endif %}{% endif %}{{ item.period | escape }}</span>
+    </span>
+  </button>
+  <div class="xmb-detail">
+    {%- if include.label %}
+    <p class="xmb-detail-eyebrow">{{ include.label | escape }}</p>
+    {%- endif %}
+    <h3 class="xmb-detail-title">{{ item.title | escape }}</h3>
+    {%- if item.role or item.period %}
+    <p class="xmb-detail-meta">{% if item.role %}{{ item.role | escape }}{% if item.period %} · {% endif %}{% endif %}{{ item.period | escape }}</p>
+    {%- endif %}
+    {%- if item.description %}
+    <p>{{ item.description | escape }}</p>
+    {%- endif %}
+    {%- if item.award %}
+    <p class="xmb-award">★ {{ item.award | escape }}</p>
+    {%- endif %}
+    {%- if item.stats %}
+    <p class="xmb-chips">{% for stat in item.stats %}<span>{{ stat | escape }}</span>{% endfor %}</p>
+    {%- endif %}
+    {%- if item.items %}
+    <ul class="xmb-detail-list">
+      {%- for child in item.items %}
+      <li>
+        <strong>{{ child.title | escape }}</strong>
+        {%- if child.role or child.period %}
+        <span class="xmb-detail-meta">{% if child.role %}{{ child.role | escape }}{% if child.period %} · {% endif %}{% endif %}{{ child.period | escape }}</span>
+        {%- endif %}
+        {%- if child.description %}
+        <span>{{ child.description | escape }}</span>
+        {%- endif %}
+        {%- if child.award %}
+        <span class="xmb-award">★ {{ child.award | escape }}</span>
+        {%- endif %}
+        {%- if child.links %}
+        <span class="xmb-links">{% include portfolio-links.html links=child.links %}</span>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- if item.links %}
+    <p class="xmb-links">{% include portfolio-links.html links=item.links %}</p>
+    {%- endif %}
+  </div>
+</li>
+{%- endfor %}

@@ -1,10 +1,11 @@
 # ==================================================
-# Cosmos（ホーム画面風 UI）のタイル設定
+# Cosmos（クロスメディアバー風 UI）のカテゴリ設定
 # ==================================================
-# tiles:    セクションの id ごとのアクセント色とアイコン（_includes/cosmos-icon.html の名前）
-# fallback: tiles に無いセクション・プロダクトに順番に割り当てる色
-# 新しい活動セクションは id を書かなくても fallback の色と spark アイコンで表示される。
-tiles:
+# categories: セクションの id ごとのアクセント色とアイコン（_includes/cosmos-icon.html の名前）
+#             選んだカテゴリの色が背景の波と光に使われる
+# fallback:   categories に無い活動セクションへ順番に割り当てる色（アイコンは spark）
+# 新しい活動セクションは、ここに書かなくても自動でカテゴリとして並ぶ。
+categories:
   profile:      { accent: "#5aa9ff", icon: profile }
   research:     { accent: "#8b7bff", icon: research }
   publications: { accent: "#3fc8b8", icon: book }
@@ -13,7 +14,9 @@ tiles:
   events:       { accent: "#f2b84b", icon: mic }
   internships:  { accent: "#4f8cff", icon: briefcase }
   organizing:   { accent: "#e86fb4", icon: people }
-  achievements: { accent: "#f5d06b", icon: medal }
+  achievements: { accent: "#e8c45a", icon: medal }
+  products:     { accent: "#a07bff", icon: cube }
+  site:         { accent: "#8fa3c4", icon: gear }
 fallback:
   - "#6aa7ff"
   - "#a58bff"

@@ -1,51 +1,50 @@
 // ==================================================
-// Cosmos モード（/cosmos/）— ゲーム機のホーム画面風 UI
+// Cosmos モード（/cosmos/）— クロスメディアバー風 UI
 // ==================================================
 // main.css の上に重ねて読み込む。常に暗い配色にし、テーマ切り替えは使わない。
-//   上段 .console-topbar  タブ・サイト内リンク・時計
-//   中段 .console-shelf   タイルの列（選択中のタイルは大きくなり、右に名前が出る）
-//   下段 .console-stage   選択中のパネル（ヒーロー + カードのレール）
-//   最下 .console-hints   操作のヒントと通常モードへのリンク
-// JS（assets/js/cosmos.js）が動くと <html> に .console-ready が付き、1 画面に収まるレイアウトになる。
-// 付かないとき（JS 無効など）は、全パネルと詳細が縦に並ぶ読み物として表示する。
+//   .xmb-cat   横に並ぶカテゴリのアイコン
+//   .xmb-item  選んだカテゴリの縦に並ぶ項目
+//   .xmb-sheet 項目を決定したときに右から出る詳細シート
+// JS（assets/js/cosmos.js）が動くと <html> に .xmb-ready が付き、カテゴリと項目を絶対配置して動かす。
+// 位置（transform）は JS が書き込み、ここでは見た目と動きの速さだけを決める。
+// 付かないとき（JS 無効など）は、全カテゴリと詳細が縦に並ぶ読み物として表示する。
 
 :root.cosmos-mode,
 :root.cosmos-mode[data-theme] {
   color-scheme: dark;
-  --console-bg: #04050c;
-  --console-ink: #f3f6fc;
-  --console-muted: rgba(232, 238, 250, 0.68);
-  --console-dim: rgba(232, 238, 250, 0.46);
-  --console-glass: rgba(255, 255, 255, 0.07);
-  --console-glass-strong: rgba(255, 255, 255, 0.14);
-  --console-line: rgba(255, 255, 255, 0.12);
-  --console-gold: #ffd66e;
+  --xmb-bg: #05070f;
+  --xmb-ink: #f4f7fd;
+  --xmb-muted: rgba(236, 241, 252, 0.7);
+  --xmb-dim: rgba(236, 241, 252, 0.48);
+  --xmb-glass: rgba(255, 255, 255, 0.07);
+  --xmb-line: rgba(255, 255, 255, 0.14);
+  --xmb-gold: #ffd66e;
+  --xmb-ease: cubic-bezier(0.22, 0.8, 0.24, 1);
   --accent: #5aa9ff;
-  --gutter: clamp(16px, 5vw, 72px);
+  --col-x: 20vw;
+  --cat-size: 76px;
 
-  --page-bg: var(--console-bg);
-  --surface: var(--console-bg);
-  --text: var(--console-ink);
-  --muted: var(--console-muted);
-  --border: var(--console-line);
-  --link: #cfe3ff;
+  --page-bg: var(--xmb-bg);
+  --surface: var(--xmb-bg);
+  --text: var(--xmb-ink);
+  --muted: var(--xmb-muted);
+  --border: var(--xmb-line);
+  --link: #d4e6ff;
   --link-hover: #ffffff;
-  --award: var(--console-gold);
+  --award: var(--xmb-gold);
 
   // Canvas が使えないときの背景
   background:
-    radial-gradient(ellipse 70% 60% at 85% 5%, rgba(90, 169, 255, 0.28), transparent 70%),
-    radial-gradient(ellipse 60% 50% at 5% 100%, rgba(139, 123, 255, 0.16), transparent 70%),
-    var(--console-bg);
+    linear-gradient(to bottom, rgba(40, 70, 120, 0.55), rgba(5, 7, 15, 0) 70%),
+    var(--xmb-bg);
   background-attachment: fixed;
 }
 
 .cosmos-body {
   min-height: 100vh;
   margin: 0;
-  overflow-x: clip;
   background: transparent;
-  color: var(--console-ink);
+  color: var(--xmb-ink);
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.7;
@@ -53,7 +52,7 @@
 
   ::selection {
     background: var(--accent);
-    color: #04050c;
+    color: #05070f;
   }
 
   a,
@@ -69,161 +68,80 @@
   }
 
   :focus-visible {
-    outline: 3px solid #ffffff;
+    outline: 2px solid #ffffff;
     outline-offset: 3px;
   }
 }
 
-.console [hidden] {
+.xmb [hidden] {
   display: none !important;
 }
 
 // ==================================================
 // 背景
 // ==================================================
-.console-backdrop {
+.xmb-backdrop {
   position: fixed;
   inset: 0;
-  // .console の重なりの中で一番下に置く（0 だと位置指定の無い要素の上に描かれてしまう）
+  // .xmb の重なりの中で一番下に置く
   z-index: -1;
-  overflow: hidden;
   pointer-events: none;
 }
 
-.console-canvas {
-  position: absolute;
-  inset: 0;
+.xmb-canvas {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 1.2s ease;
+  transition: opacity 1s ease;
 
   &.is-ready {
     opacity: 1;
   }
 }
 
-// プロダクトのタイトル画像。右側に大きく出し、左の文字側へ向けて消えていく
-.console-art {
-  position: absolute;
-  inset: 0 0 0 28%;
-  background-position: center;
-  background-size: cover;
-  opacity: 0;
-  transform: scale(1.04);
-  transition: opacity 0.7s ease, transform 1.4s cubic-bezier(0.2, 0.7, 0.2, 1);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 55%), linear-gradient(to top, transparent 0%, #000 45%);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, transparent 0%, #000 55%), linear-gradient(to top, transparent 0%, #000 45%);
-  mask-composite: intersect;
-
-  // 明るい画像でも文字が読めるよう、暗く沈めてから重ねる
-  filter: brightness(0.55) saturate(1.1);
-
-  &.is-visible {
-    opacity: 0.75;
-    transform: scale(1);
-  }
-}
-
-.console-shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to right, rgba(4, 5, 12, 0.82), rgba(4, 5, 12, 0) 65%),
-    linear-gradient(to top, rgba(4, 5, 12, 0.85), rgba(4, 5, 12, 0) 45%);
-}
-
-// ==================================================
-// 全体の枠
-// ==================================================
-.console {
+.xmb {
   position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  padding: 0 var(--gutter);
-}
-
-.console-ready .console {
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
+  z-index: 0;
+  padding: 0 clamp(16px, 4vw, 48px);
 }
 
 // ==================================================
-// 上段：タブ・サイト内リンク・時計
+// 右上：サイト内リンク・言語・時計
 // ==================================================
-.console-topbar {
+.xmb-status {
   display: flex;
-  flex: 0 0 auto;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px 24px;
-  min-height: 72px;
-  padding-top: 8px;
+  justify-content: flex-end;
+  gap: 8px 18px;
+  padding: 14px 0;
 }
 
-.console-tabs {
-  display: flex;
-  gap: 28px;
-}
-
-.console .console-tab,
-.console .console-tab:visited {
-  position: relative;
-  padding: 6px 0;
-  color: var(--console-dim);
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: var(--console-ink);
-    text-decoration: none;
-  }
-
-  &.is-current {
-    color: var(--console-ink);
-  }
-}
-
-.console-system {
+.xmb-clock-wrap {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-left: auto;
-}
-
-.console-status {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin: 0;
 }
 
-.console-avatar {
-  width: 32px;
-  height: 32px;
-  border: 2px solid rgba(255, 255, 255, 0.7);
+.xmb-avatar {
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
   border-radius: 50%;
   object-fit: cover;
 }
 
-.console-clock {
-  min-width: 3.2em;
-  white-space: nowrap;
-  font-size: 1.05rem;
+.xmb-clock {
+  font-size: 1rem;
   font-variant-numeric: tabular-nums;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: pre;
 }
 
-// サイト共通のヘッダーを、上段の右側に溶け込ませる
-.console .site-header,
-.console .site-header.is-scroll-aware {
+.xmb .site-header,
+.xmb .site-header.is-scroll-aware {
   position: static;
   z-index: auto;
   min-height: 0;
@@ -242,301 +160,455 @@
 
   .header-preferences {
     padding-left: 14px;
-    border-left: 1px solid var(--console-line);
+    border-left: 1px solid var(--xmb-line);
   }
 }
 
-.console .site-nav {
+.xmb .site-header-actions,
+.xmb .site-nav .trigger {
+  flex-wrap: nowrap;
+}
+
+.xmb .site-nav {
   .page-link,
   .page-link:visited {
-    color: var(--console-muted);
-    font-size: 0.9rem;
+    color: var(--xmb-muted);
+    font-size: 0.88rem;
 
     &:hover {
-      color: var(--console-ink);
+      color: var(--xmb-ink);
       text-decoration: none;
     }
   }
 
   .page-link.is-current {
     border-bottom-color: var(--accent);
-    color: var(--console-ink);
+    color: var(--xmb-ink);
   }
 }
 
-.console .language-switch summary {
-  color: var(--console-muted);
+.xmb .language-switch summary {
+  color: var(--xmb-muted);
 
   &:hover {
-    background: var(--console-glass);
-    color: var(--console-ink);
+    background: var(--xmb-glass);
+    color: var(--xmb-ink);
   }
 }
 
-.console .language-options {
-  border: 1px solid var(--console-line);
+.xmb .language-options {
+  border: 1px solid var(--xmb-line);
   background: rgba(14, 16, 28, 0.96);
-  backdrop-filter: blur(12px);
 }
 
 // ==================================================
-// 中段：タイルの列
+// カテゴリと項目（共通の見た目）
 // ==================================================
-.console-shelf {
-  flex: 0 0 auto;
-  margin: 0 calc(var(--gutter) * -1);
+.xmb-menu {
+  margin: 0;
 }
 
-.console-shelf-track {
-  --tile-size: 92px;
-  --tile-big: 140px;
-  position: relative;
+.xmb-cat {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.xmb .xmb-cat-face,
+.xmb .xmb-cat-face:visited {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  height: calc(var(--tile-big) + 28px);
-  padding: 12px var(--gutter) 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  // 最後のタイルも左端まで送れるよう、末尾に余白を足す
-  &::after {
-    content: "";
-    flex: 0 0 calc(100vw - var(--tile-big) - var(--gutter) * 2);
-  }
+  align-items: center;
+  gap: 12px;
+  color: var(--xmb-ink);
+  text-decoration: none;
 }
 
-.console .console-tile:focus-visible {
-  outline: none;
-}
-
-.console .console-tile,
-.console .console-tile:visited {
-  display: flex;
+.xmb-cat-icon {
+  display: grid;
+  place-items: center;
   flex: 0 0 auto;
-  align-items: flex-start;
+  width: var(--cat-size);
+  height: var(--cat-size);
+}
+
+.xmb-cat-icon .xmb-icon,
+.xmb-item-icon .xmb-icon {
+  fill: none;
+  stroke: #ffffff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.xmb-cat-icon .xmb-icon {
+  width: 72%;
+  height: 72%;
+  stroke-width: 1.4;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.35));
+}
+
+.xmb-cat-label {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.xmb-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.xmb-item {
+  --icon-size: 56px;
+  --icon-width: var(--icon-size);
+}
+
+.xmb-item--wide {
+  --icon-width: calc(var(--icon-size) * 1.78);
+}
+
+.xmb .xmb-item-face,
+.xmb .xmb-item-face:visited {
+  display: flex;
+  align-items: center;
   gap: 18px;
-  border-radius: 18px;
-  color: var(--console-ink);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--xmb-ink);
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
   outline: none;
 
   &:hover {
+    color: var(--xmb-ink);
     text-decoration: none;
   }
 }
 
-.console-tile-face {
+.xmb-item-icon {
   position: relative;
   display: grid;
   place-items: center;
   flex: 0 0 auto;
-  width: var(--tile-size);
-  height: var(--tile-size);
-  overflow: hidden;
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.32), transparent 55%),
-    linear-gradient(150deg, var(--accent), color-mix(in srgb, var(--accent) 45%, #04050c));
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
-  transition:
-    width 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
-    height 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
+  width: var(--icon-width);
+  height: var(--icon-size);
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03) 70%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  transition: width 0.3s var(--xmb-ease), height 0.3s var(--xmb-ease), box-shadow 0.3s ease, margin 0.3s var(--xmb-ease);
 
-  .console-icon {
-    width: 42%;
-    height: 42%;
-    fill: none;
-    stroke: #ffffff;
+  .xmb-icon {
+    width: 50%;
+    height: 50%;
     stroke-width: 1.6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
   }
 
-  img {
+  > img {
     width: 100%;
     height: 100%;
+    border-radius: inherit;
     object-fit: cover;
   }
+
+  .portfolio-link-icon {
+    width: 46%;
+    height: 46%;
+    stroke-width: 1.6;
+  }
 }
 
-.console-tile-label {
-  display: -webkit-box;
-  max-width: 300px;
-  margin-top: 10px;
+.xmb-item-icon--photo,
+.xmb-item-icon--thumb {
+  background: #11131f;
+}
+
+.xmb-item-icon--photo {
+  border-radius: 50%;
+}
+
+.xmb-item-badge {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--xmb-gold);
+  color: #2b1d00;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.xmb-item-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.xmb-item-title {
   overflow: hidden;
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  line-height: 1.35;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  transition: font-size 0.3s var(--xmb-ease);
 }
 
-.console-ready {
-  .console-tile-face {
-    filter: saturate(0.8) brightness(0.86);
-  }
+.xmb-item-sub {
+  overflow: hidden;
+  color: var(--xmb-muted);
+  font-size: 0.82rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
-  .console-tile:hover .console-tile-face {
-    filter: none;
-  }
-
-  .console-tile-label {
+  &:empty {
     display: none;
   }
+}
 
-  .console-tile.is-selected {
-    .console-tile-face {
-      width: var(--tile-big);
-      height: var(--tile-big);
-      filter: none;
-      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45), 0 0 46px color-mix(in srgb, var(--accent) 45%, transparent), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+// ==================================================
+// JS が動いているとき：絶対配置して縦横に動かす
+// ==================================================
+.xmb-ready {
+  .cosmos-body {
+    overflow: hidden;
+  }
+
+  .xmb {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .xmb-status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    padding: 14px clamp(16px, 4vw, 48px);
+  }
+
+  .xmb-menu {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    touch-action: none;
+    transition: transform 0.4s var(--xmb-ease), opacity 0.4s ease;
+  }
+
+  // 詳細シートを開いている間は、メニューを左へ寄せて暗くする
+  .xmb.is-detail .xmb-menu {
+    opacity: 0.3;
+    transform: translateX(-4vw);
+  }
+
+  .xmb-cat,
+  .xmb-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    // 表示するときは visibility をすぐ戻す（隠れたままだとフォーカスを移せない）
+    transition: transform 0.32s var(--xmb-ease), opacity 0.28s ease, visibility 0s;
+    will-change: transform;
+  }
+
+  .xmb.is-static .xmb-cat,
+  .xmb.is-static .xmb-item,
+  .xmb.is-static .xmb-item-icon {
+    transition: none;
+  }
+
+  // カテゴリ：選んでいないものは小さく暗く、名前を隠す
+  .xmb .xmb-cat-face {
+    position: relative;
+    flex-direction: column;
+    width: var(--cat-size);
+    outline: none;
+  }
+
+  .xmb-cat-icon {
+    opacity: 0.5;
+    transform: scale(0.74);
+    transition: opacity 0.3s ease, transform 0.3s var(--xmb-ease);
+  }
+
+  .xmb-cat-label {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity 0.2s ease;
+  }
+
+  .xmb-cat-face:hover .xmb-cat-icon {
+    opacity: 0.8;
+  }
+
+  .is-current .xmb-cat-icon {
+    opacity: 1;
+    transform: none;
+  }
+
+  .is-current .xmb-cat-label {
+    opacity: 1;
+  }
+
+  // 項目：選んだものは大きく、説明（xmb-item-sub）を出す
+  .xmb-item {
+    width: min(760px, calc(100vw - var(--col-x) - 32px));
+  }
+
+  .xmb .xmb-item-face {
+    // アイコンの中心をカテゴリのアイコンの中心にそろえる
+    margin-left: calc((var(--cat-size) - var(--icon-width)) / 2);
+  }
+
+  .xmb-item-text {
+    opacity: 0.72;
+    transition: opacity 0.25s ease;
+  }
+
+  .xmb-item-sub {
+    max-height: 0;
+    opacity: 0;
+    transition: opacity 0.25s ease, max-height 0.25s ease;
+  }
+
+  // 濃さ（opacity）は位置に応じて JS が書き込む。隠すときはフェードが終わってから visibility を切る
+  .xmb-item.is-hidden {
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.32s var(--xmb-ease), opacity 0.28s ease, visibility 0s linear 0.28s;
+  }
+
+  .xmb-item.is-selected {
+    --icon-size: 76px;
+
+    .xmb-item-icon {
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 30px color-mix(in srgb, var(--accent) 55%, transparent);
     }
 
-    .console-tile-label {
+    .xmb-item-text {
+      opacity: 1;
+    }
+
+    .xmb-item-title {
       display: -webkit-box;
-      animation: console-fade-in 0.35s ease both;
+      font-size: 1.3rem;
+      white-space: normal;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .xmb-item-sub {
+      max-height: 3em;
+      opacity: 1;
+    }
+
+    // フォーカスはいつも選んだ項目にあるので、キーボード操作中だけアイコンに枠を出す
+    .xmb-item-face:focus-visible .xmb-item-icon {
+      outline: 2px solid #ffffff;
+      outline-offset: 4px;
     }
   }
 
-  // フォーカス中だけ白い枠を出す（パネルへ降りたときは消える）
-  .console-tile:focus-visible .console-tile-face {
-    outline: 3px solid #ffffff;
-    outline-offset: 4px;
+  .is-entering .xmb-item-face {
+    animation: xmb-in 0.36s var(--xmb-ease) both;
+  }
+
+  .xmb.is-booting {
+    .xmb-cat {
+      animation: xmb-fade 0.7s ease both;
+    }
+
+    .xmb-item {
+      animation: xmb-fade 0.7s ease 0.25s both;
+    }
+  }
+
+  .xmb-hints {
+    position: absolute;
+    right: clamp(16px, 4vw, 48px);
+    bottom: 14px;
+    z-index: 2;
   }
 }
 
+@keyframes xmb-in {
+  from { opacity: 0; transform: translateX(-14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes xmb-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes xmb-sheet-in {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: none; }
+}
+
 // ==================================================
-// 下段：パネル
+// 詳細（JS 無効時はその場に、JS 有効時は詳細シートに表示）
 // ==================================================
-.console-stage {
-  position: relative;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  min-height: 0;
-}
+.xmb-detail {
+  font-size: 0.92rem;
 
-.console-panel {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  padding: 12px 0 32px;
-}
-
-.console-ready .console-panel {
-  flex: 1 1 auto;
-  padding: 0;
-}
-
-.console-hero {
-  flex: 1 1 auto;
-  min-height: 0;
-  max-width: 720px;
-  padding: 8px 0 20px;
-
-  > p,
-  > dl,
-  > ul {
+  > p {
     margin: 0 0 12px;
   }
 }
 
-.console-ready .console-hero {
-  overflow-y: auto;
-  scrollbar-width: thin;
+.xmb-detail-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 18px;
+  border-radius: 14px;
 }
 
-.console-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--console-muted);
-  font-size: 0.86rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-
-  .console-icon {
-    width: 18px;
-    height: 18px;
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-}
-
-.console-title {
-  margin: 0 0 6px;
-  font-size: clamp(2rem, 4.4vw, 3.5rem);
+.xmb-detail-eyebrow {
+  color: var(--accent);
+  font-size: 0.8rem;
   font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-  overflow-wrap: anywhere;
+  letter-spacing: 0.05em;
 }
 
-.console-hero > .console-subtitle {
-  margin-top: -2px;
-  color: var(--console-muted);
-  font-size: 1.05rem;
+.xmb-detail-title {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  line-height: 1.4;
 }
 
-.console-lead {
-  color: var(--console-muted);
-  font-size: 1rem;
+.xmb-detail-meta {
+  color: var(--xmb-muted);
+  font-size: 0.88rem;
 }
 
-.console-lead-part {
-  display: inline-block;
-  margin-right: 18px;
-  white-space: nowrap;
+.xmb-authors {
+  color: var(--xmb-muted);
 
-  &::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    margin-right: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    vertical-align: middle;
+  u {
+    color: var(--xmb-ink);
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
   }
 }
 
-.console-facts {
-  display: grid;
-  gap: 2px;
-  font-size: 0.9rem;
-
-  div {
-    display: flex;
-    gap: 14px;
-  }
-
-  dt {
-    flex: 0 0 auto;
-    min-width: 3.5em;
-    color: var(--console-dim);
-    font-weight: 700;
-  }
-
-  dd {
-    margin: 0;
-    color: var(--console-muted);
-  }
-}
-
-.console-award {
-  color: var(--console-gold);
+.xmb-award {
+  color: var(--xmb-gold);
   font-weight: 700;
 
   a,
@@ -545,305 +617,49 @@
   }
 }
 
-.console-chips {
+.xmb-facts {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 12px;
+
+  div {
+    display: flex;
+    gap: 14px;
+  }
+
+  dt {
+    flex: 0 0 auto;
+    min-width: 4.5em;
+    color: var(--xmb-dim);
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+    color: var(--xmb-muted);
+  }
+}
+
+.xmb-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  margin: 0 0 12px;
   padding: 0;
   list-style: none;
 
   > li,
   > span {
     padding: 2px 11px;
-    border: 1px solid var(--console-line);
+    border: 1px solid var(--xmb-line);
     border-radius: 999px;
-    background: var(--console-glass);
-    color: var(--console-muted);
+    background: var(--xmb-glass);
+    color: var(--xmb-muted);
     font-size: 0.78rem;
   }
 }
 
-.console-detail-meta {
-  color: var(--console-muted);
-  font-size: 0.9rem;
-}
-
-// ボタン（ヒーローの「詳しく見る」「開く」、ダイアログの「閉じる」）
-.console-actions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding-top: 6px;
-}
-
-.console .console-button,
-.console .console-button:visited {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 176px;
-  justify-content: center;
-  padding: 11px 26px;
-  border: 0;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #0a0c16;
-  font: inherit;
-  font-size: 1rem;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
-
-  &:hover {
-    color: #0a0c16;
-    text-decoration: none;
-    transform: translateY(-1px);
-  }
-
-  &:focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: 4px;
-    transform: scale(1.04);
-    box-shadow: 0 10px 40px color-mix(in srgb, var(--accent) 50%, transparent);
-  }
-}
-
-.console-button-note {
-  color: rgba(10, 12, 22, 0.55);
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-// リンクは角括弧を消し、ガラスのピルにする
-.console .portfolio-link-item {
-  font-size: 0;
-}
-
-.console .portfolio-link,
-.console .portfolio-link:visited {
-  align-items: center;
-  margin: 0 6px 6px 0;
-  padding: 4px 13px;
-  border: 1px solid var(--console-line);
-  border-radius: 999px;
-  background: var(--console-glass);
-  color: var(--console-ink);
-  font-size: 0.8rem;
-  line-height: 1.6;
-
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-    background: var(--console-glass-strong);
-    text-decoration: none;
-  }
-}
-
-// ==================================================
-// カードのレール
-// ==================================================
-.console-rail {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.console-ready .console-rail {
-  flex: 0 0 auto;
-  flex-wrap: nowrap;
-  margin: 0 calc(var(--gutter) * -1);
-  padding: 10px var(--gutter) 22px;
-  overflow-x: auto;
-  scroll-padding: 0 var(--gutter);
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-.console-card {
-  flex: 0 0 auto;
-  width: 264px;
-  margin: 0;
-}
-
-.console-card-face {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  min-height: 150px;
-  padding: 16px 18px;
-  border: 1px solid var(--console-line);
-  border-radius: 16px;
-  background: var(--console-glass);
-  color: var(--console-ink);
-  font: inherit;
-  text-align: left;
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-
-  &:is(button, a) {
-    cursor: pointer;
-  }
-
-  &:hover,
-  &:focus-visible {
-    border-color: rgba(255, 255, 255, 0.35);
-    background: var(--console-glass-strong);
-    color: var(--console-ink);
-    text-decoration: none;
-  }
-
-  &:focus-visible {
-    outline: 3px solid #ffffff;
-    outline-offset: 3px;
-    transform: translateY(-4px);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 34px color-mix(in srgb, var(--accent) 35%, transparent);
-  }
-}
-
-.console-ready .console-card-face {
-  height: 168px;
-}
-
-.console-card-eyebrow {
-  color: var(--accent);
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-}
-
-.console-card-title {
-  display: -webkit-box;
-  overflow: hidden;
-  font-size: 0.98rem;
-  font-weight: 700;
-  line-height: 1.45;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
-
-.console-card-meta {
-  display: -webkit-box;
-  overflow: hidden;
-  color: var(--console-muted);
-  font-size: 0.78rem;
-  line-height: 1.5;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-.console-card-award,
-.console-card-badge {
-  margin-top: auto;
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-.console-card-award {
-  display: -webkit-box;
-  overflow: hidden;
-  color: var(--console-gold);
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-}
-
-.console-card-badge {
-  padding: 1px 10px;
-  border-radius: 999px;
-  background: var(--console-glass-strong);
-  color: var(--console-muted);
-}
-
-.console-card-number {
-  margin-top: auto;
-  font-size: 2.6rem;
-  font-weight: 800;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-
-.console-card--stat {
-  width: 176px;
-
-  .console-card-eyebrow {
-    color: var(--console-muted);
-  }
-}
-
-.console-card--keyword {
-  width: 220px;
-
-  .console-card-number {
-    margin: 0 0 auto;
-    color: var(--accent);
-    font-size: 1.1rem;
-  }
-
-  .console-card-title {
-    font-size: 1.2rem;
-  }
-}
-
-.console-card--link {
-  width: 200px;
-
-  .console-card-icon {
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    margin-bottom: auto;
-    border-radius: 12px;
-    background: color-mix(in srgb, var(--accent) 30%, transparent);
-    font-size: 20px;
-  }
-}
-
-// カードの裏（詳細）。JS が動くと隠れ、ダイアログの中に複製される
-.console-detail {
-  padding: 12px 4px 0;
-  font-size: 0.88rem;
-
-  > p {
-    margin: 0 0 10px;
-  }
-}
-
-.console-detail-eyebrow {
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-}
-
-.console-detail-title {
-  margin: 0 0 10px;
-  font-size: 1.35rem;
-  line-height: 1.4;
-}
-
-.console-authors {
-  color: var(--console-muted);
-
-  u {
-    color: var(--console-ink);
-    text-decoration-color: var(--accent);
-    text-underline-offset: 3px;
-  }
-}
-
-.console-detail-list {
+.xmb-detail-list {
   display: grid;
   gap: 10px;
   margin: 4px 0 14px;
@@ -856,18 +672,18 @@
     align-items: baseline;
     gap: 4px 10px;
     padding: 10px 12px;
-    border: 1px solid var(--console-line);
+    border: 1px solid var(--xmb-line);
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.04);
 
     > strong,
-    > span:not(.console-status) {
+    > span:not(.xmb-status) {
       flex: 1 1 100%;
     }
   }
 }
 
-.console-status {
+.xmb-status {
   padding: 0 8px;
   border-radius: 999px;
   font-size: 0.7rem;
@@ -886,81 +702,122 @@
 
   &--closed {
     background: rgba(255, 255, 255, 0.1);
-    color: var(--console-muted);
+    color: var(--xmb-muted);
   }
 }
 
-// JS が無いとき、表に出ている内容と重なる見出しは裏から省く
-:root:not(.console-ready) {
-  .console-detail-eyebrow,
-  .console-detail-title,
-  [data-console-enter],
-  .console-keys,
-  .console-dialog {
-    display: none;
+// リンクは角括弧を消し、ガラスのピルにする
+.xmb .portfolio-link-item {
+  font-size: 0;
+}
+
+.xmb .portfolio-link,
+.xmb .portfolio-link:visited {
+  align-items: center;
+  margin: 0 6px 6px 0;
+  padding: 4px 13px;
+  border: 1px solid var(--xmb-line);
+  border-radius: 999px;
+  background: var(--xmb-glass);
+  color: var(--xmb-ink);
+  font-size: 0.8rem;
+  line-height: 1.6;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.14);
+    text-decoration: none;
   }
+}
 
-  .console-card {
-    width: min(100%, 360px);
-  }
+// 詳細シート（右から出る）
+.xmb-sheet {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(560px, 100vw);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid var(--xmb-line);
+  background: rgba(10, 12, 24, 0.86);
+  color: var(--xmb-ink);
+  -webkit-backdrop-filter: blur(26px);
+  backdrop-filter: blur(26px);
+  box-shadow: -30px 0 80px rgba(0, 0, 0, 0.5);
 
-  .console-shelf-track {
-    flex-wrap: wrap;
-    height: auto;
-    overflow: visible;
-
-    &::after {
-      display: none;
-    }
-  }
-
-  .console-tile {
+  &[open] {
+    display: flex;
     flex-direction: column;
-    gap: 6px;
-    width: var(--tile-size);
+    animation: xmb-sheet-in 0.34s var(--xmb-ease) both;
   }
 
-  .console-tile-label {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  }
+
+  &::backdrop {
+    background: rgba(2, 3, 8, 0.35);
+  }
+
+  form {
+    display: flex;
+    justify-content: flex-end;
     margin: 0;
-    font-size: 0.78rem;
+    padding: 14px 28px 22px;
+    border-top: 1px solid var(--xmb-line);
   }
+}
 
-  .console-panel {
-    padding-top: 32px;
-    border-top: 1px solid var(--console-line);
-  }
+.xmb-sheet-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 36px 32px 12px;
+  overflow-y: auto;
+}
 
-  .console-art {
-    display: none;
+.xmb .xmb-button {
+  min-width: 140px;
+  padding: 10px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0a0c16;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
   }
 }
 
 // ==================================================
-// 最下段：ヒント
+// 右下：操作のヒント
 // ==================================================
-.console-hints {
+.xmb-hints {
   display: flex;
-  flex: 0 0 auto;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px 24px;
-  padding: 10px 0 16px;
-  border-top: 1px solid var(--console-line);
-  color: var(--console-dim);
-  font-size: 0.8rem;
+  justify-content: flex-end;
+  gap: 6px 22px;
+  color: var(--xmb-dim);
+  font-size: 0.78rem;
 }
 
-.console .console-exit,
-.console .console-exit:visited {
-  color: var(--console-muted);
-  font-weight: 700;
-}
-
-.console-keys {
+.xmb-keys {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 18px;
+  gap: 6px 16px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -977,259 +834,132 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.06);
-    color: var(--console-ink);
+    color: var(--xmb-ink);
     font-family: inherit;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     text-align: center;
   }
 }
 
-.console-copyright {
+.xmb-copyright {
   margin: 0;
 }
 
-// ==================================================
-// 詳細ダイアログ
-// ==================================================
-.console-dialog {
-  width: min(640px, calc(100vw - 32px));
-  max-height: min(80vh, 720px);
-  padding: 0;
+.xmb-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-top: 3px solid var(--accent);
-  border-radius: 22px;
-  background: rgba(16, 18, 32, 0.9);
-  color: var(--console-ink);
-  -webkit-backdrop-filter: blur(24px);
-  backdrop-filter: blur(24px);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6), 0 0 80px color-mix(in srgb, var(--accent) 22%, transparent);
-
-  &[open] {
-    display: flex;
-    flex-direction: column;
-    animation: console-pop 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
-  }
-
-  &::backdrop {
-    background: rgba(2, 3, 8, 0.6);
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-  }
-
-  form {
-    display: flex;
-    justify-content: flex-end;
-    margin: 0;
-    padding: 14px 24px 20px;
-    border-top: 1px solid var(--console-line);
-  }
-}
-
-.console-dialog-body {
-  min-height: 0;
-  padding: 24px 28px 8px;
-  overflow-y: auto;
-
-  .console-detail {
-    padding: 0;
-    font-size: 0.95rem;
-  }
-
-  .console-detail-title {
-    font-size: 1.5rem;
-  }
-}
-
-.console-dialog-close {
-  min-width: 140px;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 // ==================================================
-// アニメーション
+// JS が無いとき：縦に並ぶ読み物
 // ==================================================
-@keyframes console-fade-in {
-  from { opacity: 0; transform: translateX(-8px); }
-  to { opacity: 1; transform: none; }
-}
-
-@keyframes console-rise {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; }
-}
-
-@keyframes console-slide-in {
-  from { opacity: 0; transform: translateX(60px); }
-  to { opacity: 1; transform: none; }
-}
-
-@keyframes console-pop {
-  from { opacity: 0; transform: scale(0.94); }
-  to { opacity: 1; transform: none; }
-}
-
-.console-panel.is-entering {
-  .console-hero > * {
-    animation: console-rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+:root:not(.xmb-ready) {
+  .xmb-detail-eyebrow,
+  .xmb-detail-title,
+  .xmb-keys,
+  .xmb-sheet {
+    display: none;
   }
 
-  @for $i from 2 through 8 {
-    .console-hero > :nth-child(#{$i}) {
-      animation-delay: #{($i - 1) * 40}ms;
+  .xmb-category {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 0;
+    border-top: 1px solid var(--xmb-line);
+  }
+
+  .xmb-cat {
+    margin-bottom: 18px;
+    font-size: 1.4rem;
+  }
+
+  .xmb-cat-icon {
+    --cat-size: 44px;
+  }
+
+  .xmb-items {
+    display: grid;
+    gap: 18px;
+  }
+
+  .xmb-item-title,
+  .xmb-item-sub {
+    white-space: normal;
+  }
+
+  .xmb .xmb-item-face {
+    cursor: default;
+  }
+
+  .xmb-detail {
+    margin: 8px 0 0 calc(56px + 18px);
+  }
+
+  .xmb-hints {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 0 32px;
+  }
+}
+
+// ==================================================
+// 狭い画面
+// ==================================================
+@media (max-width: 640px), (max-height: 560px) {
+  .xmb-ready {
+    .xmb-cat-label {
+      left: 0;
+      transform: none;
+    }
+
+    .xmb-item {
+      --icon-size: 46px;
+      width: calc(100vw - var(--col-x) - 16px);
+    }
+
+    .xmb-item.is-selected {
+      --icon-size: 60px;
+
+      .xmb-item-title {
+        font-size: 1.1rem;
+      }
+    }
+
+    .xmb .xmb-item-face {
+      gap: 14px;
+    }
+
+    .xmb-keys {
+      display: none;
     }
   }
 
-  .console-card {
-    animation: console-rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  .xmb-status {
+    gap: 8px 12px;
   }
 
-  @for $i from 1 through 8 {
-    .console-card:nth-child(#{$i}) {
-      animation-delay: #{120 + $i * 35}ms;
-    }
-  }
-}
-
-.console.is-booting {
-  .console-tile {
-    animation: console-slide-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-    animation-delay: calc(var(--i, 0) * 45ms + 120ms);
+  .xmb .site-header .header-preferences {
+    padding-left: 10px;
   }
 
-  .console-topbar {
-    animation: console-rise 0.6s ease both;
+  .xmb-avatar {
+    display: none;
+  }
+
+  .xmb-sheet-body {
+    padding: 28px 22px 10px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .console *,
-  .console *::before,
-  .console *::after {
+  .xmb *,
+  .xmb *::before,
+  .xmb *::after {
     animation: none !important;
     transition: none !important;
-  }
-
-  .console-art {
-    transform: none;
-  }
-}
-
-// 背の低いデスクトップ（ノート PC など）では、タイルとカードを小さくしてヒーローの場所を空ける
-@media (min-width: 761px) and (max-height: 860px) {
-  .console-shelf-track {
-    --tile-size: 72px;
-    --tile-big: 108px;
-    padding-top: 6px;
-  }
-
-  .console-tile-label {
-    margin-top: 4px;
-    font-size: 1.1rem;
-  }
-
-  .console-topbar {
-    min-height: 60px;
-  }
-
-  .console-title {
-    font-size: clamp(1.8rem, 3.6vw, 2.8rem);
-  }
-
-  .console-hero {
-    padding-bottom: 12px;
-
-    > p,
-    > dl,
-    > ul {
-      margin-bottom: 8px;
-    }
-  }
-
-  .console-ready .console-card-face {
-    height: 138px;
-    min-height: 0;
-    padding: 14px 16px;
-  }
-
-  .console-ready .console-rail {
-    padding-bottom: 14px;
-  }
-
-  .console-card-number {
-    font-size: 2.1rem;
-  }
-
-  .console-hints {
-    padding: 8px 0 10px;
-  }
-}
-
-// ==================================================
-// 狭い画面・低い画面：1 画面に収めず、縦にスクロールして読む
-// ==================================================
-@media (max-width: 760px), (max-height: 600px) {
-  .console-ready .console {
-    height: auto;
-    min-height: 100dvh;
-    overflow: visible;
-  }
-
-  .console-ready .console-panel,
-  .console-ready .console-hero {
-    flex: 0 0 auto;
-    overflow: visible;
-  }
-
-  .console-shelf-track {
-    --tile-size: 68px;
-    --tile-big: 96px;
-    gap: 10px;
-  }
-
-  .console-tile-label {
-    max-width: 52vw;
-    margin-top: 4px;
-    font-size: 1.05rem;
-  }
-
-  .console-keys {
-    display: none;
-  }
-
-  .console-card {
-    width: 230px;
-  }
-}
-
-@media (max-width: 760px) {
-  .console-topbar {
-    padding-top: 12px;
-  }
-
-  .console-system {
-    order: -1;
-    width: 100%;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .console .site-header-actions,
-  .console .site-nav .trigger {
-    flex-wrap: nowrap;
-    gap: 12px;
-  }
-
-  .console .site-header .header-preferences {
-    padding-left: 10px;
-  }
-
-  .console-status .console-avatar {
-    display: none;
-  }
-
-  .console-art {
-    inset: 0 0 45% 0;
-    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 70%);
-    mask-image: linear-gradient(to top, transparent 0%, #000 70%);
   }
 }

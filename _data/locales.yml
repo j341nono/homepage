@@ -38,24 +38,19 @@ ja:
       misc: その他
   cosmos:
     tagline: 自然言語処理 / 埋め込み表現
-    tabs_label: カテゴリ
-    portfolio: ポートフォリオ
-    products: プロダクト
-    open: 開く
-    view: 詳しく見る
-    close: 閉じる
-    items: 件
-    links: リンク
+    menu_label: メニュー
     profile: プロフィール
-    research_lead: 研究で取り組んでいるテーマです。
-    oss_lead: Issue や Pull Request で貢献したオープンソースプロジェクトです。
-    exit: 通常モードへ戻る
+    products: プロダクト
+    site: サイト
+    close: 閉じる
+    standard_mode: 通常モード
+    standard_mode_sub: Cosmos を出て、通常のホームページへ
+    language_sub: 表示する言語を切り替える
     hints:
-      select: 選択
-      move: 移動
+      category: カテゴリ
+      item: 項目
       enter: 決定
       back: 戻る
-      switch: 切り替え
 en:
   conference_attendance: Conference attendance
   collapse_section: Collapse
@@ -96,21 +91,16 @@ en:
       misc: Other
   cosmos:
     tagline: Natural Language Processing / Text Embeddings
-    tabs_label: Categories
-    portfolio: Portfolio
-    products: Products
-    open: Open
-    view: View details
-    close: Close
-    items: items
-    links: Links
+    menu_label: Menu
     profile: Profile
-    research_lead: Topics I work on in my research.
-    oss_lead: Open source projects I have contributed to through issues and pull requests.
-    exit: Back to the standard site
+    products: Products
+    site: Site
+    close: Close
+    standard_mode: Standard mode
+    standard_mode_sub: Leave Cosmos for the standard homepage
+    language_sub: Change the display language
     hints:
-      select: Select
-      move: Move
+      category: Category
+      item: Item
       enter: Enter
       back: Back
-      switch: Switch

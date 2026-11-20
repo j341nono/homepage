@@ -1,415 +1,348 @@
 /*
- * Cosmos（ゲーム機のホーム画面風 UI）の操作と背景。
+ * Cosmos（クロスメディアバー風 UI）の配置・操作・背景。
  *
- *   タブ     ポートフォリオ / プロダクトのタイル列を切り替える（Q / E キーでも切り替え）
- *   タイル   ←→ で選ぶと、すぐに下のパネルと背景の色・アートが切り替わる
- *   パネル   ↓ でヒーローのボタン → カードのレールへ降りる。Enter でカードの詳細を開く
- *   Esc / ↑  ひとつ上の段（最後はタイル）へ戻る
+ *   横の列  カテゴリのアイコン。選んだカテゴリは常に同じ列（画面の左寄り）に来て、ほかは左右へずれる
+ *   縦の列  選んだカテゴリの項目。選んだ項目はカテゴリのすぐ下に来て、それより前の項目はカテゴリの上へ押し出される
+ *   ←→ カテゴリ / ↑↓ 項目 / Enter 決定（詳細シートを開く・リンクを開く）/ Esc・← 詳細を閉じる
+ *   マウスはクリックとホイール、タッチは縦横のスワイプでも同じように動かせる。
  *
- * HTML だけでも全セクションが読めるように作ってあり、ここでは「1 枚ずつ見せる」状態に切り替えるだけ。
- * 背景は Canvas 2D で、星・オーロラ・光の波を選択中のアクセント色で描く。
+ * HTML だけでも全カテゴリが読めるように作ってあり、ここでは要素を絶対配置して動かすだけ。
+ * 背景は Canvas 2D で、選んだカテゴリの色の光の波を描く。
  * prefers-reduced-motion のときはアニメーションを止め、静止画として描き直す。
  */
 (function () {
   "use strict";
 
-  var root = document.querySelector("[data-console]");
+  var root = document.querySelector("[data-xmb]");
   if (!root) return;
 
   var html = document.documentElement;
   var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   var reduced = motionQuery.matches;
+  var slice = Array.prototype.slice;
 
-  var tabs = Array.prototype.slice.call(root.querySelectorAll("[data-console-tab]"));
-  var shelves = {};
-  Array.prototype.forEach.call(root.querySelectorAll("[data-console-shelf]"), function (el) {
-    var track = el.querySelector(".console-shelf-track");
-    shelves[el.dataset.consoleShelf] = {
+  var menu = root.querySelector("[data-xmb-menu]");
+  var sheet = root.querySelector("[data-xmb-sheet]");
+  var sheetBody = root.querySelector("[data-xmb-sheet-body]");
+  var live = root.querySelector("[data-xmb-live]");
+  var clock = root.querySelector("[data-xmb-clock]");
+
+  var categories = slice.call(root.querySelectorAll("[data-xmb-category]")).map(function (el) {
+    return {
       el: el,
-      track: track,
-      tiles: Array.prototype.slice.call(el.querySelectorAll("[data-console-tile]")),
+      id: el.id,
+      cat: el.querySelector(".xmb-cat"),
+      face: el.querySelector("[data-xmb-cat]"),
+      label: el.querySelector(".xmb-cat-label").textContent.trim(),
+      accent: el.style.getPropertyValue("--accent").trim(),
+      items: slice.call(el.querySelectorAll("[data-xmb-item]")).map(function (item) {
+        return { el: item, face: item.querySelector(".xmb-item-face") };
+      }),
+      index: 0,
     };
   });
-  var panels = {};
-  Array.prototype.forEach.call(root.querySelectorAll("[data-console-panel]"), function (panel) {
-    panels[panel.id] = panel;
-  });
-  var dialog = root.querySelector("[data-console-dialog]");
-  var dialogBody = root.querySelector("[data-console-dialog-body]");
-  var clock = root.querySelector("[data-console-clock]");
-  var artLayers = Array.prototype.slice.call(root.querySelectorAll("[data-console-art]"));
+  if (!categories.length) return;
 
-  var shelfNames = Object.keys(shelves);
-  var state = { shelf: shelfNames[0], current: {} };
-  shelfNames.forEach(function (name) {
-    var first = shelves[name].tiles[0];
-    state.current[name] = first ? first.dataset.consoleTile : null;
+  var state = { cat: 0 };
+  var metrics = {};
+
+  // ==================================================
+  // 初期化
+  // ==================================================
+  html.classList.add("xmb-ready");
+
+  categories.forEach(function (category) {
+    category.face.tabIndex = -1;
+    category.items.forEach(function (item) {
+      item.face.tabIndex = -1;
+      var detail = item.el.querySelector(".xmb-detail");
+      if (detail) detail.hidden = true;
+    });
   });
 
   // ==================================================
-  // ARIA と初期状態
+  // 配置
   // ==================================================
-  html.classList.add("console-ready");
-
-  shelfNames.forEach(function (name) {
-    var shelf = shelves[name];
-    shelf.track.setAttribute("role", "tablist");
-    shelf.track.setAttribute("aria-orientation", "horizontal");
-    shelf.tiles.forEach(function (tile, index) {
-      tile.setAttribute("role", "tab");
-      tile.setAttribute("aria-controls", tile.dataset.consoleTile);
-      tile.style.setProperty("--i", index);
-    });
-  });
-
-  Object.keys(panels).forEach(function (id) {
-    var panel = panels[id];
-    panel.setAttribute("role", "tabpanel");
-    panel.setAttribute("aria-labelledby", "tile-" + id);
-    var faces = cardFaces(panel);
-    faces.forEach(function (face, index) {
-      face.tabIndex = index === 0 ? 0 : -1;
-    });
-    // 詳細はダイアログに複製して見せるので、元の場所からは隠す
-    Array.prototype.forEach.call(panel.querySelectorAll(".console-detail"), function (detail) {
-      detail.hidden = true;
-    });
-  });
-
-  function cardFaces(panel) {
-    return Array.prototype.slice.call(panel.querySelectorAll("[data-console-card] > .console-card-face"));
+  function measure() {
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var compact = w < 640 || h < 560;
+    metrics = {
+      w: w,
+      h: h,
+      colX: compact ? 28 : Math.round(Math.max(120, w * 0.2)),
+      rowY: Math.round(h * (compact ? 0.22 : 0.24)),
+      catSize: compact ? 56 : 76,
+      spacing: compact ? 96 : 140,
+      catLabel: compact ? 30 : 36,
+      itemH: compact ? 60 : 70,
+      itemSelH: compact ? 80 : 96,
+      gap: compact ? 14 : 20,
+    };
   }
 
-  function currentPanel() {
-    return panels[state.current[state.shelf]];
+  function clamp(value) {
+    return Math.max(0, Math.min(1, value));
   }
 
-  function currentTile() {
-    return document.getElementById("tile-" + state.current[state.shelf]);
+  function layout() {
+    var m = metrics;
+    var sel = state.cat;
+    root.style.setProperty("--col-x", m.colX + "px");
+    root.style.setProperty("--cat-size", m.catSize + "px");
+
+    categories.forEach(function (category, c) {
+      var offset = c - sel;
+      var x = m.colX + offset * m.spacing;
+      var on = offset === 0;
+      category.el.classList.toggle("is-current", on);
+      category.cat.style.transform = "translate3d(" + x + "px," + m.rowY + "px,0)";
+      category.cat.style.opacity = Math.abs(offset) > 6 ? "0" : "";
+
+      var listTop = m.rowY + m.catSize + m.catLabel + m.gap;
+      var above = m.rowY - m.gap;
+      var s = category.index;
+      category.items.forEach(function (item, i) {
+        var y;
+        if (i < s) y = above - (s - i) * m.itemH;
+        else if (i === s) y = listTop;
+        else y = listTop + m.itemSelH + (i - s - 1) * m.itemH;
+        var visible = on && y > -m.itemH && y < m.h;
+        // カテゴリより上の項目は薄く、画面の上下の端へ近づくほど消えていく
+        var opacity = 0;
+        if (visible) {
+          opacity = i < s ? 0.55 * clamp(y / m.rowY) : 1;
+          opacity *= clamp((m.h - 24 - y) / 140);
+        }
+        item.el.classList.toggle("is-selected", i === s);
+        item.el.classList.toggle("is-hidden", !visible || opacity < 0.02);
+        item.el.style.opacity = opacity.toFixed(3);
+        // 選んでいないカテゴリの項目は、そのカテゴリのアイコンの下に畳んでおく
+        var ix = on ? m.colX : x;
+        var iy = on ? y : listTop;
+        item.el.style.transform = "translate3d(" + ix + "px," + iy + "px,0)";
+      });
+    });
   }
 
   // ==================================================
   // 選択
   // ==================================================
-  function showShelf(name) {
-    state.shelf = name;
-    shelfNames.forEach(function (other) {
-      shelves[other].el.hidden = other !== name;
-    });
-    tabs.forEach(function (tab) {
-      var on = tab.dataset.consoleTab === name;
-      tab.classList.toggle("is-current", on);
-      if (on) tab.setAttribute("aria-current", "true");
-      else tab.removeAttribute("aria-current");
-    });
+  function current() {
+    return categories[state.cat];
   }
 
-  function select(id, options) {
+  function focusCurrent() {
+    var category = current();
+    var item = category.items[category.index];
+    var target = item ? item.face : category.face;
+    categories.forEach(function (other) {
+      other.face.tabIndex = -1;
+      other.items.forEach(function (it) { it.face.tabIndex = -1; });
+    });
+    target.tabIndex = 0;
+    if (!sheet || !sheet.open) target.focus({ preventScroll: true });
+  }
+
+  function announce() {
+    var category = current();
+    var item = category.items[category.index];
+    var title = item && item.el.querySelector(".xmb-item-title");
+    var text = category.label;
+    if (item) text += " " + (category.index + 1) + " / " + category.items.length;
+    if (title) text += " " + title.textContent.trim();
+    live.textContent = text;
+  }
+
+  function selectCategory(c, options) {
     options = options || {};
-    var panel = panels[id];
-    if (!panel) return;
-    var name = panel.dataset.consolePanel;
-    var shelf = shelves[name];
-    var changed = state.current[name] !== id || state.shelf !== name || !panel.classList.contains("is-active");
-    if (state.shelf !== name) showShelf(name);
-    state.current[name] = id;
-
-    shelf.tiles.forEach(function (tile) {
-      var on = tile.dataset.consoleTile === id;
-      tile.classList.toggle("is-selected", on);
-      tile.setAttribute("aria-selected", on ? "true" : "false");
-      tile.tabIndex = on ? 0 : -1;
-    });
-
-    Object.keys(panels).forEach(function (other) {
-      var on = other === id;
-      panels[other].hidden = !on;
-      panels[other].classList.toggle("is-active", on);
-    });
-
+    c = Math.max(0, Math.min(categories.length - 1, c));
+    var changed = c !== state.cat;
+    state.cat = c;
+    var category = current();
+    if (category.accent) {
+      root.style.setProperty("--accent", category.accent);
+      backdrop.setAccent(category.accent);
+    }
     if (changed) {
-      panel.classList.remove("is-entering");
-      void panel.offsetWidth; // 入場アニメーションを最初から再生する
-      panel.classList.add("is-entering");
-      var rail = panel.querySelector("[data-console-rail]");
-      if (rail) rail.scrollLeft = 0;
+      category.el.classList.remove("is-entering");
+      void category.el.offsetWidth; // 項目の入場アニメーションを最初から再生する
+      category.el.classList.add("is-entering");
     }
-
-    var accent = panel.style.getPropertyValue("--accent").trim();
-    if (accent) {
-      root.style.setProperty("--accent", accent);
-      backdrop.setAccent(accent);
-    }
-    setArt(panel.dataset.consoleArt);
-    scrollShelf(shelf, id, options.instant);
-
-    var tile = document.getElementById("tile-" + id);
-    if (options.focus && tile) tile.focus({ preventScroll: true });
+    layout();
+    if (options.focus !== false) focusCurrent();
     if (options.hash !== false && window.history && history.replaceState) {
-      history.replaceState(null, "", "#" + encodeURIComponent(id));
+      history.replaceState(null, "", "#" + encodeURIComponent(category.id));
     }
+    if (changed || options.announce) announce();
   }
 
-  // 選択中のタイルが常に列の左端に来るよう、列を横に送る
-  function scrollShelf(shelf, id, instant) {
-    var index = shelf.tiles.findIndex(function (tile) { return tile.dataset.consoleTile === id; });
-    if (index < 0) return;
-    var style = getComputedStyle(shelf.track);
-    var step = parseFloat(style.getPropertyValue("--tile-size")) + parseFloat(style.columnGap || style.gap || 0);
-    if (!isFinite(step)) return;
-    shelf.track.scrollTo({ left: index * step, behavior: instant || reduced ? "auto" : "smooth" });
+  function selectItem(i, options) {
+    var category = current();
+    if (!category.items.length) return;
+    i = Math.max(0, Math.min(category.items.length - 1, i));
+    if (i === category.index && !(options && options.force)) return;
+    category.index = i;
+    layout();
+    focusCurrent();
+    announce();
   }
 
-  function step(delta) {
-    var shelf = shelves[state.shelf];
-    var index = shelf.tiles.findIndex(function (tile) { return tile.dataset.consoleTile === state.current[state.shelf]; });
-    var next = Math.max(0, Math.min(shelf.tiles.length - 1, index + delta));
-    if (next !== index) select(shelf.tiles[next].dataset.consoleTile, { focus: true });
-  }
-
-  function switchShelf(delta) {
-    var index = shelfNames.indexOf(state.shelf);
-    var name = shelfNames[(index + delta + shelfNames.length) % shelfNames.length];
-    if (state.current[name]) select(state.current[name], { focus: true });
-  }
+  function moveCategory(delta) { selectCategory(state.cat + delta); }
+  function moveItem(delta) { selectItem(current().index + delta); }
 
   // ==================================================
-  // パネルの中の移動
+  // 詳細シート
   // ==================================================
-  function heroAction(panel) {
-    return panel.querySelector(".console-actions .console-button");
-  }
-
-  function focusRail(panel) {
-    var faces = cardFaces(panel);
-    var face = faces.find(function (f) { return f.tabIndex === 0; }) || faces[0];
-    if (face) focusFace(face);
-    return !!face;
-  }
-
-  function focusFace(face) {
-    var panel = face.closest("[data-console-panel]");
-    cardFaces(panel).forEach(function (f) { f.tabIndex = f === face ? 0 : -1; });
-    face.focus({ preventScroll: true });
-    var card = face.closest("[data-console-card]");
-    var rail = card.parentElement;
-    // カード 1 枚分の余白を残して、選んだカードが見えるようにレールを送る
-    var left = card.offsetLeft - rail.offsetLeft;
-    var target = Math.max(0, left - card.offsetWidth * 0.5);
-    if (left < rail.scrollLeft || left + card.offsetWidth > rail.scrollLeft + rail.clientWidth) {
-      rail.scrollTo({ left: target, behavior: reduced ? "auto" : "smooth" });
+  function activate(item) {
+    var detail = item.el.querySelector(".xmb-detail");
+    if (detail && sheet && typeof sheet.showModal === "function") {
+      var copy = detail.cloneNode(true);
+      copy.hidden = false;
+      var title = copy.querySelector(".xmb-detail-title");
+      if (title) title.id = "xmb-sheet-title";
+      sheetBody.replaceChildren(copy);
+      sheet.style.setProperty("--accent", current().accent);
+      root.classList.add("is-detail");
+      sheet.showModal();
+      sheetBody.scrollTop = 0;
+      return;
     }
+    if (item.face.tagName === "A") item.face.click();
   }
 
-  function enterPanel() {
-    var panel = currentPanel();
-    if (!panel) return;
-    var action = heroAction(panel);
-    if (action) action.focus();
-    else focusRail(panel);
-  }
-
-  function backToTile() {
-    var tile = currentTile();
-    if (tile) tile.focus();
-  }
-
-  // ==================================================
-  // 詳細ダイアログ
-  // ==================================================
-  var returnFocus = null;
-
-  function openCard(face) {
-    var card = face.closest("[data-console-card]");
-    var detail = card && card.querySelector(".console-detail");
-    if (!detail || !dialog || typeof dialog.showModal !== "function") return;
-    var copy = detail.cloneNode(true);
-    copy.hidden = false;
-    var title = copy.querySelector(".console-detail-title");
-    if (title) title.id = "console-dialog-title";
-    dialogBody.replaceChildren(copy);
-    var panel = face.closest("[data-console-panel]");
-    dialog.style.setProperty("--accent", panel.style.getPropertyValue("--accent"));
-    returnFocus = face;
-    dialog.showModal();
-    dialogBody.scrollTop = 0;
-  }
-
-  if (dialog) {
-    dialog.addEventListener("close", function () {
-      if (returnFocus) returnFocus.focus({ preventScroll: true });
-      returnFocus = null;
+  if (sheet) {
+    sheet.addEventListener("close", function () {
+      root.classList.remove("is-detail");
+      focusCurrent();
     });
-    // 枠の外（背景）をクリックしたら閉じる
-    dialog.addEventListener("click", function (event) {
-      if (event.target === dialog) dialog.close();
+    sheet.addEventListener("click", function (event) {
+      if (event.target === sheet) sheet.close();
+    });
+    sheet.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowLeft" || event.key === "Backspace") {
+        event.preventDefault();
+        sheet.close();
+      }
     });
   }
 
   // ==================================================
   // 入力
   // ==================================================
-  root.addEventListener("click", function (event) {
-    var target = event.target;
-    var tab = target.closest("[data-console-tab]");
-    if (tab) {
-      event.preventDefault();
-      var name = tab.dataset.consoleTab;
-      if (state.current[name]) select(state.current[name], { focus: true });
-      return;
-    }
-    var tile = target.closest("[data-console-tile]");
-    if (tile) {
-      event.preventDefault();
-      if (tile.classList.contains("is-selected")) enterPanel();
-      else select(tile.dataset.consoleTile, { focus: true });
-      return;
-    }
-    if (target.closest("[data-console-enter]")) {
-      focusRail(currentPanel());
-      return;
-    }
-    var face = target.closest(".console-card-face[aria-haspopup]");
-    if (face) {
-      openCard(face);
-      return;
-    }
-    // ページ内リンク（プロフィールの統計カードなど）はタイルの選択に置き換える
-    var link = target.closest('a[href^="#"]');
-    if (link) {
-      var id = decodeURIComponent(link.getAttribute("href").slice(1));
-      if (panels[id]) {
-        event.preventDefault();
-        select(id, { focus: true });
+  function locate(el) {
+    for (var c = 0; c < categories.length; c++) {
+      var category = categories[c];
+      if (category.face === el) return { c: c, i: -1 };
+      for (var i = 0; i < category.items.length; i++) {
+        if (category.items[i].face === el) return { c: c, i: i };
       }
     }
-  });
+    return null;
+  }
 
-  root.addEventListener("focusin", function (event) {
-    var face = event.target.closest && event.target.closest(".console-card-face");
-    if (face && face.tabIndex !== 0) {
-      cardFaces(face.closest("[data-console-panel]")).forEach(function (f) { f.tabIndex = f === face ? 0 : -1; });
+  var suppressClick = false;
+
+  root.addEventListener("click", function (event) {
+    var face = event.target.closest(".xmb-cat-face, .xmb-item-face");
+    if (!face || !menu.contains(face)) return;
+    if (suppressClick) {
+      event.preventDefault();
+      return;
+    }
+    var at = locate(face);
+    if (!at) return;
+    if (at.i < 0) {
+      event.preventDefault();
+      selectCategory(at.c);
+      return;
+    }
+    var category = categories[at.c];
+    if (at.c !== state.cat || at.i !== category.index) {
+      // まだ選ばれていない項目は、1 回目のクリックで選ぶだけにする
+      event.preventDefault();
+      if (at.c !== state.cat) selectCategory(at.c, { focus: false });
+      selectItem(at.i, { force: true });
+      return;
+    }
+    if (face.tagName === "BUTTON") {
+      event.preventDefault();
+      activate(category.items[at.i]);
     }
   });
 
   document.addEventListener("keydown", function (event) {
     if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
-    if (dialog && dialog.open) return;
+    if (sheet && sheet.open) return;
     var target = event.target;
-    if (target.closest && target.closest("input, textarea, select, [contenteditable], .language-switch")) return;
-    var key = event.key;
-
-    // Q / E（と [ ]）でタブを切り替える
-    if (key === "q" || key === "Q" || key === "[") { event.preventDefault(); switchShelf(-1); return; }
-    if (key === "e" || key === "E" || key === "]") { event.preventDefault(); switchShelf(1); return; }
-
-    var tile = target.closest && target.closest("[data-console-tile]");
-    var face = target.closest && target.closest(".console-card-face");
-    var inHero = target.closest && target.closest(".console-hero");
-    var panel = currentPanel();
-
-    if (tile) {
-      if (key === "ArrowRight") { event.preventDefault(); step(1); }
-      else if (key === "ArrowLeft") { event.preventDefault(); step(-1); }
-      else if (key === "Home") { event.preventDefault(); step(-Infinity); }
-      else if (key === "End") { event.preventDefault(); step(Infinity); }
-      else if (key === "ArrowDown" || key === "Enter" || key === " ") { event.preventDefault(); enterPanel(); }
-      return;
-    }
-
-    if (face) {
-      var faces = cardFaces(face.closest("[data-console-panel]"));
-      var index = faces.indexOf(face);
-      if (key === "ArrowRight" && index < faces.length - 1) { event.preventDefault(); focusFace(faces[index + 1]); }
-      else if (key === "ArrowLeft" && index > 0) { event.preventDefault(); focusFace(faces[index - 1]); }
-      else if (key === "Home") { event.preventDefault(); focusFace(faces[0]); }
-      else if (key === "End") { event.preventDefault(); focusFace(faces[faces.length - 1]); }
-      else if (key === "ArrowUp") {
+    if (target.closest && target.closest("input, textarea, select, [contenteditable], .site-header")) return;
+    switch (event.key) {
+      case "ArrowLeft": event.preventDefault(); moveCategory(-1); break;
+      case "ArrowRight": event.preventDefault(); moveCategory(1); break;
+      case "ArrowUp": event.preventDefault(); moveItem(-1); break;
+      case "ArrowDown": event.preventDefault(); moveItem(1); break;
+      case "Home": event.preventDefault(); selectItem(0); break;
+      case "End": event.preventDefault(); selectItem(current().items.length - 1); break;
+      case "PageUp": event.preventDefault(); moveItem(-5); break;
+      case "PageDown": event.preventDefault(); moveItem(5); break;
+      case "Enter":
+      case " ": {
+        var item = current().items[current().index];
+        if (!item) break;
+        // フォーカス中のボタン・リンクは既定の動作（click）に任せる
+        if (target === item.face && (item.face.tagName === "BUTTON" || item.face.tagName === "A")) break;
         event.preventDefault();
-        var action = heroAction(panel);
-        if (action) action.focus();
-        else backToTile();
-      } else if (key === "Escape") { event.preventDefault(); backToTile(); }
-      return;
-    }
-
-    if (inHero && target.matches("a, button")) {
-      if (key === "ArrowDown") { event.preventDefault(); focusRail(panel); }
-      else if (key === "ArrowUp" || key === "Escape") { event.preventDefault(); backToTile(); }
-      return;
-    }
-
-    // どこにもフォーカスが無いときは、矢印キーでタイルに戻る
-    if (target === document.body || target === root) {
-      if (key === "ArrowLeft" || key === "ArrowRight" || key === "ArrowUp" || key === "ArrowDown") {
-        event.preventDefault();
-        backToTile();
+        activate(item);
+        break;
       }
+      default:
     }
   });
 
-  // タイル列の上でホイールを回すと、タイルを 1 つずつ送る
-  var wheelLock = 0;
-  shelfNames.forEach(function (name) {
-    shelves[name].el.addEventListener("wheel", function (event) {
-      var delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-      if (Math.abs(delta) < 4) return;
-      event.preventDefault();
-      var now = performance.now();
-      if (now < wheelLock) return;
-      wheelLock = now + 160;
-      step(delta > 0 ? 1 : -1);
-    }, { passive: false });
+  // ホイール：縦は項目、横（またはシフト）はカテゴリ
+  var wheelUntil = 0;
+  window.addEventListener("wheel", function (event) {
+    if (sheet && sheet.open) return;
+    if (event.target.closest && event.target.closest(".site-header")) return;
+    event.preventDefault();
+    var horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY) || event.shiftKey;
+    var delta = horizontal ? (event.deltaX || event.deltaY) : event.deltaY;
+    if (Math.abs(delta) < 3) return;
+    var now = performance.now();
+    if (now < wheelUntil) return;
+    wheelUntil = now + (horizontal ? 220 : 90);
+    if (horizontal) moveCategory(delta > 0 ? 1 : -1);
+    else moveItem(delta > 0 ? 1 : -1);
+  }, { passive: false });
+
+  // スワイプ：横はカテゴリ、縦は項目（指の移動量に応じて複数進む）
+  var touch = null;
+  menu.addEventListener("pointerdown", function (event) {
+    if (event.pointerType === "mouse") return;
+    touch = { x: event.clientX, y: event.clientY, id: event.pointerId };
   });
-
-  // レールの上の縦ホイールは横スクロールにする
-  Object.keys(panels).forEach(function (id) {
-    var rail = panels[id].querySelector("[data-console-rail]");
-    if (!rail) return;
-    rail.addEventListener("wheel", function (event) {
-      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-      if (rail.scrollWidth <= rail.clientWidth) return;
-      event.preventDefault();
-      rail.scrollLeft += event.deltaY;
-    }, { passive: false });
+  menu.addEventListener("pointerup", function (event) {
+    if (!touch || event.pointerId !== touch.id) return;
+    var dx = event.clientX - touch.x;
+    var dy = event.clientY - touch.y;
+    touch = null;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+    suppressClick = true;
+    setTimeout(function () { suppressClick = false; }, 60);
+    if (Math.abs(dx) > Math.abs(dy)) moveCategory(dx < 0 ? 1 : -1);
+    else moveItem(-Math.sign(dy) * Math.max(1, Math.round(Math.abs(dy) / metrics.itemH)));
   });
-
-  // ==================================================
-  // 背景のアート（プロダクトのタイトル画像）
-  // ==================================================
-  var artFront = 0;
-  var artCurrent = null;
-
-  function setArt(src) {
-    src = src || null;
-    if (src === artCurrent) return;
-    artCurrent = src;
-    if (!src) {
-      artLayers.forEach(function (layer) { layer.classList.remove("is-visible"); });
-      return;
-    }
-    artFront = 1 - artFront;
-    var layer = artLayers[artFront];
-    var other = artLayers[1 - artFront];
-    var image = new Image();
-    image.decoding = "async";
-    image.onload = function () {
-      if (artCurrent !== src) return;
-      layer.style.backgroundImage = 'url("' + src.replace(/"/g, "%22") + '")';
-      layer.classList.add("is-visible");
-      other.classList.remove("is-visible");
-    };
-    image.src = src;
-  }
+  menu.addEventListener("pointercancel", function () { touch = null; });
 
   // ==================================================
   // 時計
   // ==================================================
   if (clock) {
-    var format = new Intl.DateTimeFormat(html.lang || undefined, { hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+    var dateFormat = new Intl.DateTimeFormat(html.lang || undefined, { month: "numeric", day: "numeric" });
+    var timeFormat = new Intl.DateTimeFormat(html.lang || undefined, { hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
     var tick = function () {
       var now = new Date();
-      clock.textContent = format.format(now);
+      clock.textContent = dateFormat.format(now) + "  " + timeFormat.format(now);
       clock.dateTime = now.toISOString();
     };
     tick();
@@ -417,101 +350,110 @@
   }
 
   // ==================================================
-  // 背景（Canvas 2D）
+  // 背景（Canvas 2D の光の波）
   // ==================================================
   var backdrop = (function () {
-    var canvas = root.querySelector("[data-console-canvas]");
+    var canvas = root.querySelector("[data-xmb-canvas]");
     var ctx = canvas && canvas.getContext && canvas.getContext("2d");
     if (!ctx) return { setAccent: function () {}, motion: function () {} };
 
     var width = 0;
     var height = 0;
-    var ratio = 1;
     var color = [90, 169, 255];
     var target = color.slice();
-    var stars = [];
     var running = false;
     var last = 0;
-    var clockTime = 0;
-
-    function seed() {
-      stars = [];
-      var count = Math.round(Math.min(220, (width * height) / 7000));
-      for (var i = 0; i < count; i++) {
-        stars.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          z: 0.2 + Math.random() * 0.8,
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
-    }
+    var time = 0;
+    var motes = [];
 
     function resize() {
-      ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+      var ratio = Math.min(window.devicePixelRatio || 1, 1.5);
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      seed();
+      motes = [];
+      var count = Math.round(Math.min(90, (width * height) / 16000));
+      for (var i = 0; i < count; i++) {
+        motes.push({ x: Math.random() * width, y: Math.random() * height, z: 0.3 + Math.random() * 0.7, p: Math.random() * 6.28 });
+      }
       draw(0);
     }
 
-    function rgba(alpha, mix) {
-      // mix > 0 で白に寄せる
-      var m = mix || 0;
+    // アクセント色を scale 倍に暗くし、light の割合だけ白に寄せた色
+    function tint(alpha, light, scale) {
+      var m = light || 0;
+      var s = scale == null ? 1 : scale;
       return "rgba(" +
-        Math.round(color[0] + (255 - color[0]) * m) + "," +
-        Math.round(color[1] + (255 - color[1]) * m) + "," +
-        Math.round(color[2] + (255 - color[2]) * m) + "," + alpha + ")";
+        Math.round(color[0] * s + (255 - color[0] * s) * m) + "," +
+        Math.round(color[1] * s + (255 - color[1] * s) * m) + "," +
+        Math.round(color[2] * s + (255 - color[2] * s) * m) + "," + alpha + ")";
     }
 
-    function glow(x, y, radius, alpha) {
-      var gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
-      gradient.addColorStop(0, rgba(alpha));
-      gradient.addColorStop(1, rgba(0));
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, width, height);
+    function wave(x, k, t) {
+      return Math.sin(x * 0.0021 + t * 0.32 + k * 0.55) * 0.55 +
+        Math.sin(x * 0.0047 - t * 0.21 + k * 1.3) * 0.3 +
+        Math.sin(x * 0.0009 + t * 0.11) * 0.45;
     }
 
     function draw(dt) {
-      var t = clockTime;
-      for (var c = 0; c < 3; c++) color[c] += (target[c] - color[c]) * Math.min(1, dt * 3);
+      var t = time;
+      for (var c = 0; c < 3; c++) color[c] += (target[c] - color[c]) * Math.min(1, dt * 2.5);
 
-      ctx.fillStyle = "#04050c";
+      // 上が明るく、下へ暗くなる地の色
+      var base = ctx.createLinearGradient(0, 0, 0, height);
+      base.addColorStop(0, tint(1, 0, 0.34));
+      base.addColorStop(0.6, tint(1, 0, 0.12));
+      base.addColorStop(1, "#03040a");
+      ctx.fillStyle = base;
       ctx.fillRect(0, 0, width, height);
 
-      // オーロラのような大きな光
-      glow(width * (0.78 + Math.sin(t * 0.07) * 0.06), height * (0.12 + Math.cos(t * 0.05) * 0.05), Math.max(width, height) * 0.75, 0.32);
-      glow(width * (0.08 + Math.cos(t * 0.06) * 0.05), height * 0.95, Math.max(width, height) * 0.55, 0.16);
+      var mid = height * 0.6;
+      var amp = height * 0.09;
+      var x;
 
-      // 光の波（画面の下の方を横切るリボン）
-      ctx.lineWidth = 1;
-      for (var k = 0; k < 14; k++) {
-        var base = height * (0.66 + k * 0.006);
-        var amplitude = height * (0.05 + k * 0.004);
+      // 幅のある光の帯（2 本）
+      for (var band = 0; band < 2; band++) {
         ctx.beginPath();
-        for (var x = -20; x <= width + 20; x += 16) {
-          var y = base +
-            Math.sin(x * 0.0024 + t * 0.22 + k * 0.18) * amplitude +
-            Math.sin(x * 0.0061 - t * 0.15 + k * 0.4) * amplitude * 0.35;
+        for (x = -20; x <= width + 20; x += 12) {
+          var y1 = mid + wave(x, band * 2.1, t) * amp - 18 - band * 10;
+          if (x === -20) ctx.moveTo(x, y1);
+          else ctx.lineTo(x, y1);
+        }
+        for (x = width + 20; x >= -20; x -= 12) {
+          ctx.lineTo(x, mid + wave(x, band * 2.1 + 0.7, t * 1.1) * amp + 26 + band * 14);
+        }
+        ctx.closePath();
+        var fill = ctx.createLinearGradient(0, mid - amp * 2, 0, mid + amp * 2);
+        fill.addColorStop(0, tint(0));
+        fill.addColorStop(0.5, tint(band ? 0.1 : 0.16, 0.25));
+        fill.addColorStop(1, tint(0));
+        ctx.fillStyle = fill;
+        ctx.fill();
+      }
+
+      // 細い光の線
+      ctx.lineWidth = 1;
+      for (var k = 0; k < 9; k++) {
+        ctx.beginPath();
+        for (x = -20; x <= width + 20; x += 10) {
+          var y = mid + wave(x, k * 0.35, t) * amp * (0.8 + k * 0.05) + (k - 4) * 3;
           if (x === -20) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
         }
-        ctx.strokeStyle = rgba(0.05 + (k % 4 === 0 ? 0.08 : 0.02), 0.35);
+        ctx.strokeStyle = tint(k === 4 ? 0.55 : 0.12 + (k % 3) * 0.05, 0.6);
         ctx.stroke();
       }
 
-      // 星
-      for (var i = 0; i < stars.length; i++) {
-        var star = stars[i];
-        star.x -= star.z * dt * 6;
-        if (star.x < -2) star.x += width + 4;
-        var twinkle = 0.55 + 0.45 * Math.sin(t * (0.6 + star.z) + star.phase);
-        ctx.fillStyle = "rgba(235,242,255," + (0.15 + star.z * 0.6 * twinkle).toFixed(3) + ")";
-        var size = 0.4 + star.z * 1.1;
-        ctx.fillRect(star.x, star.y, size, size);
+      // 漂う光の粒
+      for (var i = 0; i < motes.length; i++) {
+        var mote = motes[i];
+        mote.x += mote.z * dt * 8;
+        if (mote.x > width + 2) mote.x -= width + 4;
+        var a = (0.12 + 0.35 * mote.z) * (0.6 + 0.4 * Math.sin(t * (0.5 + mote.z) + mote.p));
+        ctx.fillStyle = tint(a.toFixed(3), 0.75);
+        ctx.fillRect(mote.x, mote.y, 1 + mote.z, 1 + mote.z);
       }
     }
 
@@ -519,7 +461,7 @@
       if (!running) return;
       var dt = Math.min(0.1, (now - last) / 1000 || 0);
       last = now;
-      clockTime += dt;
+      time += dt;
       draw(dt);
       requestAnimationFrame(frame);
     }
@@ -531,13 +473,9 @@
       requestAnimationFrame(frame);
     }
 
-    function stop() {
-      running = false;
-    }
-
     window.addEventListener("resize", resize);
     document.addEventListener("visibilitychange", function () {
-      if (document.hidden) stop();
+      if (document.hidden) running = false;
       else start();
     });
     resize();
@@ -555,7 +493,7 @@
         }
       },
       motion: function () {
-        if (reduced) { stop(); color = target.slice(); draw(0); }
+        if (reduced) { running = false; color = target.slice(); draw(0); }
         else start();
       },
     };
@@ -571,34 +509,54 @@
   // ==================================================
   // 起動
   // ==================================================
+  // #publications のようなカテゴリ、#product-3 のような項目の id から、選ぶ位置を決める
   function fromHash() {
     var id = decodeURIComponent(location.hash.slice(1));
-    if (!id) return null;
-    if (panels[id]) return id;
-    var el = document.getElementById(id);
-    var panel = el && el.closest("[data-console-panel]");
-    return panel ? panel.id : null;
+    var el = id && document.getElementById(id);
+    var category = el && el.closest("[data-xmb-category]");
+    if (!category) return null;
+    var c = categories.findIndex(function (cat) { return cat.el === category; });
+    var item = el.closest("[data-xmb-item]");
+    if (item) {
+      categories[c].index = Math.max(0, categories[c].items.findIndex(function (it) { return it.el === item; }));
+    }
+    return c;
   }
 
-  var initial = fromHash() || state.current[state.shelf];
-  showShelf(panels[initial].dataset.consolePanel);
-  select(initial, { instant: true, hash: false });
-  // ハッシュの位置へのブラウザのスクロールを打ち消し、画面の先頭（タブとタイル）から見せる
+  function settle() {
+    // 配置し直すときはアニメーションさせない
+    root.classList.add("is-static");
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { root.classList.remove("is-static"); });
+    });
+  }
+
+  measure();
+  var initial = fromHash();
+  state.cat = initial == null ? 0 : initial;
+  settle();
+  selectCategory(state.cat, { hash: false, announce: true });
   window.scrollTo(0, 0);
 
   window.addEventListener("hashchange", function () {
-    var id = fromHash();
-    if (id) select(id, { focus: true, hash: false });
+    var c = fromHash();
+    if (c != null) selectCategory(c, { hash: false, announce: true });
   });
 
+  var resizeQueued = false;
   window.addEventListener("resize", function () {
-    Object.keys(shelves).forEach(function (name) {
-      if (state.current[name]) scrollShelf(shelves[name], state.current[name], true);
+    if (resizeQueued) return;
+    resizeQueued = true;
+    requestAnimationFrame(function () {
+      resizeQueued = false;
+      settle();
+      measure();
+      layout();
     });
   });
 
   if (!reduced) {
     root.classList.add("is-booting");
-    setTimeout(function () { root.classList.remove("is-booting"); }, 1400);
+    setTimeout(function () { root.classList.remove("is-booting"); }, 1300);
   }
 })();
